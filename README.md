@@ -108,7 +108,7 @@ As a supplier
 
 
 
-## API Client / superagent)
+## API Client / superagent
 
 | Method | Endpoint | Protected | Usage | Response |
 | --- | --- | --- | --- | --- |
