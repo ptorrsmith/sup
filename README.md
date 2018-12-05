@@ -104,7 +104,7 @@ As a supplier
  | --- | --- | --- | --- |
 | action | SHOW_SERVICE | | a service has been touched / clicked, show details |
 | action | HIDE_SERVICE |  | close full service details component |  
-|thunk | saveService(service) | [{serviceUpdates}] | Increase running total and duration by 1s worth of $ |
+|thunk | saveService(service) | [{serviceUpdates}] | send updated details, get confirmation |
 
 
 
