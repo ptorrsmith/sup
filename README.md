@@ -94,6 +94,7 @@ As a supplier
  | --- | --- | --- | --- |
  | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
  | action |RECEIVE_USERS | users | retreive the users from the server |
+ | thunk | saveUser(user) | user | save new / update a supplier or admin user |
 
 * plus other common actions (GETTING, SAVING, UPDATING)
 
@@ -101,10 +102,9 @@ As a supplier
  ### currentService
  | type | name | data | purpose |
  | --- | --- | --- | --- |
-|| SHOW_SERVICE | ?? | a service has started, set initial service state |
-|| END_SERVICE | null | Set service in progress flag to false |  
-|| TICK_ONE_SECOND | null | Increase running total and duration by 1s worth of $ |
-|| RESET_SERVICE | null | (FUTURE/STRETCH - not MVP) Revert to initial state |  
+| action | SHOW_SERVICE | | a service has been touched / clicked, show details |
+| action | HIDE_SERVICE |  | close full service details component |  
+|thunk | saveService(service) | [{serviceUpdates}] | Increase running total and duration by 1s worth of $ |
 
 
 
