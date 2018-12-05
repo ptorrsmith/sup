@@ -18,6 +18,7 @@ If the shelters, kitchens etc are using the easy-update feature of our app, they
 And our app aims to work offline for when you go out of public wi-fi range so you can still find your way there.
 
 
+
 ## User Stories
 
 ### MVP
@@ -50,6 +51,7 @@ As a supplier
   | CreateService & EditService | View for admin-user to create and manage shelters, kitchens and other services, and manage provider-user access |
 
 
+
 ## Reducers (Client Side)
 
   | name | purpose |
@@ -60,54 +62,62 @@ As a supplier
   | users | store the list of supplier-users and admin-users |
   | auth | Store information regarding user logins, auth status and auth errors |
 
- ## Actions
 
 
+ ## Actions and Thunks
 
-
-
-
-WORK IN PROGRESS....
-
-
- 
  ### services
  
- | type | data | purpose |
- | --- | --- | --- |
- | GET_SERVICES | | retreive services from the db and store in redux |
- | RECEIVE_SERVICES | services | retreive services from the db and store in redux |
- | SAVE_SERVICE | service | Add/Save/Update a single service to the history after it is created or updated
- | SERVICE_SAVED | service (or just service id ??) | Confirmation from API after it is successfully created or updated |
- | SERVICES_ERROR | message | problem getting services or saving a service |
+ | type | name | data | purpose |
+ | --- | --- | --- | --- |
+ | thunk | getServices(search) | searchObject => services | retreive services from the db dispatch them to redux, only get new/updated |
+ | action | GETTING_SERVICES | | spinner / info message |
+ | action | RECEIVED_SERVICES | services | retreive services from the getServices thunk and set into redux state, and local storage (or from local storage?) ?? |
+ | thunk | saveService() | service | Add/Save/Update a single service to the catalogue after it is created or updated. Then call for refresh of state?  Heavy data call, not desirable ! |
+ | action | ADDING_SERVICE | service | spinner / info message |
+ | action | UPDATING_SERVICE | service | spinner / info message |
+ | action | SERVICE_SAVED | service (simple or just service id ??) | Confirmation from API after it is successfully created or updated |
+ | action | SERVICES_ERROR | message | problem getting services or saving a service |
 
- 
+
+ ### map
+ | type | name | data | purpose |
+ | --- | --- | --- | --- |
+ | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
+ | action |RECEIVE_USERS | users | retreive the users from the server |
+
+* plus other common actions (GETTING, SAVING, UPDATING)
+
 
  ### users
- | type | data | purpose |
- | --- | --- | --- |
- | RECEIVE_USERS | users | retreive the users from the server |
+ | type | name | data | purpose |
+ | --- | --- | --- | --- |
+ | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
+ | action |RECEIVE_USERS | users | retreive the users from the server |
+
+* plus other common actions (GETTING, SAVING, UPDATING)
+
 
  ### currentService
-  | type | data | purpose |
-| --- | --- | --- |
-| START_SERVICE | attendees ([]), service_name | a service has started, set initial service state |
-| END_SERVICE | null | Set service in progress flag to false |  
-| TICK_ONE_SECOND | null | Increase running total and duration by 1s worth of $ |
-| RESET_SERVICE | null | (FUTURE/STRETCH - not MVP) Revert to initial state |  
+ | type | name | data | purpose |
+ | --- | --- | --- | --- |
+|| SHOW_SERVICE | ?? | a service has started, set initial service state |
+|| END_SERVICE | null | Set service in progress flag to false |  
+|| TICK_ONE_SECOND | null | Increase running total and duration by 1s worth of $ |
+|| RESET_SERVICE | null | (FUTURE/STRETCH - not MVP) Revert to initial state |  
 
 
 
-## API (Client - Server)
+## API Client / superagent)
 
 | Method | Endpoint | Protected | Usage | Response |
 | --- | --- | --- | --- | --- |
+| Get | /api/services | No | Get services in search | An Array of Services |
+| Get | /api/map | No | Get map related resources | map stuff ??? |
+| Post | /api/services | Yes | Save a completed service | The Service that has been saved in db read format |
+| 
 | Post | /api/auth/login | Yes | Log In a User | The Users JWT Token |
 | Post | /api/auth/register | Yes | Register a User | The Users JWT Token |
-| Get | /api/services | Yes | Get a Users Service Histroy | An Array of Services |
-| Post | /api/services | Yes | Save a completed service | The Service that has been saved in db read format |
-| Get | /api/services/:id/users | Yes | Get the attendees of a Service | An Array of User objects |
-| Get | /api/users | Yes | Get the users of the app | An Array of User Objects |
 
 ### Example data structures
 
@@ -116,64 +126,25 @@ WORK IN PROGRESS....
 {
   id: 3,
   name: "What next?",
-  purpose: "Review world domination and redness... plan next dastardly deed!",
-  description: "First rule of meet-club is we don't talk about meet-club, ok!",
-  startTime: new Date('November 28, 2018 13:05:00'),
-  duration: 3.25 * 60 * 60, // 3.25 hours in seconds
-  finalCost: (3.25 * 60 * 60 / 3600) * (10000 * 5), // cost in cents
-  status: COMPLETE,
-  attendees: [{
-      id: 1,
-      user_name: 'james',
-      first_name: 'James',
-      last_name: 'Turner',
-      hourly_wage: 10000
-    },
-    {
-      id: 2,
-      user_name: 'bobbi',
-      first_name: 'Bobbi',
-      last_name: 'Kerei',
-      hourly_wage: 10000
-    },
-    {
-      id: 3,
-      user_name: 'joan',
-      first_name: 'Joan',
-      last_name: 'Shi',
-      hourly_wage: 10000
-    },
-    {
-      id: 4,
-      user_name: 'ruby',
-      first_name: 'Ruby',
-      last_name: 'Moyes',
-      hourly_wage: 10000
-    },
-    {
-      id: 5,
-      user_name: 'peter',
-      first_name: 'Peter Torr',
-      last_name: 'Smith',
-      hourly_wage: 10000
-    }
-  ]
+  address:
+  etc etc:
+  hours: {} // may hold busy forecast info not just standard hours / meal-times/types
 }
 ```
 
-#### Note on meeeting status
+#### Note on service status
 |STATUS|purpose|
 |---|---|
-|PENDING|service has not yet started... not driven by service datetime, but if timer has been started|
-|ACTIVE|service is underway and accumulating time and money|
-|COMPLETE|service has completed and timer has stopped. Should have a duration and cost|
+|PENDING|service has not yet been approved to show |
+|ACTIVE|service is approved and in search results|
+|INACTIVE|service has been de-listed for some reason|
 
 
-## DB (Server Side)
-  There should be three tables for MVP
-  * services
-  * users
-  * attendees (or service users)
+## DB (Server Side).  NoSQL could be useful for MVP, but a bit of a stretch
+  There could be several tables for MVP
+  * services  // this is what shows on the map, has service qty/count
+  * service_provider  // they provide the service, have phone numbers etc
+  * users (supplier and admin)
 
 ### Users
   | Column Name | Data Type |
@@ -184,25 +155,20 @@ WORK IN PROGRESS....
   | last_name | String |
   | hash | text |
 
-### Services
+### Services ( and service providers for now)
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
   | service_name | String |
+  | address | integer |
   | time | Timestamp |
-  | attendees | integer |
   | cost | Decimal |
 
-### Attendees (Join Table M2M)
-
-  Many Users attend Many Services
-
- | Column Name | Data Type |
- | --- | --- |
- | user_id | Integer |
- | service_id | Integer |
-
  ---
+
+
+# \/ from original STMT readme
+
 
 ## Setup
 
