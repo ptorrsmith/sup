@@ -168,7 +168,17 @@ As a supplier
 
 
 
-![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_124802.jpg "A whiteboard thing")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_124802.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_142538.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_145705.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173003.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173008.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173013.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173017.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173020.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173025.jpg "title")
+
+
 
 
 
