@@ -83,8 +83,8 @@ As a supplier
  ### map
  | type | name | data | purpose |
  | --- | --- | --- | --- |
- | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
- | action |RECEIVE_USERS | users | retreive the users from the server |
+ | thunk | getMapInfo(search) | searchObj => mapInfo | retreive map info from the server |
+ | action |RECEIVE_MAPINFO | mapInfo | set map info into redux state / local storage ? |
 
 * plus other common actions (GETTING, SAVING, UPDATING)
 
