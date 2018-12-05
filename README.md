@@ -15,7 +15,7 @@ This web app allows anyone to easily find and see what's available, when and whe
 
 If the shelters, kitchens etc are using the easy-update feature of our app, they can quickly hit the big '+' and '-' buttons to instantly update their status on the map.
 
-And our app aims to work offline for when you go out of public wi-fi range so you can still find your way there.
+And our app aims to work offline for when you go out of public wi-fi range so you can still find your way there, and it minimizes data usage when online.
 
 
 
@@ -94,6 +94,7 @@ As a supplier
  | --- | --- | --- | --- |
  | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
  | action |RECEIVE_USERS | users | retreive the users from the server |
+ | thunk | saveUser(user) | user | save new / update a supplier or admin user |
 
 * plus other common actions (GETTING, SAVING, UPDATING)
 
@@ -101,14 +102,13 @@ As a supplier
  ### currentService
  | type | name | data | purpose |
  | --- | --- | --- | --- |
-|| SHOW_SERVICE | ?? | a service has started, set initial service state |
-|| END_SERVICE | null | Set service in progress flag to false |  
-|| TICK_ONE_SECOND | null | Increase running total and duration by 1s worth of $ |
-|| RESET_SERVICE | null | (FUTURE/STRETCH - not MVP) Revert to initial state |  
+| action | SHOW_SERVICE | | a service has been touched / clicked, show details |
+| action | HIDE_SERVICE |  | close full service details component |  
+|thunk | saveService(service) | [{serviceUpdates}] | send updated details, get confirmation |
 
 
 
-## API Client / superagent)
+## API Client / superagent
 
 | Method | Endpoint | Protected | Usage | Response |
 | --- | --- | --- | --- | --- |
@@ -167,7 +167,7 @@ As a supplier
  ---
 
 
-# \/ from original STMT readme
+# \/ from original $MTM readme
 
 
 ## Setup
