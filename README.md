@@ -15,7 +15,7 @@ This web app allows anyone to easily find and see what's available, when and whe
 
 If the shelters, kitchens etc are using the easy-update feature of our app, they can quickly hit the big '+' and '-' buttons to instantly update their status on the map.
 
-And our app aims to work offline for when you go out of public wi-fi range so you can still find your way there.
+And our app aims to work offline for when you go out of public wi-fi range so you can still find your way there, and it minimizes data usage when online.
 
 
 
