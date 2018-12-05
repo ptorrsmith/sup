@@ -167,7 +167,7 @@ As a supplier
  ---
 
 
-# \/ from original STMT readme
+# \/ from original $MTM readme
 
 
 ## Setup
