@@ -14,6 +14,7 @@ exports.seed = function (knex, Promise) {
           update_message: "fully functional",
           lat: -41.300610,
           long: 174.774080,
+          email: "menshelter@hotmail.com",
           website_url: "http://wellingtonnightshelter.org.nz/",
           hours: "Open: 7 days a week, all year round<br>Checkin: 5:30pm – 9:00pm<br>Checkout: 6:00am – 7:30am",
         }

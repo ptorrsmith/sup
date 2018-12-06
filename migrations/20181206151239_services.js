@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
     table.string('name')
     table.integer('qty_default')
     table.integer('qty_remaining')
+    table.string("unit")
     table.string('status')
     table.integer('provider_id')
     table.integer('service_type_id')
