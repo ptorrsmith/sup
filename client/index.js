@@ -14,7 +14,7 @@ import App from './components/App'
 
 let store = createStore(reducers, compose(
     applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.devToolsExtension ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
 
     // to be updated to window.__REDUX_DEVTOOLS_EXTENSION__
 ))
