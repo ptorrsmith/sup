@@ -94,6 +94,42 @@ exports.seed = function (knex, Promise) {
           service_type_id: 5,
 
         },
+        {
+          id: 8,
+          name: "Catacombs",
+          qty_default: 10000,
+          qty_remaining: 10000,
+          unit: "washing facilities",
+          status: "open",
+          provider_id: 7,
+          service_type_id: 5,
+
+        },
+        {
+          id: 9,
+          name: "Catacombs",
+          qty_default: 10000,
+          qty_remaining: 10000,
+          unit: "light snacks and drinks",
+          status: "open",
+          provider_id: 7,
+          service_type_id: 3,
+
+        },
+        {
+          id: 10,
+          name: "DCM",
+          qty_default: 10000,
+          qty_remaining: 10000,
+          unit: "Food",
+          status: "open",
+          provider_id: 5,
+          service_type_id: 4,
+
+        },
+
+
+
 
 
       ]);
