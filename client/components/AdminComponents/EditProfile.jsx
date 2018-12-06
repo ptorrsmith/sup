@@ -5,6 +5,15 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 const EditProfile = () => (
+
+    <div>
+
+    <div className="edit_profile_body">
+    <p>Hello from EditProfile.</p>
+    </div>
+
+
+    
     <React.Fragment>
 
         {/* Allows the admin user to edit the more concrete
@@ -13,6 +22,8 @@ const EditProfile = () => (
 
 
     </React.Fragment>
+    
+    </div>
 )
 
 export default EditProfile

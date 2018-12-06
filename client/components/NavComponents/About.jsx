@@ -4,12 +4,14 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const HowToUse = () => (
+const About = () => (
     <React.Fragment>
 
-        {/* How to use the website */}
+    {/* Information about what the website provides */}
+
+    <p>Hello from About</p>
 
     </React.Fragment>
 )
 
-export default HowToUse
+export default About

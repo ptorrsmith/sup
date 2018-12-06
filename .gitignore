@@ -64,4 +64,6 @@ bundle.js.map
 bundle.js
 
 # sqlite3
-.sqlite3
+*.sqlite3
+
+package-lock.json
