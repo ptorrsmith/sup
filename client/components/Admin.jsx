@@ -40,6 +40,10 @@ const Admin = () => (
 
         </React.Fragment>
 
+        <div className="admin_link">
+        <Link to='/'>Go back to the Landing Page.</Link>
+        </div>
+
     </div>
 
 )
