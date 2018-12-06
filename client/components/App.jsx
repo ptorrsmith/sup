@@ -1,16 +1,25 @@
 import React from 'react'
-import {HashRouter as Router, Route, Link} from 'react-router-dom'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
 // import {connect} from 'react-redux'
 
 class App extends React.Component {
     constructor(props) {
-        super(props) 
+        super(props)
     }
-    render () {
+    render() {
         return (
-            <p>Is React working?</p>
+            <React.Fragment>
+
+                <p>Is React working?</p>
+
+                <Map />
+                <Admin />
+                <Nav />
+                <ViewProfile />
+
+            </React.Fragment>
         )
     }
 }
 
-  export default App
+export default App
