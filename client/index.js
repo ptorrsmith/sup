@@ -6,29 +6,28 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-// import reducers from './reducers'
+import reducers from './reducers'
 import App from './components/App'
 
+
+
+let store = createStore(reducers, compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+))
+
 document.addEventListener('DOMContentLoaded', () => {
-    render( 
+    render(
         <App />,
 
 
-      
-// REDUX STUFF BELOW:
-    
-// let store = createStore(reducers, compose(
-//     applyMiddleware(thunkMiddleware),
-//     window.devToolsExtension ? window.devToolsExtension() : f => f
 
-//     // to be updated to window.__REDUX_DEVTOOLS_EXTENSION__
-// ))
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     render(
-//         <Provider store={store} >
-//             <App />
-//         </Provider>,
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     render(
+        //         <Provider store={store} >
+        //             <App />
+        //         </Provider>,
 
         document.getElementById('app')
     )
