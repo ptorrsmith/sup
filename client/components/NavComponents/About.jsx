@@ -5,13 +5,16 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const About = () => (
-    <React.Fragment>
+    <div>
+
+        <div className="about_body">
+        <p>Hello from About component body.</p>
+        </div>
 
     {/* Information about what the website provides */}
 
-    <p>Hello from About</p>
+</div>
 
-    </React.Fragment>
 )
 
 export default About
