@@ -1,7 +1,5 @@
 import React from 'react'
-import { LeafletMap } from Leaflet
-import Marker from './Markers'
-
+import { ReactLeaflet } from 'leaflet'
 
 
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
