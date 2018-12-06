@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-// import Map from './Map'
+import Map from './TDC/BobbiMap'
 import Admin from './Admin'
 import Nav from './Nav'
 
@@ -17,6 +17,9 @@ const App = () => (
         <React.Fragment>
             <Nav />
         </React.Fragment>
+
+
+        <Map />
 
         <div className="app_body">
             <p> This is where Nav finishes, and where Admin begins.</p>
