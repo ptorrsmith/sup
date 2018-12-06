@@ -5,11 +5,18 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import About from './About'
-import HowToUse from './HowToUse'
+import About from './NavComponents/About'
+import HowToUse from './NavComponents/HowToUse'
 
 const Nav = () => (
-    <React.Fragment>
+
+    <div>
+
+    <div className="nav_header">
+    <h1>Hello from the Nav component.</h1>
+    </div>
+
+    <div className="nav_body">
 
         {/* About the website, contact details, etc */}
         <About />
@@ -28,7 +35,9 @@ const Nav = () => (
     
     */}
 
-    </React.Fragment>
+    </div>
+
+    </div>
 )
 
 export default Nav
