@@ -108,31 +108,124 @@ As a supplier
 
 
 
-## API Client / superagent
+## API Client / API (called by superagent)
 
-| Method | Endpoint | Protected | Usage | Response |
-| --- | --- | --- | --- | --- |
-| Get | /api/services | No | Get services in search | An Array of Services |
-| Get | /api/map | No | Get map related resources | map stuff ??? |
-| Post | /api/services | Yes | Save a completed service | The Service that has been saved in db read format |
-| 
-| Post | /api/auth/login | Yes | Log In a User | The Users JWT Token |
-| Post | /api/auth/register | Yes | Register a User | The Users JWT Token |
+API_Base/url: https://sup.org.nz/api/v1  
 
-### Example data structures
+NOTE: API resources:  Providers, Services
 
-#### Service
+
+
+
+
+
+| Method | Endpoint | Protected | Usage | Request-data | Response-data |
+| --- | --- | --- | --- | --- | --- |
+| Get | /providerservices | No | Get provider-services in search area (long, lat), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
+| Get | /liveupdates | No | get any new provider and service updates for these suppliers | [23,34,46,42,23,56] | liveUpdates |
+| Post | /providers | Yes | create a new service provider | new-provider-info | new-provider-id |
+| Put | /providers | Yes | update service provider | updated-provider-info | confirmation |
+| Post | /services | Yes | create a new service for an existing provider | provider_id, service-info | new-service-id |
+| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
+| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
+| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
+| Post | /auth/login | Yes | Log In a User | The Users JWT Token ||
+| Post | /api/auth/register | Yes | Register a User | The Users JWT Token ||
+
+### Example JSON data structures
+
+#### ProviderServices
+This to represent the JSON response from GET: /providers/
+
+It MUST pass a {lat1,long1, lat2, long2} parameter to what geo-box to use to return the providers.  
+NOTE: it can optionally pass a list of provider_ids to advice what info it does NOT need, otherwise it will get back all providerServices in that geo-box.  This for when zooming out, don't want existing provider info, just those we don't already have.
+
 ```sh
 {
-  id: 3,
-  name: "What next?",
-  address:
-  etc etc:
-  hours: {} // may hold busy forecast info not just standard hours / meal-times/types
+  id: "23",
+  name: "Wesley City Mission",
+  address: "213 Abc Street, Thorndon, Wellington 6011",
+  description: "We provide abc service, and xyz service",
+  hours: "we're open 7 days from 3pm, doors close at 9:30pm",
+  location: {lat, long},
+  phone: "04-399-9990, or a/h 021-444-4444",
+  email: "abcshelter@wcm.org.nz",
+  services: [{service1}, {service2}, ...], // see service below
+  images: ['img_39218392.jpg', '42235352.png', 'IMG_20180921.jpeg'],
+  update_message: "All services operating currently, but we will be opening late (5:30pm) on Tuesday 18th due to maintenance work that day"
 }
+
+// note: the update_message will be updated regularly via a call to the providerLive service... see below
+
 ```
 
-#### Note on service status
+#### Service  
+This represent the JSON nested within the providerServices "services" array for each provider (see above).  It is not a route response payload in itself.  Just broken out here for clarity.
+```sh
+
+{
+  id: "34",
+  name: "Sunday lunch roast",
+  description: "A shared roast lunch each sunday after the 11am service",
+  service_type: "Meals",  // from the service_type table
+  service_icon: "meals-kitchen", // represents the icon css class to be applied. from the service_type table
+  qty_default: "140", // number of meals in this case 
+  qty_remaining: "80",  // will be udpated by poll for provider updates 
+  qty_remaining_last_updated: "2018-12-13 18:07:43", // or whatever date format works
+  service_status: "Open"
+}
+
+// note, no provider_id here, as the service objects are nested in the providerServices "services" array.  The provider id however does exist in the database.
+
+// also, suggest we show qty_remaining always, however if same as qty_default, show as "total qty" (ie. may not be live-updated, so please phone to check), but if different (means provider is live-updating) then show as "live - qty remaining"
+```
+
+
+#### LiveUpdates 
+Single service for both provider and service updates I suggest.
+
+Our react app can poll for updates on a regular basis.  It MUST send a list of provider_ids for which it wants any updates (i.e. in geobox), and it will get back an array of providerServices updates (only things that have changed)
+
+This represents the JSON response back from GET: /liveupdates
+
+```sh
+{
+  updates: [
+    {
+      provider_id: "24",
+      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day",
+      service_updates: [
+        {
+          service_id: "34",
+          qty_remaining: "75"
+        },
+        {
+          service_id: "38",
+          qty_remaining: "0",
+          service_status: "Closed"
+        }
+      ]
+    },
+    {
+      provider_id: "35",
+      service_updates: [
+        {
+          service_id: "63",
+          qty_remaining: "47"
+        }
+      ]
+    },
+    {
+      provider_id: "67",
+      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day"
+    },
+  ],
+  update_timestamp: "2018-12-13 18:23:00" // the datetime of when these updates were polled. Will be used to update the qty_remaining_last_updated value for the service
+}
+
+
+
+#### Note on service status  (n/a for MVP)
 |STATUS|purpose|
 |---|---|
 |PENDING|service has not yet been approved to show |
@@ -141,9 +234,10 @@ As a supplier
 
 
 ## DB (Server Side).  NoSQL could be useful for MVP, but a bit of a stretch
-  There could be several tables for MVP
+  There could be at least four tables for MVP (actually three if we exclude users for MVP, i.e. no Auth yet)
   * services  // this is what shows on the map, has service qty/count
-  * service_provider  // they provide the service, have phone numbers etc
+  * service_type // for service classification, icon type (className)
+  * providers  // they provide the service, have phone numbers etc
   * users (supplier and admin)
 
 ### Users
@@ -151,18 +245,41 @@ As a supplier
   | --- | --- |
   | id | Integer |
   | user_name | String |
-  | first_name | String |
-  | last_name | String |
+  | email | String |
   | hash | text |
+  | created_at | Timestamp |
+  | updated_at | Timestamp |
 
-### Services ( and service providers for now)
+### Providers 
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
-  | service_name | String |
+  | name | String |
+  | description | String |
   | address | integer |
-  | time | Timestamp |
-  | cost | Decimal |
+  |etc||
+  | created_at | Timestamp |
+  | updated_at | Timestamp |
+  
+### Services 
+  | Column Name | Data Type |
+  | --- | --- |
+  | id | Integer |
+  | name | String |
+  | qty_default | Integer |
+  | qty_remaining | Integer |
+  | status | string|
+  | created_at | Timestamp |
+  | updated_at | Timestamp |
+
+### service-type 
+  | Column Name | Data Type |
+  | --- | --- |
+  | id | Integer |
+  | name | String |
+  | icon | String |
+  | created_at | Timestamp |
+  | updated_at | Timestamp |
 
  ---
 
@@ -177,6 +294,10 @@ As a supplier
 ![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173017.jpg "title")
 ![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173020.jpg "title")
 ![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/IMG_20181205_173025.jpg "title")
+![alt text](https://github.com/ptorrsmith/sup/blob/master/readme_files/images/20181206_114314.jpg "title")
+
+
+
 
 
 
