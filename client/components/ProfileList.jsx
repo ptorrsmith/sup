@@ -14,4 +14,4 @@ const ProfileList = () => (
     </React.Fragment>
 )
 
-export default ProfileLIst
+export default ProfileList
