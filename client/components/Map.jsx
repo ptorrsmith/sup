@@ -3,6 +3,7 @@ import { LeafletMap } from Leaflet
 import Marker from './Markers'
 
 
+
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
 class Map extends React.Component {
