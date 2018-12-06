@@ -1,20 +1,39 @@
-// PARENT OF MARKERS, SEARCH, VIEW PREVIEW
-// CHILD OF APP
 
-const Map = () => (
-    <React.Fragment>
+// PARENT OF
+// MARKERS, SEARCH
 
-        {/* When an icon is clicked, it will display a small box with basic information */}
-        <ViewPreview />
-        {/* This will also redirect to ViewProfile */}
+const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
-        {/* The map will display markers */}
-        <Markers />
+class SimpleExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      lat: -41.296817,
+      lng: 174.773934,
+      zoom: 13
+    }
+  }
 
-        {/* Search bar here as well */}
-        <Search />
+  render() {
+    const position = [this.state.lat, this.state.lng];
+    return (
+      <LeafletMap center={position} zoom={this.state.zoom}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        />
+        <Marker position={position}>
+          <Popup>
+            A pretty popup. <br/>
+          </Popup>
+        </Marker>
+      </LeafletMap>
+    );
+  }
+}
 
-    </React.Fragment>
-)
+
+ReactDOM.render(<SimpleExample />, document.getElementById('container'))
 
 export default Map
+
