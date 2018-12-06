@@ -6,6 +6,8 @@
   "scripts": {
     "postinstall": "webpack",
     "dev": "nodemon --watch server & webpack --watch",
+    "dev-win-1": "nodemon --watch server",
+    "dev-win-2": "webpack --watch",
     "start": "node server/index",
     "test": "jest",
     "watch": "nodemon -e js,jsx -x npm test",
