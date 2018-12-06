@@ -29,7 +29,7 @@ class Map extends React.Component {
           </Popup>
         </Marker>
       </LeafletMap>
-    );
+    )
   }
 }
 
