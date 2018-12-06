@@ -1,6 +1,6 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
 class App extends React.Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class App extends React.Component {
                 <Map />
                 <Admin />
                 <Nav />
-                <ViewProfile />
 
             </React.Fragment>
         )
