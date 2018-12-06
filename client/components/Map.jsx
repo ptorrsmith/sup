@@ -1,3 +1,4 @@
+
 // PARENT OF
 // MARKERS, SEARCH
 
@@ -33,3 +34,6 @@ class SimpleExample extends React.Component {
 
 
 ReactDOM.render(<SimpleExample />, document.getElementById('container'))
+
+export default Map
+

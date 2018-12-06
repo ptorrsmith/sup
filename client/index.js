@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     render( 
         <App />,
 
-
-      
 // REDUX STUFF BELOW:
     
 // let store = createStore(reducers, compose(
