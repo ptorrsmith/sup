@@ -1,8 +1,9 @@
 import React from 'react'
+import { LeafletMap } from Leaflet
 
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
-class SimpleExample extends React.Component {
+class Map extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -30,7 +31,7 @@ class SimpleExample extends React.Component {
   }
 }
 
-ReactDOM.render(<SimpleExample />, document.getElementById('container'))
+ReactDOM.render(<Map />, document.getElementById('container'))
 
 export default Map
 
