@@ -112,7 +112,6 @@ API_Base/url: https://sup.org.nz/api/v1
 
 NOTE: API resources:  Providers, Services
 
-
 | Method | Endpoint | Protected | Usage | Request-data | Response-data |
 | --- | --- | --- | --- | --- | --- |
 | Get | /providerservices | No | Get provider-services in search area (long, lat) (optional only for admin purposes), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
@@ -199,7 +198,7 @@ This represents the JSON response back from GET: /liveupdates
   updates: [
     {
       provider_id: "24",
-      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day",
+      update_message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day",
       service_updates: [
         {
           service_id: "34",
@@ -223,11 +222,12 @@ This represents the JSON response back from GET: /liveupdates
     },
     {
       provider_id: "67",
-      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day"
+      update_message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day"
     },
   ],
   update_timestamp: "2018-12-13 18:23:00" // the datetime of when these updates were polled. Will be used to update the qty_remaining_last_updated value for the service
 }
+```
 
 
 
@@ -247,23 +247,30 @@ This represents the JSON response back from GET: /liveupdates
   * users (supplier and admin)
 
 ### Users
-  | Column Name | Data Type |
-  | --- | --- |
-  | id | Integer |
-  | user_name | String |
-  | email | String |
-  | hash | text |
-  | created_at | Timestamp |
-  | updated_at | Timestamp |
+
+| Column Name | Data Type |
+| --- | --- |
+| id | Integer |
+| user_name | String |
+| email | String |
+| hash | text |
+| created_at | Timestamp |
+| updated_at | Timestamp |
 
 ### Providers 
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
   | name | String |
-  | description | String |
+  | description | text |
   | address | integer |
-  |etc||
+  | updated_message | text |
+  | lat | decimal |
+  | long | decimal |
+  | email | string |
+  | phone | string |
+  | hours | string |
+  | website_url | string |
   | created_at | Timestamp |
   | updated_at | Timestamp |
   
@@ -274,7 +281,9 @@ This represents the JSON response back from GET: /liveupdates
   | name | String |
   | qty_default | Integer |
   | qty_remaining | Integer |
-  | status | string|
+  | status | string |
+  | provider_id | integer |
+  | service_type_id | integer |
   | created_at | Timestamp |
   | updated_at | Timestamp |
 
@@ -282,11 +291,28 @@ This represents the JSON response back from GET: /liveupdates
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
+  | service_code | string|
   | name | String |
   | icon | String |
   | created_at | Timestamp |
   | updated_at | Timestamp |
 
+
+#### NOTE: Service Types:
+
+| Service Type name | code | icon (className) |
+| --- | --- | --- |
+| Shelters | SHELTER | shelter |
+| Food Banks | FOODBANK | foodbank |
+| Soup Kitchens | KITCHEN | kitchen |
+| Advice | ADVICE (was support) | advice |
+| Drop-in | DROPIN (was support) | dropin |
+| Medical | MEDICAL (was support) | medical |
+| Other (e.g. furniture) | OTHER | other |
+
+
+
+Note: icon represents the css-class 
  ---
 
 

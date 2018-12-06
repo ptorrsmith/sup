@@ -1,4 +1,7 @@
 // Child of Map
+import React from 'react'
+
+import ViewProfile from './ViewProfile'
 
 const ViewPreview = () => (
     <React.Fragment>
