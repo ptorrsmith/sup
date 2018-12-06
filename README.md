@@ -34,7 +34,7 @@ As a supplier
 
   ---
 
-## Users
+## Users/Roles (n/a for MVP, i.e. no auth yet)
   * user - standard user (anonymous)
   * supplier-user - updates service information and status
   * admin-user - creates services and manages the system
@@ -46,19 +46,28 @@ As a supplier
   | Service details view | Full details, hours, location, phone number, etc |
   | manage current service level | beds / meals etc remaining, open/closing/shut status, status notice ("no hot water currently due to burst pipe") |
   | manage service general information | Update the service name, services offerred, address, hours, phone number, code of conduct, expected demand daily profile, etc |
-  | Login | View for admin-user and supplier-user to enter their login credentials |
-  | Register | View for supplier-user to sign up for the App to list their service |
   | CreateService & EditService | View for admin-user to create and manage shelters, kitchens and other services, and manage provider-user access |
+  | Login | View for admin-user and supplier-user to enter their login credentials (n/a for mvp, no auth) |
+  | Register | View for supplier-user to sign up for the App to list their service (n/a for mvp, no auth) |
 
+
+## Components for views  - TO DO >>> Bobbi / Ruby
 
 
 ## Reducers (Client Side)
 
   | name | purpose |
   | --- | --- |
-  | map | map information in view / cache (offline and online) |
-  | services | current store of services in search area (online and offline), visible / not visible on map |
+  | providerServices | current store of providers and their services in search area (online and offline), visible / not visible on map |
+  | currentView | lat long of current viewport (or centre + zoom), list of currently visible providers  
+  | currentProvider | Provider being highlighted and viewed, and info about that. Also whilst being edited / managed by supplier-user |
   | currentService | Service being highlighted and viewed, and info about that. Also whilst being edited / managed by supplier-user |
+
+
+### Future Reducers (not MVP)
+
+  | name | purpose |
+  | --- | --- |
   | users | store the list of supplier-users and admin-users |
   | auth | Store information regarding user logins, auth status and auth errors |
 
@@ -72,31 +81,12 @@ As a supplier
  | --- | --- | --- | --- |
  | thunk | getServices(search) | searchObject => services | retreive services from the db dispatch them to redux, only get new/updated |
  | action | GETTING_SERVICES | | spinner / info message |
- | action | RECEIVED_SERVICES | services | retreive services from the getServices thunk and set into redux state, and local storage (or from local storage?) ?? |
+ | action | RECEIVED_SERVICES | services | retreive services from the getServices thunk and set into redux state |
  | thunk | saveService() | service | Add/Save/Update a single service to the catalogue after it is created or updated. Then call for refresh of state?  Heavy data call, not desirable ! |
  | action | ADDING_SERVICE | service | spinner / info message |
  | action | UPDATING_SERVICE | service | spinner / info message |
  | action | SERVICE_SAVED | service (simple or just service id ??) | Confirmation from API after it is successfully created or updated |
  | action | SERVICES_ERROR | message | problem getting services or saving a service |
-
-
- ### map
- | type | name | data | purpose |
- | --- | --- | --- | --- |
- | thunk | getMapInfo(search) | searchObj => mapInfo | retreive map info from the server |
- | action |RECEIVE_MAPINFO | mapInfo | set map info into redux state / local storage ? |
-
-* plus other common actions (GETTING, SAVING, UPDATING)
-
-
- ### users
- | type | name | data | purpose |
- | --- | --- | --- | --- |
- | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
- | action |RECEIVE_USERS | users | retreive the users from the server |
- | thunk | saveUser(user) | user | save new / update a supplier or admin user |
-
-* plus other common actions (GETTING, SAVING, UPDATING)
 
 
  ### currentService
@@ -106,6 +96,14 @@ As a supplier
 | action | HIDE_SERVICE |  | close full service details component |  
 |thunk | saveService(service) | [{serviceUpdates}] | send updated details, get confirmation |
 
+ ### users  (n/a for MVP, i.e. no auth yet)
+ | type | name | data | purpose |
+ | --- | --- | --- | --- |
+ | thunk | getUsers(search) | searchObj => users | retreive the supplier and admin users from the server |
+ | action |RECEIVE_USERS | users | retreive the users from the server |
+ | thunk | saveUser(user) | user | save new / update a supplier or admin user |
+
+* plus other common actions (GETTING, SAVING, UPDATING)
 
 
 ## API Client / API (called by superagent)
@@ -115,22 +113,18 @@ API_Base/url: https://sup.org.nz/api/v1
 NOTE: API resources:  Providers, Services
 
 
-
-
-
-
 | Method | Endpoint | Protected | Usage | Request-data | Response-data |
 | --- | --- | --- | --- | --- | --- |
-| Get | /providerservices | No | Get provider-services in search area (long, lat), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
-| Get | /liveupdates | No | get any new provider and service updates for these suppliers | [23,34,46,42,23,56] | liveUpdates |
+| Get | /providerservices | No | Get provider-services in search area (long, lat) (optional only for admin purposes), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
+| Get | /liveupdates | No | get any new provider and service updates for these suppliers | [23,34,46,42,23,56] | [liveUpdates] |
 | Post | /providers | Yes | create a new service provider | new-provider-info | new-provider-id |
-| Put | /providers | Yes | update service provider | updated-provider-info | confirmation |
+| Put | /providers | Yes | update service provider (incl update-message) | updated-provider-info | confirmation |
 | Post | /services | Yes | create a new service for an existing provider | provider_id, service-info | new-service-id |
-| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
-| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
-| Put | /services | Yes | update a service | service_id, updated-service-info | confirmation |
+| Put | /services | Yes | update a service (including qty change) | service_id, updated-service-info | confirmation | 
 | Post | /auth/login | Yes | Log In a User | The Users JWT Token ||
 | Post | /api/auth/register | Yes | Register a User | The Users JWT Token ||
+
+NOTE: only update values for properties provided (e.g. service qty / status updates)
 
 ### Example JSON data structures
 
@@ -141,7 +135,8 @@ It MUST pass a {lat1,long1, lat2, long2} parameter to what geo-box to use to ret
 NOTE: it can optionally pass a list of provider_ids to advice what info it does NOT need, otherwise it will get back all providerServices in that geo-box.  This for when zooming out, don't want existing provider info, just those we don't already have.
 
 ```sh
-{
+[
+  {
   id: "23",
   name: "Wesley City Mission",
   address: "213 Abc Street, Thorndon, Wellington 6011",
@@ -151,9 +146,19 @@ NOTE: it can optionally pass a list of provider_ids to advice what info it does 
   phone: "04-399-9990, or a/h 021-444-4444",
   email: "abcshelter@wcm.org.nz",
   services: [{service1}, {service2}, ...], // see service below
-  images: ['img_39218392.jpg', '42235352.png', 'IMG_20180921.jpeg'],
+  images: [{title:"front entrance", file: 'img_39218392.jpg'}, {title:"common lounge area", file: 'img_39218345.jpg'}],
   update_message: "All services operating currently, but we will be opening late (5:30pm) on Tuesday 18th due to maintenance work that day"
-}
+  },
+  { 
+    another providerService
+    },
+  { 
+    another providerService
+    },
+  { 
+    another providerService
+    }
+]
 
 // note: the update_message will be updated regularly via a call to the providerLive service... see below
 
@@ -172,7 +177,8 @@ This represent the JSON nested within the providerServices "services" array for 
   qty_default: "140", // number of meals in this case 
   qty_remaining: "80",  // will be udpated by poll for provider updates 
   qty_remaining_last_updated: "2018-12-13 18:07:43", // or whatever date format works
-  service_status: "Open"
+  service_status: "Open",
+  visible_on_map: "true" // depends on search/filtering for current view, i.e. only show shelter-services, not food-kitchen services
 }
 
 // note, no provider_id here, as the service objects are nested in the providerServices "services" array.  The provider id however does exist in the database.
