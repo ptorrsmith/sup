@@ -1,4 +1,5 @@
 // CHILD OF VIEW PREVIEW
+import React from 'react'
 
 const ViewProfile = () => (
     <React.Fragment>

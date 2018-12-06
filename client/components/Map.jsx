@@ -2,6 +2,7 @@ import React from 'react'
 import { LeafletMap } from Leaflet
 import Marker from './Markers'
 
+
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
 class Map extends React.Component {
@@ -33,6 +34,7 @@ class Map extends React.Component {
 }
 
 ReactDOM.render(<Map />, document.getElementById('container'))
+
 
 export default Map
 
