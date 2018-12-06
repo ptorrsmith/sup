@@ -8,28 +8,28 @@ import Nav from './Nav'
 
 const App = () => (
 
-    <div>
+    <Router>
+        <div>
 
-        <div className="app_header">
-            <h1>Is this React header in App working?</h1>
+            <div className="app_header">
+                <h1>Hello from the App Header</h1>
+            </div>
+
+            <Map />
+
+            <div className="app_body">
+                <p> Hello from the App body. Map will go here, and will underlay the entire page.
+                    Nav will sit on top in the left hand side.
+                    The Admin page will be accessible after the user has logged in, but for the demonstration and for usability,
+                    it can be accessed at /admin.
+            </p>
+            </div>
+
+            <Route exact path="/" component={Nav} />
+            <Route exact path="/admin" component={Admin} />
+
         </div>
-
-        <React.Fragment>
-            <Nav />
-        </React.Fragment>
-
-
-        <Map />
-
-        <div className="app_body">
-            <p> This is where Nav finishes, and where Admin begins.</p>
-        </div>
-
-        <React.Fragment>
-            <Admin />
-        </React.Fragment>
-
-    </div>
+    </Router>
 )
 
 
