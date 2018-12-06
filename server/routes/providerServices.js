@@ -1,8 +1,8 @@
 const express = require('express')
-
 const providerServicesDB = require('../data/providerServicesDB')
 
-
+const dataFormater = require('../helpers/dataFormater')
+// import {nestData} from '../helpers/dataFormater'
 const router = express.Router()
 
 // get request for list of providers and their services
@@ -14,9 +14,11 @@ router.get('/', (req, res) => {
     // console.log("providerServices get / ")
     providerServicesDB.getProviderServices()
         .then( data => {
-            console.log("providerServices get / data: ", data)
+            // console.log("providerServices get / data: ", data)
+           const jsonData = dataFormater.nestData(data)
+            // console.log("providerServices get / jsonData: ", jsonData)
             // console.log("providerServices get / data: ", JSON.stringify(data))
-            res.json({data: data})
+            res.json({data: jsonData})
         }) 
 })
 
