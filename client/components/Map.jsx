@@ -1,6 +1,4 @@
-
-// PARENT OF
-// MARKERS, SEARCH
+import React from 'react'
 
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
@@ -31,7 +29,6 @@ class SimpleExample extends React.Component {
     );
   }
 }
-
 
 ReactDOM.render(<SimpleExample />, document.getElementById('container'))
 
