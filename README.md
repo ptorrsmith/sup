@@ -199,7 +199,7 @@ This represents the JSON response back from GET: /liveupdates
   updates: [
     {
       provider_id: "24",
-      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day",
+      update_message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day",
       service_updates: [
         {
           service_id: "34",
@@ -223,7 +223,7 @@ This represents the JSON response back from GET: /liveupdates
     },
     {
       provider_id: "67",
-      message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day"
+      update_message: "All services operating currently, but we will be opening a tad later (4pm) on Tuesday 18th due to minor maintenance work that day"
     },
   ],
   update_timestamp: "2018-12-13 18:23:00" // the datetime of when these updates were polled. Will be used to update the qty_remaining_last_updated value for the service
@@ -261,9 +261,15 @@ This represents the JSON response back from GET: /liveupdates
   | --- | --- |
   | id | Integer |
   | name | String |
-  | description | String |
+  | description | text |
   | address | integer |
-  |etc||
+  | updated_message | text |
+  | lat | decimal |
+  | long | decimal |
+  | email | string |
+  | phone | string |
+  | hours | string |
+  | website_url | string |
   | created_at | Timestamp |
   | updated_at | Timestamp |
   
@@ -274,7 +280,9 @@ This represents the JSON response back from GET: /liveupdates
   | name | String |
   | qty_default | Integer |
   | qty_remaining | Integer |
-  | status | string|
+  | status | string |
+  | provider_id | integer |
+  | service_type_id | integer |
   | created_at | Timestamp |
   | updated_at | Timestamp |
 
@@ -282,11 +290,22 @@ This represents the JSON response back from GET: /liveupdates
   | Column Name | Data Type |
   | --- | --- |
   | id | Integer |
+  | service_code | string|
   | name | String |
   | icon | String |
   | created_at | Timestamp |
   | updated_at | Timestamp |
 
+#### NOTE: Service Types:
+* Shelters | SHELTER
+* Food Banks | FOODBANK
+* Soup Kitchens | KITCHEN
+* Advice | ADVICE  (was support)
+* Drop-in | DROPIN  (was support)
+* Medical | MEDICAL  (was support)
+* Other (e.g. furniture) | OTHER
+
+Note: icon represents the css-class 
  ---
 
 
