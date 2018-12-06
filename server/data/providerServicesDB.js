@@ -40,6 +40,7 @@ const connection = require('knex')(config)
             'p.email',
             'p.website_url',
             'p.updated_at as provider_updated_at',
+            's.id as service_id',
             's.name as service_name',
             's.unit as units',
             's.qty_default',
