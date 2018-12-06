@@ -10,10 +10,6 @@ const App = () => (
 
     <Router>
     <div>
-    
-        <div className="app_header">
-            <h1>Hello from the App Header</h1>
-        </div>
 
         <div className="app_body">
             <p> Hello from the App body. Map will go here, and will underlay the entire page.

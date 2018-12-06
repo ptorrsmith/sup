@@ -17,12 +17,12 @@ const About = () => (
 
         Sup gives users the opportunity to open and view service providers in Wellington, including their locations,
         facilities, opening and closing hours, and the availability of the service. Services include emergency shelters, food banks,
-        bathroom facilities and soup kitchens.<br></br>
+        bathroom facilities and soup kitchens.<br></br><br></br>
 
         Sup also allows registered providers to update their service details from the admin panel, and gives the users real-time updates
-        directly from the service, notifying them about recent changes.<br></br>
+        directly from the service, notifying them about recent changes.<br></br><br></br>
 
-        Sup is an independent site, currently being updated and maintained by students at Enspiral Dev Academy.<br></br>
+        Sup is an independent site, currently being updated and maintained by students at Enspiral Dev Academy.<br></br><br></br>
 
         Meet The <em>Sup</em> Team:
         <ul>
