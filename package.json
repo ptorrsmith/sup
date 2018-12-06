@@ -15,7 +15,8 @@
     "h:migrate": "heroku run knex migrate:latest",
     "h:rollback": "heroku run knex migrate:rollback",
     "h:seed": "heroku run knex seed:run",
-    "knex": "knex"
+    "knex": "knex",
+    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
   },
   "babel": {
     "presets": [
@@ -25,9 +26,10 @@
     ]
   },
   "devDependencies": {
-    "enzyme": "^2.8.2",
-    "nodemon": "^1.11.0",
-    "supertest": "^3.0.0"
+    "enzyme": "*",
+    "nodemon": "*",
+    "supertest": "*",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -40,7 +42,7 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
-    "express": "^4.14.0",
+    "express": "^4.16.4",
     "express-jwt": "^5.3.0",
     "jsdom": "^11.0.0",
     "jsonwebtoken": "^7.4.3",
@@ -48,6 +50,7 @@
     "jwt-decode": "^2.2.0",
     "knex": "^0.13.0",
     "leaflet": "^1.3.4",
+    "lodash": "^4.17.11",
     "passport": "^0.4.0",
     "pg": "^6.2.3",
     "react": "^15.6.2",
