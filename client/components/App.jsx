@@ -19,7 +19,9 @@ const App = () => (
         </React.Fragment>
 
         <div className="app_body">
-            <p> This is where Nav finishes, and where Admin begins.</p>
+            <p> Map will go here, and will underlay the entire page.
+                Nav will sit on top in the left hand side, and Admin will be accessible through the login/register tab in the Nav.
+            </p>
         </div>
 
         <React.Fragment>
