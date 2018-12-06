@@ -10,9 +10,7 @@ import App from './components/App'
 
 document.addEventListener('DOMContentLoaded', () => {
     render( 
-    <Provider store = {store} >
-        <App />
-        </Provider>,
+        <App />,
         document.getElementById('app')
     )
 })
