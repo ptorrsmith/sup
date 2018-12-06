@@ -5,6 +5,11 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import ProfileList from './ProfileList'
+import LiveEdit from './LiveEdit'
+import EditProfile from './EditProfile'
+import AddProfile from './AddProfile'
+
 const Admin = () => (
     <React.Fragment>
 
