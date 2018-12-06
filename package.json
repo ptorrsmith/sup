@@ -15,7 +15,8 @@
     "h:migrate": "heroku run knex migrate:latest",
     "h:rollback": "heroku run knex migrate:rollback",
     "h:seed": "heroku run knex seed:run",
-    "knex": "knex"
+    "knex": "knex",
+    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
   },
   "babel": {
     "presets": [
@@ -24,10 +25,17 @@
       "stage-0"
     ]
   },
+  "jest": {
+    "setupFiles": [
+      "./client/Test/setup-env.test.js"
+    ]
+  },
   "devDependencies": {
-    "enzyme": "^2.8.2",
-    "nodemon": "^1.11.0",
-    "supertest": "^3.0.0"
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "nodemon": "*",
+    "supertest": "*",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -42,6 +50,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.4",
     "express-jwt": "^5.3.0",
+    "jest": "^23.6.0",
     "jsdom": "^11.0.0",
     "jsonwebtoken": "^7.4.3",
     "jsx-loader": "^0.13.2",
@@ -61,8 +70,7 @@
     "redux-thunk": "^2.2.0",
     "sqlite3": "^4.0.4",
     "superagent": "^2.2.0",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^3"
   },
   "repository": {
     "type": "git",
