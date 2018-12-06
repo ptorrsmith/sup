@@ -14,11 +14,11 @@ const Admin = () => (
     <div>
 
         <div className="admin_header">
-            <h1>Hello from Admin.</h1>
+            <h1>Hello from Admin header.</h1>
         </div>
 
         <div className="admin_body">
-        <p>Here is the Admin body.</p>
+        <p>Hello from Admin body.</p>
         </div>
 
         <React.Fragment>

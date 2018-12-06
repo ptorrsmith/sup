@@ -5,13 +5,15 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const HowToUse = () => (
-    <React.Fragment>
+    <div>
 
-        {/* How to use the website */}
+        <div className="how_to_use_body">
+        <p>Hello from HowToUse component body.</p>
+        </div>
 
-        <p>Hello from HowToUse.</p>
+    {/* Information about what the website provides */}
 
-    </React.Fragment>
+</div>
 )
 
 export default HowToUse
