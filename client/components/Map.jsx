@@ -1,6 +1,6 @@
 
-// PARENT OF
-// MARKERS, SEARCH
+// PARENT OF MARKERS, SEARCH
+// CHILD OF APP
 
 const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
@@ -31,7 +31,6 @@ class SimpleExample extends React.Component {
     );
   }
 }
-
 
 ReactDOM.render(<SimpleExample />, document.getElementById('container'))
 
