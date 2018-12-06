@@ -5,8 +5,8 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import About from './About'
-import HowToUse from './HowToUse'
+import About from './NavComponents/About'
+import HowToUse from './NavComponents/HowToUse'
 
 const Nav = () => (
 
