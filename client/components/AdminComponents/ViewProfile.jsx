@@ -2,12 +2,16 @@
 import React from 'react'
 
 // TEMPORARY DATA
-import { data } from '../../utils/tempData'
+import data from '../../utils/exampleData'
+
+console.log(data)
 
 const ViewProfile = () => (
     <React.Fragment>
 
         {/* The full detailed page of a provider / service. */}
+
+        {data.provider_id}
 
         {/* SERVICE:
         id:
