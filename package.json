@@ -49,6 +49,7 @@
     "dotenv": "^6.2.0",
     "express": "*",
     "express-jwt": "*",
+    "jest": "^23.6.0",
     "jsdom": "^13.0.0",
     "jsonwebtoken": "^8.4.0",
     "jsx-loader": "*",
