@@ -1,6 +1,7 @@
 PROVIDER SERVICES:
 
-{
+[
+  {
   id: "23",
   name: "Wesley City Mission",
   address: "213 Abc Street, Thorndon, Wellington 6011",
@@ -10,11 +11,19 @@ PROVIDER SERVICES:
   phone: "04-399-9990, or a/h 021-444-4444",
   email: "abcshelter@wcm.org.nz",
   services: [{service1}, {service2}, ...], // see service below
-  images: ['img_39218392.jpg', '42235352.png', 'IMG_20180921.jpeg'],
+  images: [{title:"front entrance", file: 'img_39218392.jpg'}, {title:"common lounge area", file: 'img_39218345.jpg'}],
   update_message: "All services operating currently, but we will be opening late (5:30pm) on Tuesday 18th due to maintenance work that day"
-}
-
-// note: the update_message will be updated regularly via a call to the providerLive service... see below
+  },
+  { 
+    another providerService
+    },
+  { 
+    another providerService
+    },
+  { 
+    another providerService
+    }
+]
 
 
 SERVICE:
@@ -28,7 +37,8 @@ SERVICE:
   qty_default: "140", // number of meals in this case 
   qty_remaining: "80",  // will be udpated by poll for provider updates 
   qty_remaining_last_updated: "2018-12-13 18:07:43", // or whatever date format works
-  service_status: "Open"
+  service_status: "Open",
+  visible_on_map: "true" // depends on search/filtering for current view, i.e. only show shelter-services, not food-kitchen services
 }
 
 // note, no provider_id here, as the service objects are nested in the providerServices "services" array.  The provider id however does exist in the database.
@@ -72,61 +82,3 @@ This represents the JSON response back from GET: /liveupdates
   ],
   update_timestamp: "2018-12-13 18:23:00" // the datetime of when these updates were polled. Will be used to update the qty_remaining_last_updated value for the service
 }
-
-
-
-#### Note on service status  (n/a for MVP)
-|STATUS|purpose|
-|---|---|
-|PENDING|service has not yet been approved to show |
-|ACTIVE|service is approved and in search results|
-|INACTIVE|service has been de-listed for some reason|
-
-
-## DB (Server Side).  NoSQL could be useful for MVP, but a bit of a stretch
-  There could be at least four tables for MVP (actually three if we exclude users for MVP, i.e. no Auth yet)
-  * services  // this is what shows on the map, has service qty/count
-  * service_type // for service classification, icon type (className)
-  * providers  // they provide the service, have phone numbers etc
-  * users (supplier and admin)
-
-### Users
-  | Column Name | Data Type |
-  | --- | --- |
-  | id | Integer |
-  | user_name | String |
-  | email | String |
-  | hash | text |
-  | created_at | Timestamp |
-  | updated_at | Timestamp |
-
-### Providers 
-  | Column Name | Data Type |
-  | --- | --- |
-  | id | Integer |
-  | name | String |
-  | description | String |
-  | address | integer |
-  |etc||
-  | created_at | Timestamp |
-  | updated_at | Timestamp |
-  
-### Services 
-  | Column Name | Data Type |
-  | --- | --- |
-  | id | Integer |
-  | name | String |
-  | qty_default | Integer |
-  | qty_remaining | Integer |
-  | status | string|
-  | created_at | Timestamp |
-  | updated_at | Timestamp |
-
-### service-type 
-  | Column Name | Data Type |
-  | --- | --- |
-  | id | Integer |
-  | name | String |
-  | icon | String |
-  | created_at | Timestamp |
-  | updated_at | Timestamp |
