@@ -11,34 +11,25 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
     providersDB.getProviders()
-    .then (providers => {
-        console.log("providers count ", providers.length)
-        servicesDB.getServicesForProvider
-
-
-
-
-        let providerServices = providers.map( provider => {
-            servicesDB.getServicesForProvider(provider.id)
-                .then (services => {
-                    // console.log("Provider and services:::: ", provider.id, services.length)
-                    // console.log("provider.services: ", provider.services.length)
-                    provider.services = services
-                    console.log("provider.services1: ", provider.id, provider.services.length)
-                    return provider
-                })
+        .then(providers => {
+            // console.log("providers count ", providers.length)
+            const providerIds = providers.map(provider => provider.id)
+            // console.log("providerIds: ", providerIds)
+            servicesDB.getServicesForProviders(providerIds)
+                .then(services => {
+                    const providerServices = providers.map(provider => {
+                        // find all services for this provider and attach them
+                        let pServices = services.filter(service => service.provider_id == provider.id)
+                        // console.log("provider: ", provider.id, " pServices length: ", pServices.length)
+                        provider.services = pServices
+                        // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
+                        return provider
+                    })
+                    // console.log("providerServices >>>>> ", providerServices)
+                    res.json(providerServices)
+                }
+                )
         })
-        res.json(providerServices)
-    })
-    // console.log("providerServices get / ")
-    // providerServicesDB.getProviderServices()
-    //     .then( data => {
-    //         // console.log("providerServices get / data: ", data)
-    //     //    const jsonData = dataFormater.nestData(data)
-    //         // console.log("providerServices get / jsonData: ", jsonData)
-    //         // console.log("providerServices get / data: ", JSON.stringify(data))
-    //         res.json({data: data})
-    //     }) 
 })
 
 module.exports = router
