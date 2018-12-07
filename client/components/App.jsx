@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import Map from './TDC/BobbiMap'
+import Map from './Map'
 import Admin from './Admin'
 import Nav from './Nav'
 
@@ -12,19 +12,22 @@ const App = () => (
         <div>
 
             <div className="app_header">
-                <h1>Hello from the App Header</h1>
+             {/* Main header to encompass all pages... */}
             </div>
 
-            <Map />
+            <React.Fragment>
+                <Map />
+            </React.Fragment>
+
             <div className="app_body">
-                <p> Hello from the App body. Map will go here, and will underlay the entire page.
+                <p> NOTES: Map will go here, and will underlay the entire page.
                     Nav will sit on top in the left hand side.
                     The Admin page will be accessible after the user has logged in, but for the demonstration and for usability,
                     it can be accessed at /admin.
             </p>
             </div>
 
-            <Route exact path="/" component={Nav} />
+            <Route path="/" component={Nav} />
             <Route exact path="/admin" component={Admin} />
 
         </div>
