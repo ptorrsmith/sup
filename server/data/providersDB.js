@@ -10,6 +10,10 @@ const _ = require('lodash')
 
 
 function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
+    const lat1 = geoBoxSearch[0] ? geoBoxSearch[0].lat : -30
+    const long1 = geoBoxSearch[0] ? geoBoxSearch[0].long : 150
+    const lat2 = geoBoxSearch[0] ? geoBoxSearch[1].lat : -60
+    const long2 = geoBoxSearch[0] ? geoBoxSearch[1].long : 180
     console.log("ProvidersDB, getProvicers")
     const dataPromise = db('providers AS p')
         // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
@@ -26,8 +30,8 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.website_url',
             'p.updated_at'
         )
-        .where('p.lat', '<', 'lat1').andWhere('p.lat', '>', 'lat2').andWhere('p.long', '>', 'long1')
-        .andWhere('p.long', '<', 'long2')
+        .where('p.lat', '<', lat1).andWhere('p.lat', '>', lat2).andWhere('p.long', '>', long1)
+        .andWhere('p.long', '<', long2)
     console.log(dataPromise.toString())
 
     return dataPromise
