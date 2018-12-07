@@ -25,11 +25,16 @@
       "stage-0"
     ]
   },
+  "jest": {
+    "setupFiles": [
+      "./client/Test/setup-env.test.js"
+    ]
+  },
   "devDependencies": {
-    "enzyme": "*",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "nodemon": "*",
-    "supertest": "*",
-    "webpack-cli": "^3.1.2"
+    "supertest": "*"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -62,8 +67,7 @@
     "redux-thunk": "*",
     "sqlite3": "*",
     "superagent": "^4.0.0",
-    "webpack": "^4.27.1",
-    "webpack-dev-server": "^3.1.10"
+    "webpack": "^3"
   },
   "repository": {
     "type": "git",

@@ -1,14 +1,28 @@
+// const providersDB = require('./providersDB')
+// const servicesDB = require('./servicesDB')
+
 // EXPORTED FUNCTIONS
 
 module.exports = {
     getProviderServices
-  }
-  
-  const config = require('../../knexfile').development // [environment]
-  const connection = require('knex')(config)
-  const _ = require('lodash')
-  
-  
+}
+
+const config = require('../../knexfile').development // [environment]
+const connection = require('knex')(config)
+// const _ = require('lodash')
+
+// function getProviderServices(geoBoxSearch, ignoreProvidersArray, db = connection) {
+//     providersDB.getProviders()
+//         .then(providers => {
+//             servicesDB.getServicesForProviders(providers.map(provider => provider.id))
+//                 .then(services => {
+//                     console.log("Providers", providers)
+//                     console.log("services", services)
+//                 })
+//         })
+// }
+
+
   function getProviderServices(geoBoxSearch, ignoreProvidersArray, db = connection) {     
       const dataPromise = db('providers AS p')
       .leftOuterJoin('services AS s', 's.provider_id', 'p.id'  )
@@ -26,6 +40,7 @@ module.exports = {
             'p.email',
             'p.website_url',
             'p.updated_at as provider_updated_at',
+            's.id as service_id',
             's.name as service_name',
             's.unit as units',
             's.qty_default',
@@ -36,24 +51,23 @@ module.exports = {
             'st.code as service_type_code',
             'st.icon'
             )
-            
+
             // thinking of nesting db calls to make proper shape response object
             // const dataPromise = db('providers')
             //     .then(providers => {
             //         const joinServicesPromise = db('services')
             //     })
-            
+
             //   console.log("providerServicesDB getprovsvs dataPromise : ", dataPromise)
-            
+
             return dataPromise
         }
-        
+
         // returning promises to mock the knex asynchronous behaviour
         // this was mocking the database
         // return new Promise((resolve, reject) => {
   //   resolve(providerServices.filter(providerService => !owner_id || providerService.owner_id == owner_id))
   // })
   // }
-  
-  
-  
+
+
