@@ -56,8 +56,11 @@ class ProfileList extends React.Component {
         return <div className="profile_list_body">
 
             <React.Fragment>
-                {/* Shows a full list of all provider profiles,
-            organised by Service Type */}
+                {/* Shows a full list of all provider profiles, organised
+                by provider */}
+
+                {/* Provider name:
+                Services provided by provider: */}
 
             {/* When an admin clicks on a specific title, it will
             take you to... */}
@@ -65,13 +68,10 @@ class ProfileList extends React.Component {
 
             {/* Each Profile will have the option to be edited, and a button
             for editing shows up beside the list */}
-
             <EditProfile />
 
             {/* The ability to add a new profile from the Admin page */}
-
             <AddProfile />
-
 
             </React.Fragment>
 
