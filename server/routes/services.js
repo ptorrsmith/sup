@@ -11,9 +11,7 @@ router.get('/', (req, res) => {
   servicesDB.getServicesForProviders()
     .then(data => {
 
-      const jsonData = dataFormater.nestData(data)
-
-      res.json({ data: jsonData })
+      res.json({ data: data })
     })
 })
 

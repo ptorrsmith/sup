@@ -18,7 +18,7 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
     const long1 = 150
     const lat2 = -60
     const long2 = 180
-    console.log("ProvidersDB, getProvicers")
+    console.log("ProvidersDB, getProviders")
     const dataPromise = db('providers AS p')
         // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
         .select(
