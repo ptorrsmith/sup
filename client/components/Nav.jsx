@@ -13,7 +13,7 @@ const Nav = () => (
     <div>
 
         <div className="nav_header">
-            <h1>Hello from the Nav component.</h1>
+            <h1>Sup?</h1>
         </div>
 
         <div className="nav_body">
@@ -23,6 +23,8 @@ const Nav = () => (
 
             {/* INstructions for how to use the website */}
             <HowToUse />
+
+            <hr></hr>
 
             <Router>
                 <Link to='/admin'>Click here to use the Admin page.</Link>
