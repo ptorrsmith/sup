@@ -10,10 +10,14 @@ const _ = require('lodash')
 
 
 function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
-    const lat1 = geoBoxSearch[0] ? geoBoxSearch[0].lat : -30
-    const long1 = geoBoxSearch[0] ? geoBoxSearch[0].long : 150
-    const lat2 = geoBoxSearch[0] ? geoBoxSearch[1].lat : -60
-    const long2 = geoBoxSearch[0] ? geoBoxSearch[1].long : 180
+    // const lat1 = geoBoxSearch[0] ? geoBoxSearch[0].lat : -30
+    // const long1 = geoBoxSearch[0] ? geoBoxSearch[0].long : 150
+    // const lat2 = geoBoxSearch[0] ? geoBoxSearch[1].lat : -60
+    // const long2 = geoBoxSearch[0] ? geoBoxSearch[1].long : 180
+    const lat1 = -30
+    const long1 = 150
+    const lat2 = -60
+    const long2 = 180
     console.log("ProvidersDB, getProvicers")
     const dataPromise = db('providers AS p')
         // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
