@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
     providersDB.getProviders()
     .then (providers => {
         console.log("providers count ", providers.length)
+        servicesDB.getServicesForProvider
+
+
+
+
         let providerServices = providers.map( provider => {
             servicesDB.getServicesForProvider(provider.id)
                 .then (services => {
