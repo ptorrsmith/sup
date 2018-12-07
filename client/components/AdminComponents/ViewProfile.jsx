@@ -1,6 +1,9 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
 import React from 'react'
 
+// TEMPORARY DATA
+import { data } from '../../utils/tempData'
+
 const ViewProfile = () => (
     <React.Fragment>
 
