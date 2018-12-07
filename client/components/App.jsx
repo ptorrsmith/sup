@@ -16,7 +16,6 @@ const App = () => (
             </div>
 
             <Map />
-
             <div className="app_body">
                 <p> Hello from the App body. Map will go here, and will underlay the entire page.
                     Nav will sit on top in the left hand side.
