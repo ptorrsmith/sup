@@ -26,6 +26,9 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.website_url',
             'p.updated_at'
         )
+        .where('p.lat', '<', 'lat1').andWhere('p.lat', '>', 'lat2').andWhere('p.long', '>', 'long1')
+        .andWhere('p.long', '<', 'long2')
+    console.log(dataPromise.toString())
 
     return dataPromise
 }
