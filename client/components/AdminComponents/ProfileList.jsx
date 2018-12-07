@@ -62,16 +62,16 @@ class ProfileList extends React.Component {
                 {/* Provider name:
                 Services provided by provider: */}
 
-            {/* When an admin clicks on a specific title, it will
+                {/* When an admin clicks on a specific title, it will
             take you to... */}
                 <ViewProfile />
 
-            {/* Each Profile will have the option to be edited, and a button
+                {/* Each Profile will have the option to be edited, and a button
             for editing shows up beside the list */}
-            <EditProfile />
+                <EditProfile />
 
-            {/* The ability to add a new profile from the Admin page */}
-            <AddProfile />
+                {/* The ability to add a new profile from the Admin page */}
+                <AddProfile />
 
             </React.Fragment>
 
