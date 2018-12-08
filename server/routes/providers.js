@@ -8,6 +8,8 @@ const router = express.Router()
 
 
 
+
+
 router.get('/', (req, res) => {
 
   providersDB.getProviders()
@@ -19,4 +21,21 @@ router.get('/', (req, res) => {
     })
 })
 
+router.put('/:id/updatemessage', (req, res) => {
+
+  const id = req.params.id
+  const updateMessage = req.body.updateMessage
+
+  providersDB.updateMessage(id, updateMessage)
+    .then(result => {
+
+      res.json({ result: result })
+
+      // console.log('our result is ', result)
+    })
+
+  // console.log(id, updateMessage)
+})
+
 module.exports = router
+

@@ -1,7 +1,8 @@
 // EXPORTED FUNCTIONS
 
 module.exports = {
-    getProviders
+    getProviders,
+    updateMessage
 }
 
 const config = require('../../knexfile').development // [environment]
@@ -38,7 +39,12 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
         .andWhere('p.long', '<', long2)
     console.log(dataPromise.toString())
 
+
     return dataPromise
+}
+
+function updateMessage(id, updateMessage, db = connection) {
+    return db('providers').where('id', id).update({ update_message: updateMessage })
 }
 
 
