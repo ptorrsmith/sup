@@ -85,6 +85,7 @@ function getProvider(id, db = connection) {
             'p.website_url',
             'p.updated_at'
         )
+        .where('p.id', id)
     // console.log(dataPromise.toString())
 
     return dataPromise

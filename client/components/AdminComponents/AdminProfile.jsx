@@ -1,11 +1,10 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
+
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { fetchData } from '../../utils/testApi'
-
-
+import { fetchData } from '../../actions/index'
 
 // TEMPORARY DATA
 // import data from '../../utils/exampleData'
@@ -23,7 +22,7 @@ class AdminProfile extends React.Component {
     }
 
     componentWillMount () {
-
+        this.props.fetchData()
     }
 
     render() {
@@ -32,17 +31,14 @@ class AdminProfile extends React.Component {
             <div className="view_profile_body">
 
                 <div>
-                    <p>
-                        Welcome to Admin Profile. Specific profile data will be displayed here.</p><br></br>
-                    {/* There is supposed to be a link below here that reads 'edit this page's static contents?' but it doesn't seem to be working. Talk to Ruby and perhaps help her fix it when this functionality is necessary!</p> */}
+                    <p>Admin Profile</p>
+                    {console.log('admin profile CL', this.props.providers)}
+                    
                 </div>
 
                 <div>
-                    <Link to={`/admin/${components.provider_id}/edit`}>
-                        Edit this page's static contents?
-        </Link>
 
-            </div>
+                </div>
 
             </div>
 
@@ -51,17 +47,18 @@ class AdminProfile extends React.Component {
 }
 
 
-const mapStateToProps = ({currentProvider}) => {
-    return (
-        currentProvider
-    )
+const mapStateToProps = ({providers}) => {
+    return {
+        providers
+}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return (
-        dispatch
-    )
+    return {
+        fetchData: (params) => {
+            return dispatch(fetchData(params))
+        }
+    }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdminProfile)
+export default connect(mapStateToProps, mapDispatchToProps) (AdminProfile)

@@ -48,16 +48,16 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (data) => {
-    return (
-        data
-    )
-}
+// const mapStateToProps = (state) => {
+//     return (
+//       state  
+//     )
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return (
-        dispatch
-    )
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return (
+//         dispatch
+//     )
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

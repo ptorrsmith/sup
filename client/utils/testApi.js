@@ -22,9 +22,6 @@ export function getData() {
 
   // })
 
-
-return fetchProvider('/api/v1/providerservices').then((aResponse) => {
-  return aResponse.json()
-})
+  
 
 }
