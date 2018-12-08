@@ -2,12 +2,18 @@
 import React from 'react'
 
 // TEMPORARY DATA
-import { data } from '../../utils/tempData'
+import data from '../../utils/exampleData'
+
+console.log(data)
+
+// let components = data.map( (item) => {
+//     return item
+// })
+
+// console.log(components)
 
 const ViewProfile = () => (
-    <React.Fragment>
-
-        {/* The full detailed page of a provider / service. */}
+    <div className="view_profile_body">
 
         {/* SERVICE:
         id:
@@ -35,8 +41,7 @@ const ViewProfile = () => (
         update_message: 
         */}
 
-
-    </React.Fragment>
+</div>
 )
 
 export default ViewProfile

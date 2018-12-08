@@ -10,18 +10,12 @@ const EditProfile = () => (
 
     <div className="edit_profile_body">
     <p>Hello from EditProfile.</p>
-    </div>
-
-
     
-    <React.Fragment>
+    </div>
 
         {/* Allows the admin user to edit the more concrete
         details of a provider page, such as the address, the
         opening and closing hours, the requirements, etc. */}
-
-
-    </React.Fragment>
     
     </div>
 )
