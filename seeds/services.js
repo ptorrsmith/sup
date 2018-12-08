@@ -95,7 +95,7 @@ exports.seed = function (knex, Promise) {
 
         },
         {
-          id: 8,
+          id: 9,
           name: "Catacombs",
           qty_default: 10000,
           qty_remaining: 10000,
@@ -106,7 +106,7 @@ exports.seed = function (knex, Promise) {
 
         },
         {
-          id: 9,
+          id: 10,
           name: "Catacombs",
           qty_default: 10000,
           qty_remaining: 10000,
@@ -117,7 +117,7 @@ exports.seed = function (knex, Promise) {
 
         },
         {
-          id: 10,
+          id: 11,
           name: "DCM",
           qty_default: 10000,
           qty_remaining: 10000,
