@@ -6,22 +6,22 @@ import { connect } from 'react-redux'
 // TEMPORARY DATA
 import data from '../../utils/exampleData'
 
-// let components = data.map( (item) => {
-//     return item
-// })
+let components = data.map( (item) => {
+    return components
+})
 
-// console.log(components)
+console.log(components)
 
 const AdminProfile = () => (
     <div className="view_profile_body">
 
         <div>
-            <p>Welcome to Admin Profile. Specific profile data will be displayed here. <br></br>
-                There is supposed to be a link below here that reads 'edit this page's static contents?' but it doesn't seem to be working. Talk to Ruby and perhaps help her fix it when this functionality is necessary!</p>
+            <p>Welcome to Admin Profile. Specific profile data will be displayed here.</p><br></br>
+                {/* There is supposed to be a link below here that reads 'edit this page's static contents?' but it doesn't seem to be working. Talk to Ruby and perhaps help her fix it when this functionality is necessary!</p> */}
         </div>
 
         <div>
-            <Link to={`/admin/${item.provider_id}/edit`}>
+            <Link to={`/admin/${components.provider_id}/edit`}>
                 Edit this page's static contents?
         </Link>
 
