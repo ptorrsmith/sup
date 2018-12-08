@@ -9,7 +9,7 @@ const AddProfile = () => (
     <div>
 
         <div className="add_profile_body">
-            <p>Hello from AddProfile.</p>
+            <p>Hello from AddProfile. Enter details VIA form, and press save. That will send the details to the database.</p>
         </div>
 
     </div>
