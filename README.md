@@ -115,11 +115,14 @@ NOTE: API resources:  Providers, Services
 | Method | Endpoint | Protected | Usage | Request-data | Response-data |
 | --- | --- | --- | --- | --- | --- |
 | Get | /providerservices | No | Get provider-services in search area (long, lat) (optional only for admin purposes), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
-| Get | /liveupdates | No | get any new provider and service updates for these suppliers | [23,34,46,42,23,56] | [liveUpdates] |
+| Get | /providerServices/liveupdates | No | get any new provider and service updates for these suppliers | ignore_providers=[23,34,46,42,23,56] & updated_since=2018-12-13:13:23:00 | [liveUpdates] |
 | Post | /providers | Yes | create a new service provider | new-provider-info | new-provider-id |
-| Put | /providers | Yes | update service provider (incl update-message) | updated-provider-info | confirmation |
+| Put | /providers/:id/updatemessage | Yes | update service provider update-message only | provider_id, message | confirmation |
+| Put | /providers | Yes | update service provider (all details incl update-message) | provider_id, updated-provider-info | confirmation |
 | Post | /services | Yes | create a new service for an existing provider | provider_id, service-info | new-service-id |
-| Put | /services | Yes | update a service (including qty change) | service_id, updated-service-info | confirmation | 
+| Put | /services/:id/qtyremaining | Yes | update a service's qty_remaining value only) | {qty_remaining: 34} | confirmation | 
+| Put | /services/:id/status | Yes | update a service's status value only) | {status: "closed"} | confirmation | 
+| Put | /services | Yes | update a service (all details including qty_remaining and status) | service_id, updated-service-info | confirmation | 
 | Post | /auth/login | Yes | Log In a User | The Users JWT Token ||
 | Post | /api/auth/register | Yes | Register a User | The Users JWT Token ||
 
@@ -187,11 +190,29 @@ This represent the JSON nested within the providerServices "services" array for 
 
 
 #### LiveUpdates 
-Single service for both provider and service updates I suggest.
+##### Provider making live updates:
+standard service for provider and service updates for updating all/any info,
+however special "liveUpdate" services for the live updates:
+* Provider > Update message >  /providers/:id/updatemessage (expects body to have property ```{"updateMessage": "the new message contents"}```
+* Service > Update availability > /services/:id/updateAvailability (expects body to have property ```{"qty_remaining": 34}```
+* Service > Update status > /services/:id/updateStatus (expects body to have property ```{"status": "closed"}```
 
-Our react app can poll for updates on a regular basis.  It MUST send a list of provider_ids for which it wants any updates (i.e. in geobox), and it will get back an array of providerServices updates (only things that have changed)
+##### Provider making live updates:
+Our react app can poll for updates on a regular basis.  It MUST send a list of provider_ids for which it wants any updates (i.e. in geobox), and it will get back an array of providerServices updates (only things that have changed).
+The client is going to have to then apply those changes to it's providerServices array in redux state.
 
-This represents the JSON response back from GET: /liveupdates
+Ideally, we pass through a list of providerIds we want updates from, AND a timestamp of when we last got updates.
+BUT for first cut, we'll just return all required values for all providers.
+
+We will have a single special route for getting the providerService updates:
+* Get updates > /provicerServices/liveupdates
+
+This represents the JSON response back from GET: api/v1/providerServices/liveupdates
+Note: this is if we:
+* specify a list of "ignore provider ids", and
+* provide an "updated since" timestamp
+
+but for initial alpha mvp we will not, so will get all providers and their update_message, and all services and their qty_remaining and status back.
 
 ```sh
 {

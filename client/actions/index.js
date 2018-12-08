@@ -1,6 +1,7 @@
 
 
-import { getData } from '../utils/tempData'
+// import { getData } from '../utils/tempData'
+import { getData } from '../utils/testApi'
 
 
 export const fetchData = () => {
@@ -10,6 +11,10 @@ export const fetchData = () => {
       dispatch({
         type: 'RECEIVED_PROVIDERS',
         providers: data
+      })
+    }).catch(() => {
+      dispatch({
+        type: 'FETCH_PROVIDERS_ERROR'
       })
     })
   }

@@ -6,6 +6,9 @@ import Map from './Map'
 import Admin from './Admin'
 import Nav from './Nav'
 import Sidebar from './TDC/Sidebar'
+import AdminProfile from './AdminComponents/AdminProfile'
+import AddProfile from './AdminComponents/AddProfile'
+import EditProfile from './AdminComponents/EditProfile'
 
 const App = () => (
 
@@ -16,22 +19,24 @@ const App = () => (
                 {/* <h1>Hello from the App Header</h1> */}
             </div>
 
-            <Map />
-            <Sidebar />
+            {/* <Map /> */}
+            {/* <Sidebar /> */}
 
             <div className="app_body">
-                {/* <p> Hello from the App body. Map will go here, and will underlay the entire page.
-                    Nav will sit on top in the left hand side.
-                    The Admin page will be accessible after the user has logged in, but for the demonstration and for usability,
-                    it can be accessed at /admin. 
-            </p> */}
+                {/* <p>Hello from App Body</p> */}
             </div>
 
-            <Route path="/" component={Nav} />
+            <Route exact path='/' component={Sidebar} />
+            <Route exact path="/" component={Map} />
+            <Route exact path="/" component={Nav} />
             <Route exact path="/admin" component={Admin} />
+            {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
+            <Route exact path="/admin/:id" component={AdminProfile} />
+            <Route exact path="/admin/add" component={AddProfile} />
+            <Route exact path="/admin/:id/edit" component={EditProfile} />
 
         </div>
-    </Router>
+    </Router >
 )
 
 

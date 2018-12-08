@@ -8,14 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 
-// import { HashRouter as Router, Route, Link } from 'react-router-dom'
-// import { connect } from 'react-redux'
-
-// import About from './NavComponents/About'
-// import HowToUse from './NavComponents/HowToUse'
+import SimpleExpansionPanel from './SimpleExpansionPanel'
 
 const styles = {
   list: {
@@ -45,41 +39,20 @@ class Sidebar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <List>
-          {['Getting started'].map((text, index) => (
+      <SimpleExpansionPanel/>
+        {/* <List>
+          {[' '].map((text, index) => (
             <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> 
               <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+            </ListItem> 
+           ))} 
+         </List> */}
         <Divider />
         <List>
-          {['About', 'More info', 'Log in', 'Register'].map((text, index) => (
+          {['Log in', 'Register'].map((text, index) => (
             <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>
-          {['Getting started', 'About', 'More info'].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Getting started', 'About', 'More info'].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -98,7 +71,7 @@ class Sidebar extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
+            // onClick={this.toggleDrawer('left', false)}
             onKeyDown={this.toggleDrawer('left', false)}
           >
             {sideList}
