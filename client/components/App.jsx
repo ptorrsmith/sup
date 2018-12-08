@@ -21,9 +21,9 @@ const App = () => (
 
             {/* <Map /> */}
             {/* <Sidebar /> */}
-            
+
             <div className="app_body">
-            {/* <p>Hello from App Body</p> */}
+                {/* <p>Hello from App Body</p> */}
             </div>
 
             <Route exact path='/' component={Sidebar} />

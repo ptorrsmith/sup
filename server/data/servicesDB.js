@@ -2,7 +2,9 @@
 
 module.exports = {
     // getServicesForProvider,
-    getServicesForProviders
+    getServicesForProviders,
+    updateQtyRemaining,
+    updateStatus
 }
 
 const config = require('../../knexfile').development // [environment]
@@ -64,6 +66,7 @@ function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = c
                 's.provider_id',
                 's.name',
                 's.unit',
+                's.status',
                 's.qty_default',
                 's.qty_remaining',
                 's.updated_at',
@@ -83,6 +86,7 @@ function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = c
                 's.provider_id',
                 's.name',
                 's.unit',
+                's.status',
                 's.qty_default',
                 's.qty_remaining',
                 's.updated_at',
@@ -94,6 +98,19 @@ function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = c
     }
     return dataPromise
 }
+
+function updateQtyRemaining(id, qtyRemaining, db = connection) {
+    return db('services').where('id', id).update({ qty_remaining: qtyRemaining })
+}
+
+function updateStatus(id, currentStatus, db = connection) {
+    // console.log("im in servicesDB, updateStatus function, this is currentStatus  :", id, currentStatus)
+    return db('services').where('id', id).update({ status: currentStatus })
+}
+
+
+
+
 
 // function getServicesForProvider(providerId, serviceSearchObj, db = connection) {
 //     const dataPromise = db('services AS s')
