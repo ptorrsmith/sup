@@ -54,7 +54,7 @@ export function setCurrentService(service) {
 export function setCurrentProvider(provider) {
   return {
     type: 'SET_CURRENT_PROVIDER',
-    service
+    provider
   }
 }
 

@@ -9,8 +9,15 @@ import Sidebar from './TDC/Sidebar'
 import AdminProfile from './AdminComponents/AdminProfile'
 import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
+import Profile from './TDC/Profile';
 
-const App = () => (
+import {fetchData} from '../actions'
+
+function getProviders(dispatch){
+    dispatch(fetchData())
+}
+
+const App = (props) => (
 
     <Router>
         <div>
@@ -24,6 +31,8 @@ const App = () => (
             
             <div className="app_body">
             {/* <p>Hello from App Body</p> */}
+            <button onClick={()=>{getProviders(props.dispatch)}}> getInfo </button>
+
             </div>
 
             <Route exact path='/' component={Sidebar} />
@@ -34,6 +43,9 @@ const App = () => (
             <Route exact path="/admin/:id" component={AdminProfile} />
             <Route exact path="/admin/add" component={AddProfile} />
             <Route exact path="/admin/:id/edit" component={EditProfile} />
+
+            
+            <Route exact path="/profile/:id" component={Profile} />
 
         </div>
     </Router >
@@ -56,4 +68,4 @@ const App = () => (
 //     }
 // }
 
-export default App
+export default connect()(App)
