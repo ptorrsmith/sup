@@ -26,25 +26,25 @@ let someData = [{
   address: "204 Cuba Street, Te Aro, Wellington",
   location: { lat: -41.295214, long: 174.774482 },
 },
-  {
-    name: "DCM",
-    address: "2 Lukes Lane, Te Aro, Wellington",
-    location: { lat: -41.291628, long: 174.778409 },
-  },
-  {
-    name: "Wesley Methodist Church",
-    address: "75 Taranki Street, Te Aro, Wellington",
-    location: { lat: -41.2936975, long: 174.7786946 },
-  },
-  {
-    name: "Catacombs",
-    address: "Level 1, 131 Manners Street, Te Aro, Wellington",
-    location: { lat: -41.291941, long: 174.778335 },
-  },
-  {
-    name: "Evolve",
-    address: "Level 2 James Smith Building, Corner Cuba and Manners streets, Te Aro, Wellington",
-    location: { lat: -41.29077, long: 174.777131 },
+{
+  name: "DCM",
+  address: "2 Lukes Lane, Te Aro, Wellington",
+  location: { lat: -41.291628, long: 174.778409 },
+},
+{
+  name: "Wesley Methodist Church",
+  address: "75 Taranki Street, Te Aro, Wellington",
+  location: { lat: -41.2936975, long: 174.7786946 },
+},
+{
+  name: "Catacombs",
+  address: "Level 1, 131 Manners Street, Te Aro, Wellington",
+  location: { lat: -41.291941, long: 174.778335 },
+},
+{
+  name: "Evolve",
+  address: "Level 2 James Smith Building, Corner Cuba and Manners streets, Te Aro, Wellington",
+  location: { lat: -41.29077, long: 174.777131 },
 }]
 
 class AMap extends React.Component {
@@ -81,8 +81,8 @@ class AMap extends React.Component {
       <div>
         <Map center={position} zoom={this.state.zoom}>
           <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+            url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
           />
 
           {markers}
