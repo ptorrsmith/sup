@@ -19,8 +19,8 @@ server.use(express.static(path.join(__dirname, '../public')))
 
 // server.use('/api/v1/providerservices', providerServicesRoutes )
 server.use('/api/v1/providerservices', require('./routes/providerServices'))
-// server.use('/api/providers', require('./routes/providers'))
-// server.use('/api/services', require('./routes/services'))
+server.use('/api/v1/providers', require('./routes/providers'))
+server.use('/api/v1/services', require('./routes/services'))
 
 // server.use('/api/users', require('./routes/users'))
 // server.use('/api/auth', require('./routes/auth'))

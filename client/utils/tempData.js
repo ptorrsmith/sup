@@ -1,6 +1,4 @@
-
-
-let exampleLiveService = {
+export let exampleLiveService = {
     updates: [
         {
             provider_id: "24",
@@ -34,7 +32,7 @@ let exampleLiveService = {
     update_timestamp: "2018-12-13 18:23:00" // the datetime of when these updates were polled. Will be used to update the qty_remaining_last_updated value for the service
 }
 
-let data = [
+export let data = [
     {
         id: "23",
         name: "Wesley City Mission",
