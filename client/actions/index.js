@@ -1,6 +1,7 @@
 
 
-import { getData } from '../utils/tempData'
+// import { getData } from '../utils/tempData'
+import { getData } from '../utils/testApi'
 
 
 export const fetchData = () => {
