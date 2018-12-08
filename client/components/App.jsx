@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import Landing from './Landing'
+import Map from './Map'
 import Admin from './Admin'
 import Nav from './Nav'
 
@@ -10,12 +10,17 @@ const App = () => (
 
     <Router>
         <div>
-            <Route path='/' component={Landing} />
-            <Route path="/" component={Nav} />
-            <Route exact path="/admin" component={Admin} />
+
+            <div className="app_header">
+                {/* Main header to encompass all pages... */}
+            </div>
+
+        <Route exact path="/" component={Map} />        
+        <Route exact path="/" component={Nav} />
+        <Route exact path="/admin" component={Admin} />
 
         </div>
-    </Router>
+    </Router >
 )
 
 

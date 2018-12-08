@@ -6,7 +6,7 @@
             "provider_description": "We provide 3 levels of accommodation support:<br> <br>stage 1: dormitory style accommodation which including shower and laundry facilities ($10 a night)<br>stage 2: hostel room accommodation ($80 a week)<br>stage 3: community support (tempoary emergency shelter)<br><br>Dormitory services include a bed for the night, shower facilities, clothes washed, cup of tea. Occasionally some light food is donated and made available.<br><br>Facilities: Bathroom, Laundry & Food.",
             "lat": -41.30061,
             "long": 174.77408,
-            "hours": "Open: 7 days a week, all year round<br>Checkin: 5:30pm – 9:00pm<br>Checkout: 6:00am – 7:30am",
+            "hours": "Open: 7 days a week, all year round. Check in: 5:30pm – 9:00pm. Check out: 6:00am – 7:30am",
             "update_message": "fully functional",
             "address": "304 Taranki St, Mt. Cook, Wellington 6011",
             "email": "menshelter@hotmail.com",

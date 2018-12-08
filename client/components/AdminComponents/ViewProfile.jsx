@@ -6,12 +6,20 @@ import data from '../../utils/exampleData'
 
 console.log(data)
 
+// let components = data.map( (item) => {
+//     return item
+// })
+
+// console.log(components)
+
 const ViewProfile = () => (
-    <React.Fragment>
+    <div className="view_profile_body">
 
-        {/* The full detailed page of a provider / service. */}
-
-        {data.provider_id}
+       <ul>
+            {data.map( (item) => { 
+                return <li>{item.provider_name} <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
+            })}
+        </ul>
 
         {/* SERVICE:
         id:
@@ -39,8 +47,7 @@ const ViewProfile = () => (
         update_message: 
         */}
 
-
-    </React.Fragment>
+</div>
 )
 
 export default ViewProfile
