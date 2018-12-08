@@ -3,6 +3,7 @@
 module.exports = {
     // getServicesForProvider,
     getServicesForProviders,
+    getServicesUpdatesForProviders,
     updateQtyRemaining,
     updateStatus
 }
@@ -12,7 +13,7 @@ const connection = require('knex')(config)
 const _ = require('lodash')
 
 function getServicesForProviders(providersIdList, serviceSearchObj, db = connection) {
-    console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
+    // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
     if (providersIdList) {
         return db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
@@ -55,7 +56,7 @@ function getServicesForProviders(providersIdList, serviceSearchObj, db = connect
     return dataPromise
 }
 
-function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = connection) {
+function getServicesUpdatesForProviders(providersIdList, serviceSearchObj, db = connection) {
     // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
     if (providersIdList) {
         return db('services AS s')
@@ -64,16 +65,9 @@ function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = c
             .select(
                 's.id',
                 's.provider_id',
-                's.name',
-                's.unit',
                 's.status',
-                's.qty_default',
                 's.qty_remaining',
-                's.updated_at',
-                's.service_type_id',
-                'st.name as service_type_name',
-                'st.code as service_type_code',
-                'st.icon as service_type_icon'
+                's.updated_at'
             )
             .whereIn('s.provider_id', providersIdList)
 
@@ -84,16 +78,9 @@ function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = c
             .select(
                 's.id',
                 's.provider_id',
-                's.name',
-                's.unit',
                 's.status',
-                's.qty_default',
                 's.qty_remaining',
-                's.updated_at',
-                's.service_type_id',
-                'st.name as service_type_name',
-                'st.code as service_type_code',
-                'st.icon as service_type_icon'
+                's.updated_at'
             )
     }
     return dataPromise
