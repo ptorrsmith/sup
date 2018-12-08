@@ -22,6 +22,11 @@ export default function auth(state = initialState, action) {
         isFetching: false,
         providers: action.providers
       }
+    case 'FETCH_PROVIDERS_ERROR':
+      return {
+        ...state,
+        isFetching: false
+      }
     default:
       return state
   }
