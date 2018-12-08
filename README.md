@@ -115,11 +115,14 @@ NOTE: API resources:  Providers, Services
 | Method | Endpoint | Protected | Usage | Request-data | Response-data |
 | --- | --- | --- | --- | --- | --- |
 | Get | /providerservices | No | Get provider-services in search area (long, lat) (optional only for admin purposes), with option to exclude some providers as already have their info | { geoBox: {lat1, long1, lat2, long2}, exclude_providers: [23,34,46,42,23,56] } | An Array of providers with their services |
-| Get | /liveupdates | No | get any new provider and service updates for these suppliers | [23,34,46,42,23,56] | [liveUpdates] |
+| Get | /providerServices/liveupdates | No | get any new provider and service updates for these suppliers | ignore_providers=[23,34,46,42,23,56] & updated_since=2018-12-13:13:23:00 | [liveUpdates] |
 | Post | /providers | Yes | create a new service provider | new-provider-info | new-provider-id |
-| Put | /providers | Yes | update service provider (incl update-message) | updated-provider-info | confirmation |
+| Put | /providers/:id/updatemessage | Yes | update service provider update-message only | provider_id, message | confirmation |
+| Put | /providers | Yes | update service provider (all details incl update-message) | provider_id, updated-provider-info | confirmation |
 | Post | /services | Yes | create a new service for an existing provider | provider_id, service-info | new-service-id |
-| Put | /services | Yes | update a service (including qty change) | service_id, updated-service-info | confirmation | 
+| Put | /services/:id/qtyremaining | Yes | update a service's qty_remaining value only) | {qty_remaining: 34} | confirmation | 
+| Put | /services/:id/status | Yes | update a service's status value only) | {status: "closed"} | confirmation | 
+| Put | /services | Yes | update a service (all details including qty_remaining and status) | service_id, updated-service-info | confirmation | 
 | Post | /auth/login | Yes | Log In a User | The Users JWT Token ||
 | Post | /api/auth/register | Yes | Register a User | The Users JWT Token ||
 
