@@ -32,5 +32,31 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/liveUpdates', (req, res) => {
+    providersDB.getProviderUpdates()
+        .then(providerUpdates => {
+            // console.log("providerUpdates count ", providerUpdates.length)
+            const providerIds = providerUpdates.map(provider => provider.id)
+            // console.log("providerIds: ", providerIds)
+            servicesDB.getServicesUpdatesForProviders(providerIds)
+                .then(servicesUpdates => {
+                    const providerServicesUpdates = providerUpdates.map(provider => {
+                        // find all services for this provider and attach them
+                        let pServices = servicesUpdates.filter(service => service.provider_id == provider.id)
+                        // console.log("provider: ", provider.id, " pServices length: ", pServices.length)
+                        provider.services = pServices
+                        // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
+                        return provider
+                    })
+                    // console.log("providerServicesUpdates >>>>> ", providerServicesUpdates)
+                    res.json(providerServicesUpdates)
+                }
+                )
+        })
+})
+
+
+
+
 module.exports = router
 // export default router // why not this?
