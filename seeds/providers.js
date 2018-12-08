@@ -91,7 +91,7 @@ exports.seed = function (knex, Promise) {
           phone: "(04) 384 7695",
           update_message: "fully functional",
           lat: -41.293654,
-          long: 74.7786946,
+          long: 174.7786946,
           email: "wesleymethodistchurch@hotmail.com",
           website_url: "http://www.wesleychurch.org.nz/index.php/about-us",
           hours: "Monday-Friday, 9am-5pm",
