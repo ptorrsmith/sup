@@ -6,6 +6,9 @@ export function getData() {
   return fetch('/api/v1/providerservices').then((aResponse) => {
     return aResponse.json()
   })
+  // .catch(() => {
+  //   return new Error({ error: 'Something went wrong' })
+  // })
 
 
   // new Promise((resolve, reject) => {

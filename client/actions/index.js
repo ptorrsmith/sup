@@ -12,6 +12,10 @@ export const fetchData = () => {
         type: 'RECEIVED_PROVIDERS',
         providers: data
       })
+    }).catch(() => {
+      dispatch({
+        type: 'FETCH_PROVIDERS_ERROR'
+      })
     })
   }
 }
