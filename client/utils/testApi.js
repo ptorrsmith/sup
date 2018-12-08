@@ -1,7 +1,4 @@
-
 export function getData() {
-
-
 
   return fetch('/api/v1/providerservices').then((aResponse) => {
     return aResponse.json()
@@ -24,4 +21,10 @@ export function getData() {
 
 
   // })
+
+
+return fetchProvider('/api/v1/providerservices').then((aResponse) => {
+  return aResponse.json()
+})
+
 }

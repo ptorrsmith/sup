@@ -3,7 +3,8 @@
 module.exports = {
     getProviders,
     getProviderUpdates,
-    updateMessage
+    updateMessage,
+    getProvider
 }
 
 const config = require('../../knexfile').development // [environment]
@@ -67,7 +68,27 @@ function getProviderUpdates(geoBoxSearch, ignoreProvidersArray, db = connection)
     return dataPromise
 }
 
+function getProvider(id, db = connection) {
+    // console.log("ProvidersDB, getProviders")
+    const dataPromise = db('providers AS p')
+        // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
+        .select(
+            'p.id',
+            'p.name',
+            'p.description',
+            'p.lat',
+            'p.long',
+            'p.hours',
+            'p.update_message',
+            'p.address',
+            'p.email',
+            'p.website_url',
+            'p.updated_at'
+        )
+    // console.log(dataPromise.toString())
 
+    return dataPromise
+}
 
 function updateMessage(id, updateMessage, db = connection) {
     return db('providers').where('id', id).update({ update_message: updateMessage })
