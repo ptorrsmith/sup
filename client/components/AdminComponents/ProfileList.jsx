@@ -35,17 +35,22 @@ class ProfileList extends React.Component {
                             return <li>
                                 <Link to={`/admin/${item.provider_id}/`}>{item.provider_name}</Link>
                                 <br></br> {item.hours} <br></br> {item.address} <br></br>
-                                {item.update_message} 
+                                {item.update_message} <br></br>
+                                <Link to={`/admin/${item.provider_id}/edit`}>Edit this profile</Link>
                                 </li>
                         })}
                     </ul>
 
+                    <Link to="/admin/add">Add a new profile</Link>
+
                 </div>
 
-                {/* When an admin clicks on a specific title, it will
-                take you to ViewProfile
 
-                {/* Add the ability to delete a provider? */}
+
+                {/* When an admin clicks on a specific title, it will
+                take you to AdminProfile, where the admin can edit specific static details.
+
+                Add the ability to delete a provider? */}
 
             </div>
 
