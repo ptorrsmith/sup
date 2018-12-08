@@ -11,11 +11,11 @@ const Admin = () => (
     <div>
 
         <div className="admin_header">
-            {/* <h1>Hello from Admin header.</h1> */}
+            <h1>ADMIN</h1>
         </div>
 
         <div className="admin_body">
-            {/* <p>Hello from Admin body.</p> */}
+            {/* <p></p> */}
         </div>
 
         {/* When an item from the list is clicked, it will

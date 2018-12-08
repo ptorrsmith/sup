@@ -6,21 +6,26 @@ import { connect } from 'react-redux'
 // TEMPORARY DATA
 import data from '../../utils/exampleData'
 
-console.log(data)
+let components = data.map( (item) => {
+    return components
+})
 
-// let components = data.map( (item) => {
-//     return item
-// })
+console.log(components)
 
-// console.log(components)
-
-const ViewProfile = () => (
+const AdminProfile = () => (
     <div className="view_profile_body">
-        <p>Hello from View Profile!</p>
-               <p>Item details here</p>
 
-        {/* This link doesnt work... Want the user to be given the opportunity to edit this specific page. */}
-        <Link to="/admin/edit">Edit this Profile</Link>
+        <div>
+            <p>Welcome to Admin Profile. Specific profile data will be displayed here.</p><br></br>
+                {/* There is supposed to be a link below here that reads 'edit this page's static contents?' but it doesn't seem to be working. Talk to Ruby and perhaps help her fix it when this functionality is necessary!</p> */}
+        </div>
+
+        <div>
+            <Link to={`/admin/${components.provider_id}/edit`}>
+                Edit this page's static contents?
+        </Link>
+
+        </div>
 
         {/* SERVICE:
         id:
@@ -51,4 +56,4 @@ const ViewProfile = () => (
     </div>
 )
 
-export default ViewProfile
+export default AdminProfile
