@@ -15,4 +15,37 @@ router.get('/', (req, res) => {
     })
 })
 
+router.put('/:id/updateavailability', (req, res) => {
+
+  const id = req.params.id
+  const qtyRemaining = req.body.qty_remaining
+
+  servicesDB.updateQtyRemaining(id, qtyRemaining)
+    .then(result => {
+
+      res.json({ result: result })
+
+      // console.log('our result is ', result)
+    })
+
+  // console.log(id, updateMessage)
+})
+
+
+router.put('/:id/updatestatus', (req, res) => {
+
+  const id = req.params.id
+  const currentStatus = req.body.status
+  // console.log("services, updateStatus route  ", req.body)
+  servicesDB.updateStatus(id, currentStatus)
+    .then(result => {
+
+      res.json({ result: result })
+
+      // console.log('our result is ', result)
+    })
+
+  // console.log(id, updateMessage)
+})
+
 module.exports = router

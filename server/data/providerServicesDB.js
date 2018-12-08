@@ -3,22 +3,22 @@
 
 // EXPORTED FUNCTIONS
 
-module.exports = {
-    getProviderServices
-}
+// module.exports = {
+//     getProviderServices
+// }
 
-const config = require('../../knexfile').development // [environment]
-const connection = require('knex')(config)
-// const _ = require('lodash')
+// const config = require('../../knexfile').development // [environment]
+// const connection = require('knex')(config)
+// // const _ = require('lodash')
 
-function getProviderServices(geoBoxSearch, ignoreProvidersArray, db = connection) {
-    console.log("About to start db and then")
-    const providersDataPromise = db('providers AS p')
-      .select(
-          'p.id as provider_id')
+// function getProviderServices(geoBoxSearch, ignoreProvidersArray, db = connection) {
+//     console.log("About to start db and then")
+//     const providersDataPromise = db('providers AS p')
+//       .select(
+//           'p.id as provider_id')
 
-          return providersDataPromise
-      }
+//           return providersDataPromise
+//       }
 
 //     db('providers')
 //         .select()
