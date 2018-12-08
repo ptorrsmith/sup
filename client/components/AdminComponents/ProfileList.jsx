@@ -5,22 +5,37 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {fetchData} from '../../actions'
 
 // IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
-import data from '../../utils/exampleData'
+// import data from '../../utils/exampleData'
 
 class ProfileList extends React.Component {
     constructor(props) {
         super(props)
 
         // set initial state
-
+        // no local state?
+        
 
         // bind functions
 
     }
 
+    componentWillMount() {
+        console.log("Will mount")
+        fetchData()
+    }
+
+    componentDidMount() {
+        console.log("mounted")
+        // fetchData()
+
+    }
+
     render() {
+        const data = this.props.providers
+        console.log("ProfileList render data >>>> ", data)
 
         return (
 
@@ -59,17 +74,17 @@ class ProfileList extends React.Component {
 }
 
 
-//   const mapStateToProps = ({ provider, providers }) => {
-//     return {
-//       provider,
-//       providers
-//     }
-//   }
+  const mapStateToProps = ({ currentProvider, providers }) => {
+    return {
+      currentProvider,
+      providers
+    }
+  }
 
-//   const mapDispatchToProps = (dispatch) => {
-//     return {
-//       dispatch
-//     }
-//   }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      dispatch
+    }
+  }
 
-export default connect()(ProfileList)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileList)

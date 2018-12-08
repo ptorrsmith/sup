@@ -4,6 +4,7 @@ export function getData() {
 
 
   return fetch('/api/v1/providerservices').then((aResponse) => {
+    console.log("TestApi getdata")
     return aResponse.json()
   })
   // .catch(() => {

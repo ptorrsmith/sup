@@ -5,9 +5,12 @@ import { getData } from '../utils/testApi'
 
 
 export const fetchData = () => {
+  console.log("Actions index fetchData")
   return dispatch => {
+    console.log("Actions index fetchData dispatch")
     dispatch({ type: 'GETTING_PROVIDERS' })
     getData().then((data) => {
+      console.log("Actions index fetchdata data>>>>>>>>>>", data)
       dispatch({
         type: 'RECEIVED_PROVIDERS',
         providers: data
