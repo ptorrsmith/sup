@@ -6,6 +6,9 @@ import Map from './Map'
 import Admin from './Admin'
 import Nav from './Nav'
 import Sidebar from './TDC/Sidebar'
+import ViewProfile from './AdminComponents/ViewProfile'
+import AddProfile from './AdminComponents/AddProfile'
+import EditProfile from './AdminComponents/EditProfile'
 
 const App = () => (
 
@@ -27,6 +30,9 @@ const App = () => (
             <Route exact path="/" component={Map} />
             <Route exact path="/" component={Nav} />
             <Route exact path="/admin" component={Admin} />
+            <Route path="/admin/:id" component={ViewProfile} />
+            <Route path="/admin/add" component={AddProfile} />
+            <Route path="/admin/:id/edit" component={EditProfile} />
 
         </div>
     </Router >
