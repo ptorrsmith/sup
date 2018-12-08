@@ -14,6 +14,7 @@ console.log(data)
 
 const ViewProfile = () => (
     <div className="view_profile_body">
+    <p>Hello from View Profile!</p>
 
         {/* SERVICE:
         id:

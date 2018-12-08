@@ -34,7 +34,7 @@ class ProfileList extends React.Component {
 
                     <ul>
                         {data.map((item) => {
-                            return <li>{item.provider_name} <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
+                            return <li> <Link to={`/admin/${item.provider_id}`}>{item.provider_name}</Link> <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
                         })}
                     </ul>
 
