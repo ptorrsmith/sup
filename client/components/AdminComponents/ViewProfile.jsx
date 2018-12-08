@@ -15,12 +15,6 @@ console.log(data)
 const ViewProfile = () => (
     <div className="view_profile_body">
 
-       <ul>
-            {data.map( (item) => { 
-                return <li>{item.provider_name} <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
-            })}
-        </ul>
-
         {/* SERVICE:
         id:
         name:

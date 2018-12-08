@@ -16,14 +16,16 @@ const App = () => (
                 {/* <h1>Hello from the App Header</h1> */}
             </div>
 
-            <Map />
-            <Sidebar />
+            {/* <Map /> */}
+            {/* <Sidebar /> */}
             
             <div className="app_body">
             {/* <p>Hello from App Body</p> */}
             </div>
 
-            <Route path="/" component={Nav} />
+            <Route exact path='/' component={Sidebar} />
+            <Route exact path="/" component={Map} />
+            <Route exact path="/" component={Nav} />
             <Route exact path="/admin" component={Admin} />
 
         </div>

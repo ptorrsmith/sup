@@ -11,7 +11,7 @@ import AddProfile from './AddProfile';
 import EditProfile from './EditProfile'
 
 // IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
-import { data } from '../../utils/tempData'
+import data from '../../utils/exampleData'
 
 class ProfileList extends React.Component {
     constructor(props) {
@@ -26,9 +26,19 @@ class ProfileList extends React.Component {
 
     render() {
 
-        return <div className="profile_list_body">
+        return (
 
-            <React.Fragment>
+            <div>
+
+                <div className="profile_list_body">
+
+                    <ul>
+                        {data.map((item) => {
+                            return <li>{item.provider_name} <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
+                        })}
+                    </ul>
+
+                </div>
                 {/* Shows a full list of all provider profiles, organised
                 by provider */}
 
@@ -46,10 +56,9 @@ class ProfileList extends React.Component {
                 {/* The ability to add a new profile from the Admin page */}
                 <AddProfile />
 
-            </React.Fragment>
+            </div>
 
-        </div>
-
+        )
     }
 }
 
