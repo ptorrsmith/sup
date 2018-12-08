@@ -32,7 +32,7 @@ const App = () => (
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/admin/view/:id" component={ViewProfile} />
             <Route exact path="/admin/add" component={AddProfile} />
-            <Route exact path="/admin/view/:id/edit" component={EditProfile} />
+            <Route exact path="/admin/edit" component={EditProfile} />
 
         </div>
     </Router >
