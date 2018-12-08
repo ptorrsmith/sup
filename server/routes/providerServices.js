@@ -1,8 +1,7 @@
 const express = require('express')
 const providerServicesDB = require('../data/providerServicesDB')
-
-const dataFormater = require('../helpers/dataFormater')
-// import {nestData} from '../helpers/dataFormater'
+const providersDB = require('../data/providersDB')
+const servicesDB = require('../data/servicesDB')
 const router = express.Router()
 
 // get request for list of providers and their services
@@ -11,15 +10,26 @@ const router = express.Router()
 // No params or other search object can return all / some providers and services, for system admin use.
 
 router.get('/', (req, res) => {
-    // console.log("providerServices get / ")
-    providerServicesDB.getProviderServices()
-        .then( data => {
-            // console.log("providerServices get / data: ", data)
-           const jsonData = dataFormater.nestData(data)
-            // console.log("providerServices get / jsonData: ", jsonData)
-            // console.log("providerServices get / data: ", JSON.stringify(data))
-            res.json({data: jsonData})
-        }) 
+    providersDB.getProviders()
+        .then(providers => {
+            // console.log("providers count ", providers.length)
+            const providerIds = providers.map(provider => provider.id)
+            // console.log("providerIds: ", providerIds)
+            servicesDB.getServicesForProviders(providerIds)
+                .then(services => {
+                    const providerServices = providers.map(provider => {
+                        // find all services for this provider and attach them
+                        let pServices = services.filter(service => service.provider_id == provider.id)
+                        // console.log("provider: ", provider.id, " pServices length: ", pServices.length)
+                        provider.services = pServices
+                        // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
+                        return provider
+                    })
+                    // console.log("providerServices >>>>> ", providerServices)
+                    res.json(providerServices)
+                }
+                )
+        })
 })
 
 module.exports = router
