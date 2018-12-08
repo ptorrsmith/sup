@@ -35,7 +35,7 @@ class ProfileList extends React.Component {
                     <ul>
                         {data.map((item) => {
                             return <li>
-                                <Link to={`/admin/${item.provider_id}`}>{item.provider_name}</Link>
+                                <Link to={`/admin/view/${item.provider_id}`}>{item.provider_name}</Link>
                                 <br></br> {item.hours} <br></br> {item.address} <br></br>
                                 {item.update_message} 
                                 </li>
@@ -52,9 +52,6 @@ class ProfileList extends React.Component {
 
                 <Link to="/admin/add">Add New Provider and Service</Link>
                 {/* Add the ability to delete a provider? */}
-
-                {/* The ability to add a new profile from the Admin page */}
-                <AddProfile />
 
             </div>
 

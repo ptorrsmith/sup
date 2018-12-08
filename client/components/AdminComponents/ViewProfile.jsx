@@ -20,7 +20,7 @@ const ViewProfile = () => (
                <p>Item details here</p>
 
         {/* This link doesnt work... Want the user to be given the opportunity to edit this specific page. */}
-        <Link to="/admin/{provider_id}/edit">Edit this Profile</Link>
+        <Link to="/admin/view/{provider_id}/edit">Edit this Profile</Link>
 
         {/* SERVICE:
         id:

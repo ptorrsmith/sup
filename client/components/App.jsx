@@ -30,9 +30,9 @@ const App = () => (
             <Route exact path="/" component={Map} />
             <Route exact path="/" component={Nav} />
             <Route exact path="/admin" component={Admin} />
-            <Route path="/admin/:id" component={ViewProfile} />
-            <Route path="/admin/add" component={AddProfile} />
-            <Route path="/admin/:id/edit" component={EditProfile} />
+            <Route exact path="/admin/view/:id" component={ViewProfile} />
+            <Route exact path="/admin/add" component={AddProfile} />
+            <Route exact path="/admin/view/:id/edit" component={EditProfile} />
 
         </div>
     </Router >
