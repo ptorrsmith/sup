@@ -187,11 +187,24 @@ This represent the JSON nested within the providerServices "services" array for 
 
 
 #### LiveUpdates 
-Single service for both provider and service updates I suggest.
+##### Provider making live updates:
+standard service for provider and service updates for updating all/any info,
+however special "liveUpdate" services for the live updates:
+* Provider > Update message >  /providers/:id/updatemessage (expects body to have property {"updateMessage": "the new message contents"}
+* Service > Update availability > /services/:id/updateAvailability (expects body to have property {"qty_remaining": 34}
+* Service > Update status > /services/:id/updateStatus (expects body to have property ```sh{"status": "closed"}```
 
-Our react app can poll for updates on a regular basis.  It MUST send a list of provider_ids for which it wants any updates (i.e. in geobox), and it will get back an array of providerServices updates (only things that have changed)
+##### Provider making live updates:
+Our react app can poll for updates on a regular basis.  It MUST send a list of provider_ids for which it wants any updates (i.e. in geobox), and it will get back an array of providerServices updates (only things that have changed).
+The client is going to have to then apply those changes to it's providerServices array in redux state.
 
-This represents the JSON response back from GET: /liveupdates
+Ideally, we pass through a list of providerIds we want updates from, AND a timestamp of when we last got updates.
+BUT for first cut, we'll just return all required values for all providers.
+
+We will have a single special route for getting the providerService updates:
+* Get updates > /provicerServices/liveupdates
+
+This represents the JSON response back from GET: api/v1/providerServices/liveupdates
 
 ```sh
 {

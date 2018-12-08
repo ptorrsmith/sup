@@ -12,13 +12,6 @@ const AddProfile = () => (
             <p>Hello from AddProfile.</p>
         </div>
 
-        <React.Fragment>
-
-            {/* Allows the admin user to add a brand new
-            provider page */}
-
-        </React.Fragment>
-
     </div>
 
 )

@@ -1,5 +1,7 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
 import React from 'react'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // TEMPORARY DATA
 import data from '../../utils/exampleData'
@@ -14,6 +16,11 @@ console.log(data)
 
 const ViewProfile = () => (
     <div className="view_profile_body">
+        <p>Hello from View Profile!</p>
+               <p>Item details here</p>
+
+        {/* This link doesnt work... Want the user to be given the opportunity to edit this specific page. */}
+        <Link to="/admin/edit">Edit this Profile</Link>
 
         {/* SERVICE:
         id:
@@ -41,7 +48,7 @@ const ViewProfile = () => (
         update_message: 
         */}
 
-</div>
+    </div>
 )
 
 export default ViewProfile
