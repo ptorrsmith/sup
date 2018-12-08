@@ -1,13 +1,26 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
 import React from 'react'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // TEMPORARY DATA
-import { data } from '../../utils/tempData'
+import data from '../../utils/exampleData'
+
+console.log(data)
+
+// let components = data.map( (item) => {
+//     return item
+// })
+
+// console.log(components)
 
 const ViewProfile = () => (
-    <React.Fragment>
+    <div className="view_profile_body">
+        <p>Hello from View Profile!</p>
+               <p>Item details here</p>
 
-        {/* The full detailed page of a provider / service. */}
+        {/* This link doesnt work... Want the user to be given the opportunity to edit this specific page. */}
+        <Link to="/admin/edit">Edit this Profile</Link>
 
         {/* SERVICE:
         id:
@@ -35,8 +48,7 @@ const ViewProfile = () => (
         update_message: 
         */}
 
-
-    </React.Fragment>
+    </div>
 )
 
 export default ViewProfile

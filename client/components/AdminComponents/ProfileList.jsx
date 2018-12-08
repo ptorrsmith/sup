@@ -8,9 +8,10 @@ import { connect } from 'react-redux'
 
 import ViewProfile from './ViewProfile'
 import AddProfile from './AddProfile';
+import EditProfile from './EditProfile'
 
 // IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
-import { data } from '../../utils/tempData'
+import data from '../../utils/exampleData'
 
 class ProfileList extends React.Component {
     constructor(props) {
@@ -25,30 +26,36 @@ class ProfileList extends React.Component {
 
     render() {
 
-        return <div className="profile_list_body">
+        return (
 
-            <React.Fragment>
-                {/* Shows a full list of all provider profiles, organised
-                by provider */}
+            <div>
 
-                {/* Provider name:
-                Services provided by provider: */}
+                <div className="profile_list_body">
+
+                    <ul>
+                        {data.map((item) => {
+                            return <li>
+                                <Link to={`/admin/view/${item.provider_id}`}>{item.provider_name}</Link>
+                                <br></br> {item.hours} <br></br> {item.address} <br></br>
+                                {item.update_message} 
+                                </li>
+                        })}
+                    </ul>
+
+                </div>
 
                 {/* When an admin clicks on a specific title, it will
-            take you to... */}
-                <ViewProfile />
+                take you to ViewProfile>
 
-                {/* Each Profile will have the option to be edited, and a button
+                Each Profile will have the option to be edited, and a button
             for editing shows up beside the list */}
-                <EditProfile />
 
-                {/* The ability to add a new profile from the Admin page */}
-                <AddProfile />
+                <Link to="/admin/add">Add New Provider and Service</Link>
+                {/* Add the ability to delete a provider? */}
 
-            </React.Fragment>
+            </div>
 
-        </div>
-
+        )
     }
 }
 

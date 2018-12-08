@@ -34,7 +34,7 @@ let someData = [{
   {
     name: "Wesley Methodist Church",
     address: "75 Taranki Street, Te Aro, Wellington",
-    location: { lat: -41.2936975, long: 74.7786946 },
+    location: { lat: -41.2936975, long: 174.7786946 },
   },
   {
     name: "Catacombs",

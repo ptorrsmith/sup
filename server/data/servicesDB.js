@@ -10,6 +10,50 @@ const connection = require('knex')(config)
 const _ = require('lodash')
 
 function getServicesForProviders(providersIdList, serviceSearchObj, db = connection) {
+    console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
+    if (providersIdList) {
+        return db('services AS s')
+            .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
+            // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
+            .select(
+                's.id',
+                's.provider_id',
+                's.name',
+                's.unit',
+                's.status',
+                's.qty_default',
+                's.qty_remaining',
+                's.updated_at',
+                's.service_type_id',
+                'st.name as service_type_name',
+                'st.code as service_type_code',
+                'st.icon as service_type_icon'
+            )
+            .whereIn('s.provider_id', providersIdList)
+
+    } else {
+        return db('services AS s')
+            .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
+            // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
+            .select(
+                's.id',
+                's.provider_id',
+                's.name',
+                's.unit',
+                's.status',
+                's.qty_default',
+                's.qty_remaining',
+                's.updated_at',
+                's.service_type_id',
+                'st.name as service_type_name',
+                'st.code as service_type_code',
+                'st.icon as service_type_icon'
+            )
+    }
+    return dataPromise
+}
+
+function getServiceUpdatesForProviders(providersIdList, serviceSearchObj, db = connection) {
     // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
     if (providersIdList) {
         return db('services AS s')
