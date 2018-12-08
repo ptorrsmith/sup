@@ -34,24 +34,24 @@ class ProfileList extends React.Component {
 
                     <ul>
                         {data.map((item) => {
-                            return <li> <Link to={`/admin/${item.provider_id}`}>{item.provider_name}</Link> <br></br> {item.hours} <br></br> {item.address} <br></br> {item.update_message} </li>
+                            return <li>
+                                <Link to={`/admin/${item.provider_id}`}>{item.provider_name}</Link>
+                                <br></br> {item.hours} <br></br> {item.address} <br></br>
+                                {item.update_message} 
+                                </li>
                         })}
                     </ul>
 
                 </div>
-                {/* Shows a full list of all provider profiles, organised
-                by provider */}
-
-                {/* Provider name:
-                Services provided by provider: */}
 
                 {/* When an admin clicks on a specific title, it will
-            take you to... */}
-                <ViewProfile />
+                take you to ViewProfile>
 
-                {/* Each Profile will have the option to be edited, and a button
+                Each Profile will have the option to be edited, and a button
             for editing shows up beside the list */}
-                <EditProfile />
+
+                <Link to="/admin/add">Add New Provider and Service</Link>
+                {/* Add the ability to delete a provider? */}
 
                 {/* The ability to add a new profile from the Admin page */}
                 <AddProfile />
