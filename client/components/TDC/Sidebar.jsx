@@ -40,19 +40,19 @@ class Sidebar extends React.Component {
     const sideList = (
       <div className={classes.list}>
       <SimpleExpansionPanel/>
-        <List>
-          {['Getting started'].map((text, index) => (
+        {/* <List>
+          {[' '].map((text, index) => (
             <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> 
               <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+            </ListItem> 
+           ))} 
+         </List> */}
         <Divider />
         <List>
-          {['About', 'More info', 'Log in', 'Register'].map((text, index) => (
+          {['Log in', 'Register'].map((text, index) => (
             <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -71,7 +71,7 @@ class Sidebar extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
+            // onClick={this.toggleDrawer('left', false)}
             onKeyDown={this.toggleDrawer('left', false)}
           >
             {sideList}
