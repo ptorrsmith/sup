@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 
 import ViewProfile from './ViewProfile'
 import AddProfile from './AddProfile';
+import EditProfile from './EditProfile'
 
 // IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
 import { data } from '../../utils/tempData'
