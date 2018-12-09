@@ -10,6 +10,8 @@ const router = express.Router()
 // No params or other search object can return all / some providers and services, for system admin use.
 
 
+// The res.json returns the provider, but not the service. Can this be resolved?
+
 router.get('/:id', (req, res) => {
     const id = req.params.id
     // console.log('provider services get/id', id)
