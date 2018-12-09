@@ -21,8 +21,8 @@ router.get('/:id', (req, res) => {
             // console.log("providerIds: ", providerIds)
             servicesDB.getServicesForProviders([id])  //  array, but that is what we want this time
                 .then(services => {
-                    console.log('PROVIDER>>>>', provider)
-                    console.log('SERVICES>>>>', services)
+                    // console.log('PROVIDER>>>>', provider)
+                    // console.log('SERVICES>>>>', services)
                     provider.services = services
                     // res.json({
                     //     ...provider,
