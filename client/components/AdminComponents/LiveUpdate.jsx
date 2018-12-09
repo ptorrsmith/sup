@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import { currentProvider } from '../../actions/index'
-import 
 
 class LiveUpdate extends React.Component {
     constructor(props) {
