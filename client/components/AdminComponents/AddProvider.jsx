@@ -4,7 +4,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-class App extends React.Component {
+class AddProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,13 +13,10 @@ class App extends React.Component {
             lat: "",
             long: "",
             hours: "",
-            update_message: "",
             address: "",
             email: "",
             website_url: "",
-            updated_at: ""
-
-
+            update_message: ""
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onChange.bind(this);
@@ -85,4 +82,4 @@ class App extends React.Component {
     }
 }
 
-export default AddProfile
+export default AddProvider
