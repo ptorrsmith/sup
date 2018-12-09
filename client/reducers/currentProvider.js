@@ -16,6 +16,10 @@ export default function auth(state = initialState, action) {
           ...state,
           currentProvider: action.currentProvider
         }
+      // RUBY'S REDUCERS FOR LIVE UPDATE
+      // SET_QTY_REMAINING
+      // SET_UPDATE
+      // SET_STATUS
     default:
       return state
   }
