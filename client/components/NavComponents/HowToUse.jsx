@@ -13,23 +13,13 @@ const HowToUse = () => (
 
         <div className="how_to_use_body">
             <p>
-                To get started, here's what you do:
-    
+            Welcome to SUP Lets get started!
             <ul>
-                    <li>If you're using the site for the first time, check that you are on a strong Wi-Fi signal. Or, just turn on your data.</li>
-                    <li>You can move around the map using your mouse, if you're on a computer, or using your finger if you're on your phone.</li>
-                    <li>You can move around the map to see different places in Wellington which provide services.</li>
-                    <li>Click or press on an icon, and a pop-up will show on your screen. The pop-up shows information about the location you have selected.</li>
-                    <li>Click on the pop-up box to view the full profile of a provider. You should view the profile page if you want to check the location, the service, the facilities and a special notice from the provider.</li>
+                    <li>Tap on the Map to find a bed, a meal, a food parcel or other service.</li>
+                    <li>Don't worry about telling the map where you are! We'll grab that info for you.</li>
+                    <li>Use the box on the bottom left to filter for the services you're looking for.</li>
+                    <li>If you want the address just zoom in on the map marker or tap the marker for more info.</li>
                 </ul>
-
-                If you have any questions about the website, you can call call 0800 000 000 or email customerservice@sup.co.nz.
-                <br></br><br></br>
-
-                If you are noticing any bugs on the site unrelated to your internet connection, please call 0800 000 000 or email customerservice@sup.co.nz. We will endeavour to get back to you in 1-2 working days.
-                <br></br><br></br>
-                
-                If you are a registered provider and are having issues unrelated to you internet connection, please call 0800 000 000, or email admin@sup.co.nz.
                 
         </p>
         </div>
