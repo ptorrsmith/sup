@@ -1,19 +1,28 @@
-var path = require('path')
-var express = require('express')
-var bodyParser = require('body-parser')
-var cors = require('cors')
-var passport = require('passport')
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-var server = express()
+const providerServicesRoutes = require('./routes/providerServices')
 
-server.use(cors('*'))
+// const passport = require('passport') // not mvp
+
+const server = express()
+
+server.use(cors('*')) // not sure we'll need this since client and server from same server
 
 // server.use(passport.initialize())
 server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
-// server.use('/api/auth', require('./routes/auth'))
-// server.use('/api/meetings', require('./routes/meetings'))
+
+
+// server.use('/api/v1/providerservices', providerServicesRoutes )
+server.use('/api/v1/providerservices', require('./routes/providerServices'))
+server.use('/api/v1/providers', require('./routes/providers'))
+server.use('/api/v1/services', require('./routes/services'))
+
 // server.use('/api/users', require('./routes/users'))
+// server.use('/api/auth', require('./routes/auth'))
 
 module.exports = server
