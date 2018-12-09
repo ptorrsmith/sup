@@ -38,9 +38,11 @@ class App extends React.Component {
                     <Route exact path="/" component={Nav} />
                     <Route exact path="/admin" component={Admin} />
                     {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-                    <Route exact path="/admin/:id" component={AdminProfile} />
                     <Route exact path="/admin/add" component={AddProfile} />
+                    <Route exact path="/admin/:id" component={AdminProfile} />
                     <Route exact path="/admin/:id/edit" component={EditProfile} />
+                    <Route exact path="/admin/services/:id/edit" component={EditProfile} />
+                    <Route exact path="/admin/services/:id" component={EditProfile} />
 
                 </div>
             </Router >
