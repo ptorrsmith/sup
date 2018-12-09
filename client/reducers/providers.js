@@ -16,6 +16,11 @@ export default function auth(state = initialState, action) {
         ...state,
         isFetching: true
       }
+    // case 'GETTING_PROVIDER':
+    // return {
+    //   ...state,
+    //   provider: action.provider
+    // }
     case 'RECEIVED_PROVIDERS':
       return {
         ...state,
