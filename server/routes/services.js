@@ -48,4 +48,27 @@ router.put('/:id/updatestatus', (req, res) => {
   // console.log(id, updateMessage)
 })
 
+router.post('/', (req, res) => {
+
+  const serviceInfo = req.body
+
+  servicesDB.createService(serviceInfo)
+    .then(newService => {
+
+      res.json({ newService: newService })
+    })
+})
+
+router.put('/:id/updateservice', (req, res) => {
+
+  const id = req.params.id
+  const updatedService = req.body
+
+  servicesDB.updateService(id, updatedService)
+    .then(updatedService => {
+
+      res.json({ updatedService: updatedService })
+    })
+})
+
 module.exports = router

@@ -8,6 +8,5 @@ import currentProvider from './currentProvider'
 export default combineReducers({
   providers,
   currentService,
-  currentProvider,
-  currentView
+  currentProvider
 })

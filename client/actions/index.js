@@ -4,16 +4,19 @@ import { getData } from '../utils/testApi'
 
 
 export const fetchData = () => {
+  console.log("Actions index fetchData")
   return dispatch => {
+    console.log("Actions index fetchData dispatch")
     dispatch({ type: 'GETTING_PROVIDERS' })
-    getData().then((data) => {
+    getData().then((providersAndServices) => {
+      console.log("Actions index fetchData providersAndServices>>>>>>>>>>", providersAndServices)
       dispatch({
         type: 'RECEIVED_PROVIDERS',
-        providers: data
+        providers: providersAndServices
       })
     }).catch(() => {
       dispatch({
-        type: 'FETCH_PROVIDERS_ERROR'
+        type: 'FETCH_PROVIDERS_ERROR' 
       })
     })
   }
