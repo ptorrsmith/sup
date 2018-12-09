@@ -1,59 +1,64 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
+
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { fetchData } from '../../actions/index'
+
 // TEMPORARY DATA
-import data from '../../utils/exampleData'
+// import data from '../../utils/exampleData'
 
-let components = data.map( (item) => {
-    return components
-})
+// let components = data.map( (item) => {
+//     return components
+// })
 
-console.log(components)
+// console.log(components)
 
-const AdminProfile = () => (
-    <div className="view_profile_body">
+class AdminProfile extends React.Component {
+    constructor(props) {
+        super(props)
 
-        <div>
-            <p>Welcome to Admin Profile. Specific profile data will be displayed here.</p><br></br>
-                {/* There is supposed to be a link below here that reads 'edit this page's static contents?' but it doesn't seem to be working. Talk to Ruby and perhaps help her fix it when this functionality is necessary!</p> */}
-        </div>
+    }
 
-        <div>
-            <Link to={`/admin/${components.provider_id}/edit`}>
-                Edit this page's static contents?
-        </Link>
+    componentWillMount () {
+        this.props.fetchData()
+    }
 
-        </div>
+    render() {
+        return (
 
-        {/* SERVICE:
-        id:
-        name:
-        description:
-        service_type:
-        service_icon:
-        qty_default:
-        qty_remaining:
-        qty_remaining_last_updated:
-        service_status: 
-    */}
+            <div className="view_profile_body">
 
-        {/* PROVIDER:
-        id: 
-        name:
-        address:
-        description:
-        hours:
-        location:
-        phone:
-        email:
-        services:
-        images:
-        update_message: 
-        */}
+                <div>
+                    <p>Admin Profile</p>
+                    {console.log('admin profile CL', this.props.providers)}
+                    
+                </div>
 
-    </div>
-)
+                <div>
 
-export default AdminProfile
+                </div>
+
+            </div>
+
+        )
+    }
+}
+
+
+const mapStateToProps = ({providers}) => {
+    return {
+        providers
+}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (params) => {
+            return dispatch(fetchData(params))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AdminProfile)

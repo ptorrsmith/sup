@@ -10,50 +10,54 @@ import AdminProfile from './AdminComponents/AdminProfile'
 import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
 
-const App = () => (
+class App extends React.Component {
+    constructor(props) {
+        super(props)
 
-    <Router>
-        <div>
+    }
 
-            <div className="app_header">
-                {/* <h1>Hello from the App Header</h1> */}
-            </div>
+    render() {
+        return (
 
-            {/* <Map /> */}
-            {/* <Sidebar /> */}
+            <Router>
+                <div>
 
-            <div className="app_body">
-                {/* <p>Hello from App Body</p> */}
-            </div>
+                    <div className="app_header">
+                        {/* <h1>Hello from the App Header</h1> */}
+                    </div>
 
-            <Route exact path='/' component={Sidebar} />
-            <Route exact path="/" component={Map} />
-            <Route exact path="/" component={Nav} />
-            <Route exact path="/admin" component={Admin} />
-            {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-            <Route exact path="/admin/:id" component={AdminProfile} />
-            <Route exact path="/admin/add" component={AddProfile} />
-            <Route exact path="/admin/:id/edit" component={EditProfile} />
+                    {/* <Map /> */}
+                    {/* <Sidebar /> */}
 
-        </div>
-    </Router >
-)
+                    <div className="app_body">
+                        {/* <p>Hello from App Body</p> */}
+                    </div>
 
+                    <Route exact path='/' component={Sidebar} />
+                    <Route exact path="/" component={Map} />
+                    <Route exact path="/" component={Nav} />
+                    <Route exact path="/admin" component={Admin} />
+                    {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
+                    <Route exact path="/admin/:id" component={AdminProfile} />
+                    <Route exact path="/admin/add" component={AddProfile} />
+                    <Route exact path="/admin/:id/edit" component={EditProfile} />
 
-// class App extends React.Component {
-//     constructor(props) {
-//         super(props)
+                </div>
+            </Router >
+        )
+    }
+}
 
-//     }
-//     render() {
-//         return (
-//             <React.Fragment>
+// const mapStateToProps = (state) => {
+//     return (
+//       state  
+//     )
+// }
 
-//                 <p>Is React working?</p>
-
-//             </React.Fragment>
-//         )
-//     }
+// const mapDispatchToProps = (dispatch) => {
+//     return (
+//         dispatch
+//     )
 // }
 
 export default App

@@ -35,7 +35,7 @@ class ProfileList extends React.Component {
     }
 
     render() {
-        const providersAndServices = this.props.providers
+        const providersAndServices = this.props.providers.providers
         console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
 
         return (
@@ -43,14 +43,14 @@ class ProfileList extends React.Component {
                 <div className="profile_list_body">
                     <p>Welcome to the Admin Panel. This list displays all current providers and services in Wellington.</p>
                     <ul>
-                        {/* {providersAndServices && providersAndServices.map((item) => {
+                        {providersAndServices && providersAndServices.map((provider) => {
                             return <li>
-                                <Link to={`/admin/${item.provider_id}/`}>{item.provider_name}</Link>
-                                <br></br> {item.hours} <br></br> {item.address} <br></br>
-                                {item.update_message} <br></br>
-                                <Link to={`/admin/${item.provider_id}/edit`}>Edit this profile</Link>
+                                <Link to={`/admin/${provider.id}/`}>{provider.name}</Link>
+                                <br/> {provider.hours} <br/> {provider.address} <br/>
+                                {provider.update_message} <br/>
+                                <Link to={`/admin/${provider.id}/edit`}>Edit this profile</Link>
                             </li>
-                        })} */}
+                        })}
                     </ul>
                     <Link to="/admin/add">Add a new profile</Link>
                 </div>
