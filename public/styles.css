@@ -49,6 +49,7 @@
   .profileInfo{
     grid-area: info;
     /* width: 50vw; */
+    overflow: scroll;
   }
 
   

@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const HowToUse = () => (
+const MoreInfo = () => (
     <div>
 
         <div className="more_info_header">
