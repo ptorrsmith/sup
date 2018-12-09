@@ -1,13 +1,9 @@
 const express = require('express')
 const providersDB = require('../data/providersDB')
 
-const dataFormater = require('../helpers/dataFormater')
+// const dataFormater = require('../helpers/dataFormater')
 
 const router = express.Router()
-
-
-
-
 
 
 router.get('/', (req, res) => {
@@ -20,6 +16,16 @@ router.get('/', (req, res) => {
       res.json({ data: data })
     })
 })
+
+// router.get('/:id', (req, res) => {
+//   const id = req.params.id
+//   providersDB.getProvider(id)
+//     .then(response => {
+//       res.json(response)
+//     }
+//     )
+// }
+// )
 
 router.put('/:id/updatemessage', (req, res) => {
 

@@ -1,7 +1,7 @@
 // CHILD OF VIEW PREVIEW - REDIRECTS HERE FROM PROFILE LIST
 
 import React from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+// import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchData } from '../../actions/index'
@@ -32,7 +32,7 @@ class AdminProfile extends React.Component {
 
                 <div>
                     <p>Admin Profile</p>
-                    {console.log('admin profile CL', this.props.providers)}
+                    <p>admin profile CL  {this.props.providers.providers.length}  more or less</p>
                     
                 </div>
 
