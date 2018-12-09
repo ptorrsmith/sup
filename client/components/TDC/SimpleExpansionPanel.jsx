@@ -6,6 +6,10 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import HowToUse from "../NavComponents/HowToUse"
+import About from '../NavComponents/About'
+import MoreInfo from '../NavComponents/MoreInfo'
+
 
 const styles = theme => ({
   root: {
@@ -29,8 +33,7 @@ function SimpleExpansionPanel(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <HowToUse/>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -42,8 +45,7 @@ function SimpleExpansionPanel(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <About/>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -54,8 +56,7 @@ function SimpleExpansionPanel(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <MoreInfo/>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
