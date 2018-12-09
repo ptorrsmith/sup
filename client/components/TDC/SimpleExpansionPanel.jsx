@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import HowToUse from "../NavComponents/HowToUse"
 import About from '../NavComponents/About'
-import About from '../NavComponents/MoreInfo'
+import MoreInfo from '../NavComponents/MoreInfo'
 
 
 const styles = theme => ({
