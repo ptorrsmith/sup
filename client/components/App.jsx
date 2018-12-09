@@ -27,6 +27,10 @@ class App extends React.Component {
 
     }
 
+    componentDidMount() {
+        this.props.fetchProvidersAndServices()
+    }
+
     render() {
         return (
 
@@ -41,7 +45,7 @@ class App extends React.Component {
 
                     <div className="app_body">
                         {/* <p>Hello from App Body</p> */}
-                        <button onClick={() => { getProviders(this.props.dispatch) }}> getInfo </button>
+                        <button onClick={() => { getProviders(this.props.dispatch) }}> get Info </button>
 
                     </div>
 
@@ -70,13 +74,15 @@ class App extends React.Component {
 } */}
 
 const mapDispatchToProps = (dispatch) => {
-    return (
-        dispatch
-    )
+    return {
+        fetchProvidersAndServices: (params) => {
+            return dispatch(fetchProvidersAndServices(params))
+        }
 
+    }
 }
 
-export default connect()(App)
+export default connect(null, mapDispatchToProps)(App)
 
 
 
