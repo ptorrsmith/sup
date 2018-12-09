@@ -12,10 +12,10 @@ import EditProfile from './AdminComponents/EditProfile'
 import Profile from './TDC/Profile';
 
 
-import {fetchData} from '../actions'
+import {fetchProvidersAndServices} from '../actions'
 
 function getProviders(dispatch){
-    dispatch(fetchData())
+    dispatch(fetchProvidersAndServices())
 }
 
 // const App = (props) => (
@@ -66,6 +66,8 @@ class App extends React.Component {
 
                     <div className="app_header">
                         {/* <h1>Hello from the App Header</h1> */}
+                        <button onClick={()=>{getProviders(this.props.dispatch)}}> getInfo </button>
+
                     </div>
 
                     {/* <Map /> */}
