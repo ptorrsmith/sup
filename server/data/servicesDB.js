@@ -14,8 +14,9 @@ const _ = require('lodash')
 
 function getServicesForProviders(providersIdList, serviceSearchObj, db = connection) {
     // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
+    // console.log('getServicesDB', providersIdList)
     if (providersIdList) {
-        return db('services AS s')
+        const promise = db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
             // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
             .select(
@@ -33,6 +34,7 @@ function getServicesForProviders(providersIdList, serviceSearchObj, db = connect
                 'st.icon as service_type_icon'
             )
             .whereIn('s.provider_id', providersIdList)
+        return promise
 
     } else {
         return db('services AS s')
@@ -87,6 +89,7 @@ function getServicesUpdatesForProviders(providersIdList, serviceSearchObj, db = 
 }
 
 function updateQtyRemaining(id, qtyRemaining, db = connection) {
+    // console.log(qtyRemaining)
     return db('services').where('id', id).update({ qty_remaining: qtyRemaining })
 }
 

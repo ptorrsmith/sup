@@ -9,6 +9,26 @@ const router = express.Router()
 // Optional list of providers to NOT return (as already have them)
 // No params or other search object can return all / some providers and services, for system admin use.
 
+
+// The res.json returns the provider, but not the service. Can this be resolved?
+
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    // console.log('provider services get/id', id)
+    providersDB.getProvider(id)
+        .then(provider => {
+            // console.log("providerIds: ", providerIds)
+            servicesDB.getServicesForProviders([id])
+                .then(services => {
+                    let newProvider = provider
+                    // console.log('services', services, id)
+                    newProvider.services = services
+                    console.log('provider services check for service', newProvider)
+                    res.json(newProvider)
+                })
+        })
+})
+
 router.get('/', (req, res) => {
     providersDB.getProviders()
         .then(providers => {
@@ -27,10 +47,10 @@ router.get('/', (req, res) => {
                     })
                     // console.log("providerServices >>>>> ", providerServices)
                     res.json(providerServices)
-                }
-                )
+                })
         })
 })
+
 
 router.get('/liveUpdates', (req, res) => {
     providersDB.getProviderUpdates()
@@ -50,10 +70,11 @@ router.get('/liveUpdates', (req, res) => {
                     })
                     // console.log("providerServicesUpdates >>>>> ", providerServicesUpdates)
                     res.json(providerServicesUpdates)
-                }
-                )
+                })
         })
 })
+
+
 
 
 
