@@ -92,6 +92,7 @@ function getProvider(id, db = connection) {
 }
 
 function updateMessage(id, updateMessage, db = connection) {
+    // console.log(updateMessage)
     return db('providers').where('id', id).update({ update_message: updateMessage })
 }
 
