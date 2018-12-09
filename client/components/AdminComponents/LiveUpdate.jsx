@@ -25,8 +25,8 @@ class LiveUpdate extends React.Component {
     // }
 
     render() {
-        // const providersAndServices = this.props.providers.providers
-        // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
+
+        // const and console logs go here
 
         return <div>Hello from LiveUpdate Stateful</div>
     }
