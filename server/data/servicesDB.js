@@ -34,7 +34,7 @@ function getServicesForProviders(providersIdList, serviceSearchObj, db = connect
                 'st.icon as service_type_icon'
             )
             .whereIn('s.provider_id', providersIdList)
-            return promise
+        return promise
 
     } else {
         return db('services AS s')
@@ -89,6 +89,7 @@ function getServicesUpdatesForProviders(providersIdList, serviceSearchObj, db = 
 }
 
 function updateQtyRemaining(id, qtyRemaining, db = connection) {
+    // console.log(qtyRemaining)
     return db('services').where('id', id).update({ qty_remaining: qtyRemaining })
 }
 
