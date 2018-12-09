@@ -11,14 +11,11 @@ import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
 import Profile from './TDC/Profile';
 
-import { fetchData } from '../actions'
-
 import { fetchProvidersAndServices } from '../actions'
 
 function getProviders(dispatch) {
     dispatch(fetchProvidersAndServices())
 }
-
 
 
 
