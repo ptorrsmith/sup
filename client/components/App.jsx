@@ -11,6 +11,7 @@ import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
 import Profile from './TDC/Profile';
 
+
 import {fetchData} from '../actions'
 
 function getProviders(dispatch){
@@ -51,21 +52,55 @@ const App = (props) => (
     </Router >
 )
 
+class App extends React.Component {
+    constructor(props) {
+        super(props)
 
-// class App extends React.Component {
-//     constructor(props) {
-//         super(props)
+    }
 
-//     }
-//     render() {
-//         return (
-//             <React.Fragment>
+    render() {
+        return (
 
-//                 <p>Is React working?</p>
+            <Router>
+                <div>
 
-//             </React.Fragment>
-//         )
-//     }
+                    <div className="app_header">
+                        {/* <h1>Hello from the App Header</h1> */}
+                    </div>
+
+                    {/* <Map /> */}
+                    {/* <Sidebar /> */}
+
+                    <div className="app_body">
+                        {/* <p>Hello from App Body</p> */}
+                    </div>
+
+                    <Route exact path='/' component={Sidebar} />
+                    <Route exact path="/" component={Map} />
+                    <Route exact path="/" component={Nav} />
+                    <Route exact path="/admin" component={Admin} />
+                    {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
+                    <Route exact path="/admin/:id" component={AdminProfile} />
+                    <Route exact path="/admin/add" component={AddProfile} />
+                    <Route exact path="/admin/:id/edit" component={EditProfile} />
+
+                </div>
+            </Router >
+        )
+    }
+}
+
+// const mapStateToProps = (state) => {
+//     return (
+//       state  
+//     )
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return (
+//         dispatch
+//     )
+
 // }
 
 export default connect()(App)

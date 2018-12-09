@@ -1,5 +1,4 @@
 
-
 // import { getData } from '../utils/tempData'
 import { getData } from '../utils/testApi'
 
@@ -27,6 +26,22 @@ export const fetchLiveUpdates = (services) => {
       dispatch({
         type: 'RECEIVED_LIVE_UPDATES',
         // providers: data
+      })
+    })
+  }
+}
+
+export const fetchProvider = () => {
+  return dispatch => {
+    dispatch({ type: 'GETTING_PROVIDER' })
+    getData().then((data) => {
+      dispatch({
+        type: 'RECEIVED_PROVIDER',
+        provider: data
+      })
+    }).catch(() => {
+      dispatch({
+        type: 'FETCH_PROVIDER_ERROR'
       })
     })
   }
