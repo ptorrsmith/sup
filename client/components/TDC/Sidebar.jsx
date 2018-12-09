@@ -63,7 +63,7 @@ class Sidebar extends React.Component {
     return (
       <div>
         <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <SwipeableDrawer
+        {/* <SwipeableDrawer
           open={this.state.left}
           onClose={this.toggleDrawer('left', false)}
           onOpen={this.toggleDrawer('left', true)}
@@ -76,7 +76,7 @@ class Sidebar extends React.Component {
           >
             {sideList}
           </div>
-        </SwipeableDrawer>
+        </SwipeableDrawer> */}
         </div>
     );
   }

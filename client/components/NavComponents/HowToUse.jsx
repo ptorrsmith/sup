@@ -12,7 +12,7 @@ const HowToUse = () => (
         </div>
 
         <div className="how_to_use_body">
-            <p>
+            <div>
                 To get started, here's what you do:
     
             <ul>
@@ -31,7 +31,7 @@ const HowToUse = () => (
                 
                 If you are a registered provider and are having issues unrelated to you internet connection, please call 0800 000 000, or email admin@sup.co.nz.
                 
-        </p>
+        </div>
         </div>
 
         {/* Information about what the website provides */}
