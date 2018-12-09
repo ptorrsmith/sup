@@ -5,7 +5,8 @@ module.exports = {
     getProviderUpdates,
     updateMessage,
     getProvider,
-    createProvider
+    createProvider,
+    updateProvider
 }
 
 const config = require('../../knexfile').development // [environment]
@@ -97,11 +98,26 @@ function updateMessage(id, updateMessage, db = connection) {
 }
 
 function createProvider(providerInfo, db = connection) {
-    console.log("providertsDB createProvider providerInfo = ", providerInfo)
-    return db('providers').insert({ name: providerInfo.name, description: providerInfo.description })
+    //console.log("providertsDB createProvider providerInfo = ", providerInfo)
+    return db('providers').insert({
+        name: providerInfo.name, description: providerInfo.description,
+        lat: providerInfo.lat, long: providerInfo.long, hours: providerInfo.hours,
+        update_message: providerInfo.update_message, address: providerInfo.address,
+        email: providerInfo.email, website_url: providerInfo.website_url,
+        updated_at: providerInfo.updated_at
+    })
 
 }
 
-// function updateProvider(id, )
+function updateProvider(id, updatedProvider, db = connection) {
+    //console.log('ProvidersDB updateProvider updatedProvider = ', updatedProvider)
+    return db('providers').where('id', id).update({
+        name: updatedProvider.name, description: updatedProvider.description,
+        lat: updatedProvider.lat, long: updatedProvider.long, hours: updatedProvider.hours,
+        update_message: updatedProvider.update_message, address: updatedProvider.address,
+        email: updatedProvider.email, website_url: updatedProvider.website_url,
+        updated_at: updatedProvider.updated_at
+    })
+}
 
 

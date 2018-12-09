@@ -52,5 +52,17 @@ router.post('/', (req, res) => {
 
 })
 
+router.put('/:id/updateprovider', (req, res) => {
+
+  const id = req.params.id
+  const updatedProvider = req.body
+
+  providersDB.updateProvider(id, updatedProvider)
+    .then(updatedProvider => {
+
+      res.json({ updatedProvider: updatedProvider })
+    })
+})
+
 module.exports = router
 
