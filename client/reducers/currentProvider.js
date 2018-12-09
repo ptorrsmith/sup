@@ -20,18 +20,18 @@ export default function auth(state = initialState, action) {
       // SET_QTY_REMAINING
       // SET_UPDATE
       // SET_STATUS
-      
-      case 'SET_QTY_REMAINING':
+
+      case 'SET_SERVICE_QTY_REMAINING':
       return {
         ...state,
         /// SOMETHING HERE
       }
-      case 'SET_UPDATE':
+      case 'SET_PROVIDER_MESSAGE':
       return {
         ...state,
         /// SOMETHING HERE
       }
-      case 'SET_STATUS':
+      case 'SET_SERVICE_STATUS':
       return {
         ...state,
         /// SOMETHING HERE

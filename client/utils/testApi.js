@@ -15,3 +15,11 @@ export function getProvidersAndServices() {
         return response.json()
       })
  }
+
+ export function setProviderMessageAPI (message) {
+   return fetch(`/api/v1/providers/${id}/updatemessage`, {
+     method: 'put',
+     body: JSON.stringify({ updateMessage: message })
+   })
+   .then(res => res.body.result)
+ }
