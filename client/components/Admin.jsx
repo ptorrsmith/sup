@@ -23,7 +23,8 @@ const Admin = () => (
         <ProfileList />
 
         <div className="admin_link">
-            <Link to='/'>Go back to the Landing Page.</Link>
+            <Link to='/'>Go back to the Landing Page.</Link><br></br>
+            <Link to='/liveupdate/:id'>Go to the Live Edit Page for this Profile. Must specify ID. </Link>
         </div>
 
     </div>

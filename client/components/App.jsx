@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 
 import Map from './Map'
 import Admin from './Admin'
-import Nav from './Nav'
+
 import Sidebar from './TDC/Sidebar'
 import AdminProfile from './AdminComponents/AdminProfile'
 import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
+import LiveUpdate from './AdminComponents/LiveUpdate'
 import Profile from './TDC/Profile';
 
 import { fetchProvidersAndServices } from '../actions'
@@ -16,8 +17,6 @@ import { fetchProvidersAndServices } from '../actions'
 function getProviders(dispatch) {
     dispatch(fetchProvidersAndServices())
 }
-
-
 
 class App extends React.Component {
     constructor(props) {
@@ -51,12 +50,14 @@ class App extends React.Component {
 
                     <Route exact path='/' component={Sidebar} />
                     <Route exact path="/" component={Map} />
-                    <Route exact path="/" component={Nav} />
                     <Route exact path="/admin" component={Admin} />
                     {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
                     <Route exact path="/admin/:id" component={AdminProfile} />
                     <Route exact path="/admin/add" component={AddProfile} />
+                    {/* EditProfile is exclusively used by the provider admin */}
                     <Route exact path="/admin/:id/edit" component={EditProfile} />
+                    {/* Live Update is the live update page for front desk usage */}
+                    <Route exact path="/liveupdate/:id" component={LiveUpdate} />
 
 
                     <Route exact path="/profile/:id" component={Profile} />

@@ -78,4 +78,11 @@ export function setCurrentProvider(provider) {
   }
 }
 
+// Ruby's actions for LiveUpdate
+// SetQtyRemaining
+// SetUpdate
+// SetStatus
+
+export function setQtyRemaining (provider, quantity)
+
 
