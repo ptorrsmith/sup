@@ -5,7 +5,7 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchData } from '../../actions'
+import { fetchProvidersAndServices } from '../../actions'
 
 // IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
 // import providersAndServices from '../../utils/exampleData'
@@ -25,12 +25,12 @@ class ProfileList extends React.Component {
     componentWillMount() {
         console.log("Will mount")
 
-        this.props.fetchData()
+        this.props.fetchProvidersAndServices()
     }
 
     componentDidMount() {
         console.log("mounted")
-        // fetchData()
+        // fetchProvidersAndServices()
 
     }
 
@@ -84,8 +84,8 @@ const mapStateToProps = ({ currentProvider, providers }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (params) => {
-            return dispatch(fetchData(params))
+        fetchProvidersAndServices: (params) => {
+            return dispatch(fetchProvidersAndServices(params))
         }
     }
 }

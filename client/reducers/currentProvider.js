@@ -1,7 +1,7 @@
 
 
 const initialState = {
-  provider: {},
+  currentProvider: {},
 }
 
 export default function auth(state = initialState, action) {
@@ -9,9 +9,15 @@ export default function auth(state = initialState, action) {
     case 'SET_CURRENT_PROVIDER':
       return {
         ...state,
-        provider: action.provider
+        currentProvider: action.currentProvider
       }
+      case 'RECEIVED_PROVIDER':
+        return {
+          ...state,
+          currentProvider: action.currentProvider
+        }
     default:
       return state
   }
 }
+

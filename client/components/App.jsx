@@ -18,39 +18,39 @@ function getProviders(dispatch){
     dispatch(fetchData())
 }
 
-const App = (props) => (
+// const App = (props) => (
 
-    <Router>
-        <div>
+//     <Router>
+//         <div>
 
-            <div className="app_header">
-                {/* <h1>Hello from the App Header</h1> */}
-            </div>
+//             <div className="app_header">
+//                 {/* <h1>Hello from the App Header</h1> */}
+//             </div>
 
-            {/* <Map /> */}
-            {/* <Sidebar /> */}
+//             {/* <Map /> */}
+//             {/* <Sidebar /> */}
             
-            <div className="app_body">
-            {/* <p>Hello from App Body</p> */}
-            <button onClick={()=>{getProviders(props.dispatch)}}> getInfo </button>
+//             <div className="app_body">
+//             {/* <p>Hello from App Body</p> */}
+//             <button onClick={()=>{getProviders(props.dispatch)}}> getInfo </button>
 
-            </div>
+//             </div>
 
-            <Route exact path='/' component={Sidebar} />
-            <Route exact path="/" component={Map} />
-            <Route exact path="/" component={Nav} />
-            <Route exact path="/admin" component={Admin} />
-            {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-            <Route exact path="/admin/:id" component={AdminProfile} />
-            <Route exact path="/admin/add" component={AddProfile} />
-            <Route exact path="/admin/:id/edit" component={EditProfile} />
+//             <Route exact path='/' component={Sidebar} />
+//             <Route exact path="/" component={Map} />
+//             <Route exact path="/" component={Nav} />
+//             <Route exact path="/admin" component={Admin} />
+//             {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
+//             <Route exact path="/admin/:id" component={AdminProfile} />
+//             <Route exact path="/admin/add" component={AddProfile} />
+//             <Route exact path="/admin/:id/edit" component={EditProfile} />
 
             
-            <Route exact path="/profile/:id" component={Profile} />
+//             <Route exact path="/profile/:id" component={Profile} />
 
-        </div>
-    </Router >
-)
+//         </div>
+//     </Router >
+// )
 
 class App extends React.Component {
     constructor(props) {
@@ -80,9 +80,11 @@ class App extends React.Component {
                     <Route exact path="/" component={Nav} />
                     <Route exact path="/admin" component={Admin} />
                     {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-                    <Route exact path="/admin/:id" component={AdminProfile} />
                     <Route exact path="/admin/add" component={AddProfile} />
+                    <Route exact path="/admin/:id" component={AdminProfile} />
                     <Route exact path="/admin/:id/edit" component={EditProfile} />
+                    <Route exact path="/admin/services/:id/edit" component={EditProfile} />
+                    <Route exact path="/admin/services/:id" component={EditProfile} />
 
                 </div>
             </Router >
