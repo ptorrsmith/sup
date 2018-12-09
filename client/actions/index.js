@@ -1,15 +1,15 @@
 
 // import { getData } from '../utils/tempData'
-import { getData } from '../utils/testApi'
+import { getProvidersAndServices, getProvider} from '../utils/testApi'
 
 
-export const fetchData = () => {
-  console.log("Actions index fetchData")
+export const fetchProvidersAndServices = () => {
+  console.log("Actions index fetchProvidersAndServices")
   return dispatch => {
-    console.log("Actions index fetchData dispatch")
+    console.log("Actions index fetchProviders dispatch")
     dispatch({ type: 'GETTING_PROVIDERS' })
-    getData().then((providersAndServices) => {
-      console.log("Actions index fetchData providersAndServices>>>>>>>>>>", providersAndServices)
+    getProvidersAndServices().then((providersAndServices) => {
+      console.log("Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>", providersAndServices)
       dispatch({
         type: 'RECEIVED_PROVIDERS',
         providers: providersAndServices
@@ -29,18 +29,20 @@ export const fetchLiveUpdates = (services) => {
       dispatch({
         type: 'RECEIVED_LIVE_UPDATES',
         // providers: data
+        // TO DO UPDATE All our providerServices with these updates
       })
     })
   }
 }
 
-export const fetchProvider = () => {
+export const fetchProvider = (id) => {
   return dispatch => {
     dispatch({ type: 'GETTING_PROVIDER' })
-    getData().then((data) => {
+    getProvider(id).then((data) => {
+      console.log("Actions indexedDB, fetchProvider, data", data)
       dispatch({
         type: 'RECEIVED_PROVIDER',
-        provider: data
+        currentProvider: data
       })
     }).catch(() => {
       dispatch({

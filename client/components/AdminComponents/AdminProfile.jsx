@@ -4,7 +4,7 @@ import React from 'react'
 // import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { fetchData } from '../../actions/index'
+import { fetchProvider } from '../../actions/index'
 
 // TEMPORARY DATA
 // import data from '../../utils/exampleData'
@@ -22,7 +22,8 @@ class AdminProfile extends React.Component {
     }
 
     componentWillMount () {
-        this.props.fetchData()
+        const id = this.props.match.params.id
+        this.props.fetchProvider(id)
     }
 
     render() {
@@ -32,7 +33,7 @@ class AdminProfile extends React.Component {
 
                 <div>
                     <p>Admin Profile</p>
-                    <p>admin profile CL  {this.props.providers.providers.length}  more or less</p>
+                    <p>Current provider name: {this.props.currentProvider.currentProvider.name}.</p>
                     
                 </div>
 
@@ -47,16 +48,17 @@ class AdminProfile extends React.Component {
 }
 
 
-const mapStateToProps = ({providers}) => {
+const mapStateToProps = ({providers, currentProvider}) => {
     return {
-        providers
+        providers,
+        currentProvider
 }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (params) => {
-            return dispatch(fetchData(params))
+        fetchProvider: (params) => {
+            return dispatch(fetchProvider(params))
         }
     }
 }
