@@ -16,8 +16,9 @@ const _ = require('lodash')
 
 function getServicesForProviders(providersIdList, serviceSearchObj, db = connection) {
     // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
-    // console.log('getServicesDB', providersIdList)
+    console.log('ServicesDB getServicesForProviders', providersIdList)
     if (providersIdList) {
+        console.log("sDB, gSFP else pIL, ", providersIdList)
         const promise = db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
             // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
@@ -39,6 +40,7 @@ function getServicesForProviders(providersIdList, serviceSearchObj, db = connect
         return promise
 
     } else {
+        console.log("sDB, gSFP else ")
         return db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
             // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
