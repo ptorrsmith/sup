@@ -3,7 +3,18 @@
     width: 100%;
   }
 
-
+.theBackground {
+  background : linear-gradient(45deg, yellow,white,yellow,white,yellow,white);
+}
+.profileInfo {
+  background-color: antiquewhite;
+  /* background : linear-gradient(45deg,red,blue,yellow,orange,pink,purple); */
+  font-family: 'Segoe UI', sans-serif;
+}
+.profileDescription {
+  background-color: antiquewhite;
+  font-family: 'Segoe UI', sans-serif;
+}
 
   .profileContainer {
     display: grid;

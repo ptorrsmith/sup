@@ -11,9 +11,9 @@ import AddProfile from './AdminComponents/AddProfile'
 import EditProfile from './AdminComponents/EditProfile'
 import Profile from './TDC/Profile';
 
-import {fetchData} from '../actions'
+import { fetchData } from '../actions'
 
-function getProviders(dispatch){
+function getProviders(dispatch) {
     dispatch(fetchData())
 }
 
@@ -23,15 +23,12 @@ const App = (props) => (
         <div>
 
             <div className="app_header">
-                {/* <h1>Hello from the App Header</h1> */}
+
             </div>
 
-            {/* <Map /> */}
-            {/* <Sidebar /> */}
-            
             <div className="app_body">
-            {/* <p>Hello from App Body</p> */}
-            <button onClick={()=>{getProviders(props.dispatch)}}> getInfo </button>
+
+                <button onClick={() => { getProviders(props.dispatch) }}> getInfo </button>
 
             </div>
 
@@ -44,28 +41,11 @@ const App = (props) => (
             <Route exact path="/admin/add" component={AddProfile} />
             <Route exact path="/admin/:id/edit" component={EditProfile} />
 
-            
+
             <Route exact path="/profile/:id" component={Profile} />
 
         </div>
     </Router >
 )
-
-
-// class App extends React.Component {
-//     constructor(props) {
-//         super(props)
-
-//     }
-//     render() {
-//         return (
-//             <React.Fragment>
-
-//                 <p>Is React working?</p>
-
-//             </React.Fragment>
-//         )
-//     }
-// }
 
 export default connect()(App)

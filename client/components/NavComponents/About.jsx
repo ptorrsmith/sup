@@ -13,30 +13,19 @@ const About = () => (
 
         <div className="about_body">
             <p>
-                <em>Sup</em> is a progressive web application specifically designed to provide support for New Zealanders in need.
-
-        Sup gives users the opportunity to open and view service providers in Wellington, including their locations,
-        facilities, opening and closing hours, and the availability of the service. Services include emergency shelters, food banks,
-        bathroom facilities and soup kitchens.<br></br><br></br>
-
-        Sup also allows registered providers to update their service details from the admin panel, and gives the users real-time updates
-        directly from the service, notifying them about recent changes.<br></br><br></br>
-
-        Sup is an independent site, currently being updated and maintained by students at Enspiral Dev Academy.<br></br><br></br>
-
+                <em>SUP</em> is a kindness focused Progessive Web Application (PWA for short) designed to help. If you're struggling or need a bit of a hand, <em>SUP</em> is here to point you in the direction of people or services who can get you moving in teh right direction.
+    
         Meet The <em>Sup</em> Team:
         <ul>
-                    <li>Bobbi Kerei - Founder, Developer</li>
-                    <li>Brandon Ross - Developer</li>
-                    <li>James Turner - Developer</li>
-                    <li>Peter Smith - Developer</li>
-                    <li>Ruby Moyes - Developer</li>
+                    <li>Bobbi Kerei - Visonary and Front end Developer</li>
+                    <li>Brandon Ross - Back end Developer</li>
+                    <li>James Turner - Full Stack Developer</li>
+                    <li>Peter Smith - Full Stack Developer</li>
+                    <li>Ruby Moyes - Front end Developer</li>
                 </ul>
             </p>
 
         </div>
-
-        {/* Information about what the website provides */}
 
     </div>
 
