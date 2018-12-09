@@ -18,7 +18,6 @@ router.get('/:id', (req, res) => {
             // console.log("providerIds: ", providerIds)
             servicesDB.getServicesForProviders([id])
                 .then(services => {
-                    let newProvider = provider
                     // console.log('services', services, id)
                     newProvider.services = services
                     console.log('provider services check for service', newProvider)
