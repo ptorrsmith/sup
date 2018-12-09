@@ -15,16 +15,19 @@ const router = express.Router()
 router.get('/:id', (req, res) => {
     const id = req.params.id
     // console.log('provider services get/id', id)
-    providersDB.getProvider(id)
+    providersDB.getProvider(id) // NOTE!! will return an array, so we want first record
+        .then(results => results[0])
         .then(provider => {
             // console.log("providerIds: ", providerIds)
-            servicesDB.getServicesForProviders([id])
+            servicesDB.getServicesForProviders([id])  //  array, but that is what we want this time
                 .then(services => {
-                    let newProvider = provider
-                    // console.log('services', services, id)
-                    newProvider.services = services
-                    console.log('provider services check for service', newProvider)
-                    res.json(newProvider)
+                    // console.log('PROVIDER>>>>', provider)
+                    // console.log('SERVICES>>>>', services)
+                    provider.services = services
+                    // res.json({
+                    //     ...provider,
+                    //     services: [...provider.services]})
+                    res.json(provider)
                 })
         })
 })
