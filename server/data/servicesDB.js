@@ -21,9 +21,9 @@ const _ = require('lodash')
 
 function getServicesForProviders(providersIdList, serviceSearchObj, db = connection) {
     // console.log("servicesDB getservicesforproviders: providersIdList ", providersIdList)
-    console.log('ServicesDB getServicesForProviders', providersIdList)
+    // console.log('ServicesDB getServicesForProviders', providersIdList)
     if (providersIdList) {
-        console.log("sDB, gSFP else pIL, ", providersIdList)
+        // console.log("sDB, gSFP else pIL, ", providersIdList)
         const promise = db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
             // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
@@ -45,7 +45,7 @@ function getServicesForProviders(providersIdList, serviceSearchObj, db = connect
         return promise
 
     } else {
-        console.log("sDB, gSFP else ")
+        // console.log("sDB, gSFP else ")
         return db('services AS s')
             .leftOuterJoin('service_types AS st', 's.service_type_id', 'st.id')
             // .select('p.*', 's.*', 'st.*', 'p.id AS provicer_id', 's.id AS service_id') //.where('long', p.long)
@@ -108,7 +108,7 @@ function updateStatus(id, currentStatus, db = connection) {
 }
 
 function createService(serviceInfo, db = connection) {
-    console.log("servicesDB createService serviceInfo = ", serviceInfo)
+    // console.log("servicesDB createService serviceInfo = ", serviceInfo)
 
     return db('services').insert({
         provider_id: serviceInfo.provider_id, name: serviceInfo.name,
@@ -120,7 +120,7 @@ function createService(serviceInfo, db = connection) {
 }
 
 function updateService(id, updatedService, db = connection) {
-    console.log('ServicesDB updateService updatedService = ', updatedService)
+    // console.log('ServicesDB updateService updatedService = ', updatedService)
     return db('services').where('id', id).update({
         provider_id: updatedService.provider_id, name: updatedService.name,
         unit: updatedService.unit, status: updatedService.status, qty_default: updatedService.qty_default,

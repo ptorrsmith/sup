@@ -1,23 +1,16 @@
 // import { getData } from '../utils/tempData'
+import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
 
-import {
-  getProvidersAndServices,
-  getProvider,
-  setProviderMessageAPI,
-  setServiceStatusAPI
-} from "../utils/testApi";
+import { push } from 'react-router-redux'
 
 export const fetchProvidersAndServices = () => {
-  console.log("Actions index fetchProvidersAndServices");
+  // console.log("Actions index fetchProvidersAndServices");
   return dispatch => {
-    console.log("Actions index fetchProviders dispatch");
+    // console.log("Actions index fetchProviders dispatch");
     dispatch({ type: "GETTING_PROVIDERS" });
     getProvidersAndServices()
       .then(providersAndServices => {
-        console.log(
-          "Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>",
-          providersAndServices
-        );
+        // console.log(          "Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>",          providersAndServices         );
         dispatch({
           type: "RECEIVED_PROVIDERS",
           providers: providersAndServices
@@ -49,7 +42,7 @@ export const fetchProvider = id => {
     dispatch({ type: "GETTING_PROVIDER" });
     getProvider(id)
       .then(data => {
-        console.log("Actions indexedDB, fetchProvider, data", data);
+        // console.log("Actions indexedDB, fetchProvider, data", data);
         dispatch({
           type: "RECEIVED_PROVIDER",
           currentProvider: data
@@ -62,6 +55,34 @@ export const fetchProvider = id => {
       });
   };
 };
+
+
+export const saveProvider = (providerInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SAVING_PROVIDER' })
+    saveProviderApi(providerInfo)
+      .then(result => {
+        console.log("actions, index saveProvider result = ", result)
+        // if result.updateRespons then we stay on the same page
+        // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
+        if (result.newProvider) {
+          // new provider, so get new provider and put into state
+          console.log("action index saveProvider newProvider ", result.newProvider)
+          dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+        }
+      })
+  }
+}
+
+export const saveService = (serviceInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SAVING_SERVICE' })
+    saveServiceApi(serviceInfo)
+      .then(result => {
+        // console.log("actions, index saveService result = ", result)
+      })
+  }
+}
 
 export function setCurrentView(lat1, long1, lat2, long2) {
   return {
@@ -102,11 +123,11 @@ export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {
     } else {
-      console.log("starting timer");
+      // console.log("starting timer");
 
       if (!tickTimerFunction) {
         tickTimerFunction = () => {
-          console.log("timer tick");
+          // console.log("timer tick");
         };
       }
       let timer = setInterval(() => {
@@ -121,7 +142,7 @@ export const timerStart = tickTimerFunction => {
 export const timerStop = () => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {
-      console.log("stopping timer");
+      // console.log("stopping timer");
       clearInterval(getState().timer.timer);
 
       dispatch({ type: "STOP_TIMER" });
@@ -173,7 +194,7 @@ export const setProviderMessage = (providerId, message) => {
 
 
 
-function setLocation(position,dispatch) {
+function setLocation(position, dispatch) {
 
   let lat = position.coords.latitude;
   let lng = position.coords.longitude;
@@ -192,8 +213,8 @@ export const getLocation = () => {
     dispatch({ type: 'GETTING_LOCATION' })
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => (setLocation(position,dispatch)) );
-    }else{
+      navigator.geolocation.getCurrentPosition((position) => (setLocation(position, dispatch)));
+    } else {
       dispatch({ type: 'FETCH_LOCATION_ERROR' })
     }
   }
