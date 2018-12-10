@@ -166,6 +166,31 @@ export const setProviderMessage = (providerId, message) => {
 
 
 
+function setLocation(position,dispatch) {
+
+  let lat = position.coords.latitude;
+  let lng = position.coords.longitude;
+  dispatch({
+    type: 'RECEIVED_LOCATION',
+    hasLocation: true,
+    lat: lat,
+    long: lng,
+    zoom: 16,
+  })
+}
+
+
+export const getLocation = () => {
+  return dispatch => {
+    dispatch({ type: 'GETTING_LOCATION' })
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => (setLocation(position,dispatch)) );
+    }else{
+      dispatch({ type: 'FETCH_LOCATION_ERROR' })
+    }
+  }
+}
 
 
 // THIS THUNK NEEDS WORK. THE POSTMAN PUT WORKS, BUT THIS THUNK
