@@ -8,6 +8,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import AppBar from "../AppBar"
+
 
 import SimpleExpansionPanel from "./SimpleExpansionPanel";
 
@@ -28,7 +30,7 @@ class Sidebar extends React.Component {
     right: false
   };
 
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = (side, open) => {
     this.setState({
       [side]: open
     });
@@ -62,17 +64,20 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer("left", true)}>Open Left</Button>
+    
+        <AppBar toggleDrawer={() => {this.toggleDrawer("left", true)}}/>
+        {/* Open Left</AppBar> */}
+        {/* <AppBar/> */}
         <SwipeableDrawer
           open={this.state.left}
-          onClose={this.toggleDrawer("left", false)}
-          onOpen={this.toggleDrawer("left", true)}
+          onClose={() => this.toggleDrawer("left", false)}
+          onOpen={() => this.toggleDrawer("left", true)}
         >
           <div
             tabIndex={0}
             role="button"
-            // onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer("left", false)}
+            // onClick={() => this.toggleDrawer('left', false)}
+            onKeyDown={() => this.toggleDrawer("left", false)}
           >
             {sideList}
           </div>
