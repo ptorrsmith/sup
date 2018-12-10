@@ -53,7 +53,7 @@ class LiveUpdate extends React.Component {
     handleSubmit(e) {
         e.preventDefault()
         this.props.setProviderMessage(this.props.currentProvider.id, this.state.message),
-        this.props.setServiceStatus(this.props.currentProvider.id, this.state.status)
+            this.props.setServiceStatus(this.props.currentProvider.id, this.state.status)
     }
 
     render() {
@@ -62,15 +62,9 @@ class LiveUpdate extends React.Component {
         let provider = this.props.currentProvider
         // let service = this.props.currentProvider.service
 
-<<<<<<< HEAD
-        const anotherProvider = this.props.providers.find( (aProvider) => this.props.currentProvider.id == aProvider.id )
-        // console.log("anotherProvider is ",anotherProvider)
-        if(anotherProvider){
-=======
         const anotherProvider = this.props.providers.find((aProvider) => this.props.currentProvider.id == aProvider.id)
-        console.log("anotherProvider is ", anotherProvider)
+        // console.log("anotherProvider is ",anotherProvider)
         if (anotherProvider) {
->>>>>>> 40822957074d2bac893490361426f38af729d974
             provider = anotherProvider
         }
 
@@ -148,7 +142,7 @@ const mapStateToProps = ({ providers, currentProvider }) => {
     return {
         currentProvider: currentProvider.currentProvider,
         providers: providers.providers
-        // currentProvider: providers.providers.find( provider => provider.id == currentProvider.currentProvider.id )
+        // currentProvider: providers.providers.find( provider => provider.id == currentProvider.currentProvider.id ) ///
     }
 }
 
