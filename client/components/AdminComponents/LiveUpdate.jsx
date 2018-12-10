@@ -31,6 +31,15 @@ class LiveUpdate extends React.Component {
         console.log("mounted")
     }
 
+    componentDidUpdate(prevProps){
+        console.log("Message is ",this.props.currentProvider.currentProvider.update_message)
+        if(this.props.currentProvider.currentProvider.update_message != prevProps.currentProvider.currentProvider.update_message){
+            this.setState({
+                message: this.props.currentProvider.currentProvider.update_message
+            })
+        }
+    }
+
     handleOnChange(e) {
         e.preventDefault() 
         this.setState ({ 
@@ -39,10 +48,10 @@ class LiveUpdate extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault() 
+        this.props.setProviderMessage('1', this.state.message)
         // Call thunk with message, to call API
         // console.log('HandleSubmit: ', this.state.message)
-
     }
 
     render() {
@@ -54,15 +63,32 @@ class LiveUpdate extends React.Component {
 
         <div>
 
-        {/* <div id='live_update_header'>
-        (Provider Name) </div> */}
+        <div id='live_update_header'>
+        <h2>
+        {this.props.currentProvider.currentProvider.name}
+        </h2>
+        </div>
 
         <div id='live_update_body'>
 
         <form onSubmit={this.handleSubmit}>
             <p>Provider Message:</p>
-            <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.props.currentProvider.currentProvider.update_message}/>
+            <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message/*this.props.currentProvider.currentProvider.update_message*/} />
             <button>Submit Message</button>
+
+            <p>Service Quantity:</p>
+            <input type='text' id='set_service_qty_remaining' name='quantity' value={this.props.currentProvider.currentProvider.services} />
+            <button name='add'>+</button>
+            <button name='subtract'>-</button>
+
+            <p>Service Status:</p>
+            <input type='text' id='set_service_status' name='status' value={this.props.currentProvider.currentProvider.services} />
+            <button>Submit Status</button>
+
+            {/* If service does not have a service quantity, just show provider
+            message and service status. 
+            If service has one or more services, show the provider and all 
+            services. */}
 
         </form>
 
@@ -85,8 +111,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchProvider: (id) => {
             return dispatch(fetchProvider(id))
         },
-        setProviderMessage: (message) => {
-            return dispatch(setProviderMessage(message))
+        setProviderMessage: (id, message) => {
+            return dispatch(setProviderMessage(id, message))
         }
     }
 }

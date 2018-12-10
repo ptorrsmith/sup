@@ -33,13 +33,6 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <div className="app_header">
-            {/* <h1>Hello from the App Header</h1> */}
-          </div>
-          {/* <Map /> */}
-          {/* <Sidebar /> */}
-
-          <div className="app_body">{/* <p>Hello from App Body</p> */}</div>
 
           <Route exact path="/" component={Sidebar} />
           <Route exact path="/" component={Map} />
@@ -50,7 +43,7 @@ class App extends React.Component {
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
-          
+
         </div>
       </Router>
     );
