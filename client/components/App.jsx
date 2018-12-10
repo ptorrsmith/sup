@@ -7,12 +7,14 @@ import Admin from "./Admin";
 import Nav from "./Nav";
 import Sidebar from "./TDC/Sidebar";
 import AdminProfile from "./AdminComponents/AdminProfile";
-import AddProvider from "./AdminComponents/AddProvider";
+import ManageProvider from "./AdminComponents/ManageProvider";
 import EditProfile from "./AdminComponents/EditProfile";
 import Profile from "./TDC/Profile";
-import AddService from "./AdminComponents/AddService"
+import ManageService from "./AdminComponents/ManageService"
+
 
 import { fetchProvidersAndServices } from "../actions";
+import ManageProviderServices from "./AdminComponents/ManageProviderServices";
 
 function getProviders(dispatch) {
   dispatch(fetchProvidersAndServices());
@@ -46,8 +48,9 @@ class App extends React.Component {
           <Route exact path="/" component={Nav} />
           <Route exact path="/admin" component={Admin} />
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-          <Route exact path="/admin/providers/new" component={AddProvider} />
-          <Route exact path="/admin/services/new" component={AddService} />
+          {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
+          <Route exact path="/admin/providers/new" component={ManageService} /> */}
+          <Route exact path="/admin/providers/new" component={ManageProviderServices} />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
 

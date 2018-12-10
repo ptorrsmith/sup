@@ -3,10 +3,10 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { saveService } from '../../actions/index'
+import { saveService } from '../../actions'
 
 
-class AddService extends React.Component {
+class ManageService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ class AddService extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log("AddService onsubmit e = ", e)
+    // console.log("ManageService onsubmit e = ", e)
 
     this.props.saveService(this.state);
   }
@@ -86,4 +86,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(AddService)
+export default connect(null, mapDispatchToProps)(ManageService)
