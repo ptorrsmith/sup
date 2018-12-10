@@ -50,7 +50,15 @@ class LiveUpdate extends React.Component {
     }
 
     render() {
-        const provider = this.props.currentProvider
+        // const provider = this.props.currentProvider
+        
+        let provider = this.props.currentProvider
+
+        const anotherProvider = this.props.providers.find( (aProvider) => this.props.currentProvider.id == aProvider.id )
+        console.log("anotherProvider is ",anotherProvider)
+        if(anotherProvider){
+            provider = anotherProvider
+        }
         return (
 
             <div>
@@ -88,9 +96,7 @@ class LiveUpdate extends React.Component {
 
                                 <form onSubmit={this.handleSubmit}>
                                     <p>Set New Quantity:</p>
-                                    
                                     <button>-</button>
-                                    {/* <input type='text' id='set_new_qty' name='qty_remaining' onChange={this.handleOnChange} value={service.qty_remaining} /> */}
                                     <span> {service.qty_remaining} </span>
                                     <button>+</button>
                                 </form>
@@ -123,9 +129,11 @@ class LiveUpdate extends React.Component {
     }
 }
 
-const mapStateToProps = ({ currentProvider }) => {
+const mapStateToProps = ({providers, currentProvider }) => {
     return {
-        currentProvider: currentProvider.currentProvider
+        currentProvider: currentProvider.currentProvider,
+        providers: providers.providers
+        // currentProvider: providers.providers.find( provider => provider.id == currentProvider.currentProvider.id )
     }
 }
 
