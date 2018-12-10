@@ -16,7 +16,7 @@ class Profile extends React.Component {
 
     // get the provider from global redux state'
     // console.log("XXXX-id", id)
-    console.log("DM XXXXXX-providers ", this.props.providers);
+    // console.log("DM XXXXXX-providers ", this.props.providers)
     // console.log("XXXXXX-props ", this.props)
     // console.log("XXXX-currentProvider", this.props.provider)
   }
@@ -59,7 +59,7 @@ class Profile extends React.Component {
 
     let services = [];
     if (aProvider.services) {
-      services = aProvider.services.map(() => {});
+      services = aProvider.services.map(() => { });
     }
 
     return (
@@ -80,15 +80,15 @@ class Profile extends React.Component {
                 {aProvider.website_url ? (
                   <a href={aProvider.website_url}>{aProvider.name}</a>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </p>
               <div>
                 Hours:{" "}
                 {aProvider.hours
                   ? aProvider.hours
-                      .split("<br>")
-                      .map((item, i) => <p key={"time" + i}>{item}</p>)
+                    .split("<br>")
+                    .map((item, i) => <p key={"time" + i}>{item}</p>)
                   : ""}
               </div>
             </fieldset>
@@ -104,8 +104,8 @@ class Profile extends React.Component {
                 <div>
                   {aProvider.description
                     ? aProvider.description
-                        .split("<br>")
-                        .map((item, i) => <p key={"desc" + i}>{item}</p>)
+                      .split("<br>")
+                      .map((item, i) => <p key={"desc" + i}>{item}</p>)
                     : ""}
                 </div>
               </div>

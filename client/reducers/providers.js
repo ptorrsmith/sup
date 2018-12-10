@@ -16,7 +16,7 @@ export default function providers(state = initialState, action) {
     //   provider: action.provider
     // }
     case 'RECEIVED_PROVIDERS':
-      console.log("reducers > providers > RECEIVED_PROVIDERS (action) ", action)
+      // console.log("reducers > providers > RECEIVED_PROVIDERS (action) ", action)
       return {
         ...state,
         isFetching: false,
@@ -34,7 +34,7 @@ export default function providers(state = initialState, action) {
       } else {
         copyOfProviders.push(newOrupdatedProvider)
       }
-      console.log("reducers > providers > RECEIVED_PROVIDER : newOrUpdatedProvider ::::", newOrupdatedProvider, "\nProvidersCopy>>> ", copyOfProviders)
+      // console.log("reducers > providers > RECEIVED_PROVIDER : newOrUpdatedProvider ::::", newOrupdatedProvider, "\nProvidersCopy>>> ", copyOfProviders)
       return {
         ...state, // this returns ALL the providers
         providers: copyOfProviders

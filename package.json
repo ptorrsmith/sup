@@ -66,6 +66,7 @@
     "react-leaflet": "*",
     "react-redux": "^6.0.0",
     "react-router-dom": "*",
+    "react-router-redux": "^4.0.8",
     "react-test-renderer": "^16.6.3",
     "redux": "^4.0.1",
     "redux-thunk": "*",

@@ -41,6 +41,7 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.hours',
             'p.update_message',
             'p.address',
+            'p.phone',
             'p.email',
             'p.website_url',
             'p.updated_at'
@@ -90,6 +91,7 @@ function getProvider(id, db = connection) {
             'p.update_message',
             'p.address',
             'p.email',
+            'p.phone',
             'p.website_url',
             'p.updated_at'
         )
