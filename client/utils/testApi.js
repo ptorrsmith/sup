@@ -91,7 +91,9 @@ export function setServiceStatusAPI(id, status) {
       'Content-Type': 'application/json'
     },
     method: 'put',
-    body: JSON.stringify({ id: id, status: status })
+    body: JSON.stringify({ 
+      id: id, 
+      updateStatus: status })
   })
     .then(res => res.body.result)
 }

@@ -35,9 +35,9 @@ class LiveUpdate extends React.Component {
             this.setState({
                 message: this.props.currentProvider.update_message
             })
-            if (this.props.currentProvider.updateStatus != prevProps.currentProvider.updateStatus) {
+            if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
                 this.setState({
-                    status: this.props.currentProvider.updateStatus
+                    status: this.props.currentProvider.update_status
                 })
             }
         }
