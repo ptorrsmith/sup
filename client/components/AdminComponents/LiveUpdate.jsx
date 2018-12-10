@@ -32,7 +32,6 @@ class LiveUpdate extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        // console.log("Message is ",this.props.currentProvider.currentProvider.update_message)
         if(this.props.currentProvider.update_message != prevProps.currentProvider.update_message){
             this.setState({
                 message: this.props.currentProvider.update_message
@@ -50,8 +49,6 @@ class LiveUpdate extends React.Component {
     handleSubmit(e) {
         e.preventDefault() 
         this.props.setProviderMessage('1', this.state.message)
-        // Call thunk with message, to call API
-        // console.log('HandleSubmit: ', this.state.message)
     }
 
     render() {
@@ -89,6 +86,7 @@ class LiveUpdate extends React.Component {
                         <h3>Service Name: {service.name || "No Name" }</h3>
                         <p>Default Quantity: {service.qty_default} <br></br>
                             Quantity Remaining: {service.qty_remaining}</p>
+                        <p>Service Status: {service.status} </p>
                     </div>
                 )
             }
@@ -122,3 +120,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveUpdate)
+
