@@ -1,7 +1,8 @@
 const initialState = {
   timer: undefined,
   // timerFunction: undefined,
-  isRunning: false
+  isRunning: false,
+  count: 0
 };
 
 export default function timer(state = initialState, action) {
@@ -10,7 +11,13 @@ export default function timer(state = initialState, action) {
       return {
         ...state,
         timer: action.timer,
-        isRunning: true
+        isRunning: true,
+        count: 0
+      };
+    case "UPDATE_COUNT":
+      return {
+        ...state,
+        count: action.count
       };
     case "STOP_TIMER":
       return {

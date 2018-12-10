@@ -91,6 +91,13 @@ export function setCurrentProvider(provider) {
 //   console.log("timer ticked over");
 // }
 
+export function timerCountUpdate(count) {
+  return {
+    type: "UPDATE_COUNT",
+    count
+  };
+}
+
 export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {

@@ -11,7 +11,12 @@ import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 
-import { fetchProvidersAndServices, timerStart, timerStop } from "../actions";
+import {
+  fetchProvidersAndServices,
+  timerStart,
+  timerStop,
+  timerCountUpdate
+} from "../actions";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +30,12 @@ class App extends React.Component {
 
     //if not given a function to do it just console logs that it has ticked
     this.props.startTimer(() => {
+      let count = this.props.timer.count + 1;
+
+      if (count > 60) {
+        this.props.stopTimer();
+      }
+      this.props.updateCount(count);
       this.props.fetchProvidersAndServices();
     });
   }
@@ -48,13 +59,11 @@ class App extends React.Component {
   }
 }
 
-{
-  /* const mapStateToProps = (state) => {
-    return (
-      state  
-    )
-} */
-}
+const mapStateToProps = state => {
+  return {
+    timer: state.timer
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -66,12 +75,15 @@ const mapDispatchToProps = dispatch => {
     },
     stopTimer: () => {
       return dispatch(timerStop());
+    },
+    updateCount: count => {
+      return dispatch(timerCountUpdate(count));
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
 
