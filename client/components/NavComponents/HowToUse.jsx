@@ -1,10 +1,11 @@
 // CHILD OF NAV
 
-import React from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from "react";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const HowToUse = () => (
+
     <div>
 
         <div className="how_to_use_header">
@@ -13,7 +14,7 @@ const HowToUse = () => (
 
         <div className="how_to_use_body">
             <p>
-            Welcome to SUP Lets get started!
+              Welcome to <em>SUP</em> Lets get started!
             <ul>
                     <li>Tap on the Map to find a bed, a meal, a food parcel or other service.</li>
                     <li>Don't worry about telling the map where you are! We'll grab that info for you.</li>

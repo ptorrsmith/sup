@@ -9,7 +9,13 @@ module.exports = {
     updateProvider
 }
 
-const config = require('../../knexfile').development // [environment]
+
+// var environment = process.env.NODE_ENV || 'development'
+// var config = require('./knexfile')[environment]
+// var db = require('knex')(config)
+
+var environment = process.env.NODE_ENV || 'development'
+const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 const _ = require('lodash')
 
@@ -35,6 +41,7 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.hours',
             'p.update_message',
             'p.address',
+            'p.phone',
             'p.email',
             'p.website_url',
             'p.updated_at'
@@ -84,6 +91,7 @@ function getProvider(id, db = connection) {
             'p.update_message',
             'p.address',
             'p.email',
+            'p.phone',
             'p.website_url',
             'p.updated_at'
         )
@@ -102,6 +110,7 @@ function createProvider(providerInfo, db = connection) {
     //console.log("providertsDB createProvider providerInfo = ", providerInfo)
     return db('providers').insert({
         name: providerInfo.name, description: providerInfo.description,
+        phone: providerInfo.phone,
         lat: providerInfo.lat, long: providerInfo.long, hours: providerInfo.hours,
         update_message: providerInfo.update_message, address: providerInfo.address,
         email: providerInfo.email, website_url: providerInfo.website_url,
@@ -114,6 +123,7 @@ function updateProvider(id, updatedProvider, db = connection) {
     //console.log('ProvidersDB updateProvider updatedProvider = ', updatedProvider)
     return db('providers').where('id', id).update({
         name: updatedProvider.name, description: updatedProvider.description,
+        phone: updatedProvider.phone,
         lat: updatedProvider.lat, long: updatedProvider.long, hours: updatedProvider.hours,
         update_message: updatedProvider.update_message, address: updatedProvider.address,
         email: updatedProvider.email, website_url: updatedProvider.website_url,

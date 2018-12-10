@@ -1,23 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import AppBar from "../AppBar"
 
-import SimpleExpansionPanel from './SimpleExpansionPanel'
+
+import SimpleExpansionPanel from "./SimpleExpansionPanel";
 
 const styles = {
   list: {
-    width: 250,
+    width: 250
   },
   fullList: {
-    width: 'auto',
-  },
+    width: "auto"
+  }
 };
 
 class Sidebar extends React.Component {
@@ -25,12 +27,12 @@ class Sidebar extends React.Component {
     top: false,
     left: false,
     bottom: false,
-    right: false,
+    right: false
   };
 
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = (side, open) => {
     this.setState({
-      [side]: open,
+      [side]: open
     });
   };
 
@@ -39,7 +41,7 @@ class Sidebar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-      <SimpleExpansionPanel/>
+        <SimpleExpansionPanel />
         {/* <List>
           {[' '].map((text, index) => (
             <ListItem button key={text}>
@@ -50,9 +52,9 @@ class Sidebar extends React.Component {
          </List> */}
         <Divider />
         <List>
-          {['Log in', 'Register'].map((text, index) => (
+          {["Log in", "Register"].map((text, index) => (
             <ListItem button key={text}>
-               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -62,28 +64,31 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+    
+        <AppBar toggleDrawer={() => {this.toggleDrawer("left", true)}}/>
+        {/* Open Left</AppBar> */}
+        {/* <AppBar/> */}
         <SwipeableDrawer
           open={this.state.left}
-          onClose={this.toggleDrawer('left', false)}
-          onOpen={this.toggleDrawer('left', true)}
+          onClose={() => this.toggleDrawer("left", false)}
+          onOpen={() => this.toggleDrawer("left", true)}
         >
           <div
             tabIndex={0}
             role="button"
-            // onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
+            // onClick={() => this.toggleDrawer('left', false)}
+            onKeyDown={() => this.toggleDrawer("left", false)}
           >
             {sideList}
           </div>
         </SwipeableDrawer>
-        </div>
+      </div>
     );
   }
 }
 
 SwipeableDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Sidebar);

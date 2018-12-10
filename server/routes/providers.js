@@ -17,15 +17,6 @@ router.get('/', (req, res) => {
     })
 })
 
-// router.get('/:id', (req, res) => {
-//   const id = req.params.id
-//   providersDB.getProvider(id)
-//     .then(response => {
-//       res.json(response)
-//     }
-//     )
-// }
-// )
 
 router.put('/:id/updatemessage', (req, res) => {
 
@@ -34,7 +25,7 @@ router.put('/:id/updatemessage', (req, res) => {
 
   providersDB.updateMessage(id, updateMessage)
     .then(result => {
-
+      // console.log('Whats the DB route result', result)
       res.json({ result: result })
 
       // console.log('our result is ', result)
@@ -52,21 +43,21 @@ router.post('/', (req, res) => {
   providersDB.createProvider(providerInfo)
     .then(newProvider => {
 
-      res.json({ newProvider: newProvider })
+      res.json({ newProvider: newProvider[0] })
     })
   //send the response new id back as json
 
 })
 
-router.put('/:id/updateprovider', (req, res) => {
+router.put('/:id/', (req, res) => {
 
   const id = req.params.id
   const updatedProvider = req.body
 
   providersDB.updateProvider(id, updatedProvider)
-    .then(updatedProvider => {
+    .then(response => {
 
-      res.json({ updatedProvider: updatedProvider })
+      res.json({ updateResponse: response })
     })
 })
 
