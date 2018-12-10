@@ -52,8 +52,8 @@ class LiveUpdate extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.setProviderMessage(id, this.state.message)
-        this.props.setServiceStatus(id, this.state.status)
+        this.props.setProviderMessage(this.props.currentProvider.id, this.state.message)
+        // this.props.setServiceStatus(id, this.state.status)
     }
 
     render() {
@@ -152,10 +152,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         setProviderMessage: (id, message) => {
             return dispatch(setProviderMessage(id, message))
-        },
-        setServiceStatus: (id, status) => {
-            return dispatch(setServiceStatus(id, status))
         }
+        // setServiceStatus: (id, status) => {
+        //     return dispatch(setServiceStatus(id, status))
+        // }
     }
 }
 
