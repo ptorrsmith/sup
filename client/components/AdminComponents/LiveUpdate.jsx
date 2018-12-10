@@ -88,8 +88,11 @@ class LiveUpdate extends React.Component {
 
                                 <form onSubmit={this.handleSubmit}>
                                     <p>Set New Quantity:</p>
-                                    <input type='text' id='set_new_qty' name='qty_remaining' onChange={this.handleOnChange} value={service.qty_remaining} />
-                                    <button>Set New Quantity</button>
+                                    
+                                    <button>-</button>
+                                    {/* <input type='text' id='set_new_qty' name='qty_remaining' onChange={this.handleOnChange} value={service.qty_remaining} /> */}
+                                    <span> {service.qty_remaining} </span>
+                                    <button>+</button>
                                 </form>
 
                                 </div>
