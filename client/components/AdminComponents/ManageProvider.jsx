@@ -1,10 +1,11 @@
 // CHILD OF ADMIN
 
 import React from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { saveProvider } from '../../actions'
 
+import ManageService from './ManageService'
 
 class ManageProvider extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class ManageProvider extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.routeChanged = this.routeChanged.bind(this);
 
     }
     onChange(e) {
@@ -31,7 +33,11 @@ class ManageProvider extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         // console.log("save provider: ", this.state)
-        this.props.saveProvider(this.state);
+        console.log("Saving this.state -----------------> ", this.state)
+        this.props.saveProvider(this.state)
+        // .then(
+        console.log("NOT THENed, no promise! Saved this.state -----------------> REDIRECT? ID = ", this.props.currentProvider.id)
+        // )
     }
 
     componentDidMount() {
@@ -45,19 +51,46 @@ class ManageProvider extends React.Component {
         //     console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
         //     this.setState({ ...this.props.currentProvider })
         // }
+        // if (this.props.currentProvider) {
+        console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
+        //     if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider)
+        //         this.setState({ ...this.props.currentProvider })
+        // }
+
+        console.log(this.props)
+
+        if (this.props.history) {
+            console.log('tracking history')
+            this.props.history.listen(this.routeChanged)
+        }
     }
 
+    routeChanged(params) {
+        console.log('route change', params)
+    }
+
+    // if (this.props.currentProvider.id) {
     componentDidUpdate(prevProps) {
-        if (this.props.currentProvider) {
-            // console.log("Current Provider CDU >>>>>>>> ", this.props.currentProvider)
-            if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider)
-                this.setState({ ...this.props.currentProvider })
+        // console.log("Current Provider CDU _______ ", this.props.currentProvider, this.state)
+
+        if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider) {
+            // console.log("Current Provider CDU XXXXXXX ", this.props.currentProvider, this.state)
+            // console.log("Have current Provider: ", this.props.currentProvider)
+            this.setState({ ...this.props.currentProvider })
+            this.props.history.push(`/admin/providers/${this.props.currentProvider.id}`)
+        } else {
+            // console.log("No Current Provider CDU >>>>>> ", this.props.currentProvider, this.state)
         }
+        // }
     }
 
 
     render() {
         // console.log("state!!!!!!:::", this.state)
+        if (this.props.currentProvider && this.props.currentProvider.id) {
+            // console.log("Current Provider ?????, should I redirect?", this.props.currentProvider)
+            // return <Redirect to={`/admin/providers/${this.props.currentProvider.id}`} />
+        } // else
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
@@ -103,6 +136,9 @@ class ManageProvider extends React.Component {
 
                 </form>
 
+                {this.props.currentProvider.id && <ManageService provider_id={this.props.currentProvider.id}/>}
+
+
             </div>
 
 
@@ -110,7 +146,7 @@ class ManageProvider extends React.Component {
     }
 }
 
-const mapStateToProps = ({ providers, currentProvider }) => {
+const mapStateToProps = ({ currentProvider }) => {
     return {
         currentProvider: currentProvider.currentProvider
     }

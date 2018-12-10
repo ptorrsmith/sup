@@ -59,7 +59,7 @@ class ManageService extends React.Component {
               <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.email} /></p>
             <p>
               <label htmlFor="provider_id">Provider ID:</label>
-              <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.state.hours} /></p>
+              <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.props.provider_id} /></p>
             <p>
               <label htmlFor="service_type_id">Service Type ID:</label>
               <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.update_message} /></p>
