@@ -100,7 +100,7 @@ export const setServiceStatus = (serviceId, status) => {
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
     // stuff goes here
-    setProviderMessageAPI().then(() => {
+    setProviderMessageAPI(providerId, message).then(() => {
     dispatch ({ 
       type: 'SET_PROVIDER_MESSAGE',
       message: message

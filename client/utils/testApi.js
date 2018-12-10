@@ -16,12 +16,28 @@ export function getProvidersAndServices() {
       })
  }
 
- export function setProviderMessageAPI (message) {
-   console.log('Is the providermessageAPI going through?')
+ export function setProviderMessageAPI (id, message) {
+  //  console.log('Is the providermessageAPI going through?')
    return fetch(`/api/v1/providers/${id}/updatemessage`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
      method: 'put',
-     body: JSON.stringify({ updateMessage: message })
+     body: JSON.stringify({ id: id, updateMessage: message })
    })
    .then(res => res.body.result)
-  //  .then(json => console.log('something from SPMAPI', json))
+ }
+
+ export function setProviderMessageAPI (id, message) {
+  //  console.log('Is the providermessageAPI going through?')
+   return fetch(`/api/v1/providers/${id}/updatemessage`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+     method: 'put',
+     body: JSON.stringify({ id: id, updateMessage: message })
+   })
+   .then(res => res.body.result)
  }
