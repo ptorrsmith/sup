@@ -1,5 +1,6 @@
 // import { getData } from '../utils/tempData'
 import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
+
 import { push } from 'react-router-redux'
 
 export const fetchProvidersAndServices = () => {
@@ -111,6 +112,13 @@ export function setCurrentProvider(provider) {
 //   console.log("timer ticked over");
 // }
 
+export function timerCountUpdate(count) {
+  return {
+    type: "UPDATE_COUNT",
+    count
+  };
+}
+
 export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {
@@ -157,15 +165,17 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
   };
 };
 
-export const setServiceStatus = (serviceId, status) => {
+
+export const setProviderMessage = (providerId, message) => {
   return dispatch => {
     // stuff goes here
-    setServiceStatusAPI(serviceId, message).then(result => {
+    setProviderMessageAPI(providerId, message).then(result => {
       if (result.result == 1) {
         // console.log('confirming action 1', result)
         dispatch({ type: "GETTING_PROVIDER" });
         getProvider(providerId)
           .then(data => {
+            // console.log("Actions indexedDB, fetchProvider, data", data)
             dispatch({
               type: "RECEIVED_PROVIDER",
               currentProvider: data
@@ -182,16 +192,46 @@ export const setServiceStatus = (serviceId, status) => {
 };
 
 
-export const setProviderMessage = (providerId, message) => {
+
+
+function setLocation(position, dispatch) {
+
+  let lat = position.coords.latitude;
+  let lng = position.coords.longitude;
+  dispatch({
+    type: 'RECEIVED_LOCATION',
+    hasLocation: true,
+    lat: lat,
+    long: lng,
+    zoom: 16,
+  })
+}
+
+
+export const getLocation = () => {
   return dispatch => {
-    // stuff goes here
-    setProviderMessageAPI(providerId, message).then(result => {
+    dispatch({ type: 'GETTING_LOCATION' })
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => (setLocation(position, dispatch)));
+    } else {
+      dispatch({ type: 'FETCH_LOCATION_ERROR' })
+    }
+  }
+}
+
+
+// THIS THUNK NEEDS WORK. THE POSTMAN PUT WORKS, BUT THIS THUNK
+// DOES NOT WORK. NEEDS HELP >:( 
+
+export const setServiceStatus = (serviceId, status) => {
+  return dispatch => {
+    setServiceStatusAPI(serviceId, status).then(result => {
       if (result.result == 1) {
         // console.log('confirming action 1', result)
         dispatch({ type: "GETTING_PROVIDER" });
         getProvider(providerId)
           .then(data => {
-            // console.log("Actions indexedDB, fetchProvider, data", data)
             dispatch({
               type: "RECEIVED_PROVIDER",
               currentProvider: data
