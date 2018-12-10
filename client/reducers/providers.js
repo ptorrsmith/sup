@@ -43,7 +43,7 @@ export default function auth(state = initialState, action) {
       console.log("reducers > providers > RECEIVED_PROVIDER : newOrUpdatedProvider ::::", newOrupdatedProvider, "\nProvidersCopy>>> ", copyOfProviders)
       return {
         ...state, // this returns ALL the providers
-        currentProvider: newOrupdatedProvider
+        providers: copyOfProviders
       }
     case 'FETCH_PROVIDERS_ERROR':
       return {
