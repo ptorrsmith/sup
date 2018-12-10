@@ -54,15 +54,32 @@ class LiveUpdate extends React.Component {
 
         <div>
 
-        {/* <div id='live_update_header'>
-        (Provider Name) </div> */}
+        <div id='live_update_header'>
+        <h2>
+        {this.props.currentProvider.currentProvider.name}
+        </h2>
+        </div>
 
         <div id='live_update_body'>
 
         <form onSubmit={this.handleSubmit}>
             <p>Provider Message:</p>
-            <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.props.currentProvider.currentProvider.update_message}/>
+            <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.props.currentProvider.currentProvider.update_message} />
             <button>Submit Message</button>
+
+            <p>Service Quantity:</p>
+            <input type='text' id='set_service_qty_remaining' name='quantity' value={this.props.currentProvider.currentProvider.services} />
+            <button>+</button>
+            <button>-</button>
+
+            <p>Service Status:</p>
+            <input type='text' id='set_service_status' name='status' value={this.props.currentProvider.currentProvider.services} />
+            <button>Submit Status</button>
+
+            {/* If service does not have a service quantity, just show provider
+            message and service status. 
+            If service has one or more services, show the provider and all 
+            services. */}
 
         </form>
 
