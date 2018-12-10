@@ -1,14 +1,6 @@
 // import { getData } from '../utils/tempData'
-<<<<<<< HEAD
-import { getProvidersAndServices, getProvider, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
+import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
 
-=======
-import {
-  getProvidersAndServices,
-  getProvider,
-  setProviderMessageAPI
-} from "../utils/testApi";
->>>>>>> d150cfd3faeca20d8ee4a54197f5d5d6536ab71d
 
 export const fetchProvidersAndServices = () => {
   console.log("Actions index fetchProvidersAndServices");

@@ -14,6 +14,7 @@ export function getProvider(id) {
     .then(response => {
       return response.json()
     })
+
 }
 
 export function saveProvider(providerInfo) {
@@ -49,12 +50,6 @@ export function saveService(serviceInfo) {
 //   return new Error({ error: 'Something went wrong' })
 // })
 
-export function getProvider(id) {
-  return fetch(`/api/v1/providerServices/${id}`)
-    .then(response => {
-      return response.json()
-    })
-}
 
 export function setProviderMessageAPI(id, message) {
   //  console.log('Is the providermessageAPI going through?')
