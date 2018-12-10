@@ -43,3 +43,46 @@ export function saveService(serviceInfo) {
       return response.json()
     })
 }
+// console.log("TestApi getdata")
+
+// .catch(() => {
+//   return new Error({ error: 'Something went wrong' })
+// })
+
+export function getProvider(id) {
+  return fetch(`/api/v1/providerServices/${id}`)
+    .then(response => {
+      return response.json()
+    })
+}
+
+export function setProviderMessageAPI(id, message) {
+  //  console.log('Is the providermessageAPI going through?')
+  return fetch(`/api/v1/providers/${id}/updatemessage`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'put',
+    body: JSON.stringify({
+      id: id,
+      updateMessage: message
+    })
+  })
+    .then(res => {
+      return res.json()
+    })
+}
+
+//  export function setProviderMessageAPI (id, message) {
+//   //  console.log('Is the providermessageAPI going through?')
+//    return fetch(`/api/v1/providers/${id}/updatemessage`, {
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//      method: 'put',
+//      body: JSON.stringify({ id: id, updateMessage: message })
+//    })
+//    .then(res => res.body.result)
+//  }

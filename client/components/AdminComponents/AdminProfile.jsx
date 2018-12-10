@@ -21,7 +21,7 @@ class AdminProfile extends React.Component {
 
     }
 
-    componentWillMount () {
+    componentWillMount() {
         const id = this.props.match.params.id
         this.props.fetchProvider(id)
     }
@@ -33,8 +33,8 @@ class AdminProfile extends React.Component {
 
                 <div>
                     <p>Admin Profile</p>
-                    <p>Current provider name: {this.props.currentProvider.currentProvider.name}.</p>
-                    
+                    <p>Current provider name: {this.props.currentProvider.name}.</p>
+
                 </div>
 
                 <div>
@@ -48,11 +48,11 @@ class AdminProfile extends React.Component {
 }
 
 
-const mapStateToProps = ({providers, currentProvider}) => {
+const mapStateToProps = ({ providers, currentProvider }) => {
     return {
         providers,
-        currentProvider
-}
+        currentProvider: currentProvider.currentProvider
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -63,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (AdminProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminProfile)
