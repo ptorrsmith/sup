@@ -43,15 +43,9 @@ class Profile extends React.Component {
 
   componentDidUpdate() {
     const id = this.props.match.params.id
-
     // get the provider from global redux state'
-    console.log("XXXX-id", id)
-    console.log("DU XXXXXX-providers ", this.props.providers)
     const currentProvider = (this.props.providers.length > 0) && this.props.providers.find(provider => provider.id == id)
-    console.log("XXXXXX DU >>>> ", currentProvider || "NUTTIN YET FOR CURRENT PROVIDER")
     currentProvider && this.props.dispatch(setCurrentProvider(currentProvider))
-    // console.log("XXXXXX-props ", this.props)
-    // console.log("XXXX-currentProvider", this.props.provider)
   }
 
   render() {
