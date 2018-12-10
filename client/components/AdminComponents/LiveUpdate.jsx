@@ -35,9 +35,9 @@ class LiveUpdate extends React.Component {
             this.setState({
                 message: this.props.currentProvider.update_message
             })
-            if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
+            if (this.props.currentProvider.updateStatus != prevProps.currentProvider.updateStatus) {
                 this.setState({
-                    status: this.props.currentProvider.update_status
+                    status: this.props.currentProvider.updateStatus
                 })
             }
         }
@@ -50,10 +50,13 @@ class LiveUpdate extends React.Component {
         })
     }
 
-    handleSubmit(e) {
+    handleSubmit(e,serviceId) {
         e.preventDefault()
-        this.props.setProviderMessage(this.props.currentProvider.id, this.state.message),
-            this.props.setServiceStatus(this.props.currentProvider.id, this.state.status)
+        this.props.setProviderMessage(this.props.currentProvider.id, this.state.message)
+
+        if(serviceId != undefined){
+            this.props.setServiceStatus(this.props.currentProvider.id,serviceId, this.state.status)
+        }
     }
 
     render() {
@@ -98,25 +101,25 @@ class LiveUpdate extends React.Component {
                         return (
                             <div>
 
-                                <div id='service_name'>
+                                {/* <div id='service_name'>
 
                                     <h3>Service Name: {service.name || "No Name"}</h3>
                                     <p>Default Quantity: {service.qty_default}</p>
 
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={(e)=> {this.handleSubmit(e,service.id)} }>
                                         <p>Set New Quantity:</p>
                                         <button>-</button>
                                         <span> {service.qty_remaining} </span>
                                         <button>+</button>
                                     </form>
 
-                                </div>
+                                </div> */}
 
                                 <div id='service_status'>
 
                                     <h3>Current Service Status: {service.status}</h3>
 
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={(e)=> {this.handleSubmit(e,service.id)} }>
                                         <p>Set New Service Status:</p>
                                         <input type='text' id='update_status' name='status' onChange={this.handleOnChange} value={service.status} />
                                         <button>Set New Status</button>
