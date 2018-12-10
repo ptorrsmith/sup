@@ -1,6 +1,5 @@
 import React from "react";
 // import { ReactLeaflet, LeafletMap, TileLayer, Marker, Popup } from 'leaflet'
-<<<<<<< HEAD
 import { Map, Marker, Popup, TileLayer, leafletElement } from 'react-leaflet'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -52,14 +51,6 @@ import {setCurrentProvider} from '../actions'
 //   address: "Level 2 James Smith Building, Corner Cuba and Manners streets, Te Aro, Wellington",
 //   location: { lat: -41.29077, long: 174.777131 },
 // }]
-=======
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
-
-import { connect } from "react-redux";
-
-import { setCurrentProvider } from "../actions";
->>>>>>> f91418d98b5c2f1a0661c87ac1122d9380afab21
 
 class AMap extends React.Component {
   constructor(props) {
