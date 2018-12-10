@@ -29,3 +29,17 @@ export function saveProvider(providerInfo) {
       return response.json()
     })
 }
+
+export function saveService(serviceInfo) {
+  console.log("testApi saveService service info = ", serviceInfo)
+  return fetch('/api/v1/services/', {
+    method: 'post',
+    body: JSON.stringify(serviceInfo),
+    headers: { "Content-Type": 'application/json' }
+
+  })
+    .then(response => {
+      console.log("testApi saveService response = ", response)
+      return response.json()
+    })
+}

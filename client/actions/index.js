@@ -1,6 +1,6 @@
 
 // import { getData } from '../utils/tempData'
-import { getProvidersAndServices, getProvider, saveProvider as saveProviderApi } from '../utils/testApi'
+import { getProvidersAndServices, getProvider, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
 
 
 export const fetchProvidersAndServices = () => {
@@ -59,6 +59,16 @@ export const saveProvider = (providerInfo) => {
     saveProviderApi(providerInfo)
       .then(result => {
         console.log("actions, index saveProvider result = ", result)
+      })
+  }
+}
+
+export const saveService = (serviceInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SAVING_SERVICE' })
+    saveServiceApi(serviceInfo)
+      .then(result => {
+        console.log("actions, index saveService result = ", result)
       })
   }
 }
