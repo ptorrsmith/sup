@@ -9,7 +9,13 @@ module.exports = {
     updateProvider
 }
 
-const config = require('../../knexfile').development // [environment]
+
+// var environment = process.env.NODE_ENV || 'development'
+// var config = require('./knexfile')[environment]
+// var db = require('knex')(config)
+
+var environment = process.env.NODE_ENV || 'development'
+const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 const _ = require('lodash')
 
