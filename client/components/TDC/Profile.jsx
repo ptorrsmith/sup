@@ -33,6 +33,13 @@ class Profile extends React.Component {
   render() {
     let aProvider = this.props.provider;
 
+    let liveProvider = this.props.providers.find(
+      item => item.id == aProvider.id
+    );
+    if (liveProvider) {
+      aProvider = liveProvider;
+    }
+
     if (!aProvider) {
       aProvider = {
         id: 1,
@@ -45,8 +52,14 @@ class Profile extends React.Component {
         long: 174.774082,
         email: "BlameBarry@Garry.com",
         website_url: "http://ComputerSaysNo.org.nz/",
-        hours: "Open: untill something changes"
+        hours: "Open: untill something changes",
+        services: []
       };
+    }
+
+    let services = [];
+    if (aProvider.services) {
+      services = aProvider.services.map(() => {});
     }
 
     return (
