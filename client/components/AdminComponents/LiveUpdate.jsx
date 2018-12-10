@@ -32,10 +32,10 @@ class LiveUpdate extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        console.log("Message is ",this.props.currentProvider.currentProvider.update_message)
-        if(this.props.currentProvider.currentProvider.update_message != prevProps.currentProvider.currentProvider.update_message){
+        // console.log("Message is ",this.props.currentProvider.currentProvider.update_message)
+        if(this.props.currentProvider.update_message != prevProps.currentProvider.update_message){
             this.setState({
-                message: this.props.currentProvider.currentProvider.update_message
+                message: this.props.currentProvider.update_message
             })
         }
     }
@@ -55,9 +55,8 @@ class LiveUpdate extends React.Component {
     }
 
     render() {
-        // console.log('render props:', this.props)
-        // console.log('render updatemessage provider', this.props.fetchProvider.update_message)
-        
+
+        const provider = this.props.currentProvider
 
         return (
 
@@ -65,25 +64,16 @@ class LiveUpdate extends React.Component {
 
         <div id='live_update_header'>
         <h2>
-        {this.props.currentProvider.currentProvider.name}
+        {this.props.currentProvider.name}
         </h2>
         </div>
 
-        <div id='live_update_body'>
+        <div id='live_update_forms'>
 
         <form onSubmit={this.handleSubmit}>
             <p>Provider Message:</p>
             <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message/*this.props.currentProvider.currentProvider.update_message*/} />
             <button>Submit Message</button>
-
-            <p>Service Quantity:</p>
-            <input type='text' id='set_service_qty_remaining' name='quantity' value={this.props.currentProvider.currentProvider.services} />
-            <button name='add'>+</button>
-            <button name='subtract'>-</button>
-
-            <p>Service Status:</p>
-            <input type='text' id='set_service_status' name='status' value={this.props.currentProvider.currentProvider.services} />
-            <button>Submit Status</button>
 
             {/* If service does not have a service quantity, just show provider
             message and service status. 
@@ -91,6 +81,20 @@ class LiveUpdate extends React.Component {
             services. */}
 
         </form>
+
+        <div id='live_update_services'>
+                {provider.services && provider.services.map(service => {
+                return (
+                    <div> 
+                        <h3>Service Name: {service.name || "No Name" }</h3>
+                        <p>Default Quantity: {service.qty_default} <br></br>
+                            Quantity Remaining: {service.qty_remaining}</p>
+                    </div>
+                )
+            }
+            )}
+            
+        </div>
 
         </div>
 
@@ -102,7 +106,7 @@ class LiveUpdate extends React.Component {
 
 const mapStateToProps = ({ currentProvider }) => {
     return {
-        currentProvider
+        currentProvider: currentProvider.currentProvider
     }
 }
 
