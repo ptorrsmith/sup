@@ -1,7 +1,7 @@
 export function getProvidersAndServices() {
   return fetch('/api/v1/providerservices')
     .then( aResponse => {
-    console.log("TestApi getdata")
+    // console.log("TestApi getdata")
     return aResponse.json()
   })
 }
@@ -14,4 +14,14 @@ export function getProvidersAndServices() {
       .then(response => {
         return response.json()
       })
+ }
+
+ export function setProviderMessageAPI (message) {
+   console.log('setting provider message API')
+   return fetch(`/api/v1/providers/${id}/updatemessage`, {
+     method: 'put',
+     body: JSON.stringify({ updateMessage: message })
+   })
+   .then(res => res.body.result)
+  //  .then(json => console.log('something from SPMAPI', json))
  }
