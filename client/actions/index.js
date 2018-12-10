@@ -92,21 +92,19 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
 
 export const setServiceStatus = (serviceId, status) => {
   return dispatch => {
-
+// stuff goes here
     dispatch({ type: 'SET_SERVICE_STATUS' })
-
-    
-
   }
 }
 
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
-    // dispatch({ type: 'SET_PROVIDER_MESSAGE' })
-    setProviderMessageAPI().then((message) => {
+    // stuff goes here
+    setProviderMessageAPI().then(() => {
     dispatch ({ 
       type: 'SET_PROVIDER_MESSAGE',
       message: message
+      // Stuff needs to go here, what is changing in the state?
        })
       })
   }
