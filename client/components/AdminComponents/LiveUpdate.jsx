@@ -60,6 +60,7 @@ class LiveUpdate extends React.Component {
         // const provider = this.props.currentProvider
 
         let provider = this.props.currentProvider
+        // let service = this.props.currentProvider.service
 
         const anotherProvider = this.props.providers.find((aProvider) => this.props.currentProvider.id == aProvider.id)
         console.log("anotherProvider is ", anotherProvider)
@@ -160,4 +161,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveUpdate)
-
