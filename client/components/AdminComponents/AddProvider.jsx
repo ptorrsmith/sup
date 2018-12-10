@@ -24,53 +24,55 @@ class AddProvider extends React.Component {
 
     }
     onChange(e) {
+        console.log("AddProvider onchange e = ", e)
         this.setState({ [e.target.name]: e.target.value });
     }
     onSubmit(e) {
         e.preventDefault();
-        const post = {
-            name: this.state.name,
-            description: this.state.description,
-            lat: this.state.lat,
-            long: this.state.long,
-            hours: this.state.hours,
-            update_message: this.state.update_message,
-            address: this.state.address,
-            email: this.state.email,
-            website_url: this.state.website_url,
-            updated_at: this.state.updated_at
-        }
-        this.props.createPost(post);
+
+        this.props.createPost(this.state);
     }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    Name: <br />
-                    <input type="text" name="name" onChange={this.onChange} value={this.state.name} /><br />
-                    Description: <br />
-                    <input type="text" name="description" onChange={this.onChange} value={this.state.description} /><br />
-                    Address: <br />
-                    <input type="text" name="address" onChange={this.onChange} value={this.state.address} /><br />
-                    Phone: <br />
-                    <input type="text" name="phone" onChange={this.onChange} value={this.state.phone} /><br />
-                    Email: <br />
-                    <input type="text" name="email" onChange={this.onChange} value={this.state.email} /><br />
-                    Hours: <br />
-                    <input type="text" name="hours" onChange={this.onChange} value={this.state.hours} /><br />
-                    Update Message: <br />
-                    <input type="text" name="update_message" onChange={this.onChange} value={this.state.update_message} /><br />
-                    Website URL:<br />
-                    <input type="text" name="website_url" onChange={this.onChange} value={this.state.website_url} /><br />
-                    Latitude:<br />
-                    <input type="number" name="lat" onChange={this.onChange} value={this.state.lat} /><br />
-                    Longitude:<br />
-                    <input type="number" name="long" onChange={this.onChange} value={this.state.long} /><br />
-                    Updated At:<br />
-                    <input type="number" name="updated_at" onChange={this.onChange} value={this.state.updated_at} /><br />
-                    <br /> <br />
-                    <button type="submit"></button>
+                    <fieldset>
+                        <legend>New Provider Details</legend>
+                        <p>
+                            <label for="name">Name:</label>
+                            <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.name} /></p>
+                        <p>
+                            <label for="description">Description:</label>
+                            <input type="description" name="description" onChange={this.onChange} value={this.state.description} /></p>
+                        <p>
+                            <label for="address">Address:</label>
+                            <input type="address" name="address" id="text" onChange={this.onChange} value={this.state.address} /> </p>
+                        <p>
+                            <label for="phone">Phone:</label>
+                            <input type="phone" name="phone" id="text" onChange={this.onChange} value={this.state.phone} /></p>
+                        <p>
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="text" onChange={this.onChange} value={this.state.email} /></p>
+                        <p>
+                            <label for="hours">Hours:</label>
+                            <input type="hours" name="hours" id="text" onChange={this.onChange} value={this.state.hours} /></p>
+                        <p>
+                            <label for="update_message">Update Message:</label>
+                            <input type="update_message" name="update_message" id="text" onChange={this.onChange} value={this.state.update_message} /></p>
+                        <p>
+                            <label for="website_url">Website URL:</label>
+                            <input type="website_url" name="website_url" id="text" onChange={this.onChange} value={this.state.website_url} /></p>
+                        <p>
+                            <label for="lat">Latitude:</label>
+                            <input type="lat" name="lat" id="text" onChange={this.onChange} value={this.state.lat} /></p>
+                        <p>
+                            <label for="long">Longitude:</label>
+                            <input type="long" name="long" id="text" onChange={this.onChange} value={this.state.long} /></p>
+
+
+                        <button type="submit">Submit</button>
+                    </fieldset>
 
 
                 </form>
