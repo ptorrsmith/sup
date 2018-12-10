@@ -94,26 +94,71 @@ class AMap extends React.Component {
   //   });
   // }
 
+  handleZoomChange(params){
+
+    console.log("Has zoomed ",params)
+
+  }
+
   render() {
     const position = [this.props.location.lat, this.props.location.long];
 
     console.log("postion of the map is ",position)
 
+    let zoomLevel = this.props.location.zoom
+
     const icon = L.icon({ 
-      iconUrl: 'images/house.icon.png',
-      iconSize:     [60, 70],
+      iconUrl: 'images/location.svg',
+      iconSize:     [40, 50],
       iconAnchor:   [22, 94],
       popupAnchor:  [-3, -76],
     })
+
     const soupIcon = L.icon({ 
-      iconUrl: 'images/soup.png',
-      iconSize:     [60, 70],
+      iconUrl: 'images/soup.svg',
+      iconSize:     [40, 50],
       iconAnchor:   [22, 94],
       popupAnchor:  [-3, -76],
     })
+
     const foodBankIcon = L.icon({ 
-      iconUrl: 'images/foodbank.png',
-      iconSize:     [60, 70],
+      iconUrl: 'images/foodbank.svg',
+      iconSize:     [40, 50],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+
+    const shelterIcon = L.icon({ 
+      iconUrl: 'images/bed.svg',
+      iconSize:     [40, 50],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+
+    const adviceIcon = L.icon({ 
+      iconUrl: 'images/advice.svg',
+      iconSize:     [40, 50],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+
+    const dropinIcon = L.icon({ 
+      iconUrl: 'images/dropin.svg',
+      iconSize:     [40, 50],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+
+    const medicalIcon = L.icon({ 
+      iconUrl: 'images/medical.svg',
+      iiconSize:     [40, 50],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+
+    const otherIcon = L.icon({ 
+      iconUrl: 'images/heart.svg',
+      iconSize:     [40, 50],
       iconAnchor:   [22, 94],
       popupAnchor:  [-3, -76],
     })
@@ -131,12 +176,27 @@ class AMap extends React.Component {
         if(thePlace.services[0] && thePlace.services[0].service_type_id == 2){
           theIcon = foodBankIcon
         }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 1){
+          theIcon = shelterIcon
+        }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 4){
+          theIcon = adviceIcon
+        }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 5){
+          theIcon = dropinIcon
+        }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 6){
+          theIcon = medicalIcon
+        }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 7){
+          theIcon = otherIcon
+        }
 
         return (
           <div key={`mapMarker${i}`}>
             <Marker position={[thePlace.lat, thePlace.long]} icon={theIcon}>
               <Popup>
-                <Link to={`/profile/${thePlace.id}`} onClick={ () => {this.props.dispatch(setCurrentProvider(thePlace)) } }>Click for MoreInfo</Link>
+                <Link to={`/profile/${thePlace.id}`} onClick={ () => {this.props.dispatch(setCurrentProvider(thePlace)) } }>Click for More Info</Link>
                 <h3>{thePlace.name}</h3>
                 <span>{thePlace.address}</span>
               </Popup>
@@ -161,7 +221,7 @@ class AMap extends React.Component {
     return (
       <div>
       {/* <Button color="secondary" onClick={this.getLocation}>Get location</Button> */}
-        <Map center={position} zoom={this.props.location.zoom}>
+        <Map center={position} onzoomend={this.handleZoomChange} zoom={this.props.location.zoom}>
           <TileLayer
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
