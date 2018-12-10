@@ -8,15 +8,14 @@ import { fetchProvider, setServiceQtyRemaining, setServiceStatus, setProviderMes
 class LiveUpdate extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            message: ""
+            message: "",
+            status: ""
         }
         // set initial state
         // no local state?
 
         // bind functions
-
         this.handleOnChange = this.handleOnChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -31,52 +30,119 @@ class LiveUpdate extends React.Component {
         console.log("mounted")
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.currentProvider.update_message != prevProps.currentProvider.update_message) {
+            this.setState({
+                message: this.props.currentProvider.update_message
+            })
+            if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
+                this.setState({
+                    status: this.props.currentProvider.update_status
+                })
+            }
+        }
+    }
+
     handleOnChange(e) {
-        e.preventDefault() 
-        this.setState ({ 
-            [e.target.name]: e.target.value
+        e.preventDefault()
+        this.setState({
+            [e.target.name]: e.target.value,
         })
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        // Call thunk with message, to call API
-        // console.log('HandleSubmit: ', this.state.message)
-
+        this.props.setProviderMessage(this.props.currentProvider.id, this.state.message),
+        this.props.setServiceStatus(this.props.currentProvider.id, this.state.status)
     }
 
     render() {
-        // console.log('render props:', this.props)
-        // console.log('render updatemessage provider', this.props.fetchProvider.update_message)
-        
+        // const provider = this.props.currentProvider
+
+        let provider = this.props.currentProvider
+        // let service = this.props.currentProvider.service
+
+        const anotherProvider = this.props.providers.find((aProvider) => this.props.currentProvider.id == aProvider.id)
+        console.log("anotherProvider is ", anotherProvider)
+        if (anotherProvider) {
+            provider = anotherProvider
+        }
 
         return (
 
-        <div>
+            <div>
 
-        {/* <div id='live_update_header'>
-        (Provider Name) </div> */}
+                {/* HEADER */}
+                <div id='live_update_header'>
+                    <h2>
+                        {this.props.currentProvider.name}
+                    </h2>
+                </div>
 
-        <div id='live_update_body'>
 
-        <form onSubmit={this.handleSubmit}>
-            <p>Provider Message:</p>
-            <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.props.currentProvider.currentProvider.update_message}/>
-            <button>Submit Message</button>
+                {/* Provider Message Form Below */}
+                <div id='live_update_provider_form'>
 
-        </form>
+                    <form onSubmit={this.handleSubmit}>
+                        <p>Change the Provider Message here:</p>
+                        <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message} />
+                        <button>Submit Message</button>
+                    </form>
 
-        </div>
+                </div>
 
-        </div>
+                {/* Service Forms Below */}
+
+                <div id='live_update_service_form'>
+                    {provider.services && provider.services.map(service => {
+                        return (
+                            <div>
+
+                                <div id='service_name'>
+
+                                    <h3>Service Name: {service.name || "No Name"}</h3>
+                                    <p>Default Quantity: {service.qty_default}</p>
+
+                                    <form onSubmit={this.handleSubmit}>
+                                        <p>Set New Quantity:</p>
+                                        <button>-</button>
+                                        <span> {service.qty_remaining} </span>
+                                        <button>+</button>
+                                    </form>
+
+                                </div>
+
+                                <div id='service_status'>
+
+                                    <h3>Current Service Status: {service.status}</h3>
+
+                                    <form onSubmit={this.handleSubmit}>
+                                        <p>Set New Service Status:</p>
+                                        <input type='text' id='update_status' name='status' onChange={this.handleOnChange} value={service.status} />
+                                        <button>Set New Status</button>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        )
+                    }
+                    )}
+                </div>
+
+                {/* OUTSIDE DIVS */}
+
+            </div>
 
         )
     }
 }
 
-const mapStateToProps = ({ currentProvider }) => {
+const mapStateToProps = ({ providers, currentProvider }) => {
     return {
-        currentProvider
+        currentProvider: currentProvider.currentProvider,
+        providers: providers.providers
+        // currentProvider: providers.providers.find( provider => provider.id == currentProvider.currentProvider.id )
     }
 }
 
@@ -85,8 +151,11 @@ const mapDispatchToProps = (dispatch) => {
         fetchProvider: (id) => {
             return dispatch(fetchProvider(id))
         },
-        setProviderMessage: (message) => {
-            return dispatch(setProviderMessage(message))
+        setProviderMessage: (id, message) => {
+            return dispatch(setProviderMessage(id, message))
+        },
+        setServiceStatus: (id, status) => {
+            return dispatch(setServiceStatus(id, status))
         }
     }
 }
