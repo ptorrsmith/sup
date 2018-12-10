@@ -1,6 +1,6 @@
 import React from 'react'
 // import { ReactLeaflet, LeafletMap, TileLayer, Marker, Popup } from 'leaflet'
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Map, Marker, Popup, TileLayer, leafletElement } from 'react-leaflet'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
 
@@ -60,6 +60,7 @@ class AMap extends React.Component {
       lng: 174.773934,
       zoom: 13
     }
+
   }
 
   render() {
@@ -74,7 +75,7 @@ class AMap extends React.Component {
           <div key={`mapMarker${i}`}>
             <Marker position={[thePlace.lat, thePlace.long]} >
               <Popup>
-                <Link to={`/profile/${thePlace.id}`} onClick={ () => {this.props.dispatch(setCurrentProvider(thePlace)) } }> Go to profile </Link>
+                <Link to={`/profile/${thePlace.id}`} onClick={ () => {this.props.dispatch(setCurrentProvider(thePlace)) } }>Click for MoreInfo</Link>
                 <h3>{thePlace.name}</h3>
                 <span>{thePlace.address}</span>
               </Popup>
@@ -100,6 +101,11 @@ class AMap extends React.Component {
     );
   }
 }
+
+
+
+
+
 
 // ReactDOM.render(<Map />, document.getElementById('container'))
 const mapStateToProps = (state) => {
