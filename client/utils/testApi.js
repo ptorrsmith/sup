@@ -34,15 +34,15 @@ export function setProviderMessageAPI(id, message) {
     })
 }
 
-//  export function setProviderMessageAPI (id, message) {
-//   //  console.log('Is the providermessageAPI going through?')
-//    return fetch(`/api/v1/providers/${id}/updatemessage`, {
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//      method: 'put',
-//      body: JSON.stringify({ id: id, updateMessage: message })
-//    })
-//    .then(res => res.body.result)
-//  }
+ export function setServiceStatusAPI (id, status) {
+  //  console.log('Is the providermessageAPI going through?')
+   return fetch(`/api/v1/providers/${id}/updatestatus`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+     method: 'put',
+     body: JSON.stringify({ id: id, updateStatus: status })
+   })
+   .then(res => res.body.result)
+ }

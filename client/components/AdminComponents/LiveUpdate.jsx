@@ -9,7 +9,8 @@ class LiveUpdate extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            message: ""
+            message: "",
+            status: ""
         }
         // set initial state
         // no local state?
@@ -32,21 +33,27 @@ class LiveUpdate extends React.Component {
     componentDidUpdate(prevProps) {
         if (this.props.currentProvider.update_message != prevProps.currentProvider.update_message) {
             this.setState({
-                message: this.props.currentProvider.update_message
+                message: this.props.currentProvider.update_message,
             })
-        }
+            // if (this.props.currentProvider.service.update_status != prevProps.currentProvider.service.update_status) {
+            //     this.setState({
+            //         status: this.props.currentProvider.status.set_status
+            //     })
+        // }
     }
+}
 
     handleOnChange(e) {
         e.preventDefault()
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.setProviderMessage('1', this.state.message)
+        this.props.setProviderMessage(id, this.state.message)
+        this.props.setServiceStatus(id, this.state.status)
     }
 
     render() {
@@ -59,6 +66,7 @@ class LiveUpdate extends React.Component {
         if(anotherProvider){
             provider = anotherProvider
         }
+
         return (
 
             <div>
@@ -75,8 +83,8 @@ class LiveUpdate extends React.Component {
                 <div id='live_update_provider_form'>
 
                     <form onSubmit={this.handleSubmit}>
-                        <p>Provider Message:</p>
-                        <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message/*this.props.currentProvider.currentProvider.update_message*/} />
+                        <p>Change the Provider Message here:</p>
+                        <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message} />
                         <button>Submit Message</button>
                     </form>
 
@@ -109,7 +117,7 @@ class LiveUpdate extends React.Component {
 
                                 <form onSubmit={this.handleSubmit}>
                                     <p>Set New Service Status:</p>
-                                    <input type='text' id='set_new_status' name='new_service_status' onChange={this.handleOnChange} value={service.status} />
+                                    <input type='text' id='set_new_status' name='status' onChange={this.handleOnChange} value={service.status} />
                                     <button>Set New Status</button>
                                 </form>
 
@@ -144,6 +152,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setProviderMessage: (id, message) => {
             return dispatch(setProviderMessage(id, message))
+        },
+        setServiceStatus: (id, status) => {
+            return dispatch(setServiceStatus(id, status))
         }
     }
 }
