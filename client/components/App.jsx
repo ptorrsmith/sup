@@ -22,6 +22,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchProvidersAndServices();
+
+    //if not given a function to do it just console logs that it has ticked
     this.props.startTimer();
   }
 

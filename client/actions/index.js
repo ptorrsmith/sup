@@ -102,7 +102,7 @@ export const timerStart = tickTimerFunction => {
       }
       let timer = setInterval(() => {
         tickTimerFunction(dispatch);
-      }, 1000);
+      }, 10000);
 
       dispatch({ type: "START_TIMER", timer: timer });
     }
