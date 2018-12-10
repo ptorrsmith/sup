@@ -19,16 +19,30 @@ export function getProvider(id) {
 
 export function saveProvider(providerInfo) {
   // console.log("testApi saveProvider provider info = ", providerInfo)
-  return fetch('/api/v1/providers/', {
-    method: 'post',
-    body: JSON.stringify(providerInfo),
-    headers: { "Content-Type": 'application/json' }
+  // may be new or existing, depends if has an id
+  if (providerInfo.id) {
+    return fetch(`/api/v1/providers/${providerInfo.id}`, {
+      method: 'put',
+      body: JSON.stringify(providerInfo),
+      headers: { "Content-Type": 'application/json' }
 
-  })
-    .then(response => {
-      // console.log("testApi saveProvider response = ", response)
-      return response.json()
     })
+      .then(response => {
+        // console.log("testApi saveProvider response = ", response)
+        return response.json()
+      })
+  } else {
+    return fetch('/api/v1/providers/', {
+      method: 'post',
+      body: JSON.stringify(providerInfo),
+      headers: { "Content-Type": 'application/json' }
+
+    })
+      .then(response => {
+        // console.log("testApi saveProvider response = ", response)
+        return response.json()
+      })
+  }
 }
 
 export function saveService(serviceInfo) {

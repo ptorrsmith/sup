@@ -42,7 +42,7 @@ class ManageProviderServices extends React.Component {
 
   render() {
     if (this.props.currentProvider) {
-      console.log("MPS: props.currentProvider", this.props.currentProvider)
+      // console.log("MPS: props.currentProvider", this.props.currentProvider)
     }
     if (this.state.providerId > 0) {
       return (

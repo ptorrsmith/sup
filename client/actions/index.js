@@ -1,6 +1,6 @@
 // import { getData } from '../utils/tempData'
 import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
-
+import { push } from 'react-router-redux'
 
 export const fetchProvidersAndServices = () => {
   // console.log("Actions index fetchProvidersAndServices");
@@ -62,6 +62,13 @@ export const saveProvider = (providerInfo) => {
     saveProviderApi(providerInfo)
       .then(result => {
         console.log("actions, index saveProvider result = ", result)
+        // if result.updateRespons then we stay on the same page
+        // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
+        if (result.newProvider) {
+          // new provider, so get new provider and put into state
+          console.log("action index saveProvider newProvider ", result.newProvider)
+          dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+        }
       })
   }
 }
