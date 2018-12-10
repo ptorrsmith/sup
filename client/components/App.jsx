@@ -24,7 +24,9 @@ class App extends React.Component {
     this.props.fetchProvidersAndServices();
 
     //if not given a function to do it just console logs that it has ticked
-    this.props.startTimer();
+    this.props.startTimer(() => {
+      this.props.fetchProvidersAndServices();
+    });
   }
 
   render() {
@@ -59,8 +61,8 @@ const mapDispatchToProps = dispatch => {
     fetchProvidersAndServices: params => {
       return dispatch(fetchProvidersAndServices(params));
     },
-    startTimer: () => {
-      return dispatch(timerStart());
+    startTimer: func => {
+      return dispatch(timerStart(func));
     },
     stopTimer: () => {
       return dispatch(timerStop());
