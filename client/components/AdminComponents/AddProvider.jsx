@@ -3,6 +3,8 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { saveProvider } from '../../actions/index'
+
 
 class AddProvider extends React.Component {
     constructor(props) {
@@ -19,7 +21,7 @@ class AddProvider extends React.Component {
             update_message: ""
         };
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
 
     }
@@ -29,8 +31,9 @@ class AddProvider extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
+        console.log("AddProvider onsubmit e = ", e)
 
-        this.props.createPost(this.state);
+        this.props.saveProvider(this.state);
     }
 
     render() {
@@ -86,4 +89,12 @@ class AddProvider extends React.Component {
     }
 }
 
-export default AddProvider
+const mapDispatchToProps = dispatch => {
+    return {
+        saveProvider: providerInfo => {
+            return dispatch(saveProvider(providerInfo));
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddProvider)

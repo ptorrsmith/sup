@@ -1,6 +1,6 @@
 
 // import { getData } from '../utils/tempData'
-import { getProvidersAndServices, getProvider} from '../utils/testApi'
+import { getProvidersAndServices, getProvider, saveProvider as saveProviderApi } from '../utils/testApi'
 
 
 export const fetchProvidersAndServices = () => {
@@ -16,7 +16,7 @@ export const fetchProvidersAndServices = () => {
       })
     }).catch(() => {
       dispatch({
-        type: 'FETCH_PROVIDERS_ERROR' 
+        type: 'FETCH_PROVIDERS_ERROR'
       })
     })
   }
@@ -52,6 +52,17 @@ export const fetchProvider = (id) => {
   }
 }
 
+
+export const saveProvider = (providerInfo) => {
+  return dispatch => {
+    dispatch({ type: 'SAVING_PROVIDER' })
+    saveProviderApi(providerInfo)
+      .then(result => {
+        console.log("actions, index saveProvider result = ", result)
+      })
+  }
+}
+
 export function setCurrentView(lat1, long1, lat2, long2) {
   return {
     type: 'SET_CURRENT_VIEW',
@@ -74,8 +85,10 @@ export function setCurrentService(service) {
 export function setCurrentProvider(provider) {
   return {
     type: 'SET_CURRENT_PROVIDER',
-    currentProvider : provider
+    currentProvider: provider
   }
 }
+
+
 
 
