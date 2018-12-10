@@ -17,7 +17,7 @@ export function getProvidersAndServices() {
  }
 
  export function setProviderMessageAPI (message) {
-   console.log('setting provider message API')
+   console.log('Is the providermessageAPI going through?')
    return fetch(`/api/v1/providers/${id}/updatemessage`, {
      method: 'put',
      body: JSON.stringify({ updateMessage: message })
