@@ -11,11 +11,7 @@ import AddProfile from "./AdminComponents/AddProfile";
 import EditProfile from "./AdminComponents/EditProfile";
 import Profile from "./TDC/Profile";
 
-import { fetchProvidersAndServices } from "../actions";
-
-function getProviders(dispatch) {
-  dispatch(fetchProvidersAndServices());
-}
+import { fetchProvidersAndServices, timerStart, timerStop } from "../actions";
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +33,21 @@ class App extends React.Component {
           </div>
           {/* <Map /> */}
           {/* <Sidebar /> */}
+
+          <button
+            onClick={() => {
+              this.props.startTimer();
+            }}
+          >
+            start timer
+          </button>
+          <button
+            onClick={() => {
+              this.props.stopTimer();
+            }}
+          >
+            stop timer
+          </button>
 
           <div className="app_body">{/* <p>Hello from App Body</p> */}</div>
 
@@ -68,6 +79,12 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchProvidersAndServices: params => {
       return dispatch(fetchProvidersAndServices(params));
+    },
+    startTimer: () => {
+      return dispatch(timerStart());
+    },
+    stopTimer: () => {
+      return dispatch(timerStop());
     }
   };
 };
