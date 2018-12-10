@@ -36,7 +36,7 @@ class Profile extends React.Component {
 
     // get the provider from global redux state'
     // console.log("XXXX-id", id)
-    console.log("DM XXXXXX-providers ", this.props.providers)
+    // console.log("DM XXXXXX-providers ", this.props.providers)
     // console.log("XXXXXX-props ", this.props)
     // console.log("XXXX-currentProvider", this.props.provider)
   }

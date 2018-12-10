@@ -47,7 +47,8 @@ class App extends React.Component {
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
-          <Route exact path="/admin/providers/new" component={ManageProviderServices} />
+          {/* <Route exact path="/admin/providers/new" component={ManageProviderServices} /> */}
+          <Route exact path="/admin/providers/:id" component={ManageProviderServices} />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />

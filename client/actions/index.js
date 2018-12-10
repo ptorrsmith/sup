@@ -3,16 +3,13 @@ import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvid
 
 
 export const fetchProvidersAndServices = () => {
-  console.log("Actions index fetchProvidersAndServices");
+  // console.log("Actions index fetchProvidersAndServices");
   return dispatch => {
-    console.log("Actions index fetchProviders dispatch");
+    // console.log("Actions index fetchProviders dispatch");
     dispatch({ type: "GETTING_PROVIDERS" });
     getProvidersAndServices()
       .then(providersAndServices => {
-        console.log(
-          "Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>",
-          providersAndServices
-        );
+        // console.log(          "Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>",          providersAndServices         );
         dispatch({
           type: "RECEIVED_PROVIDERS",
           providers: providersAndServices
@@ -44,7 +41,7 @@ export const fetchProvider = id => {
     dispatch({ type: "GETTING_PROVIDER" });
     getProvider(id)
       .then(data => {
-        console.log("Actions indexedDB, fetchProvider, data", data);
+        // console.log("Actions indexedDB, fetchProvider, data", data);
         dispatch({
           type: "RECEIVED_PROVIDER",
           currentProvider: data
@@ -74,7 +71,7 @@ export const saveService = (serviceInfo) => {
     dispatch({ type: 'SAVING_SERVICE' })
     saveServiceApi(serviceInfo)
       .then(result => {
-        console.log("actions, index saveService result = ", result)
+        // console.log("actions, index saveService result = ", result)
       })
   }
 }
@@ -111,11 +108,11 @@ export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {
     } else {
-      console.log("starting timer");
+      // console.log("starting timer");
 
       if (!tickTimerFunction) {
         tickTimerFunction = () => {
-          console.log("timer tick");
+          // console.log("timer tick");
         };
       }
       let timer = setInterval(() => {
@@ -130,7 +127,7 @@ export const timerStart = tickTimerFunction => {
 export const timerStop = () => {
   return (dispatch, getState) => {
     if (getState().timer.isRunning) {
-      console.log("stopping timer");
+      // console.log("stopping timer");
       clearInterval(getState().timer.timer);
 
       dispatch({ type: "STOP_TIMER" });
@@ -156,9 +153,27 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
 export const setServiceStatus = (serviceId, status) => {
   return dispatch => {
     // stuff goes here
-    dispatch({ type: "SET_SERVICE_STATUS" });
+    setServiceStatusAPI(serviceId, message).then(result => {
+      if (result.result == 1) {
+        // console.log('confirming action 1', result)
+        dispatch({ type: "GETTING_PROVIDER" });
+        getProvider(providerId)
+          .then(data => {
+            dispatch({
+              type: "RECEIVED_PROVIDER",
+              currentProvider: data
+            });
+          })
+          .catch(() => {
+            dispatch({
+              type: "FETCH_PROVIDER_ERROR"
+            });
+          });
+      }
+    });
   };
 };
+
 
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
@@ -180,16 +195,7 @@ export const setProviderMessage = (providerId, message) => {
               type: "FETCH_PROVIDER_ERROR"
             });
           });
-      } else {
-        // console.log('what else gives us:', result)
       }
-
-      // console.log('what is result from the actions', result)
-      // dispatch ({
-      //   type: 'SET_PROVIDER_MESSAGE',
-      //   message: message
-      //   // Stuff needs to go here, what is changing in the state?
-      //    })
     });
   };
 };
