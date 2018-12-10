@@ -6,7 +6,7 @@ import Map from "./Map";
 import Admin from "./Admin";
 import Sidebar from "./TDC/Sidebar";
 import AdminProfile from "./AdminComponents/AdminProfile";
-import AddProfile from "./AdminComponents/AddProfile";
+import AddProvider from "./AdminComponents/AddProvider";
 import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
@@ -38,7 +38,7 @@ class App extends React.Component {
           <Route exact path="/admin" component={Admin} />
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           <Route exact path="/admin/:id" component={AdminProfile} />
-          <Route exact path="/admin/add" component={AddProfile} />
+          <Route exact path="/admin/provider/new" component={AddProvider} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />

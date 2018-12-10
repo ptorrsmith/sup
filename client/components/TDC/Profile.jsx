@@ -11,9 +11,23 @@ class Profile extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.fetchProvider(id);
+
+    // get the provider from global redux state'
+    // console.log("XXXX-id", id)
+    console.log("DM XXXXXX-providers ", this.props.providers);
+    // console.log("XXXXXX-props ", this.props)
+    // console.log("XXXX-currentProvider", this.props.provider)
+  }
+
+  componentDidUpdate() {
+    const id = this.props.match.params.id;
+    // get the provider from global redux state'
+    const currentProvider =
+      this.props.providers.length > 0 &&
+      this.props.providers.find(provider => provider.id == id);
+    currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
@@ -92,7 +106,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    provider: state.currentProvider.currentProvider
+    provider: state.currentProvider.currentProvider,
+    providers: state.providers.providers
   };
 };
 
@@ -100,6 +115,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchProvider: params => {
       return dispatch(fetchProvider(params));
+    },
+    setCurrentProvider: params => {
+      return dispatch(setCurrentProvider(params));
     }
   };
 };
