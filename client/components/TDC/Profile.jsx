@@ -31,6 +31,29 @@ class Profile extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    const id = this.props.match.params.id
+
+    // get the provider from global redux state'
+    // console.log("XXXX-id", id)
+    console.log("DM XXXXXX-providers ", this.props.providers)
+    // console.log("XXXXXX-props ", this.props)
+    // console.log("XXXX-currentProvider", this.props.provider)
+  }
+
+  componentDidUpdate() {
+    const id = this.props.match.params.id
+
+    // get the provider from global redux state'
+    console.log("XXXX-id", id)
+    console.log("DU XXXXXX-providers ", this.props.providers)
+    const currentProvider = (this.props.providers.length > 0) && this.props.providers.find(provider => provider.id == id)
+    console.log("XXXXXX DU >>>> ", currentProvider || "NUTTIN YET FOR CURRENT PROVIDER")
+    currentProvider && this.props.dispatch(setCurrentProvider(currentProvider))
+    // console.log("XXXXXX-props ", this.props)
+    // console.log("XXXX-currentProvider", this.props.provider)
+  }
+
   render() {
     let aProvider = this.props.provider;
 
@@ -68,15 +91,15 @@ class Profile extends React.Component {
                 {aProvider.website_url ? (
                   <a href={aProvider.website_url}>{aProvider.name}</a>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </p>
               <div>
                 Hours:{" "}
                 {aProvider.hours
                   ? aProvider.hours
-                      .split("<br>")
-                      .map((item, i) => <p key={"time" + i}>{item}</p>)
+                    .split("<br>")
+                    .map((item, i) => <p key={"time" + i}>{item}</p>)
                   : ""}
               </div>
             </fieldset>
@@ -92,8 +115,8 @@ class Profile extends React.Component {
                 <div>
                   {aProvider.description
                     ? aProvider.description
-                        .split("<br>")
-                        .map((item, i) => <p key={"desc" + i}>{item}</p>)
+                      .split("<br>")
+                      .map((item, i) => <p key={"desc" + i}>{item}</p>)
                     : ""}
                 </div>
               </div>
@@ -107,7 +130,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    provider: state.currentProvider.currentProvider
+    provider: state.currentProvider.currentProvider,
+    providers: state.providers.providers
   };
 };
 

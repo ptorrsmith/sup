@@ -12,10 +12,10 @@ const About = () => (
 
     <span className="about_body">
       <span>
-        <em>SUP</em> is a kindness focused Progessive Web Application (PWA for
+        <em>SUP</em> is a kindness-focused Progessive Web Application (PWA for
         short) designed to help. If you're struggling or need a bit of a hand,{" "}
         <em>SUP</em> is here to point you in the direction of people or services
-        who can get you moving in teh right direction. Meet The <em>Sup</em>{" "}
+        who can get you moving in the right direction. Meet The <em>Sup</em>{" "}
         Team:
         <ul>
           <li>Bobbi Kerei - Visonary and Front end Developer</li>
