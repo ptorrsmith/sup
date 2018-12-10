@@ -34,7 +34,7 @@ router.put('/:id/updatemessage', (req, res) => {
 
   providersDB.updateMessage(id, updateMessage)
     .then(result => {
-
+      // console.log('Whats the DB route result', result)
       res.json({ result: result })
 
       // console.log('our result is ', result)
