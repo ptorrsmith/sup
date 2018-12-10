@@ -6,17 +6,17 @@ const MoreInfo = () => (
   <span>
     <span className="more_info_header">
       <h2>
-        How to Use <em>Sup</em>:
+        Do you need help?:
       </h2>
     </span>
 
     <span className="more_info_body">
       <p>If you're in immediate danger, please call 111.</p>
-      <p>If you're needing help from the Refuge, please call them on 0800 000 000.</p>
+      <p>If you're needing help from the Refuge, please call them on 0800 REFUGE or 0800 733 843.</p>
+      <p>If you'd like to get ahold of us or you ahve questiosn for teh team, then pop us a message via whats-sup@gmail.com</p>
     </span>
-
-    {/* Information about what the website provides */}
   </span>
-);
-
-export default MoreInfo;
+  
+    );
+    
+    export default MoreInfo;

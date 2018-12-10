@@ -4,9 +4,11 @@ import providers from './providers'
 import currentService from './currentService'
 import currentView from './currentView'
 import currentProvider from './currentProvider'
+import location from './location'
 
 export default combineReducers({
   providers,
   currentService,
-  currentProvider
+  currentProvider,
+  location
 })

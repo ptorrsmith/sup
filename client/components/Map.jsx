@@ -1,5 +1,6 @@
 import React from "react";
 // import { ReactLeaflet, LeafletMap, TileLayer, Marker, Popup } from 'leaflet'
+import Button from "@material-ui/core/Button";
 import { Map, Marker, Popup, TileLayer, leafletElement } from 'react-leaflet'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -55,53 +56,85 @@ import {setCurrentProvider} from '../actions'
 class AMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lat: -41.296817,
-      lng: 174.773934,
-      zoom: 13,
-      hasLocation: false
-    };
+    // this.state = {
+    //   lat: -41.296817,
+    //   lng: 174.773934,
+    //   zoom: 13,
+    //   hasLocation: false
+    // };
 
-    this.getLocation = this.getLocation.bind(this);
-    this.setLocation = this.setLocation.bind(this);
+    // this.getLocation = this.getLocation.bind(this);
+    // this.setLocation = this.setLocation.bind(this);
   }
 
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.setLocation);
-    }
+  // getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(this.setLocation);
+  //   }
 
-  }
+  // }
 
-  setLocation(position) {
-    console.log("this has value", this);
-    console.log("position is ", position);
+  // setLocation(position) {
+  //   console.log("this has value", this);
+  //   console.log("position is ", position);
 
-    let lat = position.coords.latitude;
-    let lng = position.coords.longitude;
+  //   let lat = position.coords.latitude;
+  //   let lng = position.coords.longitude;
 
-    //Quick hack
-    if (this.state.lat == lat) {
-      lat += 0.000001;
-    }
+  //   //Quick hack
+  //   if (this.state.lat == lat) {
+  //     lat += 0.000001;
+  //   }
 
-    this.setState({
-      lat,
-      lng,
-      zoom: 16,
-      hasLocation: true
-    });
-  }
+  //   this.setState({
+  //     lat,
+  //     lng,
+  //     zoom: 16,
+  //     hasLocation: true
+  //   });
+  // }
 
   render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [this.props.location.lat, this.props.location.long];
+
+    console.log("postion of the map is ",position)
+
+    const icon = L.icon({ 
+      iconUrl: 'images/house.icon.png',
+      iconSize:     [60, 70],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+    const soupIcon = L.icon({ 
+      iconUrl: 'images/soup.png',
+      iconSize:     [60, 70],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
+    const foodBankIcon = L.icon({ 
+      iconUrl: 'images/foodbank.png',
+      iconSize:     [60, 70],
+      iconAnchor:   [22, 94],
+      popupAnchor:  [-3, -76],
+    })
 
     let markers = [];
     if (this.props.providers) {
       markers = this.props.providers.map((thePlace, i) => {
+
+        let theIcon = icon
+
+        console.log("the place is ",thePlace)
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 3){
+          theIcon = soupIcon
+        }
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 2){
+          theIcon = foodBankIcon
+        }
+
         return (
           <div key={`mapMarker${i}`}>
-            <Marker position={[thePlace.lat, thePlace.long]}>
+            <Marker position={[thePlace.lat, thePlace.long]} icon={theIcon}>
               <Popup>
                 <Link to={`/profile/${thePlace.id}`} onClick={ () => {this.props.dispatch(setCurrentProvider(thePlace)) } }>Click for MoreInfo</Link>
                 <h3>{thePlace.name}</h3>
@@ -113,12 +146,12 @@ class AMap extends React.Component {
       });
     }
 
-    if (this.state.hasLocation) {
+    if (this.props.location.hasLocation) {
       markers.push(
         <div key={`mapMarker${markers.length}`}>
-          <Marker position={[this.state.lat, this.state.lng]}>
+          <Marker position={position} icon={icon}>
             <Popup>
-              <h3>you Be Here</h3>
+              <h3>You Are Here</h3>
             </Popup>
           </Marker>
         </div>
@@ -127,8 +160,8 @@ class AMap extends React.Component {
 
     return (
       <div>
-        <button onClick={this.getLocation}>Get location</button>
-        <Map center={position} zoom={this.state.zoom}>
+      {/* <Button color="secondary" onClick={this.getLocation}>Get location</Button> */}
+        <Map center={position} zoom={this.props.location.zoom}>
           <TileLayer
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -149,7 +182,8 @@ class AMap extends React.Component {
 // ReactDOM.render(<Map />, document.getElementById('container'))
 const mapStateToProps = state => {
   return {
-    providers: state.providers.providers
+    providers: state.providers.providers,
+    location: state.location,
   };
 };
 
