@@ -9,7 +9,13 @@ module.exports = {
     updateProvider
 }
 
-const config = require('../../knexfile').development // [environment]
+
+// var environment = process.env.NODE_ENV || 'development'
+// var config = require('./knexfile')[environment]
+// var db = require('knex')(config)
+
+var environment = process.env.NODE_ENV || 'development'
+const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 const _ = require('lodash')
 
@@ -35,6 +41,7 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.hours',
             'p.update_message',
             'p.address',
+            'p.phone',
             'p.email',
             'p.website_url',
             'p.updated_at'
@@ -84,6 +91,7 @@ function getProvider(id, db = connection) {
             'p.update_message',
             'p.address',
             'p.email',
+            'p.phone',
             'p.website_url',
             'p.updated_at'
         )

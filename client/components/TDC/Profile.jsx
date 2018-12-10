@@ -4,27 +4,7 @@ import { connect } from "react-redux";
 import Divider from "@material-ui/core/Divider";
 // import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
-import { setCurrentProvider } from "../../actions";
-
-function setCurrentProfile(dispatch) {
-  dispatch(
-    setCurrentProvider({
-      id: 1,
-      name: "Website Test Data - The Mens Night Shelter",
-      description:
-        "Website Test Data - We provide 3 levels of accommodation support:<br> <br>stage 1: dormitory style accommodation which including shower and laundry facilities ($10 a night)<br>stage 2: hostel room accommodation ($80 a week)<br>stage 3: community support (tempoary emergency shelter)<br><br>Dormitory services include a bed for the night, shower facilities, clothes washed, cup of tea. Occasionally some light food is donated and made available.<br><br>Facilities: Bathroom, Laundry & Food.",
-      address: "304 Taranki St, Mt. Cook, Wellington 6011",
-      phone: "(04) 385-9546",
-      update_message: "Website Test Data - functional",
-      lat: -41.300598,
-      long: 174.774082,
-      email: "menshelter@hotmail.com",
-      website_url: "http://wellingtonnightshelter.org.nz/",
-      hours:
-        "Open: 7 days a week, all year round<br>Checkin: 5:30pm – 9:00pm<br>Checkout: 6:00am – 7:30am"
-    })
-  );
-}
+import { setCurrentProvider, fetchProvider } from "../../actions";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -32,24 +12,33 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id
+    const id = this.props.match.params.id;
 
     // get the provider from global redux state'
     // console.log("XXXX-id", id)
-    console.log("DM XXXXXX-providers ", this.props.providers)
+    // console.log("DM XXXXXX-providers ", this.props.providers)
     // console.log("XXXXXX-props ", this.props)
     // console.log("XXXX-currentProvider", this.props.provider)
   }
 
   componentDidUpdate() {
-    const id = this.props.match.params.id
+    const id = this.props.match.params.id;
     // get the provider from global redux state'
-    const currentProvider = (this.props.providers.length > 0) && this.props.providers.find(provider => provider.id == id)
-    currentProvider && this.props.dispatch(setCurrentProvider(currentProvider))
+    const currentProvider =
+      this.props.providers.length > 0 &&
+      this.props.providers.find(provider => provider.id == id);
+    currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
     let aProvider = this.props.provider;
+
+    let liveProvider = this.props.providers.find(
+      item => item.id == aProvider.id
+    );
+    if (liveProvider) {
+      aProvider = liveProvider;
+    }
 
     if (!aProvider) {
       aProvider = {
@@ -63,8 +52,14 @@ class Profile extends React.Component {
         long: 174.774082,
         email: "BlameBarry@Garry.com",
         website_url: "http://ComputerSaysNo.org.nz/",
-        hours: "Open: untill something changes"
+        hours: "Open: untill something changes",
+        services: []
       };
+    }
+
+    let services = [];
+    if (aProvider.services) {
+      services = aProvider.services.map(() => { });
     }
 
     return (
@@ -129,7 +124,21 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProvider: params => {
+      return dispatch(fetchProvider(params));
+    },
+    setCurrentProvider: params => {
+      return dispatch(setCurrentProvider(params));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);
 
 // return (
 

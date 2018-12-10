@@ -1,23 +1,25 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { saveService } from '../../actions'
-import { saveProvider } from '../../actions'
+import { saveService, saveProvider, fetchProvider } from '../../actions'
+
 import ManageService from './ManageService'
 import ManageProvider from './ManageProvider'
 
 
 class ManageProviderServices extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-
-    };
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
-
-
+      providerId: ''
+    }
   }
+  // this.onChange = this.onChange.bind(this);
+  // this.onSubmit = this.onSubmit.bind(this);
+
+
+
   // onChange(e) {
   //   // console.log("AddProvider onchange e = ", e)
   //   this.setState({ [e.target.name]: e.target.value });
@@ -29,19 +31,46 @@ class ManageProviderServices extends React.Component {
   //   this.props.saveService(this.state);
   // }
 
-  render() {
-    return (
-      <div>
-        <ManageProvider />
-        <ManageService />
+  componentDidMount() {
+    const id = this.props.match.params.id
+    // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
+    if (id != "new") {
+      this.setState({ providerId: id })
+      this.props.fetchProvider(id)
+    }
+  }
 
-      </div>
-    )
+  render() {
+    if (this.props.currentProvider) {
+      console.log("MPS: props.currentProvider", this.props.currentProvider)
+    }
+    if (this.state.providerId > 0) {
+      // if (this.props.match.params.id > 0) {
+      return (
+        <div>
+          <ManageProvider history={this.props.history} />
+          {/* <ManageService /> */}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <ManageProvider history={this.props.history} />
+        </div>
+      )
+    }
 
   }
 
 }
 
+
+const mapStateToProps = ({ providers, currentProvider }) => {
+  return {
+    providers,
+    currentProvider: currentProvider.currentProvider
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -51,8 +80,11 @@ const mapDispatchToProps = dispatch => {
     },
     saveService: serviceInfo => {
       return dispatch(saveService(serviceInfo))
+    },
+    fetchProvider: (params) => {
+      return dispatch(fetchProvider(params))
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(ManageProviderServices)
+export default connect(mapStateToProps, mapDispatchToProps)(ManageProviderServices)

@@ -13,7 +13,12 @@ import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService"
 
 
-import { fetchProvidersAndServices, timerStart, timerStop } from "../actions";
+import {
+  fetchProvidersAndServices,
+  timerStart,
+  timerStop,
+  timerCountUpdate
+} from "../actions";
 
 import ManageProviderServices from "./AdminComponents/ManageProviderServices";
 
@@ -33,6 +38,12 @@ class App extends React.Component {
 
     //if not given a function to do it just console logs that it has ticked
     this.props.startTimer(() => {
+      let count = this.props.timer.count + 1;
+
+      if (count > 60) {
+        this.props.stopTimer();
+      }
+      this.props.updateCount(count);
       this.props.fetchProvidersAndServices();
     });
   }
@@ -47,7 +58,8 @@ class App extends React.Component {
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
-          <Route exact path="/admin/providers/new" component={ManageProviderServices} />
+          {/* <Route exact path="/admin/providers/new" component={ManageProviderServices} /> */}
+          <Route exact path="/admin/providers/:id" component={ManageProviderServices} />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
@@ -58,13 +70,11 @@ class App extends React.Component {
   }
 }
 
-{
-  /* const mapStateToProps = (state) => {
-    return (
-      state  
-    )
-} */
-}
+const mapStateToProps = state => {
+  return {
+    timer: state.timer
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -76,12 +86,15 @@ const mapDispatchToProps = dispatch => {
     },
     stopTimer: () => {
       return dispatch(timerStop());
+    },
+    updateCount: count => {
+      return dispatch(timerCountUpdate(count));
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
 

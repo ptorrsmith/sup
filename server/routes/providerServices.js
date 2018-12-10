@@ -13,7 +13,7 @@ router.get('/liveUpdates', (req, res) => {
         .then(providerUpdates => {
             // console.log("providerUpdates count ", providerUpdates.length)
             const providerIds = providerUpdates.map(provider => provider.id)
-            console.log("providerIds: ", providerIds)
+            // console.log("providerIds: ", providerIds)
             servicesDB.getServicesUpdatesForProviders(providerIds)
                 .then(servicesUpdates => {
                     const providerServicesUpdates = providerUpdates.map(provider => {
@@ -36,7 +36,7 @@ router.get('/liveUpdates', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    console.log('provider services get/id', id)
+    // console.log('provider services get/id', id)
     providersDB.getProvider(id) // NOTE!! will return an array, so we want first record
         .then(results => results[0])
         .then(provider => {
@@ -50,9 +50,9 @@ router.get('/:id', (req, res) => {
                     //     ...provider,    
                     //     services: [...provider.services]})
                     res.json(provider)
-                })    
-        })        
-})        
+                })
+        })
+})
 
 router.get('/', (req, res) => {
     providersDB.getProviders()
@@ -69,12 +69,12 @@ router.get('/', (req, res) => {
                         provider.services = pServices
                         // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
                         return provider
-                    })    
+                    })
                     // console.log("providerServices >>>>> ", providerServices)
                     res.json(providerServices)
-                })    
-        })        
-})        
+                })
+        })
+})
 
 
 

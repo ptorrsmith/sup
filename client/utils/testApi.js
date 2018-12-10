@@ -1,7 +1,7 @@
 export function getProvidersAndServices() {
   return fetch('/api/v1/providerservices')
     .then(aResponse => {
-      console.log("TestApi getdata")
+      // console.log("TestApi getdata")
       return aResponse.json()
     })
 }
@@ -18,21 +18,35 @@ export function getProvider(id) {
 }
 
 export function saveProvider(providerInfo) {
-  console.log("testApi saveProvider provider info = ", providerInfo)
-  return fetch('/api/v1/providers/', {
-    method: 'post',
-    body: JSON.stringify(providerInfo),
-    headers: { "Content-Type": 'application/json' }
+  // console.log("testApi saveProvider provider info = ", providerInfo)
+  // may be new or existing, depends if has an id
+  if (providerInfo.id) {
+    return fetch(`/api/v1/providers/${providerInfo.id}`, {
+      method: 'put',
+      body: JSON.stringify(providerInfo),
+      headers: { "Content-Type": 'application/json' }
 
-  })
-    .then(response => {
-      console.log("testApi saveProvider response = ", response)
-      return response.json()
     })
+      .then(response => {
+        // console.log("testApi saveProvider response = ", response)
+        return response.json()
+      })
+  } else {
+    return fetch('/api/v1/providers/', {
+      method: 'post',
+      body: JSON.stringify(providerInfo),
+      headers: { "Content-Type": 'application/json' }
+
+    })
+      .then(response => {
+        // console.log("testApi saveProvider response = ", response)
+        return response.json()
+      })
+  }
 }
 
 export function saveService(serviceInfo) {
-  console.log("testApi saveService service info = ", serviceInfo)
+  // console.log("testApi saveService service info = ", serviceInfo)
   return fetch('/api/v1/services/', {
     method: 'post',
     body: JSON.stringify(serviceInfo),
@@ -40,11 +54,11 @@ export function saveService(serviceInfo) {
 
   })
     .then(response => {
-      console.log("testApi saveService response = ", response)
+      // console.log("testApi saveService response = ", response)
       return response.json()
     })
 }
-// console.log("TestApi getdata")
+// // console.log("TestApi getdata")
 
 // .catch(() => {
 //   return new Error({ error: 'Something went wrong' })
@@ -52,7 +66,7 @@ export function saveService(serviceInfo) {
 
 
 export function setProviderMessageAPI(id, message) {
-  //  console.log('Is the providermessageAPI going through?')
+  //  // console.log('Is the providermessageAPI going through?')
   return fetch(`/api/v1/providers/${id}/updatemessage`, {
     headers: {
       'Accept': 'application/json',

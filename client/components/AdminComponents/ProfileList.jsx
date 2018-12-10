@@ -23,20 +23,20 @@ class ProfileList extends React.Component {
     }
 
     componentWillMount() {
-        console.log("Will mount")
+        // console.log("Will mount")
 
         this.props.fetchProvidersAndServices()
     }
 
     componentDidMount() {
-        console.log("mounted")
+        // console.log("mounted")
         // fetchProvidersAndServices()
 
     }
 
     render() {
         const providersAndServices = this.props.providers.providers
-        console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
+        // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
 
         return (
             <div>
