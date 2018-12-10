@@ -1,8 +1,10 @@
 // import { getData } from '../utils/tempData'
+
 import {
   getProvidersAndServices,
   getProvider,
-  setProviderMessageAPI
+  setProviderMessageAPI,
+  setServiceStatusAPI
 } from "../utils/testApi";
 
 export const fetchProvidersAndServices = () => {
@@ -135,15 +137,17 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
   };
 };
 
-export const setServiceStatus = (serviceId, status) => {
+
+export const setProviderMessage = (providerId, message) => {
   return dispatch => {
     // stuff goes here
-    setServiceStatusAPI(serviceId, message).then(result => {
+    setProviderMessageAPI(providerId, message).then(result => {
       if (result.result == 1) {
         // console.log('confirming action 1', result)
         dispatch({ type: "GETTING_PROVIDER" });
         getProvider(providerId)
           .then(data => {
+            // console.log("Actions indexedDB, fetchProvider, data", data)
             dispatch({
               type: "RECEIVED_PROVIDER",
               currentProvider: data
@@ -160,16 +164,21 @@ export const setServiceStatus = (serviceId, status) => {
 };
 
 
-export const setProviderMessage = (providerId, message) => {
+
+
+
+
+// THIS THUNK NEEDS WORK. THE POSTMAN PUT WORKS, BUT THIS THUNK
+// DOES NOT WORK. NEEDS HELP >:( 
+
+export const setServiceStatus = (serviceId, status) => {
   return dispatch => {
-    // stuff goes here
-    setProviderMessageAPI(providerId, message).then(result => {
+    setServiceStatusAPI(serviceId, status).then(result => {
       if (result.result == 1) {
         // console.log('confirming action 1', result)
         dispatch({ type: "GETTING_PROVIDER" });
         getProvider(providerId)
           .then(data => {
-            // console.log("Actions indexedDB, fetchProvider, data", data)
             dispatch({
               type: "RECEIVED_PROVIDER",
               currentProvider: data
