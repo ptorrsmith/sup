@@ -138,9 +138,27 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
 export const setServiceStatus = (serviceId, status) => {
   return dispatch => {
     // stuff goes here
-    dispatch({ type: "SET_SERVICE_STATUS" });
+    setServiceStatusAPI(serviceId, message).then(result => {
+      if (result.result == 1) {
+        // console.log('confirming action 1', result)
+        dispatch({ type: "GETTING_PROVIDER" });
+        getProvider(providerId)
+          .then(data => {
+            dispatch({
+              type: "RECEIVED_PROVIDER",
+              currentProvider: data
+            });
+          })
+          .catch(() => {
+            dispatch({
+              type: "FETCH_PROVIDER_ERROR"
+            });
+          });
+      }
+    });
   };
 };
+
 
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
@@ -162,16 +180,7 @@ export const setProviderMessage = (providerId, message) => {
               type: "FETCH_PROVIDER_ERROR"
             });
           });
-      } else {
-        // console.log('what else gives us:', result)
       }
-
-      // console.log('what is result from the actions', result)
-      // dispatch ({
-      //   type: 'SET_PROVIDER_MESSAGE',
-      //   message: message
-      //   // Stuff needs to go here, what is changing in the state?
-      //    })
     });
   };
 };
