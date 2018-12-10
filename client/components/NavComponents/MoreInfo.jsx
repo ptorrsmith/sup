@@ -11,8 +11,8 @@ const MoreInfo = () => (
     </span>
 
     <span className="more_info_body">
-      <p>If you're in immediate danger please call 111.</p>
-      <p>If you're needing help Refuge pleas call them on </p>
+      <p>If you're in immediate danger, please call 111.</p>
+      <p>If you're needing help from the Refuge, please call them on 0800 000 000.</p>
     </span>
 
     {/* Information about what the website provides */}

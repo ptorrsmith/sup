@@ -1,5 +1,9 @@
 // import { getData } from '../utils/tempData'
-import { getProvidersAndServices, getProvider } from "../utils/testApi";
+import {
+  getProvidersAndServices,
+  getProvider,
+  setProviderMessageAPI
+} from "../utils/testApi";
 
 export const fetchProvidersAndServices = () => {
   console.log("Actions index fetchProvidersAndServices");
@@ -114,5 +118,60 @@ export const timerStop = () => {
       dispatch({ type: "STOP_TIMER" });
     } else {
     }
+  };
+};
+// Ruby's actions/thunks for LiveUpdate:
+// SetQtyRemaining
+// SetUpdate
+// SetStatus
+
+export const setServiceQtyRemaining = (serviceId, quantity) => {
+  return dispatch => {
+    dispatch({
+      type: "SET_SERVICE_QTY_REMAINING",
+      serviceId: serviceId,
+      quantity: quantity
+    });
+  };
+};
+
+export const setServiceStatus = (serviceId, status) => {
+  return dispatch => {
+    // stuff goes here
+    dispatch({ type: "SET_SERVICE_STATUS" });
+  };
+};
+
+export const setProviderMessage = (providerId, message) => {
+  return dispatch => {
+    // stuff goes here
+    setProviderMessageAPI(providerId, message).then(result => {
+      if (result.result == 1) {
+        // console.log('confirming action 1', result)
+        dispatch({ type: "GETTING_PROVIDER" });
+        getProvider(providerId)
+          .then(data => {
+            // console.log("Actions indexedDB, fetchProvider, data", data)
+            dispatch({
+              type: "RECEIVED_PROVIDER",
+              currentProvider: data
+            });
+          })
+          .catch(() => {
+            dispatch({
+              type: "FETCH_PROVIDER_ERROR"
+            });
+          });
+      } else {
+        // console.log('what else gives us:', result)
+      }
+
+      // console.log('what is result from the actions', result)
+      // dispatch ({
+      //   type: 'SET_PROVIDER_MESSAGE',
+      //   message: message
+      //   // Stuff needs to go here, what is changing in the state?
+      //    })
+    });
   };
 };
