@@ -18,6 +18,7 @@ import {
 } from "../actions";
 
 import ManageProviderServices from "./AdminComponents/ManageProviderServices";
+import LogIn from "./TDC/LogIn";
 
 function getProviders(dispatch) {
   dispatch(fetchProvidersAndServices());
@@ -60,6 +61,7 @@ class App extends React.Component {
             path="/admin/providers/:id"
             component={ManageProviderServices}
           /> */}
+          <Route exact path="/login" component={LogIn} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
         </div>
