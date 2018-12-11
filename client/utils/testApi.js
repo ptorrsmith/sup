@@ -50,7 +50,7 @@ export function saveProvider(providerInfo) {
 }
 
 export function saveService(serviceInfo) {
-  console.log("testApi saveService service info = ", serviceInfo)
+  // console.log("testApi saveService service info = ", serviceInfo)
   if (serviceInfo.id) {
 
     return fetch(`/api/v1/services/${serviceInfo.id}`, {

@@ -79,7 +79,7 @@ export const saveProvider = (providerInfo) => {
     })
     saveProviderApi(providerInfo)
       .then(result => {
-        console.log("actions, index saveProvider result = ", result)
+        // console.log("actions, index saveProvider result = ", result)
         // if result.updateRespons then we stay on the same page
         // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
         if (result.newProvider) {
@@ -115,16 +115,16 @@ export const saveProvider = (providerInfo) => {
 }
 
 export const saveService = (serviceInfo) => {
-  console.log("Actions Thunk saveService serviceInfo: ", serviceInfo)
+  // console.log("Actions Thunk saveService serviceInfo: ", serviceInfo)
   return dispatch => {
     dispatch({
       type: 'SAVING_SERVICE'
     })
     saveServiceApi(serviceInfo)
       .then(result => {
-        console.log("actions, index saveService result = ", result)
+        // console.log("actions, index saveService result = ", result)
         if (result.newService) {
-          console.log("action index saveService result.newService (id?) ", result.newService)
+          // console.log("action index saveService result.newService (id?) ", result.newService)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -151,7 +151,7 @@ export const saveService = (serviceInfo) => {
 
           // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
         } else {
-          console.log("action index saveService else update result? ", result)
+          // console.log("action index saveService else update result? ", result)
         }
       })
   }
@@ -297,7 +297,7 @@ export const getLocation = () => {
 // DOES NOT WORK. NEEDS HELP >:( 
 
 export const setServiceStatus = (providerId, serviceId, status) => {
-  console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
+  // console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
   return dispatch => {
     setServiceStatusAPI(serviceId, status).then(result => {
       //console.log('what is result', result)
@@ -322,10 +322,10 @@ export const setServiceStatus = (providerId, serviceId, status) => {
 };
 
 export const setServiceQtyRemaining = (providerId, serviceId, quantity) => {
-  console.log(`setServiceQty args: serviceId: ${serviceId}, quantity: ${quantity}`)
+  // console.log(`setServiceQty args: serviceId: ${serviceId}, quantity: ${quantity}`)
   return dispatch => {
     setServiceQtyRemainingAPI(serviceId, quantity).then(result => {
-      console.log('what is result', result)
+      // console.log('what is result', result)
       // console.log('confirming action 1', result)
       dispatch({
         type: "GETTING_PROVIDER"
