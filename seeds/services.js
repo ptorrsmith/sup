@@ -60,7 +60,7 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('services').insert([{
           id: 1,
-          name: "Men's Night Shelter Dormitory Accomodation",
+          name: "Dormitory Accomodation",
           qty_default: 80,
           qty_remaining: 50,
           unit: "Beds",
@@ -70,7 +70,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 2,
-          name: "Men's Night Shelter Hostel Accomodation",
+          name: "Hostel Accomodation",
           qty_default: 80,
           qty_remaining: 50,
           unit: "Beds",
@@ -80,7 +80,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 3,
-          name: "Men's Night Shelter Community Support (Emergency Shelter)",
+          name: "Community Support (Emergency Shelter)",
           qty_default: 80,
           qty_remaining: 50,
           unit: "Beds",
@@ -91,7 +91,7 @@ exports.seed = function (knex, Promise) {
         //
         {
           id: 4,
-          name: "Compassion Soup Kitchen - Breakfast Meal",
+          name: "Breakfast Meal",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Meals",
@@ -101,7 +101,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 5,
-          name: "Compassion Soup Kitchen - Dinner Meal",
+          name: "Dinner Meal",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Meals",
@@ -112,7 +112,7 @@ exports.seed = function (knex, Promise) {
         //
         {
           id: 6,
-          name: "Wellington City Mission - Food Parcels",
+          name: "Food Parcels",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Food parcels",
@@ -123,7 +123,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 7,
-          name: "St Vincent De Paul Wellington - Food Parcels",
+          name: "Food Parcels",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Food parcels",
@@ -134,7 +134,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 8,
-          name: "The Salvation Army - Food Parcels",
+          name: "Food Parcels",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Food parcels",
@@ -145,7 +145,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 9,
-          name: "DCM - Advice and Support",
+          name: "Advice and Support",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Advice",
@@ -156,7 +156,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 10,
-          name: "Wesley Methodist Church - Showers & Bathroom Facilities",
+          name: "Showers & Bathroom Facilities",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Showers",
@@ -167,7 +167,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 11,
-          name: "Catacombs - Showers & Bathroom Facilities",
+          name: "Showers & Bathroom Facilities",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Showers",
@@ -178,7 +178,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 12,
-          name: "Catacombs - Washing Machine & Dryer Facilities",
+          name: "Washing Machine & Dryer Facilities",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Washing machines and dryers",
@@ -189,7 +189,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 13,
-          name: "Catacombs - TV Lounge & Telephone",
+          name: "TV Lounge & Telephone",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "TV lounge and telephone",
@@ -200,7 +200,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 14,
-          name: "Evolve - Medical Assistance and Support",
+          name: "Medical Assistance and Support",
           qty_default: 10000,
           qty_remaining: 10000,
           unit: "Medical services",

@@ -119,7 +119,8 @@ class AMap extends React.Component {
           if (hasQty.find(typeId => typeId == s.service_type_id)) {
             return (
               <span>
-                {s.service_type_name} : {s.status} - Remaining :{" "}
+                {/* {s.service_type_name} : {s.status} - Remaining :{" "} */}
+                {s.name} : {s.status} - Remaining :{" "}
                 {s.qty_remaining}/{s.qty_default}
                 <br />
               </span>
