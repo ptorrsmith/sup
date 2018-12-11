@@ -128,7 +128,8 @@ class AMap extends React.Component {
           } else {
             return (
               <span>
-                {s.service_type_name} : {s.status}
+                {/* {s.service_type_name} : {s.status} */}
+                {s.name} : {s.status}
                 <br />
               </span>
             );
