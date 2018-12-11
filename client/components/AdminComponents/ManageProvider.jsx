@@ -126,7 +126,7 @@ class ManageProvider extends React.Component {
             <div>
                 <form onSubmit={this.onSubmit}>
                     <fieldset>
-                        <legend>New/update Provider Details</legend>
+                        <legend>Provider Details</legend>
                         <p>
                             <label htmlFor="name">Name:</label>
                             <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.provider.name || ""} /></p>
