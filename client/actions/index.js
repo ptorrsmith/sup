@@ -83,7 +83,7 @@ export const saveProvider = (providerInfo) => {
         // if result.updateRespons then we stay on the same page
         // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
         if (result.newProvider) {
-          console.log("action index saveProvider newProvider ", result.newProvider)
+          // console.log("action index saveProvider newProvider ", result.newProvider)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -133,7 +133,8 @@ export const saveService = (serviceInfo) => {
 
           dispatch({
             type: "GETTING_PROVIDER"
-          });
+          })
+          // console.log("Actions index saveService, calling provider with serviceInfo.provider_id, ", serviceInfo.providerId)
           getProvider(serviceInfo.provider_id)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
