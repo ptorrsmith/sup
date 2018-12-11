@@ -47,11 +47,12 @@ class ManageService extends React.Component {
 
   onChange(e) {
     // console.log("ManageService onchange e.target.value = ", e.target.value)
-    console.log("ManageService onchange this.state ", this.state)
+    const value = (e.target.type == "radio") ? e.target.id : e.target.value
+    console.log("ManageService onchange value ", value)
     this.setState({
       service: {
         ...this.state.service,
-        [e.target.name]: e.target.value
+        [e.target.name]: value
       }
     });
   }
@@ -91,9 +92,29 @@ class ManageService extends React.Component {
               <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.state.service.provider_id} /></p>
             <p>
               <label htmlFor="service_type_id">Service Type ID:</label>
-              <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.service.service_type_id} /></p>
+              {/* <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.service.service_type_id} /></p> */}
+              <input type="radio" name="service_type_id" id="1" onChange={this.onChange} value="Shelters" checked={(this.state.service.service_type_id == 1) ? "checked" : ""} />
+              <label for="1">Shelter </label>
 
+              <input type="radio" name="service_type_id" id="2" onChange={this.onChange} value="Food Banks" checked={(this.state.service.service_type_id == 2) ? "checked" : ""} />
+              <label for="2">Food Bank </label>
 
+              <input type="radio" name="service_type_id" id="3" onChange={this.onChange} value="Soup Kitchens" checked={(this.state.service.service_type_id == 3) ? "checked" : ""} />
+              <label for="2">Soup Kitchen </label>
+
+              <input type="radio" name="service_type_id" id="4" onChange={this.onChange} value="Advice" checked={(this.state.service.service_type_id == 4) ? "checked" : ""} />
+              <label for="2">Advice </label>
+
+              <input type="radio" name="service_type_id" id="5" onChange={this.onChange} value="Drop in" checked={(this.state.service.service_type_id == 5) ? "checked" : ""} />
+              <label for="2">Drop in </label>
+
+              <input type="radio" name="service_type_id" id="6" onChange={this.onChange} value="Medical" checked={(this.state.service.service_type_id == 6) ? "checked" : ""} />
+              <label for="2">Medical </label>
+
+              <input type="radio" name="service_type_id" id="7" onChange={this.onChange} value="Other" checked={(this.state.service.service_type_id == 7) ? "checked" : ""} />
+              <label for="2">Other </label>
+
+            </p>
             <button type="submit">Submit</button>
           </fieldset>
 
