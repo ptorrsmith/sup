@@ -11,15 +11,16 @@ class ManageService extends React.Component {
     super(props);
     this.state = {
       service: {
+        id: 0,
         name: "",
-        qty_default: "",
-        qty_remaining: "",
+        qty_default: 0,
+        qty_remaining: 0,
         unit: "",
         status: "",
         provider_id: "",
-        service_type_id: ""
+        service_type_id: 1
       },
-      otherStuff: ''
+      otherStuff: 'not set'
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,11 +30,15 @@ class ManageService extends React.Component {
 
   componentDidMount() {
     if (this.props.provider_id && !this.props.service) { // is an empty service form, with only provider_id known 
+      console.log("CDM blank service")
       this.setState({
         service: { provider_id: this.props.provider_id }
       })
     } // else
     if (!this.props.provider_id && this.props.service) {
+      console.log("CDM else state.service", this.state.service)
+      console.log("CDM else props.service", this.props.service)
+
       this.setState({
         service: this.props.service
       })
@@ -41,7 +46,8 @@ class ManageService extends React.Component {
   }
 
   onChange(e) {
-    // console.log("AddProvider onchange e = ", e)
+    // console.log("ManageService onchange e.target.value = ", e.target.value)
+    console.log("ManageService onchange this.state ", this.state)
     this.setState({
       service: {
         ...this.state.service,
@@ -51,7 +57,7 @@ class ManageService extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    // console.log("ManageService onsubmit e = ", e)
+    console.log("ManageService onsubmit state.service ", this.state.service)
 
     this.props.saveService(this.state.service);
   }
@@ -61,25 +67,25 @@ class ManageService extends React.Component {
       <div>
         <form onSubmit={this.onSubmit}>
           <fieldset>
-            <legend>New/Update Service Details:</legend>
+            <legend>Service Details:</legend>
             <p>Service ID: {this.state.service.id}</p>
             <p>
               <label htmlFor="name">Name:</label>
-              <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.service.name} /></p>
+              <input type="text" name="name" id="text" onChange={this.onChange} value={this.state.service.name} /></p>
 
             <p>
               <label htmlFor="qty_default">Quantity Default:</label>
-              <input type="text" name="qty_default" onChange={this.onChange} value={this.state.service.description} /></p>
+              <input type="text" name="qty_default" onChange={this.onChange} value={this.state.service.qty_default} /></p>
 
             <p>
               <label htmlFor="qty_remaining">Quantity Remaining:</label>
-              <input type="text" name="qty_remaining" id="text" onChange={this.onChange} value={this.state.service.address} /> </p>
+              <input type="text" name="qty_remaining" id="text" onChange={this.onChange} value={this.state.service.qty_remaining} /> </p>
             <p>
               <label htmlFor="unit">Unit:</label>
-              <input type="text" name="unit" id="text" onChange={this.onChange} value={this.state.service.phone} /></p>
+              <input type="text" name="unit" id="text" onChange={this.onChange} value={this.state.service.unit} /></p>
             <p>
               <label htmlFor="text">Status:</label>
-              <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.service.email} /></p>
+              <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.service.status} /></p>
             <p>
               <label htmlFor="provider_id">Provider ID:</label>
               <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.state.service.provider_id} /></p>

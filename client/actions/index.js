@@ -115,6 +115,7 @@ export const saveProvider = (providerInfo) => {
 }
 
 export const saveService = (serviceInfo) => {
+  console.log("Actions Thunk saveService serviceInfo: ", serviceInfo)
   return dispatch => {
     dispatch({
       type: 'SAVING_SERVICE'
@@ -123,7 +124,7 @@ export const saveService = (serviceInfo) => {
       .then(result => {
         console.log("actions, index saveService result = ", result)
         if (result.newService) {
-          console.log("action index saveProvider newProvider ", result.newProvider)
+          console.log("action index saveService result.newService (id?) ", result.newService)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -133,7 +134,7 @@ export const saveService = (serviceInfo) => {
           dispatch({
             type: "GETTING_PROVIDER"
           });
-          getProvider(result.newProvider)
+          getProvider(serviceInfo.provider_id)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
               dispatch({
@@ -148,6 +149,8 @@ export const saveService = (serviceInfo) => {
             })
 
           // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+        } else {
+          console.log("action index saveService else update result? ", result)
         }
       })
   }
@@ -190,7 +193,7 @@ export function timerCountUpdate(count) {
 
 export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
-    if (getState().timer.isRunning) {} else {
+    if (getState().timer.isRunning) { } else {
       // console.log("starting timer");
 
       if (!tickTimerFunction) {
@@ -219,7 +222,7 @@ export const timerStop = () => {
       dispatch({
         type: "STOP_TIMER"
       });
-    } else {}
+    } else { }
   };
 };
 
