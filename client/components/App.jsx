@@ -10,7 +10,6 @@ import ManageProvider from "./AdminComponents/ManageProvider";
 import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
-import ManageService from "./AdminComponents/ManageService";
 
 import {
   fetchProvidersAndServices,
@@ -19,7 +18,6 @@ import {
   timerCountUpdate
 } from "../actions";
 
-import ManageProviderServices from "./AdminComponents/ManageProviderServices";
 
 function getProviders(dispatch) {
   dispatch(fetchProvidersAndServices());
@@ -58,11 +56,8 @@ class App extends React.Component {
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
           {/* <Route exact path="/admin/providers/new" component={ManageProviderServices} /> */}
-          <Route
-            exact
-            path="/admin/providers/:id"
-            component={ManageProviderServices}
-          />
+          {/* <Route exact path="/admin/providers/:id" component={ManageProviderServices} /> */}
+          <Route exact path="/admin/providers/:id" component={ManageProvider} />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />

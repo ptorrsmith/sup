@@ -12,6 +12,7 @@ class ManageProvider extends React.Component {
         super(props);
         this.state = {
             provider: {
+                id: "",
                 name: "",
                 description: "",
                 lat: "",
@@ -46,7 +47,7 @@ class ManageProvider extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         // console.log("save provider: ", this.state)
-        // console.log("Saving this.state -----------------> ", this.state)
+        // console.log("Saving this.state -----------------> ", this.state.provider)
         this.props.saveProvider(this.state.provider)
         // .then(
         // console.log("NOT THENed, no promise! Saved this.state -----------------> REDIRECT? ID = ", this.props.currentProvider.id)

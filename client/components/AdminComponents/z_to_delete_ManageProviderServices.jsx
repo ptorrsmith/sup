@@ -11,9 +11,9 @@ class ManageProviderServices extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      providerId: ''
-    }
+    // this.state = {
+    //   providerId: ''
+    // }
   }
   // this.onChange = this.onChange.bind(this);
   // this.onSubmit = this.onSubmit.bind(this);
@@ -35,30 +35,18 @@ class ManageProviderServices extends React.Component {
     const id = this.props.match.params.id
     // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
     if (id != "new") {
-      this.setState({ providerId: id })
+      // this.setState({ providerId: id })
       this.props.fetchProvider(id)
     }
   }
 
   render() {
-    if (this.props.currentProvider) {
-      // console.log("MPS: props.currentProvider", this.props.currentProvider)
-    }
-    if (this.state.providerId > 0) {
-      // if (this.props.match.params.id > 0) {
-      return (
-        <div>
-          <ManageProvider history={this.props.history} />
-          {/* <ManageService /> */}
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <ManageProvider history={this.props.history} />
-        </div>
-      )
-    }
+    return (
+      <div>
+        <ManageProvider history={this.props.history} />
+        {/* <ManageService /> */}
+      </div>
+    )
 
   }
 
