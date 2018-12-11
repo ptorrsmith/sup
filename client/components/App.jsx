@@ -9,9 +9,10 @@ import AdminProfile from "./AdminComponents/AdminProfile";
 import ManageProvider from "./AdminComponents/ManageProvider";
 import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
-import Profile from "./TDC/Profile";
+// import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
 import Login from './TDC/Login'
+import Profile from "./TDC/ProfileStyle"
 
 import {
   fetchProvidersAndServices,
