@@ -135,4 +135,5 @@ import { setCurrentProvider, fetchProvider } from "../../actions";
    mapDispatchToProps
  )(Profile);
 
-  
+
+

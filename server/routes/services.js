@@ -2,7 +2,6 @@ const express = require('express')
 const servicesDB = require('../data/servicesDB')
 
 const dataFormater = require('../helpers/dataFormater')
-
 const router = express.Router()
 
 
@@ -11,24 +10,31 @@ router.get('/', (req, res) => {
   servicesDB.getServicesForProviders()
     .then(data => {
 
-      res.json({ data: data })
+      res.json({
+        data: data
+      })
     })
 })
 
 router.put('/:id/updateavailability', (req, res) => {
+  console.log('req', req.body)
 
   const id = req.params.id
   const qtyRemaining = req.body.qty_remaining
+  console.log('qtyRemaining', qtyRemaining)
 
   servicesDB.updateQtyRemaining(id, qtyRemaining)
+    // 
     .then(result => {
 
-      res.json({ result: result })
+      res.json({
+        result: result
+      })
 
       // console.log('our result is ', result)
     })
 
-  // console.log(id, updateMessage)
+  // console.log(id, qtyRemaining)
 })
 
 
@@ -40,13 +46,16 @@ router.put('/:id/updatestatus', (req, res) => {
   servicesDB.updateStatus(id, currentStatus)
     .then(result => {
 
-      res.json({ result: result })
+      res.json({
+        result: result
+      })
 
       // console.log('our result is ', result)
     })
 
   // console.log(id, updateMessage)
 })
+
 
 router.post('/', (req, res) => {
 
@@ -55,7 +64,9 @@ router.post('/', (req, res) => {
   servicesDB.createService(serviceInfo)
     .then(newService => {
 
-      res.json({ newService: newService[0] })
+      res.json({
+        newService: newService[0]
+      })
     })
 })
 
@@ -67,7 +78,9 @@ router.put('/:id/', (req, res) => {
   servicesDB.updateService(id, updatedService)
     .then(response => {
 
-      res.json({ updateResponse: response })
+      res.json({
+        updateResponse: response
+      })
     })
 })
 

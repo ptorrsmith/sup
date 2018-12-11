@@ -1,5 +1,14 @@
+//client/actions/index.js 
 // import { getData } from '../utils/tempData'
-import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
+import {
+  getProvidersAndServices,
+  getProvider,
+  setProviderMessageAPI,
+  setServiceStatusAPI,
+  saveProvider as saveProviderApi,
+  saveService as saveServiceApi,
+  setServiceQtyRemainingAPI
+} from '../utils/testApi'
 
 // import { push } from 'react-router-redux'
 
@@ -7,7 +16,9 @@ export const fetchProvidersAndServices = () => {
   // console.log("Actions index fetchProvidersAndServices");
   return dispatch => {
     // console.log("Actions index fetchProviders dispatch");
-    dispatch({ type: "GETTING_PROVIDERS" });
+    dispatch({
+      type: "GETTING_PROVIDERS"
+    });
     getProvidersAndServices()
       .then(providersAndServices => {
         // console.log(          "Actions index fetchProvidersAndServices providersAndServices>>>>>>>>>>",          providersAndServices         );
@@ -26,7 +37,9 @@ export const fetchProvidersAndServices = () => {
 
 export const fetchLiveUpdates = services => {
   return dispatch => {
-    dispatch({ type: "GETTING_LIVE_UPDATES" });
+    dispatch({
+      type: "GETTING_LIVE_UPDATES"
+    });
     getLiveUpdates(services).then(data => {
       dispatch({
         type: "RECEIVED_LIVE_UPDATES"
@@ -39,7 +52,9 @@ export const fetchLiveUpdates = services => {
 
 export const fetchProvider = id => {
   return dispatch => {
-    dispatch({ type: "GETTING_PROVIDER" });
+    dispatch({
+      type: "GETTING_PROVIDER"
+    });
     getProvider(id)
       .then(data => {
         // console.log("Actions indexedDB, fetchProvider, data", data);
@@ -59,7 +74,9 @@ export const fetchProvider = id => {
 
 export const saveProvider = (providerInfo) => {
   return dispatch => {
-    dispatch({ type: 'SAVING_PROVIDER' })
+    dispatch({
+      type: 'SAVING_PROVIDER'
+    })
     saveProviderApi(providerInfo)
       .then(result => {
         console.log("actions, index saveProvider result = ", result)
@@ -73,7 +90,9 @@ export const saveProvider = (providerInfo) => {
 
           //   })
 
-          dispatch({ type: "GETTING_PROVIDER" });
+          dispatch({
+            type: "GETTING_PROVIDER"
+          });
           getProvider(result.newProvider)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
@@ -97,7 +116,9 @@ export const saveProvider = (providerInfo) => {
 
 export const saveService = (serviceInfo) => {
   return dispatch => {
-    dispatch({ type: 'SAVING_SERVICE' })
+    dispatch({
+      type: 'SAVING_SERVICE'
+    })
     saveServiceApi(serviceInfo)
       .then(result => {
         console.log("actions, index saveService result = ", result)
@@ -109,7 +130,9 @@ export const saveService = (serviceInfo) => {
 
           //   })
 
-          dispatch({ type: "GETTING_PROVIDER" });
+          dispatch({
+            type: "GETTING_PROVIDER"
+          });
           getProvider(result.newProvider)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
@@ -167,8 +190,7 @@ export function timerCountUpdate(count) {
 
 export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
-    if (getState().timer.isRunning) {
-    } else {
+    if (getState().timer.isRunning) {} else {
       // console.log("starting timer");
 
       if (!tickTimerFunction) {
@@ -180,7 +202,10 @@ export const timerStart = tickTimerFunction => {
         tickTimerFunction(dispatch);
       }, 10000);
 
-      dispatch({ type: "START_TIMER", timer: timer });
+      dispatch({
+        type: "START_TIMER",
+        timer: timer
+      });
     }
   };
 };
@@ -191,34 +216,27 @@ export const timerStop = () => {
       // console.log("stopping timer");
       clearInterval(getState().timer.timer);
 
-      dispatch({ type: "STOP_TIMER" });
-    } else {
-    }
+      dispatch({
+        type: "STOP_TIMER"
+      });
+    } else {}
   };
 };
+
 // Ruby's actions/thunks for LiveUpdate:
 // SetQtyRemaining
 // SetUpdate
-// SetStatus
 
-export const setServiceQtyRemaining = (serviceId, quantity) => {
-  return dispatch => {
-    dispatch({
-      type: "SET_SERVICE_QTY_REMAINING",
-      serviceId: serviceId,
-      quantity: quantity
-    });
-  };
-};
-
-
+/////////////////NOT THIS ONE CLIFF
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
     // stuff goes here
     setProviderMessageAPI(providerId, message).then(result => {
       if (result.result == 1) {
         // console.log('confirming action 1', result)
-        dispatch({ type: "GETTING_PROVIDER" });
+        dispatch({
+          type: "GETTING_PROVIDER"
+        });
         getProvider(providerId)
           .then(data => {
             // console.log("Actions indexedDB, fetchProvider, data", data)
@@ -258,7 +276,9 @@ function setLocation(position, dispatch) {
 
 export const getLocation = () => {
   return dispatch => {
-    dispatch({ type: 'GETTING_LOCATION' })
+    dispatch({
+      type: 'GETTING_LOCATION'
+    })
 
     if (navigator.geolocation) {
       let options = {
@@ -266,7 +286,9 @@ export const getLocation = () => {
       }
       navigator.geolocation.getCurrentPosition((position) => (setLocation(position, dispatch)), (err) => console.log(err), options);
     } else {
-      dispatch({ type: 'FETCH_LOCATION_ERROR' })
+      dispatch({
+        type: 'FETCH_LOCATION_ERROR'
+      })
     }
   }
 }
@@ -275,25 +297,52 @@ export const getLocation = () => {
 // THIS THUNK NEEDS WORK. THE POSTMAN PUT WORKS, BUT THIS THUNK
 // DOES NOT WORK. NEEDS HELP >:( 
 
-export const setServiceStatus = (serviceId, status) => {
+export const setServiceStatus = (providerId, serviceId, status) => {
+  console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
   return dispatch => {
     setServiceStatusAPI(serviceId, status).then(result => {
-      if (result.result == 1) {
-        // console.log('confirming action 1', result)
-        dispatch({ type: "GETTING_PROVIDER" });
-        getProvider(providerId)
-          .then(data => {
-            dispatch({
-              type: "RECEIVED_PROVIDER",
-              currentProvider: data
-            });
-          })
-          .catch(() => {
-            dispatch({
-              type: "FETCH_PROVIDER_ERROR"
-            });
+      //console.log('what is result', result)
+      // console.log('confirming action 1', result)
+      dispatch({
+        type: "GETTING_PROVIDER"
+      });
+      getProvider(providerId)
+        .then(data => {
+          dispatch({
+            type: "RECEIVED_PROVIDER",
+            currentProvider: data
           });
-      }
+        })
+        .catch(() => {
+          dispatch({
+            type: "FETCH_PROVIDER_ERROR"
+          });
+        });
+    });
+  };
+};
+
+export const setServiceQtyRemaining = (providerId, serviceId, quantity) => {
+  console.log(`setServiceQty args: serviceId: ${serviceId}, quantity: ${quantity}`)
+  return dispatch => {
+    setServiceQtyRemainingAPI(serviceId, quantity).then(result => {
+      console.log('what is result', result)
+      // console.log('confirming action 1', result)
+      dispatch({
+        type: "GETTING_PROVIDER"
+      });
+      getProvider(providerId)
+        .then(data => {
+          dispatch({
+            type: "RECEIVED_PROVIDER",
+            currentProvider: data
+          });
+        })
+        .catch(() => {
+          dispatch({
+            type: "FETCH_PROVIDER_ERROR"
+          });
+        });
     });
   };
 };
