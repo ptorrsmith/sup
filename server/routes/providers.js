@@ -29,7 +29,8 @@ router.get('/', (req, res) => {
  * 
  * 
  */
-router.put('/:id/updatemessage',token.decode, (req, res) => {
+// router.put('/:id/updatemessage',token.decode, (req, res) => {
+router.put('/:id/updatemessage', (req, res) => {
 
   const id = req.params.id
   const updateMessage = req.body.updateMessage
