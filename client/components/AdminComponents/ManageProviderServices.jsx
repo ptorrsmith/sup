@@ -42,19 +42,20 @@ class ManageProviderServices extends React.Component {
 
   render() {
     if (this.props.currentProvider) {
-      // console.log("MPS: props.currentProvider", this.props.currentProvider)
+      console.log("MPS: props.currentProvider", this.props.currentProvider)
     }
     if (this.state.providerId > 0) {
+      // if (this.props.match.params.id > 0) {
       return (
         <div>
-          <ManageProvider />
-          <ManageService />
+          <ManageProvider history={this.props.history} />
+          {/* <ManageService /> */}
         </div>
       )
     } else {
       return (
         <div>
-          <ManageProvider />
+          <ManageProvider history={this.props.history} />
         </div>
       )
     }
