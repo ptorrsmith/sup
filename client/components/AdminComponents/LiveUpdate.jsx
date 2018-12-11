@@ -29,6 +29,8 @@ class LiveUpdate extends React.Component {
 
     componentDidMount() {
         // console.log("mounted")
+
+
     }
 
     componentDidUpdate(prevProps) {
@@ -42,7 +44,7 @@ class LiveUpdate extends React.Component {
                 })
                 if (this.props.currentProvider.qty_remaining != prevProps.currentProvider.qty_remaining) {
                     this.setState({
-                        status: this.props.currentProvider.qty_remaining
+                        qty_remaining: this.props.currentProvider.qty_remaining
                     })
                 }
             }
