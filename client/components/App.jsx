@@ -14,7 +14,6 @@ import ManageService from "./AdminComponents/ManageService"
 import Login from './TDC/Login'
 import Profile from "./TDC/ProfileStyle";
 
-
 import {
   fetchProvidersAndServices,
   timerStart,
@@ -62,7 +61,11 @@ class App extends React.Component {
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
           {/* <Route exact path="/admin/providers/new" component={ManageProviderServices} /> */}
-          <Route exact path="/admin/providers/:id" component={ManageProviderServices} />
+          <Route
+            exact
+            path="/admin/providers/:id"
+            component={ManageProviderServices}
+          />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
@@ -100,45 +103,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
-// Old functional version?
-
-// const App = (props) => (
-
-//     <Router>
-//         <div>
-
-//             <div className="app_header">
-//                 {/* <h1>Hello from the App Header</h1> */}
-//             </div>
-//             {/* <Map /> */}
-//             {/* <Sidebar /> */}
-
-//             <div className="app_body">
-//             {/* <p>Hello from App Body</p> */}
-//             <button onClick={()=>{getProviders(props.dispatch)}}> getInfo </button>
-
-//             </div>
-
-//             <Route exact path='/' component={Sidebar} />
-//             <Route exact path="/" component={Map} />
-//             <Route exact path="/" component={Nav} />
-//             <Route exact path="/admin" component={Admin} />
-//             {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-//             <Route exact path="/admin/:id" component={AdminProfile} />
-//             <Route exact path="/admin/add" component={AddProfile} />
-//             <Route exact path="/admin/:id/edit" component={EditProfile} />
-
-//             <Route exact path="/profile/:id" component={Profile} />
-
-//         </div>
-//         </div>
-//     </Router>
-// )
-
-//             <Route exact path="/profile/:id" component={Profile} />
-
-//         </div>
-//     </Router >
-// )
-
