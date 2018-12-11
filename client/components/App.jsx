@@ -11,6 +11,7 @@ import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
+import LiveUpdateForm from "./TDC/Bob-liveupdates-form"
 
 import {
   fetchProvidersAndServices,
@@ -63,6 +64,7 @@ class App extends React.Component {
             path="/admin/providers/:id"
             component={ManageProviderServices}
           />
+          <Route exact path="/test" component={LiveUpdateForm} />
           <Route exact path="/admin/:id" component={AdminProfile} />
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
