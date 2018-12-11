@@ -23,13 +23,6 @@ const styles = theme => ({
     display: 'flex',
   },
 
-  // toolbarIcon: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'flex-end',
-  //   padding: '0 8px',
-  //   ...theme.mixins.toolbar,
-  // },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -37,14 +30,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  // appBarShift: {
-  //   marginLeft: drawerWidth,
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   transition: theme.transitions.create(['width', 'margin'], {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
+
   h5: {
     marginBottom: theme.spacing.unit * 2,
   },
@@ -82,13 +68,13 @@ class Dashboard extends React.Component {
         <main className={classes.content}>
           <div />
           <Typography variant="h4" gutterBottom component="h2">
-
+            {/* space for things */}
           </Typography>
           <Typography component="div" className={classes.gridContainer}>
 
           </Typography>
           <Typography variant="h4" gutterBottom component="h2">
-
+          {/* Space for more things */}
           </Typography>
           <div className={classes.gridContainer}>
 

@@ -13,6 +13,7 @@ import LiveUpdate from "./AdminComponents/LiveUpdate";
 import ManageService from "./AdminComponents/ManageService";
 import Login from './TDC/Login'
 import Profile from "./TDC/ProfileStyle"
+import FormStyle from "./TDC/FormStyle"
 
 import {
   fetchProvidersAndServices,
@@ -70,6 +71,7 @@ class App extends React.Component {
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/form" component={FormStyle} />
         </div>
       </Router>
     );
