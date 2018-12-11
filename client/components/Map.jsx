@@ -168,26 +168,26 @@ class AMap extends React.Component {
       );
     }
 
-    var legend = L.control({ position: 'bottomleft' });
-    legend.onAdd = function (Map) {
+    // var legend = L.control({ position: 'bottomleft' });
+    // legend.onAdd = function (Map) {
 
-      var div = L.DomUtil.create('div', 'info legend');
-      labels = ['<strong>Providers</strong>'],
-        categories = ['Shellter', 'Soup Kitchen', 'Food bank', 'Drop in Center', 'Support Services', 'Other services'];
+    //   var div = L.DomUtil.create('div', 'info legend');
+    //   labels = ['<strong>Providers</strong>'],
+    //     categories = ['Shellter', 'Soup Kitchen', 'Food bank', 'Drop in Center', 'Support Services', 'Other services'];
 
-      for (var i = 0; i < categories.length; i++) {
+    //   for (var i = 0; i < categories.length; i++) {
 
-        div.innerHTML +=
-          labels.push(
-            '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-            (categories[i] ? categories[i] : '+'));
+    //     div.innerHTML +=
+    //       labels.push(
+    //         '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+    //         (categories[i] ? categories[i] : '+'));
 
-      }
-      div.innerHTML = labels.join('<br>');
-      return div;
-    };
+    //   }
+    //   div.innerHTML = labels.join('<br>');
+    //   return div;
+    // };
 
-    legend.addTo(Map);
+    // legend.addTo(Map);
 
     return (
       <div>
