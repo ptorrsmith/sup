@@ -1,5 +1,6 @@
+//client/actions/index.js 
 // import { getData } from '../utils/tempData'
-import { getProvidersAndServices, getProvider, setProviderMessageAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
+import { getProvidersAndServices, getProvider, setProviderMessageAPI, setServiceStatusAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
 
 // import { push } from 'react-router-redux'
 
@@ -196,10 +197,10 @@ export const timerStop = () => {
     }
   };
 };
+
 // Ruby's actions/thunks for LiveUpdate:
 // SetQtyRemaining
 // SetUpdate
-// SetStatus
 
 export const setServiceQtyRemaining = (serviceId, quantity) => {
   return dispatch => {
@@ -211,7 +212,7 @@ export const setServiceQtyRemaining = (serviceId, quantity) => {
   };
 };
 
-
+/////////////////NOT THIS ONE CLIFF
 export const setProviderMessage = (providerId, message) => {
   return dispatch => {
     // stuff goes here
@@ -270,10 +271,11 @@ export const getLocation = () => {
 // THIS THUNK NEEDS WORK. THE POSTMAN PUT WORKS, BUT THIS THUNK
 // DOES NOT WORK. NEEDS HELP >:( 
 
-export const setServiceStatus = (serviceId, status) => {
+export const setServiceStatus = (providerId, serviceId, status) => {
+  console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
   return dispatch => {
     setServiceStatusAPI(serviceId, status).then(result => {
-      if (result.result == 1) {
+      //console.log('what is result', result)
         // console.log('confirming action 1', result)
         dispatch({ type: "GETTING_PROVIDER" });
         getProvider(providerId)
@@ -288,7 +290,6 @@ export const setServiceStatus = (serviceId, status) => {
               type: "FETCH_PROVIDER_ERROR"
             });
           });
-      }
     });
   };
 };
