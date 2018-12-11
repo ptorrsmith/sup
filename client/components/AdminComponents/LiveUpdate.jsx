@@ -38,18 +38,27 @@ class LiveUpdate extends React.Component {
             this.setState({
                 message: this.props.currentProvider.update_message
             })
-            if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
+        } if (this.props.currentProvider.services !== prevProps.currentProvider.services) {
+            this.props.currentProvider.services.map(service => {
                 this.setState({
-                    status: this.props.currentProvider.update_status
+                    [`P${this.props.currentProvider.id}-S${service.id}-status`]: service.status,
+                    [`P${this.props.currentProvider.id}-S${service.id}-quantity`]: service.qty_remaining
                 })
-                if (this.props.currentProvider.qty_remaining != prevProps.currentProvider.qty_remaining) {
-                    this.setState({
-                        qty_remaining: this.props.currentProvider.qty_remaining
-                    })
-                }
-            }
+            })
         }
+
     }
+    // if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
+    //     this.setState({
+    //         // status: this.props.currentProvider.update_status
+    //         status: this.props.currentProvider.update_status
+    //     })
+    //     if (this.props.currentProvider.qty_remaining != prevProps.currentProvider.qty_remaining) {
+    //         this.setState({
+    //             qty_remaining: this.props.currentProvider.qty_remaining
+    //         })
+    //     }
+    // }
 
     handleOnChange(e) {
         e.preventDefault()
@@ -78,7 +87,7 @@ class LiveUpdate extends React.Component {
 
     render() {
         // const provider = this.props.currentProvider
-
+        console.log("LU render local state: ", this.state)
         let provider = this.props.currentProvider
         // let service = this.props.currentProvider.service
 
