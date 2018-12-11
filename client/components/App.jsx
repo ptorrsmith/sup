@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import Map from "./Map";
 import Admin from "./Admin";
 import Sidebar from "./TDC/Sidebar";
-import AdminProfile from "./AdminComponents/AdminProfile";
+// import AdminProfile from "./AdminComponents/AdminProfile";
 import ManageProvider from "./AdminComponents/ManageProvider";
-import EditProfile from "./AdminComponents/EditProfile";
+// import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
@@ -63,8 +63,8 @@ class App extends React.Component {
             path="/admin/providers/:id"
             component={ManageProviderServices}
           />
-          <Route exact path="/admin/:id" component={AdminProfile} />
-          <Route exact path="/admin/:id/edit" component={EditProfile} />
+          {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
+          {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
         </div>
