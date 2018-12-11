@@ -62,13 +62,8 @@ class ProfileList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <Link to="/admin/providers/add">Add a new provider and services.</Link>
+
                 </div>
-
-                {/* When an admin clicks on a specific title, it will
-                take you to AdminProfile, where the admin can edit specific static details.
-
-                Add the ability to delete a provider? */}
 
             </div>
         )
