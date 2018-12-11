@@ -11,6 +11,14 @@
   /* background : linear-gradient(45deg,red,blue,yellow,orange,pink,purple); */
   font-family: 'Segoe UI', sans-serif;
 }
+.profile-service{
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
 .profileDescription {
   background-color: antiquewhite;
   font-family: 'Segoe UI', sans-serif;

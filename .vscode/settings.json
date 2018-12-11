@@ -1,4 +1,4 @@
 {
     "editor.formatOnSave": true,
-    "editor.cursorStyle": "block-outline"
+    "editor.cursorWidth": 1
 }
