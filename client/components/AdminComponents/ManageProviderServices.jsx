@@ -3,18 +3,17 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { saveService, saveProvider, fetchProvider } from '../../actions'
 
-// import ManageService from './ManageService'
+import ManageService from './ManageService'
 import ManageProvider from './ManageProvider'
 
 
 class ManageProviderServices extends React.Component {
   constructor(props) {
     super(props)
-    // console.log("MPS CONST props:", props)
 
-    // this.state = {
-    //   providerId: ''
-    // }
+    this.state = {
+      providerId: ''
+    }
   }
   // this.onChange = this.onChange.bind(this);
   // this.onSubmit = this.onSubmit.bind(this);
@@ -33,25 +32,33 @@ class ManageProviderServices extends React.Component {
   // }
 
   componentDidMount() {
-    // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-    // console.log("MPS CDM this.props::: ", this.props)
-    // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
     const id = this.props.match.params.id
     // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
     if (id != "new") {
-      // this.setState({ providerId: id })
+      this.setState({ providerId: id })
       this.props.fetchProvider(id)
     }
   }
 
   render() {
-    return (
-      <div>
-        <ManageProvider history={this.props.history} />
-        {/* <ManageProvider {...this.props} /> */}
-        {/* <ManageService /> */}
-      </div>
-    )
+    if (this.props.currentProvider) {
+      console.log("MPS: props.currentProvider", this.props.currentProvider)
+    }
+    if (this.state.providerId > 0) {
+      // if (this.props.match.params.id > 0) {
+      return (
+        <div>
+          <ManageProvider history={this.props.history} />
+          {/* <ManageService /> */}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <ManageProvider history={this.props.history} />
+        </div>
+      )
+    }
 
   }
 

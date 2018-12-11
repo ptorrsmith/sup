@@ -104,7 +104,7 @@ class LiveUpdate extends React.Component {
 
     render() {
         // const provider = this.props.currentProvider
-        // console.log("LU render local state: ", this.state)
+        console.log("LU render local state: ", this.state)
         let provider = this.props.currentProvider
         // let service = this.props.currentProvider.service
 
