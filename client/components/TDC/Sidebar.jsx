@@ -10,6 +10,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AppBar from "../AppBar"
 
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+
+
 
 import SimpleExpansionPanel from "./SimpleExpansionPanel";
 
@@ -42,22 +45,27 @@ class Sidebar extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <SimpleExpansionPanel />
-        {/* <List>
-          {[' '].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> 
-              <ListItemText primary={text} />
-            </ListItem> 
-           ))} 
-         </List> */}
         <Divider />
         <List>
-          {["Log in", "Register"].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text} />
+          {/* {["Log in", "Register"].map((text, index) => ( */}
+            <ListItem button component={Link} to="/login/">
+              <ListItemText primary="Log in" />
             </ListItem>
-          ))}
+
+
+            <ListItem button component={Link} to="/register/">
+            {/* <Link to='/register'>stuff</Link> */}
+            
+              <ListItemText primary="Register" />
+       
+       
+            {/* <ListItem button key={text}> */}
+              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              {/* <ListItemText primary={text} /> */}
+           
+            </ListItem>
+           
+          {/* ))} */}
         </List>
       </div>
     );
