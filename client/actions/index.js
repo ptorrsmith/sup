@@ -85,7 +85,7 @@ export const saveProvider = (providerInfo) => {
             .catch(() => {
               dispatch({
                 type: "FETCH_PROVIDER_ERROR"
-              });
+              })
             })
 
           // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
@@ -100,7 +100,32 @@ export const saveService = (serviceInfo) => {
     dispatch({ type: 'SAVING_SERVICE' })
     saveServiceApi(serviceInfo)
       .then(result => {
-        // console.log("actions, index saveService result = ", result)
+        console.log("actions, index saveService result = ", result)
+        if (result.newService) {
+          console.log("action index saveProvider newProvider ", result.newProvider)
+          // new provider, so get new provider and put into state
+          // getProvider(result.newProvider)
+          //   .then (providerAndServices => {
+
+          //   })
+
+          dispatch({ type: "GETTING_PROVIDER" });
+          getProvider(result.newProvider)
+            .then(provider => {
+              // console.log("Actions indexedDB, fetchProvider, data", data);
+              dispatch({
+                type: "RECEIVED_PROVIDER",
+                currentProvider: provider
+              })
+            })
+            .catch(() => {
+              dispatch({
+                type: "FETCH_PROVIDER_ERROR"
+              })
+            })
+
+          // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+        }
       })
   }
 }
