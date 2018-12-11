@@ -21,7 +21,7 @@ class AMap extends React.Component {
   render() {
     const position = [this.props.location.lat, this.props.location.long];
 
-    console.log("postion of the map is ", position);
+    // console.log("postion of the map is ", position);
 
     let zoomLevel = this.props.location.zoom;
 
@@ -91,7 +91,7 @@ class AMap extends React.Component {
       markers = this.props.providers.map((thePlace, i) => {
         let theIcon = icon;
 
-        console.log("the place is ", thePlace);
+        // console.log("the place is ", thePlace);
         if (thePlace.services[0] && thePlace.services[0].service_type_id == 3) {
           theIcon = soupIcon;
         }
