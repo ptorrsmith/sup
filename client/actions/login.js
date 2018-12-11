@@ -1,7 +1,7 @@
 
-import { saveUserToken , authFetch as request} from '../utils/auth'
+import { saveUserToken, authFetch } from '../utils/auth'
 
-function requestLogin () {
+function requestLogin() {
   return {
     type: 'LOGIN_REQUEST',
     isFetching: true,
@@ -9,7 +9,7 @@ function requestLogin () {
   }
 }
 
-export function receiveLogin (user) {
+export function receiveLogin(user) {
   return {
     type: 'LOGIN_SUCCESS',
     isFetching: false,
@@ -18,7 +18,7 @@ export function receiveLogin (user) {
   }
 }
 
-export function loginError (message) {
+export function loginError(message) {
   return {
     type: 'LOGIN_FAILURE',
     isFetching: false,
@@ -27,10 +27,15 @@ export function loginError (message) {
   }
 }
 
-export function loginUser (creds) {
+export function loginUser(creds) {
   return dispatch => {
     dispatch(requestLogin(creds))
-    return request('post', '/api/v1/auth/login', creds)
+    // return request('post', '/api/v1/auth/login', creds)
+    return authFetch('/api/v1/auth/login', {
+      method: "post",
+      body: JSON.stringify(creds)
+
+    })
       .then((response) => {
         const userInfo = saveUserToken(response.body.token)
         dispatch(receiveLogin(userInfo))
