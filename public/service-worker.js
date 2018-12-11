@@ -9,7 +9,7 @@ let filesToCache = [
   '/',
   '/styles.css',
   '/bundle.js',
-  '/stuff.html',
+  '/app.html',
   'https://unpkg.com/leaflet@1.0.1/dist/leaflet.css'
 ];
 
