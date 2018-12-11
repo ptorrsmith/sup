@@ -80,7 +80,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 3,
-          name: "Community Support (Emergency Shelter)",
+          name: "Emergency Shelter",
           qty_default: 80,
           qty_remaining: 50,
           unit: "Beds",
