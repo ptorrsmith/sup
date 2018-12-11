@@ -91,9 +91,12 @@ class AMap extends React.Component {
       markers = this.props.providers.map((thePlace, i) => {
         let theIcon = icon;
 
-        console.log("the place is ", thePlace);
-        if (thePlace.services[0] && thePlace.services[0].service_type_id == 3) {
-          theIcon = soupIcon;
+
+        let theIcon = icon
+
+        // console.log("the place is ",thePlace)
+        if(thePlace.services[0] && thePlace.services[0].service_type_id == 3){
+          theIcon = soupIcon
         }
         if (thePlace.services[0] && thePlace.services[0].service_type_id == 2) {
           theIcon = foodBankIcon;
