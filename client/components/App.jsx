@@ -9,10 +9,8 @@ import AdminProfile from "./AdminComponents/AdminProfile";
 import ManageProvider from "./AdminComponents/ManageProvider";
 import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
-// import Profile from "./TDC/Profile";
-import ManageService from "./AdminComponents/ManageService"
-import Login from './TDC/Login'
-import Profile from "./TDC/ProfileStyle";
+import Profile from "./TDC/Profile";
+import ManageService from "./AdminComponents/ManageService";
 
 import {
   fetchProvidersAndServices,
@@ -56,7 +54,6 @@ class App extends React.Component {
           <Route exact path="/" component={Sidebar} />
           <Route exact path="/" component={Map} />
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/login" component={Login} />
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
