@@ -196,6 +196,8 @@ export const setProviderMessage = (providerId, message) => {
 
 function setLocation(position, dispatch) {
 
+  console.log(position)
+
   let lat = position.coords.latitude;
   let lng = position.coords.longitude;
   dispatch({
@@ -213,7 +215,10 @@ export const getLocation = () => {
     dispatch({ type: 'GETTING_LOCATION' })
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => (setLocation(position, dispatch)));
+      let options = {
+        enableHighAccuracy: true
+      }
+      navigator.geolocation.getCurrentPosition((position) => (setLocation(position, dispatch)), (err) => console.log(err), options);
     } else {
       dispatch({ type: 'FETCH_LOCATION_ERROR' })
     }

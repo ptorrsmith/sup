@@ -169,7 +169,7 @@ class AMap extends React.Component {
 
         let theIcon = icon
 
-        console.log("the place is ",thePlace)
+        // console.log("the place is ",thePlace)
         if(thePlace.services[0] && thePlace.services[0].service_type_id == 3){
           theIcon = soupIcon
         }
