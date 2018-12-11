@@ -20,17 +20,7 @@ router.get('/', (req, res) => {
 
 
 
-/*******************************************************************
- * 
- * 
- * HHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRREEEEEEEEEEEE 
- * is the first token thing
- * 
- * 
- * 
- */
-// router.put('/:id/updatemessage',token.decode, (req, res) => {
-router.put('/:id/updatemessage', (req, res) => {
+router.put('/:id/updatemessage', token.decode, (req, res) => {
 
   const id = req.params.id
   const updateMessage = req.body.updateMessage
@@ -46,7 +36,7 @@ router.put('/:id/updatemessage', (req, res) => {
   // console.log(id, updateMessage)
 })
 
-router.post('/',token.decode, (req, res) => {
+router.post('/', token.decode, (req, res) => {
   //recieve new provider info, 
   //get provider info into a local variable
   const providerInfo = req.body
@@ -61,7 +51,7 @@ router.post('/',token.decode, (req, res) => {
 
 })
 
-router.put('/:id/', (req, res) => {
+router.put('/:id/', token.decode, (req, res) => {
 
   const id = req.params.id
   const updatedProvider = req.body

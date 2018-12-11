@@ -5,6 +5,9 @@ const dataFormater = require('../helpers/dataFormater')
 const router = express.Router()
 
 
+var token = require('../auth/token')
+
+
 router.get('/', (req, res) => {
 
   servicesDB.getServicesForProviders()
@@ -16,7 +19,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.put('/:id/updateavailability', (req, res) => {
+router.put('/:id/updateavailability', token.decode, (req, res) => {
   console.log('req', req.body)
 
   const id = req.params.id
@@ -38,7 +41,7 @@ router.put('/:id/updateavailability', (req, res) => {
 })
 
 
-router.put('/:id/updatestatus', (req, res) => {
+router.put('/:id/updatestatus', token.decode, (req, res) => {
 
   const id = req.params.id
   const currentStatus = req.body.status
@@ -57,7 +60,7 @@ router.put('/:id/updatestatus', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/', token.decode, (req, res) => {
 
   const serviceInfo = req.body
 
@@ -70,7 +73,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id/', (req, res) => {
+router.put('/:id/', token.decode, (req, res) => {
 
   const id = req.params.id
   const updatedService = req.body
