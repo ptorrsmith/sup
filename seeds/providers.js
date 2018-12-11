@@ -1,14 +1,12 @@
-
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('providers').del()
     .then(function () {
       // Inserts seed entries
-      return knex('providers').insert([
-        {
+      return knex('providers').insert([{
           id: 1,
           name: 'The Mens Night Shelter',
-          description: "We provide 3 levels of accommodation support:<br> <br>stage 1: dormitory style accommodation which including shower and laundry facilities ($10 a night)<br>stage 2: hostel room accommodation ($80 a week)<br>stage 3: community support (tempoary emergency shelter)<br><br>Dormitory services include a bed for the night, shower facilities, clothes washed, cup of tea. Occasionally some light food is donated and made available.<br><br>Facilities: Bathroom, Laundry & Food.",
+          description: "We provide 3 levels of accommodation support:<br> <br>Stage 1: dormitory style accommodation which including shower and laundry facilities ($10 a night)<br>Stage 2: hostel room accommodation ($80 a week)<br>Stage 3: community support (temporary emergency shelter)<br><br>Dormitory services include a bed for the night, shower facilities, clothes washed, cup of tea. Occasionally some light food is donated and made available.<br><br>Facilities: Bathroom, Laundry & Food.",
           address: "304 Taranki St, Mt. Cook, Wellington 6011",
           phone: "(04) 385-9546",
           update_message: "fully functional",
@@ -46,7 +44,7 @@ exports.seed = function (knex, Promise) {
         },
         {
           id: 4,
-          name: 'St Vincient De Paul Wellington',
+          name: 'St Vincent De Paul Wellington',
           description: "WHAT SHOULD I BRING WHEN ACCESSING A FOOD PARCEL?<br>A form of photo I.D.<br>Decline letter from Work and Income showing that no food grant is available and a breakdown of the Work and Income benefit received.<br>Income details.<br>A bank statement with your last transactions.<br>If applicable, a copy of your budgeting sheet prepared by a qualified budgeter.<br>If you do not have any of the above documents, come in anyway and chat to our team to discuss other options.",
           address: "Level 1, 207 Riddiford Street, Newtown, Wellington 6021",
           phone: "(04) 389 7122",
@@ -127,4 +125,3 @@ exports.seed = function (knex, Promise) {
       ]);
     });
 };
-
