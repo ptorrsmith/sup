@@ -10,7 +10,8 @@ class LiveUpdate extends React.Component {
         super(props)
         this.state = {
             message: "",
-            status: ""
+            status: "",
+            quantity: 0
         }
         // set initial state
         // no local state?
@@ -39,6 +40,11 @@ class LiveUpdate extends React.Component {
                 this.setState({
                     status: this.props.currentProvider.update_status
                 })
+                if (this.props.currentProvider.qty_remaining != prevProps.currentProvider.qty_remaining) {
+                    this.setState({
+                        status: this.props.currentProvider.qty_remaining
+                    })
+                }
             }
         }
     }
@@ -52,16 +58,19 @@ class LiveUpdate extends React.Component {
         })
     }
 
-    handleSubmit(e,serviceId) {
+
+    handleSubmit(e, serviceId) {
         e.preventDefault()
         this.props.setProviderMessage(this.props.currentProvider.id, this.state.message)
         // console.log("E is for ekkies and that's good enough for me:", e.target)
-        if(serviceId != undefined){
+        if (serviceId != undefined) {
             // console.log("the status is ",this.state.status)
             const dataKey = `P${this.props.currentProvider.id}-S${serviceId}-status`
+            const dataQty = `P${this.props.currentProvider.id}-S${serviceId}-quantity`
             // console.log(`Test status key is:${dataKey}`)
             // console.log("data in state[dataKey] is ", this.state[dataKey])
             this.props.setServiceStatus(this.props.currentProvider.id, serviceId, this.state[dataKey])
+            this.props.setServiceQtyRemaining(this.props.currentProvider.id, serviceId, this.state[dataQty])
         }
     }
 
@@ -107,25 +116,35 @@ class LiveUpdate extends React.Component {
                         return (
                             <div>
 
-                                {/* <div id='service_name'>
+                                <div id='service_name'>
 
-                                    <h3>Service Name: {service.name || "No Name"}</h3>
-                                    <p>Default Quantity: {service.qty_default}</p>
+                                    <h3>Service Name: {service.name} {service.id} </h3>
 
-                                    <form onSubmit={(e)=> {this.handleSubmit(e,service.id)} }>
-                                        <p>Set New Quantity:</p>
-                                        <button>-</button>
-                                        <span> {service.qty_remaining} </span>
-                                        <button>+</button>
+                                </div>
+
+                                <div id="service_qty">
+
+                                    <p> Default Quantity: {service.qty_default}, {service.qty_remaining}</p>
+
+                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+                                        <input type='text' name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} />
+                                        <button>Set New Quantity</button>
                                     </form>
 
-                                </div> */}
+                                    {/* <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+                                        <p>Set New Quantity:</p>
+                                        <button>-</button>
+                                        <span name={`P${provider.id}-S${service.id}-qty_remaining`}> {service.qty_remaining} </span>
+                                        <button>+</button>
+                                    </form> */}
+
+                                </div>
 
                                 <div id='service_status'>
 
                                     <h3>Current Service Status: {service.status}</h3>
 
-                                    <form onSubmit={(e)=> {this.handleSubmit(e, service.id)} }>
+                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
                                         <p>Set New Service Status:</p>
                                         <input type='text' name={`P${provider.id}-S${service.id}-status`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-status`]} />
                                         <button>Set New Status</button>
@@ -141,7 +160,7 @@ class LiveUpdate extends React.Component {
 
                 {/* OUTSIDE DIVS */}
 
-            </div>
+            </div >
 
         )
     }
@@ -165,6 +184,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setServiceStatus: (providerId, serviceId, status) => {
             return dispatch(setServiceStatus(providerId, serviceId, status))
+        },
+        setServiceQtyRemaining: (providerId, serviceId, quantity) => {
+            return dispatch(setServiceQtyRemaining(providerId, serviceId, quantity))
         }
     }
 }
