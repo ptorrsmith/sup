@@ -45,15 +45,16 @@ class ProfileList extends React.Component {
                     <ul>
                         {providersAndServices && providersAndServices.map((provider, i) => {
                             return <li key={i}>
-                                <Link to={`/admin/${provider.id}/`}>{provider.name}</Link>
-                                <br/> {provider.hours} <br/> {provider.address} <br/>
-                                {provider.update_message} <br/>
-                                <Link to={`/admin/${provider.id}/edit`}>Edit this profile</Link> <br />
-                                {provider.services.length} Services: 
+                                {provider.name}
+                                <br /> {provider.hours} <br /> {provider.address} <br />
+                                {provider.update_message} <br />
+                                {/* <Link to={`/admin/${provider.id}/edit`}>Edit this profile</Link> <br /> */}
+                                {provider.services.length} Services:
                                 <ul>
-                                    {provider.services.map( (service, j) => {
+                                    {provider.services.map((service, j) => {
                                         return <li key={j}>
-                                            <Link to={`/admin/service/${service.id}`}>{service.name}</Link>
+                                            {/* <Link to={`/admin/service/${service.id}`}>{service.name}</Link> */}
+                                            {service.name}
                                         </li>
 
                                     })}
@@ -61,13 +62,8 @@ class ProfileList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <Link to="/admin/add">Add a new profile</Link>
+
                 </div>
-
-                {/* When an admin clicks on a specific title, it will
-                take you to AdminProfile, where the admin can edit specific static details.
-
-                Add the ability to delete a provider? */}
 
             </div>
         )
