@@ -60,18 +60,35 @@ class LiveUpdate extends React.Component {
     //     }
     // }
 
-    handleOnChange(e) {
+    handleOnChange(e, serviceId) {
+        // console.log('e handleChange', e.target.id)
         e.preventDefault()
+        // const change = (e.target.id == "add") ? 1 : -1
+        if (e.target.id == "add" || e.target.id == "subtract") {
+            const change = (e.target.id == "add") ? 1 : -1
+            // this.setState({
+            //     [e.target.name]: this.state[e.target.name] + change
+            // })
+            // .then((params) => {
+            //     console.log('from handle on change stateset', params)
+            this.props.setServiceQtyRemaining(this.props.currentProvider.id, serviceId, this.state[e.target.name] + change)
 
-        this.setState({
-            [e.target.name]: e.target.value,
-            //status: e.target.value //this is the hack
-        })
+            // })
+        }
+        else {
+
+            this.setState({
+                [e.target.name]: e.target.value,
+
+                //status: e.target.value //this is the hack
+            })
+        }
     }
 
 
     handleSubmit(e, serviceId) {
         e.preventDefault()
+        // console.log('e handleSubmit', e.target.id)
         this.props.setProviderMessage(this.props.currentProvider.id, this.state.message)
         // console.log("E is for ekkies and that's good enough for me:", e.target)
         if (serviceId != undefined) {
@@ -137,17 +154,18 @@ class LiveUpdate extends React.Component {
 
                                     <p> Default Quantity: {service.qty_default}, {service.qty_remaining}</p>
 
-                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+                                    {/* <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
                                         <input type='number' name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} />
                                         <button>Set New Quantity</button>
-                                    </form>
-
-                                    {/* <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
-                                        <p>Set New Quantity:</p>
-                                        <button>-</button>
-                                        <span name={`P${provider.id}-S${service.id}-qty_remaining`}> {service.qty_remaining} </span>
-                                        <button>+</button>
                                     </form> */}
+
+                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+
+                                        <span name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} > {this.state[`P${provider.id}-S${service.id}-quantity`]} </span>
+                                        <button id="add" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${provider.id}-S${service.id}-quantity`}> + </button>
+                                        <button id="subtract" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${provider.id}-S${service.id}-quantity`}> - </button>
+
+                                    </form>
 
                                 </div>
 
