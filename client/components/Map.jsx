@@ -115,7 +115,7 @@ class AMap extends React.Component {
         }
 
         let serviceStates = thePlace.services.map(s => {
-          let hasQty = [1, 2, 3];
+          let hasQty = [1, 2];
           if (hasQty.find(typeId => typeId == s.service_type_id)) {
             return (
               <span>
