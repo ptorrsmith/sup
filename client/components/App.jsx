@@ -12,6 +12,9 @@ import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
 
+import Login from './TestLogin'
+import Register from './TestRegister'
+
 import {
   fetchProvidersAndServices,
   timerStart,
@@ -67,6 +70,9 @@ class App extends React.Component {
           <Route exact path="/admin/:id/edit" component={EditProfile} />
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+
         </div>
       </Router>
     );
