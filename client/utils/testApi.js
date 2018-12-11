@@ -85,6 +85,8 @@ export function setProviderMessageAPI(id, message) {
 
 export function setServiceStatusAPI(id, status) {
   //  console.log('Is the providermessageAPI going through?')
+
+  console.log("the status being sent to service "+id+" is ",status)
   return fetch(`/api/v1/services/${id}/updatestatus`, {
     headers: {
       'Accept': 'application/json',
@@ -93,7 +95,7 @@ export function setServiceStatusAPI(id, status) {
     method: 'put',
     body: JSON.stringify({ 
       id: id, 
-      updateStatus: status })
+      status: status })
   })
     .then(res => res.body.result)
 }
