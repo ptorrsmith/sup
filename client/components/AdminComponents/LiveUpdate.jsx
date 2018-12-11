@@ -127,7 +127,7 @@ class LiveUpdate extends React.Component {
                                     <p> Default Quantity: {service.qty_default}, {service.qty_remaining}</p>
 
                                     <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
-                                        <input type='text' name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} />
+                                        <input type='number' name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} />
                                         <button>Set New Quantity</button>
                                     </form>
 
