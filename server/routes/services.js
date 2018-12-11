@@ -56,19 +56,19 @@ router.post('/', (req, res) => {
   servicesDB.createService(serviceInfo)
     .then(newService => {
 
-      res.json({ newService: newService })
+      res.json({ newService: newService[0] })
     })
 })
 
-router.put('/:id/updateservice', (req, res) => {
+router.put('/:id/', (req, res) => {
 
   const id = req.params.id
   const updatedService = req.body
 
   servicesDB.updateService(id, updatedService)
-    .then(updatedService => {
+    .then(response => {
 
-      res.json({ updatedService: updatedService })
+      res.json({ updateResponse: response })
     })
 })
 

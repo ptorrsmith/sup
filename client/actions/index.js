@@ -2,7 +2,7 @@
 // import { getData } from '../utils/tempData'
 import { getProvidersAndServices, getProvider, setProviderMessageAPI, setServiceStatusAPI, saveProvider as saveProviderApi, saveService as saveServiceApi } from '../utils/testApi'
 
-import { push } from 'react-router-redux'
+// import { push } from 'react-router-redux'
 
 export const fetchProvidersAndServices = () => {
   // console.log("Actions index fetchProvidersAndServices");
@@ -47,7 +47,7 @@ export const fetchProvider = id => {
         dispatch({
           type: "RECEIVED_PROVIDER",
           currentProvider: data
-        });
+        })
       })
       .catch(() => {
         dispatch({
@@ -67,11 +67,32 @@ export const saveProvider = (providerInfo) => {
         // if result.updateRespons then we stay on the same page
         // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
         if (result.newProvider) {
-          // new provider, so get new provider and put into state
           console.log("action index saveProvider newProvider ", result.newProvider)
-          dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+          // new provider, so get new provider and put into state
+          // getProvider(result.newProvider)
+          //   .then (providerAndServices => {
+
+          //   })
+
+          dispatch({ type: "GETTING_PROVIDER" });
+          getProvider(result.newProvider)
+            .then(provider => {
+              // console.log("Actions indexedDB, fetchProvider, data", data);
+              dispatch({
+                type: "RECEIVED_PROVIDER",
+                currentProvider: provider
+              })
+            })
+            .catch(() => {
+              dispatch({
+                type: "FETCH_PROVIDER_ERROR"
+              })
+            })
+
+          // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
         }
       })
+    // .then(promise => promise)
   }
 }
 
@@ -80,7 +101,32 @@ export const saveService = (serviceInfo) => {
     dispatch({ type: 'SAVING_SERVICE' })
     saveServiceApi(serviceInfo)
       .then(result => {
-        // console.log("actions, index saveService result = ", result)
+        console.log("actions, index saveService result = ", result)
+        if (result.newService) {
+          console.log("action index saveProvider newProvider ", result.newProvider)
+          // new provider, so get new provider and put into state
+          // getProvider(result.newProvider)
+          //   .then (providerAndServices => {
+
+          //   })
+
+          dispatch({ type: "GETTING_PROVIDER" });
+          getProvider(result.newProvider)
+            .then(provider => {
+              // console.log("Actions indexedDB, fetchProvider, data", data);
+              dispatch({
+                type: "RECEIVED_PROVIDER",
+                currentProvider: provider
+              })
+            })
+            .catch(() => {
+              dispatch({
+                type: "FETCH_PROVIDER_ERROR"
+              })
+            })
+
+          // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
+        }
       })
   }
 }

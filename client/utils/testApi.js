@@ -47,16 +47,28 @@ export function saveProvider(providerInfo) {
 
 export function saveService(serviceInfo) {
   // console.log("testApi saveService service info = ", serviceInfo)
-  return fetch('/api/v1/services/', {
-    method: 'post',
-    body: JSON.stringify(serviceInfo),
-    headers: { "Content-Type": 'application/json' }
+  if (serviceInfo.id) {
 
-  })
-    .then(response => {
-      // console.log("testApi saveService response = ", response)
-      return response.json()
+    return fetch(`/api/v1/services/${serviceInfo.id}`, {
+      method: 'put',
+      body: JSON.stringify(serviceInfo),
+      headers: { "Content-Type": 'application/json' }
     })
+      .then(response => {
+        // console.log("testApi saveService response = ", response)
+        return response.json()
+      })
+  } else {
+    return fetch('/api/v1/services/', {
+      method: 'post',
+      body: JSON.stringify(serviceInfo),
+      headers: { "Content-Type": 'application/json' }
+    })
+      .then(response => {
+        // console.log("testApi saveService response = ", response)
+        return response.json()
+      })
+  }
 }
 // // console.log("TestApi getdata")
 
