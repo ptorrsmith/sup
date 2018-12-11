@@ -115,11 +115,12 @@ class AMap extends React.Component {
         }
 
         let serviceStates = thePlace.services.map(s => {
-          let hasQty = [1, 2, 3];
+          let hasQty = [1, 2];
           if (hasQty.find(typeId => typeId == s.service_type_id)) {
             return (
               <span>
-                {s.service_type_name} : {s.status} - Remaining :{" "}
+                {/* {s.service_type_name} : {s.status} - Remaining :{" "} */}
+                <b>{s.name}</b>: {s.status} - Remaining :{" "}
                 {s.qty_remaining}/{s.qty_default}
                 <br />
               </span>
@@ -127,7 +128,8 @@ class AMap extends React.Component {
           } else {
             return (
               <span>
-                {s.service_type_name} : {s.status}
+                {/* {s.service_type_name} : {s.status} */}
+                <b>{s.name}</b> : {s.status}
                 <br />
               </span>
             );
@@ -167,6 +169,27 @@ class AMap extends React.Component {
         </div>
       );
     }
+
+    // var legend = L.control({ position: 'bottomleft' });
+    // legend.onAdd = function (Map) {
+
+    //   var div = L.DomUtil.create('div', 'info legend');
+    //   labels = ['<strong>Providers</strong>'],
+    //     categories = ['Shellter', 'Soup Kitchen', 'Food bank', 'Drop in Center', 'Support Services', 'Other services'];
+
+    //   for (var i = 0; i < categories.length; i++) {
+
+    //     div.innerHTML +=
+    //       labels.push(
+    //         '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+    //         (categories[i] ? categories[i] : '+'));
+
+    //   }
+    //   div.innerHTML = labels.join('<br>');
+    //   return div;
+    // };
+
+    // legend.addTo(Map);
 
     return (
       <div>
