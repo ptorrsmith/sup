@@ -120,7 +120,7 @@ class AMap extends React.Component {
             return (
               <span>
                 {/* {s.service_type_name} : {s.status} - Remaining :{" "} */}
-                {s.name} : {s.status} - Remaining :{" "}
+                <b>{s.name}</b>: {s.status} - Remaining :{" "}
                 {s.qty_remaining}/{s.qty_default}
                 <br />
               </span>
@@ -129,7 +129,7 @@ class AMap extends React.Component {
             return (
               <span>
                 {/* {s.service_type_name} : {s.status} */}
-                {s.name} : {s.status}
+                <b>{s.name}</b> : {s.status}
                 <br />
               </span>
             );
