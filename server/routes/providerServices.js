@@ -4,6 +4,9 @@ const providersDB = require('../data/providersDB')
 const servicesDB = require('../data/servicesDB')
 const router = express.Router()
 
+
+var token = require('../auth/token')
+
 // Expect a geoBox type search object to define search area
 // Optional list of providers to NOT return (as already have them)
 // No params or other search object can return all / some providers and services, for system admin use.

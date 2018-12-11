@@ -5,20 +5,31 @@ const providersDB = require('../data/providersDB')
 
 const router = express.Router()
 
+var token = require('../auth/token')
+
+
 
 router.get('/', (req, res) => {
 
   providersDB.getProviders()
     .then(data => {
 
-
-
       res.json({ data: data })
     })
 })
 
 
-router.put('/:id/updatemessage', (req, res) => {
+
+/*******************************************************************
+ * 
+ * 
+ * HHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRREEEEEEEEEEEE 
+ * is the first token thing
+ * 
+ * 
+ * 
+ */
+router.put('/:id/updatemessage',token.decode, (req, res) => {
 
   const id = req.params.id
   const updateMessage = req.body.updateMessage
@@ -34,7 +45,7 @@ router.put('/:id/updatemessage', (req, res) => {
   // console.log(id, updateMessage)
 })
 
-router.post('/', (req, res) => {
+router.post('/',token.decode, (req, res) => {
   //recieve new provider info, 
   //get provider info into a local variable
   const providerInfo = req.body
