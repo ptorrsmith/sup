@@ -61,7 +61,7 @@ class ManageService extends React.Component {
       <div>
         <form onSubmit={this.onSubmit}>
           <fieldset>
-            <legend>New/Update Service Details</legend>
+            <legend>New/Update Service Details:</legend>
             <p>Service ID: {this.state.service.id}</p>
             <p>
               <label htmlFor="name">Name:</label>
@@ -85,7 +85,7 @@ class ManageService extends React.Component {
               <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.state.service.provider_id} /></p>
             <p>
               <label htmlFor="service_type_id">Service Type ID:</label>
-              <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.service.update_message} /></p>
+              <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.service.service_type_id} /></p>
 
 
             <button type="submit">Submit</button>

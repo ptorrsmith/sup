@@ -110,7 +110,7 @@ export const saveService = (serviceInfo) => {
           //   })
 
           dispatch({ type: "GETTING_PROVIDER" });
-          getProvider(result.newProvider)
+          getProvider(serviceInfo.provider_id)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
               dispatch({
