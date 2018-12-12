@@ -10,10 +10,8 @@ import ManageService from './ManageService'
 class ManageProvider extends React.Component {
     constructor(props) {
         super(props);
-        // console.log("MP CONST props>>>>> ", props)
         this.state = {
             provider: {
-                id: "",
                 name: "",
                 description: "",
                 lat: "",
@@ -48,7 +46,7 @@ class ManageProvider extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         // console.log("save provider: ", this.state)
-        // console.log("Saving this.state -----------------> ", this.state.provider)
+        // console.log("Saving this.state -----------------> ", this.state)
         this.props.saveProvider(this.state.provider)
         // .then(
         // console.log("NOT THENed, no promise! Saved this.state -----------------> REDIRECT? ID = ", this.props.currentProvider.id)
@@ -56,33 +54,12 @@ class ManageProvider extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        // console.log("MP CDM this.props::::::", this.props)
-        // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         const id = this.props.match.params.id
         // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
         if (id != "new") {
-            // this.setState({ providerId: id })
+            this.setState({ providerId: id })
             this.props.fetchProvider(id)
         }
-
-        // console.log("MP CDU props >>>>>>>>>>>>>>>> ", this.props)
-        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
-            this.setState({
-                showNewServiceForm: true
-            })
-        } else {
-            this.setState({
-                showNewServiceForm: false
-            })
-        }
-
-        // const id = this.props.match.params.id
-        // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
-        // if (id != "new") {
-        //   this.setState({ providerId: id })
-        // this.props.fetchProvider(id)
-        // }
         // if (this.props.currentProvider) {
         //     console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
         //     this.setState({ ...this.props.currentProvider })
@@ -95,10 +72,17 @@ class ManageProvider extends React.Component {
 
         // console.log(this.props)
 
-        // if (this.props.history) {
-        //     // console.log('tracking history')
-        //     this.props.history.listen(this.routeChanged)
-        // }
+        if (this.props.history) {
+            // console.log('tracking history')
+            this.props.history.listen(this.routeChanged)
+        }
+
+        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
+            this.setState({
+                showNewServiceForm: true
+            })
+        }
+
     }
 
     routeChanged(params) {
@@ -113,29 +97,17 @@ class ManageProvider extends React.Component {
 
     // if (this.props.currentProvider.id) {
     componentDidUpdate(prevProps) {
-        // console.log("MP CDU props< ", this.props)
-        // const id = this.props.match.params.id
-        // // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
-        // if (id != "new") {
-        //     // this.setState({ providerId: id })
-        //     this.props.fetchProvider(id)
-        // }
-
         // console.log("Current Provider CDU _______ ", this.props.currentProvider, this.state)
 
         if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider) {
-            // console.log("MP cDU  ")
+            // console.log("Current Provider CDU XXXXXXX ", this.props.currentProvider, this.state)
             // console.log("Have current Provider: ", this.props.currentProvider)
             this.setState({
                 provider: { ...this.props.currentProvider }
             })
-
-
-
-
             this.props.history.push(`/admin/providers/${this.props.currentProvider.id}`)
         } else {
-            // console.log("MP cDU else no change >>>>>> ")
+            // console.log("No Current Provider CDU >>>>>> ", this.props.currentProvider, this.state)
         }
 
         // }
@@ -152,7 +124,7 @@ class ManageProvider extends React.Component {
             <div>
                 <form onSubmit={this.onSubmit}>
                     <fieldset>
-                        <legend>Provider Details</legend>
+                        <legend>New/update Provider Details</legend>
                         <p>
                             <label htmlFor="name">Name:</label>
                             <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.provider.name || ""} /></p>

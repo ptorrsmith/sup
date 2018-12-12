@@ -115,7 +115,6 @@ export const saveProvider = (providerInfo) => {
 }
 
 export const saveService = (serviceInfo) => {
-  // console.log("Actions Thunk saveService serviceInfo: ", serviceInfo)
   return dispatch => {
     dispatch({
       type: 'SAVING_SERVICE'
@@ -124,7 +123,7 @@ export const saveService = (serviceInfo) => {
       .then(result => {
         // console.log("actions, index saveService result = ", result)
         if (result.newService) {
-          // console.log("action index saveService result.newService (id?) ", result.newService)
+          // console.log("action index saveProvider newProvider ", result.newProvider)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -133,9 +132,8 @@ export const saveService = (serviceInfo) => {
 
           dispatch({
             type: "GETTING_PROVIDER"
-          })
-          // console.log("Actions index saveService, calling provider with serviceInfo.provider_id, ", serviceInfo.providerId)
-          getProvider(serviceInfo.provider_id)
+          });
+          getProvider(result.newProvider)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
               dispatch({
@@ -150,8 +148,6 @@ export const saveService = (serviceInfo) => {
             })
 
           // dispatch(push(`/admin/providers/${result.newProvider}`)); // this doesn't work :-(
-        } else {
-          // console.log("action index saveService else update result? ", result)
         }
       })
   }

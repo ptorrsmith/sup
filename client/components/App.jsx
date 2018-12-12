@@ -25,17 +25,11 @@ function getProviders(dispatch) {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("App Const props< ", props)
-    // console.log("App Const this.props< ", this.props)
-
 
     // this.getProviders = this.getProviders.bind(this)
   }
 
   componentDidMount() {
-    // console.log("APP CDM props>>>>>>>> ", props)
-    // console.log("APP CDM this.props>>>>>>>> ", this.props)
-
     this.props.fetchProvidersAndServices();
 
     //if not given a function to do it just console logs that it has ticked
@@ -96,4 +90,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
