@@ -22,7 +22,8 @@ class ManageProvider extends React.Component {
                 address: "",
                 email: "",
                 website_url: "",
-                update_message: ""
+                update_message: "",
+                image_url: "",
 
             },
             showNewServiceForm: false,
@@ -125,7 +126,7 @@ class ManageProvider extends React.Component {
 
         if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider) {
             // console.log("MP cDU  ")
-            // console.log("Have current Provider: ", this.props.currentProvider)
+            console.log("Have current Provider: ", this.props.currentProvider)
             this.setState({
                 provider: { ...this.props.currentProvider }
             })
