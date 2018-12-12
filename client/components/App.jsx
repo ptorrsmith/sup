@@ -68,9 +68,9 @@ class App extends React.Component {
           {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
-          <Route exact path="/newprofile/:id" component={NewProfile} />
+          <Route exact path="/newprofile/:id" component={Profile} />
           <Route exact path="/oldprofile/:id" component={OldProfile} />
-          <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/profile/:id" component={NewProfile} />
           <Route exact path="/login" component={LogIn} />
         </div>
       </Router>

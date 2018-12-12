@@ -18,6 +18,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+
+import indigo from '@material-ui/core/colors/indigo'
 // import Markdown from './Markdown';
 
 
@@ -26,46 +28,6 @@ import AppBar from '../AppBar'
 // import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
 import { setCurrentProvider, fetchProvider } from "../../actions";
-
-const sup_styles = theme => ({
-  // appBar: {
-  //     position: 'relative',
-  // },
-  outerGrid: {
-    marginTop: '80px',
-  },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 20,
-    marginBottom: theme.spacing.unit * 20,
-    padding: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-      padding: theme.spacing.unit * 20,
-    },
-  },
-  stepper: {
-    padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing.unit * 3,
-    marginLeft: theme.spacing.unit,
-  },
-});
 
 const styles = theme => ({
   layout: {
@@ -87,47 +49,58 @@ const styles = theme => ({
   toolbarSecondary: {
     justifyContent: 'space-between',
   },
-  mainFeaturedPost: {
+  headerCard: {
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing.unit * 3,
   },
-  mainFeaturedPostContent: {
+  headerCardContent: {
     padding: `${theme.spacing.unit * 2}px`,
-    paddingTop: `${theme.spacing.unit * 40}px`,
+    paddingTop: `${theme.spacing.unit * 10}px`,
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
     },
   },
   mainGrid: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 1,
   },
   card: {
     display: 'flex',
+    marginBottom: 1
   },
   cardDetails: {
     flex: 1,
   },
   cardMedia: {
-    height: 160,
+    // height: 160,
+    width: '100%'
   },
   media: {
-    height: 140,
+    // height: 140,
+    height: 480
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,
   },
   sidebarAboutBox: {
     padding: theme.spacing.unit * 2,
-    backgroundColor: theme.palette.grey[200],
-    marginBottom: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.grey[300],
+    marginBottom: theme.spacing.unit * 2,
   },
   sidebarSection: {
     marginTop: theme.spacing.unit * 3,
   },
+  updateMessageBox: {
+    padding: theme.spacing.unit * 2,
+    backgroundColor: theme.palette.grey[300],
+    marginBottom: theme.spacing.unit * 2,
+  },
+  updateMessageSection: {
+    marginTop: theme.spacing.unit * 3,
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 4,
     padding: `${theme.spacing.unit * 6}px 0`,
   },
 });
@@ -331,7 +304,7 @@ class NewProfile extends React.Component {
           </Toolbar> */}
           <main>
             {/* Main featured post */}
-            <Paper className={classes.mainFeaturedPost}>
+            {/* <Paper className={classes.mainFeaturedPost}>
               <Grid container>
                 <Grid item md={6}>
                   <div className={classes.mainFeaturedPostContent}>
@@ -347,8 +320,32 @@ class NewProfile extends React.Component {
                   </div>
                 </Grid>
               </Grid>
-            </Paper>
+            </Paper> */}
             {/* End main featured post */}
+
+
+            <Card className={classes.headerCard}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={aProvider.image_url}
+                  title={'front image for ' + aProvider.name} />
+                <CardContent>
+                  <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                    {aProvider.name}
+                  </Typography>
+                  <Typography variant="h5" color="inherit" paragraph>
+                    {aProvider.address}
+                  </Typography>
+                  <Typography variant="h5" color="inherit" paragraph>
+                    {aProvider.phone}
+                  </Typography>
+
+                </CardContent>
+              </CardActionArea>
+            </Card>
+
+
             <Grid container spacing={50}>
               <Grid item xs={12} md={4}>
                 <Paper elevation={2} className={classes.sidebarAboutBox}>
@@ -359,42 +356,21 @@ class NewProfile extends React.Component {
                     {aProvider.hours}
                   </Typography>
                 </Paper>
-                {/* <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                  Archives
-                </Typography>
-                {archives.map(archive => (
-                  <Typography key={archive}>{archive}</Typography>
-                ))}
-                <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                  Social
-                </Typography>
-                {social.map(network => (
-                  <Typography key={network}>{network}</Typography>
-                ))} */}
+              </Grid>
+            </Grid>
+            <Grid container spacing={50}>
+              <Grid item xs={12} md={4}>
+                <Paper elevation={2} className={classes.updateMessageBox}>
+                  <Typography variant="h6" gutterBottom>
+                    Message
+                    </Typography>
+                  <Typography>
+                    {aProvider.update_message}
+                  </Typography>
+                </Paper>
               </Grid>
             </Grid>
 
-            <Divider />
-
-            <Card className={classes.card}>
-              <CardActionArea />
-              <CardMedia
-                className={classes.media}
-                image={aProvider.image_url}
-                title={'front image for ' + aProvider.name} />
-              <CardContent>
-                <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                  {aProvider.name}
-                </Typography>
-                <Typography variant="h5" color="inherit" paragraph>
-                  {aProvider.address}
-                </Typography>
-                <Typography variant="h5" color="inherit" paragraph>
-                  {aProvider.phone}
-                </Typography>
-
-              </CardContent>
-            </Card>
 
 
             {/* Sub featured posts */}
@@ -402,21 +378,19 @@ class NewProfile extends React.Component {
               {aProvider.services && aProvider.services.map(service => (
                 <Grid item key={service.id} xs={12} md={6}>
                   <Card className={classes.card}>
-                    <div className={classes.cardDetails}>
-                      <CardContent>
-                        <Typography component="h2" variant="h5">
-                          {service.name}
+                    <CardContent>
+                      <Typography component="h2" variant="h5">
+                        {service.name}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary">
+                        {service.status}
+                      </Typography>
+                      {service.unit && service.unit != '' &&
+                        <Typography variant="subtitle1" paragraph>
+                          {service.qty_remaining} {service.unit} remaining:
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          {service.status}
-                        </Typography>
-                        {service.unit && service.unit != '' &&
-                          <Typography variant="subtitle1" paragraph>
-                            {service.qty_remaining} {service.unit} remaining:
-                        </Typography>
-                        }
-                      </CardContent>
-                    </div>
+                      }
+                    </CardContent>
                     {/* <Hidden xsDown>
                       <CardMedia
                         className={classes.cardMedia}
@@ -434,10 +408,16 @@ class NewProfile extends React.Component {
         {/* Footer */}
         <footer className={classes.footer}>
           <Typography variant="h6" align="center" gutterBottom>
-            Footer
+            'sup - Hihi 2018
           </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
+            Proudly brought to you by Bobbi, James, Ruby, Brandon and Pete
+          </Typography>
+          <Typography variant="subtitle4" align="center" color="textSecondary" component="p">
+            and Cathy, Sungmii, Joan, Taz, Kelly, Ollie
+          </Typography>
+          <Typography variant="subtitle6" align="center" color="textSecondary" component="p">
+            and Ross, Cliff, Robbie, Kelly, Engie, Ming, Rohan, Josh, Annie, and lots more
           </Typography>
         </footer>
         {/* End footer */}
