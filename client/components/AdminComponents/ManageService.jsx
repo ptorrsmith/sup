@@ -73,7 +73,7 @@ class ManageService extends React.Component {
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <legend>Service Details:</legend>
-            <p>Service ID: {this.state.service.id} for provider {this.state.provider_id}</p>
+            <p>Service ID: {this.state.service.id} for provider {this.state.service.provider_id}</p>
             <p>
               <input type="hidden" name="provider_id" value={this.state.service.provider_id} /></p>
             <p>
@@ -111,7 +111,7 @@ class ManageService extends React.Component {
 
               <input type="radio" name="service_type_id" id="6" onChange={this.onChange} value="Medical" checked={(this.state.service.service_type_id == 6) ? "checked" : ""} />
               <label htmlFor="2">Medical </label>
-              
+
               <input type="radio" name="service_type_id" id="7" onChange={this.onChange} value="Other" checked={(this.state.service.service_type_id == 7) ? "checked" : ""} />
               <label htmlFor="2">Other </label>
             </p>
