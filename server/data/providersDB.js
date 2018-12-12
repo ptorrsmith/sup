@@ -44,7 +44,8 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.phone',
             'p.email',
             'p.website_url',
-            'p.updated_at'
+            'p.updated_at',
+            'p.image_url'
         )
         .where('p.lat', '<', lat1).andWhere('p.lat', '>', lat2).andWhere('p.long', '>', long1)
         .andWhere('p.long', '<', long2)

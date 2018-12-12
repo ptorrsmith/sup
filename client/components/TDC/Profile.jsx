@@ -32,6 +32,7 @@ class Profile extends React.Component {
 
   render() {
     let aProvider = this.props.provider;
+    console.log("Profile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
@@ -69,7 +70,7 @@ class Profile extends React.Component {
           <div className="profileContainer">
             {/* <div classname="profile_header profileImage"> */}
             <div className="profileHeader">
-              <img src="/images/img-1.jpeg" className="profileImage" />
+              <img src={aProvider.image_url} className="profileImage" />
             </div>
             <fieldset className="profileInfo">
               <h3>{aProvider.name ? aProvider.name : ""}</h3>
