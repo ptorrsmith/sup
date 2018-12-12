@@ -31,6 +31,7 @@ import { setCurrentProvider, fetchProvider } from "../../actions";
 
 const styles = theme => ({
   layout: {
+    marginTop: '80px',
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
@@ -39,9 +40,15 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+
   },
   toolbarMain: {
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
+  },
+  description: {
+    fontSize: '1.2em',
+    margin: 1,
+    padding: 1
   },
   toolbarTitle: {
     flex: 1,
@@ -73,12 +80,13 @@ const styles = theme => ({
   },
   cardMedia: {
     // height: 160,
-    width: '100%'
+    width: '100%',
   },
   media: {
     // height: 140,
     height: theme.spacing.unit * 60,
-    backgroundSize: 'contain'
+    backgroundSize: 'contain',
+    marginTop: 10
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,
@@ -341,6 +349,15 @@ class NewProfile extends React.Component {
                   <Typography variant="h5" color="inherit" paragraph>
                     {aProvider.phone}
                   </Typography>
+                  {aProvider.description && aProvider.description.split("<br>").map((sentence, i) => {
+                    return (
+                      <Typography key={`line-${i}`} style={{ display: "inline-block" }} className={classes.description} color="inherit" paragraph>{sentence}
+                      </Typography>
+                    )
+                  })}
+
+
+
 
                 </CardContent>
               </CardActionArea>
