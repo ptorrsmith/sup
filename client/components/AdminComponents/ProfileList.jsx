@@ -34,6 +34,18 @@ class ProfileList extends React.Component {
 
     }
 
+    componentDidUpdate() {
+        // console.log("updated")
+        // const id = this.props.match.params.id;
+        // // get the provider from global redux state'
+        // const currentProvider =
+        //     this.props.providers.length > 0 &&
+        //     this.props.providers.find(provider => provider.id == id);
+        // currentProvider && this.props.setCurrentProvider(currentProvider);
+    }
+
+
+
     render() {
         const providersAndServices = this.props.providers.providers
         // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
@@ -48,9 +60,8 @@ class ProfileList extends React.Component {
                                 {provider.name}
                                 <br /> {provider.hours} <br /> {provider.address} <br />
                                 {provider.update_message} <br />
-                                <Link to={`/admin/providers/${provider.id}`}>Edit</Link>
+                                <Link to={`/profile/${provider.id}`}>Profile</Link> | <Link to={`/admin/providers/${provider.id}`}>Edit</Link> | <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
                                 <br />
-                                <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
                                 {provider.services.length} Services:
                                 <ul>
                                     {provider.services.map((service, j) => {
