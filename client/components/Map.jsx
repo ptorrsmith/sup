@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 
 import { setCurrentProvider } from "../actions";
 
+
 class AMap extends React.Component {
   constructor(props) {
     super(props);
@@ -136,6 +137,7 @@ class AMap extends React.Component {
           }
         });
 
+
         return (
           <div key={`mapMarker${i}`}>
             <Marker position={[thePlace.lat, thePlace.long]} icon={theIcon}>
@@ -191,8 +193,29 @@ class AMap extends React.Component {
 
     // legend.addTo(Map);
 
+
+
+    let legendInfo = [
+      { text: "Advice", image: "images/advice.svg" },
+      { text: "Bed", image: "images/bed.svg" },
+      { text: "Drop In", image: "images/dropin.svg" },
+      { text: "Food Bank", image: "images/foodbank.svg" },
+      { text: "Current Location", image: "images/location.svg" },
+      { text: "Medical", image: "images/medical.svg" },
+      { text: "Soup", image: "images/soup.svg" }
+    ]
+    let legendEntries = legendInfo.map((item) => {
+      return (
+        <div>
+          <object type="image/svg+xml" style={{ width: "50px", height: "50px" }} data={item.image} class="logo">
+          </object>
+          <span>{item.text}</span>
+        </div>
+      )
+    })
+
     return (
-      <div>
+      <div style={{ position: "relative" }}>
         {/* <Button color="secondary" onClick={this.getLocation}>Get location</Button> */}
         <Map
           center={position}
@@ -206,6 +229,10 @@ class AMap extends React.Component {
 
           {markers}
         </Map>
+
+        <div style={{ borderRadius: "10px", zIndex: 500, position: "absolute", bottom: "10px", right: "10px", backgroundColor: "white" }}>
+          {legendEntries}
+        </div>
       </div>
     );
   }
