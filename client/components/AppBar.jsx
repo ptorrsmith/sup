@@ -18,18 +18,20 @@ const styles = {
   },
   grow: {
     flexGrow: 1,
+    color: 'white',
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
+
 };
 
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="absolute">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={props.toggleDrawer}>
             <MenuIcon />
@@ -38,7 +40,7 @@ function ButtonAppBar(props) {
             Getting Started
           </Typography>
           <IconButton onClick={() => { console.log("hello"); props.getLocation() }}>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
+            <Typography variant="h6" color="white" className={classes.grow}>
               Get Location
             </Typography>
           </IconButton>

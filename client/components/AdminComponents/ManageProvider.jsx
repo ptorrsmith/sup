@@ -3,7 +3,7 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { saveProvider, fetchProvider } from '../../actions'
+import { saveProvider, fetchProvider, getLocation } from '../../actions'
 
 import ManageService from './ManageService'
 
@@ -22,16 +22,17 @@ class ManageProvider extends React.Component {
                 email: "",
                 website_url: "",
                 update_message: "",
-                image_url: "",
-
+                image_url: ""
             },
             showNewServiceForm: false,
-            otherStateThings: ""
+            otherStateThings: "",
+
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.routeChanged = this.routeChanged.bind(this);
         this.showAddServiceForm = this.showAddServiceForm.bind(this);
+        this.getLatLong = this.getLatLong.bind(this)
 
 
     }
@@ -44,6 +45,22 @@ class ManageProvider extends React.Component {
             }
         }
         )
+    }
+
+    getLatLong() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                // console.log(position)
+                this.setState({
+                    provider: {
+                        ...this.state.provider,
+                        lat: position.coords.latitude,
+                        long: position.coords.longitude
+                    }
+
+                })
+            })
+        }
     }
     onSubmit(e) {
         e.preventDefault();
@@ -161,12 +178,13 @@ class ManageProvider extends React.Component {
                             <label htmlFor="update_message">Update Message:</label>
                             <input type="text" name="update_message" id="text" onChange={this.onChange} value={this.state.provider.update_message || ""} /></p>
 
+                        <button onClick={this.getLatLong}>Get my location</button>
                         <p>
                             <label htmlFor="lat">Latitude:</label>
-                            <input type="text" name="lat" id="text" onChange={this.onChange} value={this.state.provider.lat || ""} /></p>
+                            <input type="text" id="lat" name="lat" id="text" onChange={this.onChange} value={this.state.provider.lat || ""} /></p>
                         <p>
                             <label htmlFor="long">Longitude:</label>
-                            <input type="text" name="long" id="text" onChange={this.onChange} value={this.state.provider.long || ""} /></p>
+                            <input type="text" id="long" name="long" id="text" onChange={this.onChange} value={this.state.provider.long || ""} /></p>
 
 
                         <button type="submit">Submit</button>
