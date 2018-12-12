@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 
+import { loginUser, loginError } from "../../actions/login";
 
 const styles = theme => ({
     main: {
@@ -50,49 +51,81 @@ const styles = theme => ({
     },
 });
 
-function Login(props) {
-    const { classes } = props;
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user_name: "",
+            password: ""
+        };
+        this.updateDetails = this.updateDetails.bind(this);
+        this.submit = this.submit.bind(this);
+    }
+    componentDidMount() {
+        this.props.dispatch(loginError(""));
+    }
+    updateDetails(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+    submit(e) {
+        e.preventDefault();
+        let { user_name, password } = this.state;
+        this.props.dispatch(loginUser({ user_name, password }));
+    }
+    render() {
 
-    return (
-        <main className={classes.main}>
-            <CssBaseline />
-            <Paper className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Log in
+        // function Login(props) {
+        const { classes } = this.props;
+
+        return (
+            <main className={classes.main}>
+                <CssBaseline />
+                <Paper className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Log in
             </Typography>
-                <form className={classes.form}>
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="Username">Username</InputLabel>
-                        <Input id="username" name="username" autoComplete="Username" autoFocus />
-                    </FormControl>
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input name="password" type="password" id="password" autoComplete="current-password" />
-                    </FormControl>
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Log In
+                    <form onSubmit={this.submit} className={classes.form}>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="Username">Username</InputLabel>
+                            <Input id="username" name="user_name" onChange={this.updateDetails} autoComplete="Username" autoFocus />
+                        </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <Input name="password" onChange={this.updateDetails} type="password" id="password" autoComplete="current-password" />
+                        </FormControl>
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Log In
+
               </Button>
-                </form>
-            </Paper>
-        </main>
-    );
+                    </form>
+                </Paper>
+            </main>
+        );
+    }
 }
 
 Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+const mapStateToProps = ({ auth }) => {
+    return {
+        auth
+    };
+};
+
+
+export default withStyles(styles)(connect(mapStateToProps)(Login));
