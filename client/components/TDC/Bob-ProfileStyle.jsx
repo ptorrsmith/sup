@@ -7,7 +7,6 @@ import { setCurrentProvider, fetchProvider } from "../../actions";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -25,22 +24,6 @@ const styles = theme => ({
         display: 'flex',
     },
 
-
-    // appBar: {
-    //     // zIndex: theme.zIndex.drawer + 1,
-    //     transition: theme.transitions.create(['width', 'margin'], {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.leavingScreen,
-    //     }),
-    // },
-    // appBarShift: {
-    //     marginLeft: drawerWidth,
-    //     width: `calc(100% - ${drawerWidth}px)`,
-    //     transition: theme.transitions.create(['width', 'margin'], {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.enteringScreen,
-    //     }),
-    // },
     mainGrid: {
         marginTop: theme.spacing.unit * 3,
     },
@@ -49,56 +32,6 @@ const styles = theme => ({
         marginTop: '80px',
     }
 });
-
-// class Profile extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     componentDidMount() {
-//         const id = this.props.match.params.id;
-//     }
-
-//     componentDidUpdate() {
-//         const id = this.props.match.params.id;
-//         // get the provider from global redux state'
-//         const currentProvider =
-//             this.props.providers.length > 0 &&
-//             this.props.providers.find(provider => provider.id == id);
-//         currentProvider && this.props.setCurrentProvider(currentProvider);
-//     }
-
-//     render() {
-//         let aProvider = this.props.provider;
-
-//         let liveProvider = this.props.providers.find(
-//             item => item.id == aProvider.id
-//         );
-//         if (liveProvider) {
-//             aProvider = liveProvider;
-//         }
-
-//         if (!aProvider) {
-//             aProvider = {
-//                 id: 1,
-//                 name: "Temp default provider",
-//                 description: "Somthing isnt quite lining up",
-//                 address: "??????",
-//                 phone: "(04) ...---...",
-//                 update_message: "not really functional",
-//                 lat: -41.300598,
-//                 long: 174.774082,
-//                 email: "BlameBarry@Garry.com",
-//                 website_url: "http://ComputerSaysNo.org.nz/",
-//                 hours: "Open: untill something changes",
-//                 services: []
-//             };
-//         }
-
-//         let services = [];
-//         if (aProvider.services) {
-//             services = aProvider.services.map(() => { });
-//         }
 
 class Profile extends React.Component {
     state = {
@@ -152,20 +85,6 @@ class Profile extends React.Component {
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar />
-                {/* <Typography
-                        component="h1"
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                    >
-                        Meet the Provider
-            </Typography> */}
-
-
-                {/* <Divider />  */}
-
-
-
 
                 <Grid container spacing={8} className={classes.outerGrid}>
                     <Grid item md={6}>
@@ -222,9 +141,9 @@ class Profile extends React.Component {
 
                                         </div></Grid>)
 
-                                    // </div>
+                                        // </div>
 
-                                })}
+                                    })}
                                 </Grid>
                             </div>
                         </Typography>
