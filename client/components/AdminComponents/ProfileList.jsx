@@ -51,30 +51,30 @@ class ProfileList extends React.Component {
         // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
 
         return (
-            <div>
+            <div className="adminPage">
                 <div className="profile_list_body">
                     <p>Welcome to the Admin Panel. This list displays all current providers and services in Wellington.</p>
-                    <ul>
-                        {providersAndServices && providersAndServices.map((provider, i) => {
-                            return <li key={i}>
-                                {provider.name}
-                                <br /> {provider.hours} <br /> {provider.address} <br />
-                                {provider.update_message} <br />
-                                <Link to={`/profile/${provider.id}`}>Profile</Link> | <Link to={`/admin/providers/${provider.id}`}>Edit</Link> | <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
-                                <br />
-                                {provider.services.length} Services:
-                                <ul>
-                                    {provider.services.map((service, j) => {
-                                        return <li key={j}>
-                                            {/* <Link to={`/admin/service/${service.id}`}>{service.name}</Link> */}
-                                            {service.name}
-                                        </li>
 
-                                    })}
-                                </ul>
-                            </li>
-                        })}
-                    </ul>
+                    {providersAndServices && providersAndServices.map((provider, i) => {
+                        return <div className="adminForm-provider" key={i}>
+                            {provider.name}
+                            <br /> {provider.hours} <br /> {provider.address} <br />
+                            {provider.update_message} <br />
+                            <Link to={`/profile/${provider.id}`}>Profile</Link> | <Link to={`/admin/providers/${provider.id}`}>Edit</Link> | <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
+                            <br />
+                            {provider.services.length} Services:
+                                <ul>
+                                {provider.services.map((service, j) => {
+                                    return <li key={j}>
+                                        {/* <Link to={`/admin/service/${service.id}`}>{service.name}</Link> */}
+                                        {service.name}
+                                    </li>
+
+                                })}
+                            </ul>
+                        </div>
+                    })}
+
 
                 </div>
 
