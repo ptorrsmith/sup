@@ -8,12 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { withStyles } from '@material-ui/core/styles';
-
 import Toolbar from '@material-ui/core/Toolbar';
 import Divider from "@material-ui/core/Divider";
 
-import AppBar from '../AppBar'
 
 // import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
@@ -59,7 +56,7 @@ const styles = theme => ({
   },
 });
 
-class NewProfile extends React.Component {
+class OldProfile extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -73,7 +70,7 @@ class NewProfile extends React.Component {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
+    // console.log("OldProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
@@ -81,7 +78,7 @@ class NewProfile extends React.Component {
 
     // const id = this.props.match.params.id;
     // // get the provider from global redux state'
-    // console.log("NewProfile cDM id ", id)
+    // console.log("OldProfile cDM id ", id)
     // const currentProvider =
     //   this.props.providers.length > 0 &&
     //   this.props.providers.find(provider => provider.id == id);
@@ -98,7 +95,7 @@ class NewProfile extends React.Component {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
+    // console.log("OldProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
@@ -107,7 +104,7 @@ class NewProfile extends React.Component {
     // console.log("didUpdate")
     // const id = this.props.match.params.id;
     // // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
+    // console.log("OldProfile cDU id ", id)
     // const currentProvider =
     //   this.props.providers.length > 0 &&
     //   this.props.providers.find(provider => provider.id == id);
@@ -116,7 +113,7 @@ class NewProfile extends React.Component {
 
   render() {
     let aProvider = this.props.provider;
-    // console.log("NewProfile aProvider = ", aProvider)
+    // console.log("OldProfile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
@@ -147,78 +144,58 @@ class NewProfile extends React.Component {
       services = aProvider.services.map(() => { });
     }
 
-    // let providerServices = [1, 2, 99] // for render
-
-    // console.log("b4 Making services aprovider ", aProvider)
-
-    // if (aProvider.services) {
-    //   console.log("Making services")
-    //   providerServices = aProvider.services.map((service, i) => {
-    //     return (<div className="profile-service" key="service-${i}">
-
-    //       <p key={service.id}><span>Service Name: </span>{service.name}</p>
-    //       {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
-    //       {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
-    //       <p key={service.id}><span>Service Status: </span>{service.status}</p>
-
-    //     </div>)
-    //   })
-    //   console.log("providerServices ::::: ", providerServices)
-    // }
-
-    const { classes } = this.props;
-    // console.log("Classes:::::::", classes)
-
     return (
-      <React.Fragment>
-        <CssBaseline />
+      <div>
+        <div className="theBackground">
+          {/* <div classname="grid_container profileContainer"> */}
+          <div className="profileContainer">
+            {/* <div classname="profile_header profileImage"> */}
+            <div className="profileHeader">
+              <img src={aProvider.image_url} className="profileImage" />
+            </div>
+            <fieldset className="profileInfo">
+              <Typography variant="h6" gutterBottom>
 
-        <AppBar />
-        <div>
-          <img src={aProvider.image_url} />
-        </div>
-        <Grid container spacing={8} className={classes.outerGrid}>
-          <Grid container alignItems="center" justify="center">
-            <Paper >
-              <Typography variant="h4" gutterBottom>
                 {aProvider.name ? aProvider.name : ""}
               </Typography>
-              <Typography variant="h5" gutterBottom>{aProvider.address ? aProvider.address : ""}</Typography>
-              <Typography variant="h5" gutterBottom>{aProvider.phone ? aProvider.phone : ""}</Typography>
 
-              <Typography variant="h6" gutterBottom>
+              <p>{aProvider.address ? aProvider.address : ""}</p>
+              <p>{aProvider.phone ? aProvider.phone : ""}</p>
+              <p>
                 Web: {aProvider.website_url ? (
                   <a href={aProvider.website_url}>{aProvider.name}</a>
                 ) : (
                     ""
                   )}
-              </Typography>
-              <Grid container spacing={24}>
-                <Grid item xs={12} sm={6}>
-                  Hours:{" "}
-                  {aProvider.hours
-                    ? aProvider.hours
-                      .split("<br>")
-                      .map((item, i) => <p key={"time" + i}>{item}</p>)
-                    : ""}
-                </Grid>
-                <Grid item xs={12} sm={6}>
+              </p>
+              <div>
+                Hours:{" "}
+                {aProvider.hours
+                  ? aProvider.hours
+                    .split("<br>")
+                    .map((item, i) => <p key={"time" + i}>{item}</p>)
+                  : ""}
+              </div>
+            </fieldset>
+
+            <fieldset className="profileDescription">
+              {/* <div className="profile_body"> */}
+              <fieldset>
+                <span>
                   {aProvider.update_message ? aProvider.update_message : ""}
-                </Grid>
-                <Grid item xs={12} sm={6}>
+                </span>
+              </fieldset>
+              <div>
+                <div>
                   {aProvider.description
                     ? aProvider.description
                       .split("<br>")
                       .map((item, i) => <p key={"desc" + i}>{item}</p>)
                     : ""}
-                </Grid>
-              </Grid>
+                </div>
 
-              <h4>Services Offered</h4>
-              {
-                // console.log("ps>>>>>", providerServices)
-                // {providerServices}
-                aProvider.services && aProvider.services.map(service => {
+                <h4>Services Offered</h4>
+                {aProvider.services && aProvider.services.map(service => {
                   return (<div className="profile-service">
 
                     <p key={service.id}><span>Service Name: </span>{service.name}</p>
@@ -227,19 +204,110 @@ class NewProfile extends React.Component {
                     <p key={service.id}><span>Service Status: </span>{service.status}</p>
 
                   </div>)
-                })
-              }
-              <Link to={`/admin/providers/${aProvider.id}`}>Edit</Link>
-              <br />
-              <Link to={`/liveupdate/${aProvider.id}`}>LiveUpdate</Link>
-            </Paper>
-          </Grid>
-        </Grid >
-      </React.Fragment >
+                })}
+                <Link to={`/admin/providers/${aProvider.id}`}>Edit</Link> | <Link to={`/liveupdate/${aProvider.id}`}>LiveUpdate</Link>
+
+
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
 
     )
 
+    const { classes } = this.props;
+    return (
 
+      <React.Fragment>
+        <CssBaseline />
+        {/* <AppBarOther position="static" className={classes.appBar}>
+                    <Toolbar>
+                        <Typography variant="h6" color="inherit" noWrap>
+                            SUP: Update Me!
+          </Typography>
+                    </Toolbar>
+                </AppBarOther> */}
+
+
+        <AppBar />
+
+        <Grid container spacing={8} className={classes.outerGrid}>
+          <Grid container alignItems="center" justify="center">
+            <Paper >
+              <Typography variant="h4" gutterBottom>
+                {currentProvider.name}
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                Change the Provider Message here:
+                    </Typography>
+              <Grid container spacing={24}>
+                <Grid item xs={12} sm={6}>
+
+
+                  <form onSubmit={(e) => { this.handleSubmit(e) }}>
+                    <TextField
+                      type='text' id='set_provider_message'
+                      name='message'
+                      onChange={this.handleOnChange}
+                      value={this.state.message} />
+                    <Button type="submit">Submit Message</Button>
+                  </form>
+
+
+                </Grid>
+
+                <Grid item xs={12}>
+                  {services}
+                  {/* <Typography variant="h6" gutterBottom>
+                                Service Name: {service.name} {service.id}
+                            </Typography>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button> */}
+                </Grid>
+                {/* <Grid item xs={12}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid> */}
+                <Grid item xs={12}>
+                  {/* <Button
+                                variant="contained"
+                                color="primary"
+                            >
+                                Submit
+                    </Button> */}
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Grid >
+      </React.Fragment>
+    )
   }
 
 }
@@ -262,7 +330,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withStyles(styles)(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewProfile));
+)(OldProfile);
