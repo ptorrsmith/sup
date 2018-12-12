@@ -69,7 +69,7 @@ class App extends React.Component {
           {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/newprofile/:id" component={NewProfile} />
-
+          <Route exact path="/login" component={LogIn} />
         </div>
       </Router>
     );

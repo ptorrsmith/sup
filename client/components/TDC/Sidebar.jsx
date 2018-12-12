@@ -1,4 +1,7 @@
 import React from "react";
+
+
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -47,18 +50,21 @@ class Sidebar extends React.Component {
 
           <img src="/images/Logo.png" />
         </div>
-    
-      <Divider />
-      <SimpleExpansionPanel />
-      <Divider />
-      <List>
-        {["Log in", "Register"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+
+        <Divider />
+        <SimpleExpansionPanel />
+        <Divider />
+        <List>
+          {[{ name: "Log in", link: "#/login" }, { name: "Register", link: "#/admin/providers/new" }].map((item, index) => (
+            <ListItem button key={item.name}>
+              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+
+              {/* <Button onClick={() => { location = "#/login" }}> */}
+              <ListItemText onClick={() => { location = item.link }} primary={item.name} />
+              {/* </Button> */}
+            </ListItem>
+          ))}
+        </List>
       </div >
     );
 

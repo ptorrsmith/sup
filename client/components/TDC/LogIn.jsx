@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 
+import { setLogin } from '../../actions'
+
 
 const styles = theme => ({
     main: {
@@ -50,6 +52,38 @@ const styles = theme => ({
     },
 });
 
+function exampleLogin(e, props) {
+
+    e.preventDefault();
+
+    let username = e.target.username.value
+
+    let profiles = {
+        ["MensShelter"]: 1,
+        ["Compassion"]: 2,
+        ["WellingtonCityMission"]: 3,
+        ["STVincentDePaul"]: 4,
+        ["SalvationArmy"]: 5,
+        ["DCM"]: 6,
+        ["WesleyMethodistChurch"]: 7,
+        ["Catacombs"]: 8,
+        ["Evolve"]: 9,
+    }
+
+    let id = -1;
+
+    if (profiles[username]) {
+        id = profiles[username]
+    }
+    props.dispatch(setLogin(id));
+    if (id < 1) {
+        location = "#/admin";
+    }
+    else {
+        location = "#/liveupdate/" + id;
+    }
+}
+
 function Login(props) {
     const { classes } = props;
 
@@ -57,13 +91,16 @@ function Login(props) {
         <main className={classes.main}>
             <CssBaseline />
             <Paper className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockIcon />
-                </Avatar>
+                {/* <Avatar className={classes.avatar}> */}
+                {/* <LockIcon /> */}
+                <img src="/images/Logo.png" />
+                {/* </Avatar> */}
                 <Typography component="h1" variant="h5">
                     Log in
             </Typography>
-                <form className={classes.form}>
+                <form onSubmit={(e) => { exampleLogin(e, props) }} className={classes.form}>
+
+
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="Username">Username</InputLabel>
                         <Input id="username" name="username" autoComplete="Username" autoFocus />
@@ -72,10 +109,10 @@ function Login(props) {
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <Input name="password" type="password" id="password" autoComplete="current-password" />
                     </FormControl>
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
-                    />
+                    /> */}
                     <Button
                         type="submit"
                         fullWidth
@@ -95,4 +132,4 @@ Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(connect()(Login));

@@ -89,64 +89,64 @@ class Profile extends React.Component {
                 <Grid container spacing={8} className={classes.outerGrid}>
                     <Grid item md={6}>
                         <Paper>
-                            <div style={{ height: "500px" }}>
-                                <img style={{ height: "100%" }} src={aProvider.image_url} />
+                            <div >
+                                <img style={{ maxWidth: "100%" }} src={aProvider.image_url} />
                             </div>
                             <Typography variant="h4" gutterBottom component="h2">
-                                {aProvider.name ? aProvider.name : ""} <br></br>
-                                <body1>{aProvider.address ? aProvider.address : ""}</body1><br />
-                                <body1>{aProvider.phone ? aProvider.phone : ""}</body1><br />
-                                <body1>
-                                    Site:{" "}
-                                    {aProvider.website_url ? (
-                                        <a href={aProvider.website_url}>{aProvider.name}</a>
-                                    ) : (
-                                            ""
-                                        )}
-                                </body1><br />
-                                Hours:{" "}
-                                {aProvider.hours
-                                    ? aProvider.hours
-                                        .split("<br>")
-                                        .map((item, i) => <p key={"time" + i}>{item}</p>)
-                                    : ""}
+                                {aProvider.name ? aProvider.name : ""}
                             </Typography>
+                            <body1>{aProvider.address ? aProvider.address : ""}</body1><br />
+                            <body1>{aProvider.phone ? aProvider.phone : ""}</body1><br />
+                            <body1>
+                                Site:{" "}
+                                {aProvider.website_url ? (
+                                    <a href={aProvider.website_url}>{aProvider.name}</a>
+                                ) : (
+                                        ""
+                                    )}
+                            </body1><br />
+                            Hours:{" "}
+                            {aProvider.hours
+                                ? aProvider.hours
+                                    .split("<br>")
+                                    .map((item, i) => <p key={"time" + i}>{item}</p>)
+                                : ""}
                         </Paper>
                     </Grid>
                     <Divider />
                     <Grid item md={6}>
 
-                        <Typography variant="h4" gutterBottom component="h2">
+                        <Typography variant="h6" gutterBottom component="h2">
                             <strong>Important Messages:</strong> {aProvider.update_message ? aProvider.update_message : ""}
 
-                            <Divider />
-                            <div>
-                                <div>
-                                    {aProvider.description
-                                        ? aProvider.description
-                                            .split("<br>")
-                                            .map((item, i) => <p key={"desc" + i}>{item}</p>)
-                                        : ""}
-
-                                </div>
-                                <strong>Services Offered:</strong>
-                                <Grid container>
-                                    {aProvider.services && aProvider.services.map(service => {
-
-                                        return (<Grid item={6}><div className="profile-service">
-
-                                            <h6 key={service.id}><span>Service Name: </span>{service.name}</h6>
-                                            <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
-                                            <h6 key={service.id}><span>Service Status: </span>{service.status}</h6>
-
-                                        </div></Grid>)
-
-                                        // </div>
-
-                                    })}
-                                </Grid>
-                            </div>
                         </Typography>
+                        <Divider />
+                        <div>
+                            <div>
+                                {aProvider.description
+                                    ? aProvider.description
+                                        .split("<br>")
+                                        .map((item, i) => <p key={"desc" + i}>{item}</p>)
+                                    : ""}
+
+                            </div>
+                            <strong>Services Offered:</strong>
+                            <Grid container>
+                                {aProvider.services && aProvider.services.map(service => {
+
+                                    return (<Grid item={6}><div className="profile-service">
+
+                                        <h3 key={service.id}><span>Service Name: </span>{service.name}</h3>
+                                        <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
+                                        <h3 key={service.id}><span>Service Status: </span>{service.status}</h3>
+
+                                    </div></Grid>)
+
+                                    // </div>
+
+                                })}
+                            </Grid>
+                        </div>
                     </Grid>
 
                 </Grid>
