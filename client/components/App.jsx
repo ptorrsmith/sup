@@ -18,9 +18,9 @@ import {
 
 import LogIn from "./TDC/LogIn";
 
-function getProviders(dispatch) {
-  dispatch(fetchProvidersAndServices());
-}
+// function getProviders(dispatch) {
+//   dispatch(fetchProvidersAndServices());
+// }
 
 class App extends React.Component {
   constructor(props) {

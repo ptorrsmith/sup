@@ -11,8 +11,29 @@ class Profile extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    // console.log("willMount")
+  }
+
   componentDidMount() {
+    // console.log("didMount")
+
     const id = this.props.match.params.id;
+    // get the provider from global redux state'
+    // console.log("Profile cDU id ", id)
+    const currentProvider =
+      this.props.providers.length > 0 &&
+      this.props.providers.find(provider => provider.id == id);
+    currentProvider && this.props.setCurrentProvider(currentProvider);
+
+
+    // const id = this.props.match.params.id;
+    // // get the provider from global redux state'
+    // console.log("Profile cDM id ", id)
+    // const currentProvider =
+    //   this.props.providers.length > 0 &&
+    //   this.props.providers.find(provider => provider.id == id);
+    // currentProvider && this.props.setCurrentProvider(currentProvider);
 
     // get the provider from global redux state'
     // console.log("XXXX-id", id)
@@ -22,17 +43,28 @@ class Profile extends React.Component {
   }
 
   componentDidUpdate() {
+
     const id = this.props.match.params.id;
     // get the provider from global redux state'
+    // console.log("Profile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
+
+    // console.log("didUpdate")
+    // const id = this.props.match.params.id;
+    // // get the provider from global redux state'
+    // console.log("Profile cDU id ", id)
+    // const currentProvider =
+    //   this.props.providers.length > 0 &&
+    //   this.props.providers.find(provider => provider.id == id);
+    // currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
     let aProvider = this.props.provider;
-    console.log("Profile aProvider = ", aProvider)
+    // console.log("Profile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
