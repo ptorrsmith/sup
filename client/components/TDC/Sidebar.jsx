@@ -59,9 +59,9 @@ class Sidebar extends React.Component {
             <ListItem button key={item.name}>
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
 
-              <Link to="/login">
-                <ListItemText primary={item.name} />
-              </Link>
+              {/* <Button onClick={() => { location = "#/login" }}> */}
+              <ListItemText onClick={() => { location = "#/login" }} primary={item.name} />
+              {/* </Button> */}
             </ListItem>
           ))}
         </List>

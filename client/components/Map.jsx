@@ -149,6 +149,8 @@ class AMap extends React.Component {
                   Click for More Info
                 </Link>
                 <h3>{thePlace.name}</h3>
+                {thePlace.update_message}
+                <br />
                 {serviceStates}
                 <span>{thePlace.address}</span>
               </Popup>
@@ -170,7 +172,7 @@ class AMap extends React.Component {
       );
     }
 
-    // var legend = L.control({ position: 'bottomleft' });
+    // var legend = L.control({position: 'bottomleft' });
     // legend.onAdd = function (Map) {
 
     //   var div = L.DomUtil.create('div', 'info legend');
