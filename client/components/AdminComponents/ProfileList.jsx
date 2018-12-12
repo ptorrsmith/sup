@@ -23,32 +23,20 @@ class ProfileList extends React.Component {
     }
 
     componentWillMount() {
-        // console.log("Will mount")
+        console.log("Will mount")
 
         this.props.fetchProvidersAndServices()
     }
 
     componentDidMount() {
-        // console.log("mounted")
+        console.log("mounted")
         // fetchProvidersAndServices()
 
     }
 
-    componentDidUpdate() {
-        // console.log("updated")
-        // const id = this.props.match.params.id;
-        // // get the provider from global redux state'
-        // const currentProvider =
-        //     this.props.providers.length > 0 &&
-        //     this.props.providers.find(provider => provider.id == id);
-        // currentProvider && this.props.setCurrentProvider(currentProvider);
-    }
-
-
-
     render() {
         const providersAndServices = this.props.providers.providers
-        // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
+        console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
 
         return (
             <div>
@@ -57,17 +45,15 @@ class ProfileList extends React.Component {
                     <ul>
                         {providersAndServices && providersAndServices.map((provider, i) => {
                             return <li key={i}>
-                                {provider.name}
-                                <br /> {provider.hours} <br /> {provider.address} <br />
-                                {provider.update_message} <br />
-                                <Link to={`/profile/${provider.id}`}>Profile</Link> | <Link to={`/admin/providers/${provider.id}`}>Edit</Link> | <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
-                                <br />
-                                {provider.services.length} Services:
+                                <Link to={`/admin/${provider.id}/`}>{provider.name}</Link>
+                                <br/> {provider.hours} <br/> {provider.address} <br/>
+                                {provider.update_message} <br/>
+                                <Link to={`/admin/${provider.id}/edit`}>Edit this profile</Link> <br />
+                                {provider.services.length} Services: 
                                 <ul>
-                                    {provider.services.map((service, j) => {
+                                    {provider.services.map( (service, j) => {
                                         return <li key={j}>
-                                            {/* <Link to={`/admin/service/${service.id}`}>{service.name}</Link> */}
-                                            {service.name}
+                                            <Link to={`/admin/service/${service.id}`}>{service.name}</Link>
                                         </li>
 
                                     })}
@@ -75,8 +61,13 @@ class ProfileList extends React.Component {
                             </li>
                         })}
                     </ul>
-
+                    <Link to="/admin/add">Add a new profile</Link>
                 </div>
+
+                {/* When an admin clicks on a specific title, it will
+                take you to AdminProfile, where the admin can edit specific static details.
+
+                Add the ability to delete a provider? */}
 
             </div>
         )

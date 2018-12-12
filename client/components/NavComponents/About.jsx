@@ -1,39 +1,45 @@
 // CHILD OF NAV
 
-import React from "react";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import Typography from '@material-ui/core/Typography';
-import Divider from "@material-ui/core/Divider";
+import React from 'react'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const About = () => (
-  <span>
+    <div>
 
+        <div className="about_header">
+            <h2>About Sup:</h2>
+        </div>
 
-    <Typography variant="h6" gutterBottom>
-      About <em>SUP</em>:
-      </Typography>
-    <Divider />
+        <div className="about_body">
+            <p>
+                <em>Sup</em> is a progressive web application specifically designed to provide support for New Zealanders in need.
 
-    <span>
-      <Typography variant="body1" gutterBottom >
-        <em>SUP</em> is a kindness-focused Progessive Web Application (PWA for
-        short) designed to help. If you're struggling or need a bit of a hand,{" "}
-        <em>SUP</em> is here to point you in the direction of people or services
-        who can get you moving in the right direction.
-        <Divider />
-        Meet The <em>Sup</em>{" "} Team:
+        Sup gives users the opportunity to open and view service providers in Wellington, including their locations,
+        facilities, opening and closing hours, and the availability of the service. Services include emergency shelters, food banks,
+        bathroom facilities and soup kitchens.<br></br><br></br>
+
+        Sup also allows registered providers to update their service details from the admin panel, and gives the users real-time updates
+        directly from the service, notifying them about recent changes.<br></br><br></br>
+
+        Sup is an independent site, currently being updated and maintained by students at Enspiral Dev Academy.<br></br><br></br>
+
+        Meet The <em>Sup</em> Team:
         <ul>
-          <li>Bobbi Kerei - Visonary and Front end Developer</li>
-          <li>Brandon Ross - Back end Developer</li>
-          <li>James Turner - Full Stack Developer</li>
-          <li>Peter Smith - Full Stack Developer</li>
-          <li>Ruby Moyes - Full stack Developer</li>
-        </ul>
-        <Divider />
-      </Typography>
-    </span>
-  </span>
-);
+                    <li>Bobbi Kerei - Founder, Developer</li>
+                    <li>Brandon Ross - Developer</li>
+                    <li>James Turner - Developer</li>
+                    <li>Peter Smith - Developer</li>
+                    <li>Ruby Moyes - Developer</li>
+                </ul>
+            </p>
 
-export default About;
+        </div>
+
+        {/* Information about what the website provides */}
+
+    </div>
+
+)
+
+export default About

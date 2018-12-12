@@ -24,10 +24,6 @@ const Admin = () => (
 
         <div className="admin_link">
             <Link to='/'>Go back to the Landing Page.</Link>
-            <br></br>
-            <Link to='/liveupdate/:id'>Go to the Live Edit Page for this Profile. Must specify ID. </Link>
-            <br></br>
-            <Link to="/admin/providers/new">Add a new provider and services.</Link>
         </div>
 
     </div>
