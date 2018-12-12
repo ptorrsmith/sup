@@ -149,7 +149,8 @@ class AMap extends React.Component {
                   Click for More Info
                 </Link>
                 <h3>{thePlace.name}</h3>
-                {thePlace.update_message}
+                <strong style={{ textDecoration: "underline" }}>{thePlace.update_message}</strong>
+                <br />
                 <br />
                 {serviceStates}
                 <span>{thePlace.address}</span>
