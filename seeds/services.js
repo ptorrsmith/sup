@@ -1,3 +1,56 @@
+// SERVICE ID + NAMES
+
+// id: 1,
+// name: "Shelter",
+
+// id: 2,
+// name: "Food Bank",
+
+// id: 3,
+// name: "Soup Kitchen",
+
+// id: 4,
+// name: "Advice",
+
+// id: 5,
+// name: "Drop-In",
+
+// id: 6,
+// name: "Medical",
+
+// id: 7,
+// name: "Other",
+
+
+// PROVIDER NAMES + IDS
+
+
+// id: 1,
+// name: 'The Mens Night Shelter',
+
+// id: 2,
+// name: 'Compassion Soup Kitchen',
+
+// id: 3,
+// name: 'Wellington City Mission',
+
+// id: 4,
+// name: 'St Vincent De Paul Wellington',
+
+// id: 5,
+// name: 'The Salvation Army',
+
+// id: 6,
+// name: 'DCM',
+
+// id: 7,
+// name: 'Wesley Methodist Church',
+
+// id: 8,
+// name: 'Catacombs',
+
+// id: 9,
+// name: 'Evolve',
 
 
 exports.seed = function (knex, Promise) {
@@ -5,133 +58,157 @@ exports.seed = function (knex, Promise) {
   return knex('services').del()
     .then(function () {
       // Inserts seed entries
-      return knex('services').insert([
-        {
-          id: 1,
-          name: "Men's night shelter",
-          qty_default: 80,
-          qty_remaining: 50,
-          unit: "beds",
-          status: "open",
-          provider_id: 1,
-          service_type_id: 1,
+      return knex('services').insert([{
+        id: 1,
+        name: "Dormitory Accomodation",
+        qty_default: 80,
+        qty_remaining: 50,
+        unit: "Beds",
+        status: "Open",
+        provider_id: 1,
+        service_type_id: 1,
+      },
+      {
+        id: 2,
+        name: "Hostel Accomodation",
+        qty_default: 80,
+        qty_remaining: 50,
+        unit: "Beds",
+        status: "Open",
+        provider_id: 1,
+        service_type_id: 1,
+      },
+      {
+        id: 3,
+        name: "Emergency Shelter",
+        qty_default: 80,
+        qty_remaining: 50,
+        unit: "Beds",
+        status: "Open",
+        provider_id: 1,
+        service_type_id: 1,
+      },
+      //
+      {
+        id: 4,
+        name: "Breakfast Meal",
+        qty_default: 100,
+        qty_remaining: 75,
+        unit: "Meals",
+        status: "Closed",
+        provider_id: 2,
+        service_type_id: 3,
+      },
+      {
+        id: 5,
+        name: "Dinner Meal",
+        qty_default: 120,
+        qty_remaining: 110,
+        unit: "Meals",
+        status: "Closed",
+        provider_id: 2,
+        service_type_id: 3,
+      },
+      //
+      {
+        id: 6,
+        name: "Food Parcels",
+        qty_default: 180,
+        qty_remaining: 60,
+        unit: "Food parcels",
+        status: "Closed",
+        provider_id: 3,
+        service_type_id: 2,
 
-        },
-        {
-          id: 2,
-          name: "Compassion Soup Kitchen",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "meals",
-          status: "open",
-          provider_id: 2,
-          service_type_id: 3,
+      },
+      {
+        id: 7,
+        name: "Food Parcels",
+        qty_default: 200,
+        qty_remaining: 127,
+        unit: "Food parcels",
+        status: "Closed",
+        provider_id: 4,
+        service_type_id: 2,
 
-        },
-        {
-          id: 3,
-          name: "Wellington City Mission",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "meals",
-          status: "open",
-          provider_id: 3,
-          service_type_id: 2,
+      },
+      {
+        id: 8,
+        name: "Food Parcels",
+        qty_default: 80,
+        qty_remaining: 35,
+        unit: "Food parcels",
+        status: "open",
+        provider_id: 5,
+        service_type_id: 2,
 
-        },
-        {
-          id: 4,
-          name: "St Vincient De Paul Wellington",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "meals",
-          status: "open",
-          provider_id: 4,
-          service_type_id: 2,
+      },
+      {
+        id: 9,
+        name: "Advice and Support",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "Advice",
+        status: "Open",
+        provider_id: 6,
+        service_type_id: 4,
 
-        },
-        {
-          id: 5,
-          name: "DCM",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "housing",
-          status: "open",
-          provider_id: 5,
-          service_type_id: 1,
+      },
+      {
+        id: 10,
+        name: "Showers & Bathroom Facilities",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "Showers",
+        status: "Open",
+        provider_id: 7,
+        service_type_id: 5,
 
-        },
-        {
-          id: 6,
-          name: "DCM",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "Advice",
-          status: "open",
-          provider_id: 5,
-          service_type_id: 4,
+      },
+      {
+        id: 11,
+        name: "Showers & Bathroom Facilities",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "Showers",
+        status: "open",
+        provider_id: 8,
+        service_type_id: 5,
 
-        },
-        {
-          id: 7,
-          name: "Wesley Methodist Church",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "Showers",
-          status: "open",
-          provider_id: 6,
-          service_type_id: 5,
+      },
+      {
+        id: 12,
+        name: "Washing Machine & Dryer Facilities",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "Washing machines and dryers",
+        status: "open",
+        provider_id: 8,
+        service_type_id: 5,
 
-        },
-        {
-          id: 8,
-          name: "Catacombs",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "washing facilities, light snacks and drinks",
-          status: "open",
-          provider_id: 7,
-          service_type_id: 5,
+      },
+      {
+        id: 13,
+        name: "TV Lounge & Telephone",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "TV lounge and telephone",
+        status: "open",
+        provider_id: 8,
+        service_type_id: 5,
 
-        },
-        {
-          id: 9,
-          name: "Catacombs",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "washing facilities",
-          status: "open",
-          provider_id: 7,
-          service_type_id: 5,
+      },
+      {
+        id: 14,
+        name: "Medical Assistance and Support",
+        qty_default: 10000,
+        qty_remaining: 10000,
+        unit: "Medical services",
+        status: "Open",
+        provider_id: 9,
+        service_type_id: 6,
 
-        },
-        {
-          id: 10,
-          name: "Catacombs",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "light snacks and drinks",
-          status: "open",
-          provider_id: 7,
-          service_type_id: 3,
-
-        },
-        {
-          id: 11,
-          name: "DCM",
-          qty_default: 10000,
-          qty_remaining: 10000,
-          unit: "Food",
-          status: "open",
-          provider_id: 5,
-          service_type_id: 4,
-
-        },
-
-
-
-
-
+      },
       ]);
     });
 };

@@ -31,8 +31,9 @@
     ]
   },
   "devDependencies": {
-    "enzyme": "^3.7.0",
+    "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "jest": "^23.6.0",
     "nodemon": "*",
     "supertest": "*"
   },
@@ -51,7 +52,6 @@
     "dotenv": "^6.2.0",
     "express": "*",
     "express-jwt": "*",
-    "jest": "^23.6.0",
     "jsdom": "^13.0.0",
     "jsonwebtoken": "^8.4.0",
     "jsx-loader": "*",
@@ -66,6 +66,7 @@
     "react-leaflet": "*",
     "react-redux": "^6.0.0",
     "react-router-dom": "*",
+    "react-router-redux": "^4.0.8",
     "react-test-renderer": "^16.6.3",
     "redux": "^4.0.1",
     "redux-thunk": "*",
