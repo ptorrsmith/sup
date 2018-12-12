@@ -4,33 +4,11 @@ const providersDB = require('../data/providersDB')
 const servicesDB = require('../data/servicesDB')
 const router = express.Router()
 
+// get request for list of providers and their services
 // Expect a geoBox type search object to define search area
 // Optional list of providers to NOT return (as already have them)
 // No params or other search object can return all / some providers and services, for system admin use.
 
-router.get('/liveUpdates', (req, res) => {
-    providersDB.getProviderUpdates()
-        .then(providerUpdates => {
-            // console.log("providerUpdates count ", providerUpdates.length)
-            const providerIds = providerUpdates.map(provider => provider.id)
-            // console.log("providerIds: ", providerIds)
-            servicesDB.getServicesUpdatesForProviders(providerIds)
-                .then(servicesUpdates => {
-                    const providerServicesUpdates = providerUpdates.map(provider => {
-                        // find all services for this provider and attach them
-                        let pServices = servicesUpdates.filter(service => service.provider_id == provider.id)
-                        // console.log("provider: ", provider.id, " pServices length: ", pServices.length)
-                        provider.services = pServices
-                        // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
-                        return provider
-                    })
-                    // console.log("providerServicesUpdates >>>>> ", providerServicesUpdates)
-                    res.json(providerServicesUpdates)
-                })
-        })
-})
-
-// get request for list of providers and their services
 
 // The res.json returns the provider, but not the service. Can this be resolved?
 
@@ -45,9 +23,9 @@ router.get('/:id', (req, res) => {
                 .then(services => {
                     // console.log('PROVIDER>>>>', provider)
                     // console.log('SERVICES>>>>', services)
-                    provider.services = services || []
+                    provider.services = services
                     // res.json({
-                    //     ...provider,    
+                    //     ...provider,
                     //     services: [...provider.services]})
                     res.json(provider)
                 })
@@ -76,6 +54,28 @@ router.get('/', (req, res) => {
         })
 })
 
+
+router.get('/liveUpdates', (req, res) => {
+    providersDB.getProviderUpdates()
+        .then(providerUpdates => {
+            // console.log("providerUpdates count ", providerUpdates.length)
+            const providerIds = providerUpdates.map(provider => provider.id)
+            // console.log("providerIds: ", providerIds)
+            servicesDB.getServicesUpdatesForProviders(providerIds)
+                .then(servicesUpdates => {
+                    const providerServicesUpdates = providerUpdates.map(provider => {
+                        // find all services for this provider and attach them
+                        let pServices = servicesUpdates.filter(service => service.provider_id == provider.id)
+                        // console.log("provider: ", provider.id, " pServices length: ", pServices.length)
+                        provider.services = pServices
+                        // console.log("Provider ", provider.id, " provider.services count: ", provider.services.length)
+                        return provider
+                    })
+                    // console.log("providerServicesUpdates >>>>> ", providerServicesUpdates)
+                    res.json(providerServicesUpdates)
+                })
+        })
+})
 
 
 
