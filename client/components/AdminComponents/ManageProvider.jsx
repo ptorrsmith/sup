@@ -12,6 +12,7 @@ class ManageProvider extends React.Component {
         super(props);
         this.state = {
             provider: {
+                id: '',
                 name: "",
                 description: "",
                 lat: "",
@@ -20,7 +21,8 @@ class ManageProvider extends React.Component {
                 address: "",
                 email: "",
                 website_url: "",
-                update_message: ""
+                update_message: "",
+                image_url: "",
 
             },
             showNewServiceForm: false,
@@ -57,7 +59,7 @@ class ManageProvider extends React.Component {
         const id = this.props.match.params.id
         // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
         if (id != "new") {
-            this.setState({ providerId: id })
+            // this.setState({ providerId: id })
             this.props.fetchProvider(id)
         }
         // if (this.props.currentProvider) {
@@ -124,7 +126,7 @@ class ManageProvider extends React.Component {
             <div>
                 <form onSubmit={this.onSubmit}>
                     <fieldset>
-                        <legend>New/update Provider Details</legend>
+                        <legend>Provider Details</legend>
                         <p>
                             <label htmlFor="name">Name:</label>
                             <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.provider.name || ""} /></p>
@@ -136,21 +138,26 @@ class ManageProvider extends React.Component {
                         <p>
                             <label htmlFor="address">Address:</label>
                             <input type="text" name="address" id="text" onChange={this.onChange} value={this.state.provider.address || ""} /> </p>
+
+                        <p><label htmlFor="image_url">Image URL:</label>
+                            <input type="text" name="image_url" id="text" onChange={this.onChange} value={this.state.provider.image_url || ""} /></p>
                         <p>
                             <label htmlFor="phone">Phone:</label>
                             <input type="tel" name="phone" id="text" onChange={this.onChange} value={this.state.provider.phone || ""} /></p>
                         <p>
                             <label htmlFor="email">Email:</label>
                             <input type="email" name="email" id="text" onChange={this.onChange} value={this.state.provider.email || ""} /></p>
+
+                        <p>
+                            <label htmlFor="website_url">Website URL:</label>
+                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
                         <p>
                             <label htmlFor="hours">Hours:</label>
                             <input type="text" name="hours" id="text" onChange={this.onChange} value={this.state.provider.hours || ""} /></p>
                         <p>
                             <label htmlFor="update_message">Update Message:</label>
                             <input type="text" name="update_message" id="text" onChange={this.onChange} value={this.state.provider.update_message || ""} /></p>
-                        <p>
-                            <label htmlFor="website_url">Website URL:</label>
-                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
+
                         <p>
                             <label htmlFor="lat">Latitude:</label>
                             <input type="text" name="lat" id="text" onChange={this.onChange} value={this.state.provider.lat || ""} /></p>

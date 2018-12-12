@@ -44,7 +44,8 @@ function getProviders(geoBoxSearch, ignoreProvidersArray, db = connection) {
             'p.phone',
             'p.email',
             'p.website_url',
-            'p.updated_at'
+            'p.updated_at',
+            'p.image_url'
         )
         .where('p.lat', '<', lat1).andWhere('p.lat', '>', lat2).andWhere('p.long', '>', long1)
         .andWhere('p.long', '<', long2)
@@ -93,7 +94,9 @@ function getProvider(id, db = connection) {
             'p.email',
             'p.phone',
             'p.website_url',
-            'p.updated_at'
+            'p.updated_at',
+            'p.image_url'
+
         )
         .where('p.id', id)
     // console.log(dataPromise.toString())
@@ -114,7 +117,7 @@ function createProvider(providerInfo, db = connection) {
         lat: providerInfo.lat, long: providerInfo.long, hours: providerInfo.hours,
         update_message: providerInfo.update_message, address: providerInfo.address,
         email: providerInfo.email, website_url: providerInfo.website_url,
-        updated_at: providerInfo.updated_at
+        updated_at: providerInfo.updated_at, image_url: providerInfo.image_url
     })
 
 }
@@ -127,7 +130,7 @@ function updateProvider(id, updatedProvider, db = connection) {
         lat: updatedProvider.lat, long: updatedProvider.long, hours: updatedProvider.hours,
         update_message: updatedProvider.update_message, address: updatedProvider.address,
         email: updatedProvider.email, website_url: updatedProvider.website_url,
-        updated_at: updatedProvider.updated_at
+        updated_at: updatedProvider.updated_at, image_url: updatedProvider.image_url
     })
 }
 

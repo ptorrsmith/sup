@@ -19,7 +19,7 @@ class ManageService extends React.Component {
         provider_id: "",
         service_type_id: ""
       },
-      otherStuff: ''
+      otherStuff: 'not used yet'
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -49,10 +49,11 @@ class ManageService extends React.Component {
 
   onChange(e) {
     // console.log("AddProvider onchange e = ", e)
+    const value = (e.target.type == "radio") ? e.target.id : e.target.value
     this.setState({
       service: {
         ...this.state.service,
-        [e.target.name]: e.target.value
+        [e.target.name]: value
       }
     });
   }
@@ -77,21 +78,21 @@ class ManageService extends React.Component {
               <input type="hidden" name="provider_id" value={this.state.service.provider_id} /></p>
             <p>
               <label htmlFor="name">Name:</label>
-              <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.service.name} /></p>
+              <input type="text" name="name" id="text" onChange={this.onChange} value={this.state.service.name} /></p>
 
             <p>
               <label htmlFor="qty_default">Quantity Default:</label>
-              <input type="text" name="qty_default" onChange={this.onChange} value={this.state.service.description} /></p>
+              <input type="text" name="qty_default" onChange={this.onChange} value={this.state.service.qty_default} /></p>
 
             <p>
               <label htmlFor="qty_remaining">Quantity Remaining:</label>
-              <input type="text" name="qty_remaining" id="text" onChange={this.onChange} value={this.state.service.address} /> </p>
+              <input type="text" name="qty_remaining" id="text" onChange={this.onChange} value={this.state.service.qty_remaining} /> </p>
             <p>
               <label htmlFor="unit">Unit:</label>
-              <input type="text" name="unit" id="text" onChange={this.onChange} value={this.state.service.phone} /></p>
+              <input type="text" name="unit" id="text" onChange={this.onChange} value={this.state.service.unit} /></p>
             <p>
               <label htmlFor="text">Status:</label>
-              <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.service.email} /></p>
+              <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.service.status} /></p>
             <p>
               <input type="radio" name="service_type_id" id="1" onChange={this.onChange} value="Shelters" checked={(this.state.service.service_type_id == 1) ? "checked" : ""} />
               <label htmlFor="1">Shelter </label>
@@ -110,6 +111,9 @@ class ManageService extends React.Component {
 
               <input type="radio" name="service_type_id" id="6" onChange={this.onChange} value="Medical" checked={(this.state.service.service_type_id == 6) ? "checked" : ""} />
               <label htmlFor="2">Medical </label>
+              
+              <input type="radio" name="service_type_id" id="7" onChange={this.onChange} value="Other" checked={(this.state.service.service_type_id == 7) ? "checked" : ""} />
+              <label htmlFor="2">Other </label>
             </p>
 
 
