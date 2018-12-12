@@ -4,7 +4,8 @@ const initialState = {
   long: 174.773934,
   zoom: 15,
   isFetching: false,
-  hasLocation: false
+  hasLocation: false,
+  aHack: false
 }
 
 export default function location(state = initialState, action) {
@@ -22,7 +23,8 @@ export default function location(state = initialState, action) {
         hasLocation: action.hasLocation,
         lat: action.lat,
         long: action.long,
-        zoom: action.zoom
+        zoom: action.zoom,
+        aHack: !state.aHack
       }
     case 'FETCH_LOCATION_ERROR':
       return {
