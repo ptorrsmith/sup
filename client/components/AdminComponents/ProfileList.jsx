@@ -48,7 +48,9 @@ class ProfileList extends React.Component {
                                 {provider.name}
                                 <br /> {provider.hours} <br /> {provider.address} <br />
                                 {provider.update_message} <br />
-                                {/* <Link to={`/admin/${provider.id}/edit`}>Edit this profile</Link> <br /> */}
+                                <Link to={`/admin/providers/${provider.id}`}>Edit</Link>
+                                <br />
+                                <Link to={`/liveupdate/${provider.id}`}>LiveUpdate</Link>
                                 {provider.services.length} Services:
                                 <ul>
                                     {provider.services.map((service, j) => {
