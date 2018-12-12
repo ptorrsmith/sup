@@ -32,7 +32,14 @@ class ManageService extends React.Component {
     if (this.props.provider_id && !this.props.service) { // is an empty service form, with only provider_id known 
       // console.log("CDM blank service")
       this.setState({
-        service: { provider_id: this.props.provider_id }
+        service: {
+          provider_id: this.props.provider_id,
+          name: "",
+          qty_default: 0,
+          qty_remaining: 0,
+          unit: "",
+          status: ""
+        }
       })
     } // else
     if (!this.props.provider_id && this.props.service) {
@@ -59,8 +66,11 @@ class ManageService extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     // console.log("ManageService onsubmit state.service ", this.state.service)
-
-    this.props.saveService(this.state.service);
+    if (this.state.service.service_type_id > 0) {
+      this.props.saveService(this.state.service);
+    } else {
+      alert("please select a Service Type")
+    }
   }
 
   render() {
@@ -69,7 +79,9 @@ class ManageService extends React.Component {
         <form onSubmit={this.onSubmit}>
           <fieldset>
             <legend>Service Details:</legend>
-            <p>Service ID: {this.state.service.id}</p>
+            <p>Service ID: {this.state.service.id} for </p>
+            <p>
+              <input type="hidden" name="provider_id" value={this.state.service.provider_id} /></p>
             <p>
               <label htmlFor="name">Name:</label>
               <input type="text" name="name" id="text" onChange={this.onChange} value={this.state.service.name} /></p>
@@ -88,10 +100,7 @@ class ManageService extends React.Component {
               <label htmlFor="text">Status:</label>
               <input type="text" name="status" id="text" onChange={this.onChange} value={this.state.service.status} /></p>
             <p>
-              <label htmlFor="provider_id">Provider ID:</label>
-              <input type="text" name="provider_id" id="text" onChange={this.onChange} value={this.state.service.provider_id} /></p>
-            <p>
-              <label htmlFor="service_type_id">Service Type ID:</label>
+              {/* <label htmlFor="service_type_id">Service Type ID:</label> */}
               {/* <input type="text" name="service_type_id" id="text" onChange={this.onChange} value={this.state.service.service_type_id} /></p> */}
               <input type="radio" name="service_type_id" id="1" onChange={this.onChange} value="Shelters" checked={(this.state.service.service_type_id == 1) ? "checked" : ""} />
               <label htmlFor="1">Shelter </label>
