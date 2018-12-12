@@ -19,7 +19,10 @@ class AMap extends React.Component {
   // }
 
   render() {
-    const position = [this.props.location.lat, this.props.location.long];
+    let position = [this.props.location.lat, this.props.location.long];
+    if (this.props.location.aHack) {
+      position[0] += 0.000001
+    }
 
     console.log("postion of the map is ", position);
 
@@ -149,6 +152,9 @@ class AMap extends React.Component {
                   Click for More Info
                 </Link>
                 <h3>{thePlace.name}</h3>
+                <strong style={{ textDecoration: "underline" }}>{thePlace.update_message}</strong>
+                <br />
+                <br />
                 {serviceStates}
                 <span>{thePlace.address}</span>
               </Popup>
@@ -170,7 +176,7 @@ class AMap extends React.Component {
       );
     }
 
-    // var legend = L.control({ position: 'bottomleft' });
+    // var legend = L.control({position: 'bottomleft' });
     // legend.onAdd = function (Map) {
 
     //   var div = L.DomUtil.create('div', 'info legend');
@@ -193,6 +199,7 @@ class AMap extends React.Component {
 
     return (
       <div>
+        <div style={{ height: "80px" }}></div>
         {/* <Button color="secondary" onClick={this.getLocation}>Get location</Button> */}
         <Map
           center={position}
