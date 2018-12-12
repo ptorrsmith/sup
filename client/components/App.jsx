@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 import Map from "./Map";
 import Admin from "./Admin";
 import Sidebar from "./TDC/Sidebar";
-import AdminProfile from "./AdminComponents/AdminProfile";
 import ManageProvider from "./AdminComponents/ManageProvider";
-import EditProfile from "./AdminComponents/EditProfile";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 
@@ -18,6 +16,7 @@ import {
   timerCountUpdate
 } from "../actions";
 
+import LogIn from "./TDC/LogIn";
 
 function getProviders(dispatch) {
   dispatch(fetchProvidersAndServices());
@@ -26,11 +25,17 @@ function getProviders(dispatch) {
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // console.log("App Const props< ", props)
+    // console.log("App Const this.props< ", this.props)
+
 
     // this.getProviders = this.getProviders.bind(this)
   }
 
   componentDidMount() {
+    // console.log("APP CDM props>>>>>>>> ", props)
+    // console.log("APP CDM this.props>>>>>>>> ", this.props)
+
     this.props.fetchProvidersAndServices();
 
     //if not given a function to do it just console logs that it has ticked
@@ -55,11 +60,11 @@ class App extends React.Component {
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
-          {/* <Route exact path="/admin/providers/new" component={ManageProviderServices} /> */}
           {/* <Route exact path="/admin/providers/:id" component={ManageProviderServices} /> */}
           <Route exact path="/admin/providers/:id" component={ManageProvider} />
-          <Route exact path="/admin/:id" component={AdminProfile} />
-          <Route exact path="/admin/:id/edit" component={EditProfile} />
+          {/* <Route exact path="/admin/providers/:id" render={() => <ManageProvider {...this.props} />} /> */}
+          {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
+          {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
         </div>
@@ -91,7 +96,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

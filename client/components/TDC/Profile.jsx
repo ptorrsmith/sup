@@ -109,15 +109,19 @@ class Profile extends React.Component {
                       .map((item, i) => <p key={"desc" + i}>{item}</p>)
                     : ""}
                 </div>
+
                 <h4>Services Offered</h4>
                 {aProvider.services && aProvider.services.map(service => {
                   return (<div className="profile-service">
 
                     <p key={service.id}><span>Service Name: </span>{service.name}</p>
-                    <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p>
+                    {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
+                    {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
                     <p key={service.id}><span>Service Status: </span>{service.status}</p>
+
                   </div>)
                 })}
+
               </div>
             </fieldset>
           </div>

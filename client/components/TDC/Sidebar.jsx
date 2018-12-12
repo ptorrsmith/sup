@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AppBar from "../AppBar"
+// import Logo from "../../../public/images/Logo"
 
 
 import SimpleExpansionPanel from "./SimpleExpansionPanel";
@@ -25,7 +26,7 @@ const styles = {
 class Sidebar extends React.Component {
   state = {
     top: false,
-    left: false,
+    left: true,
     bottom: false,
     right: false
   };
@@ -41,15 +42,8 @@ class Sidebar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
+        {/* <Logo /> */}
         <SimpleExpansionPanel />
-        {/* <List>
-          {[' '].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> 
-              <ListItemText primary={text} />
-            </ListItem> 
-           ))} 
-         </List> */}
         <Divider />
         <List>
           {["Log in", "Register"].map((text, index) => (
@@ -64,8 +58,8 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-    
-        <AppBar toggleDrawer={() => {this.toggleDrawer("left", true)}}/>
+
+        <AppBar toggleDrawer={() => { this.toggleDrawer("left", true) }} />
         {/* Open Left</AppBar> */}
         {/* <AppBar/> */}
         <SwipeableDrawer

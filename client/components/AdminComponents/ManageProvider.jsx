@@ -3,13 +3,14 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { saveProvider } from '../../actions'
+import { saveProvider, fetchProvider } from '../../actions'
 
 import ManageService from './ManageService'
 
 class ManageProvider extends React.Component {
     constructor(props) {
         super(props);
+        // console.log("MP CONST props>>>>> ", props)
         this.state = {
             provider: {
                 id: "",
@@ -55,6 +56,27 @@ class ManageProvider extends React.Component {
     }
 
     componentDidMount() {
+        // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        // console.log("MP CDM this.props::::::", this.props)
+        // console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        const id = this.props.match.params.id
+        // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
+        if (id != "new") {
+            // this.setState({ providerId: id })
+            this.props.fetchProvider(id)
+        }
+
+        // console.log("MP CDU props >>>>>>>>>>>>>>>> ", this.props)
+        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
+            this.setState({
+                showNewServiceForm: true
+            })
+        } else {
+            this.setState({
+                showNewServiceForm: false
+            })
+        }
+
         // const id = this.props.match.params.id
         // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
         // if (id != "new") {
@@ -73,10 +95,10 @@ class ManageProvider extends React.Component {
 
         // console.log(this.props)
 
-        if (this.props.history) {
-            // console.log('tracking history')
-            this.props.history.listen(this.routeChanged)
-        }
+        // if (this.props.history) {
+        //     // console.log('tracking history')
+        //     this.props.history.listen(this.routeChanged)
+        // }
     }
 
     routeChanged(params) {
@@ -89,28 +111,31 @@ class ManageProvider extends React.Component {
         })
     }
 
-    componentDidMount() {
-        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
-            this.setState({
-                showNewServiceForm: true
-            })
-        }
-
-    }
-
     // if (this.props.currentProvider.id) {
     componentDidUpdate(prevProps) {
+        // console.log("MP CDU props< ", this.props)
+        // const id = this.props.match.params.id
+        // // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
+        // if (id != "new") {
+        //     // this.setState({ providerId: id })
+        //     this.props.fetchProvider(id)
+        // }
+
         // console.log("Current Provider CDU _______ ", this.props.currentProvider, this.state)
 
         if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider) {
-            // console.log("Current Provider CDU XXXXXXX ", this.props.currentProvider, this.state)
+            // console.log("MP cDU  ")
             // console.log("Have current Provider: ", this.props.currentProvider)
             this.setState({
                 provider: { ...this.props.currentProvider }
             })
+
+
+
+
             this.props.history.push(`/admin/providers/${this.props.currentProvider.id}`)
         } else {
-            // console.log("No Current Provider CDU >>>>>> ", this.props.currentProvider, this.state)
+            // console.log("MP cDU else no change >>>>>> ")
         }
 
         // }
@@ -203,6 +228,9 @@ const mapDispatchToProps = dispatch => {
     return {
         saveProvider: providerInfo => {
             return dispatch(saveProvider(providerInfo));
+        },
+        fetchProvider: (params) => {
+            return dispatch(fetchProvider(params))
         }
     }
 }
