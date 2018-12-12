@@ -21,7 +21,9 @@ const About = () => (
         short) designed to help. If you're struggling or need a bit of a hand,{" "}
         <em>SUP</em> is here to point you in the direction of people or services
         who can get you moving in the right direction.
+        <br></br>
         <Divider />
+        <br></br>
         Meet The <em>Sup</em>{" "} Team:
         <ul>
           <li>Bobbi Kerei - Visonary and Front end Developer</li>
