@@ -1,9 +1,55 @@
-import React from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import { withStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
 import { connect } from 'react-redux'
 
 import { currentProvider } from '../../reducers/currentProvider'
 import { fetchProvider, setServiceQtyRemaining, setServiceStatus, setProviderMessage } from '../../actions'
+
+
+const styles = theme => ({
+    appBar: {
+        position: 'relative',
+    },
+    layout: {
+        width: 'auto',
+        marginLeft: theme.spacing.unit * 2,
+        marginRight: theme.spacing.unit * 2,
+        [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+            width: 600,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+    },
+    paper: {
+        marginTop: theme.spacing.unit * 20,
+        marginBottom: theme.spacing.unit * 20,
+        padding: theme.spacing.unit * 2,
+        [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+            marginTop: theme.spacing.unit * 6,
+            marginBottom: theme.spacing.unit * 6,
+            padding: theme.spacing.unit * 20,
+        },
+    },
+    stepper: {
+        padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
+    },
+    buttons: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+    },
+    button: {
+        marginTop: theme.spacing.unit * 3,
+        marginLeft: theme.spacing.unit,
+    },
+});
 
 class LiveUpdate extends React.Component {
     constructor(props) {
@@ -48,17 +94,6 @@ class LiveUpdate extends React.Component {
         }
 
     }
-    // if (this.props.currentProvider.update_status != prevProps.currentProvider.update_status) {
-    //     this.setState({
-    //         // status: this.props.currentProvider.update_status
-    //         status: this.props.currentProvider.update_status
-    //     })
-    //     if (this.props.currentProvider.qty_remaining != prevProps.currentProvider.qty_remaining) {
-    //         this.setState({
-    //             qty_remaining: this.props.currentProvider.qty_remaining
-    //         })
-    //     }
-    // }
 
     handleOnChange(e, serviceId) {
         // console.log('e handleChange', e.target.id)
@@ -85,7 +120,6 @@ class LiveUpdate extends React.Component {
         }
     }
 
-
     handleSubmit(e, serviceId) {
         e.preventDefault()
         // console.log('e handleSubmit', e.target.id)
@@ -102,96 +136,137 @@ class LiveUpdate extends React.Component {
         }
     }
 
-    render() {
-        // const provider = this.props.currentProvider
-        // console.log("LU render local state: ", this.state)
-        let provider = this.props.currentProvider
-        // let service = this.props.currentProvider.service
 
-        const anotherProvider = this.props.providers.find((aProvider) => this.props.currentProvider.id == aProvider.id)
-        // console.log("anotherProvider is ",anotherProvider)
-        if (anotherProvider) {
-            provider = anotherProvider
+    // function FormStyle(props) {
+    render() {
+        // console.log("this is the provider", this.props.providers[0])
+
+        let services = []
+        console.log("showing provider of", this.props.currentProvider)
+
+        //a temporary measure
+        let currentProvider = this.props.providers[0]
+
+        if (currentProvider && currentProvider.services) {
+            console.log("showing services of", currentProvider.services)
+            services = currentProvider.services.map((service, i) => {
+
+                return (
+                    <div key={"serviceUpdate" + i}>
+                        <Typography variant="h6" gutterBottom>
+                            Service Name: {service.name} {service.id}
+                        </Typography>
+
+                        <div id="service_qty">
+                            <Typography variant="subheading" gutterBottom>
+                                Total Quantity: {service.qty_default}, Remaining: {service.qty_remaining}
+                            </Typography>
+
+                            <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+                                <span name={`P${currentProvider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${currentProvider.id}-S${service.id}-quantity`]} > {this.state[`P${currentProvider.id}-S${service.id}-quantity`]} </span>
+                                <button id="add" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${currentProvider.id}-S${service.id}-quantity`}> + </button>
+                                <button id="subtract" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${currentProvider.id}-S${service.id}-quantity`}> - </button>
+                            </form>
+                        </div>
+
+                        <div id='service_status'>
+
+                            <Typography variant="h6" gutterBottom>
+                                Current Service Status: {service.status}
+                            </Typography>
+
+                            <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
+
+                                <Typography variant="subheading" gutterBottom>
+                                    Set New Service Status:
+                            </Typography>
+                                <input type='text' name={`P${currentProvider.id}-S${service.id}-status`} onChange={this.handleOnChange} value={this.state[`P${currentProvider.id}-S${service.id}-status`]} />
+                                <Button>Set New Status</Button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                )
+            });
         }
-        // console.log(this.state)
+
+        const { classes } = this.props;
         return (
 
-            <div>
+            <React.Fragment>
+                <CssBaseline />
+                <AppBar position="static" className={classes.appBar}>
+                    <Toolbar>
+                        <Typography variant="h6" color="inherit" noWrap>
+                            SUP: Update Me!
+          </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Paper>
+                    <Typography variant="h6" gutterBottom>
+                        Change the Provider Message here:
+      </Typography>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
 
-                {/* HEADER */}
-                <div id='live_update_header'>
-                    <h2>
-                        {this.props.currentProvider.name}
-                    </h2>
-                </div>
+                        </Grid>
 
+                        <Grid item xs={12}>
+                            {services}
+                            {/* <Typography variant="h6" gutterBottom>
+                                Service Name: {service.name} {service.id}
+                            </Typography>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button> */}
+                        </Grid>
+                        {/* <Grid item xs={12}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type='text' id='set_provider_message'
+                                name='message'
+                                onChange={this.handleOnChange}
+                                value={this.state.message} />
+                            <Button>Submit Message</Button>
+                        </Grid> */}
+                        <Grid item xs={12}>
+                            {/* <Button
+                                variant="contained"
+                                color="primary"
+                            >
+                                Submit
+                    </Button> */}
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </React.Fragment>
+        );
 
-                {/* Provider Message Form Below */}
-                <div id='live_update_provider_form'>
-
-                    <form onSubmit={this.handleSubmit}>
-                        <p>Change the Provider Message here:</p>
-                        <input type='text' id='set_provider_message' name='message' onChange={this.handleOnChange} value={this.state.message} />
-                        <button>Submit Message</button>
-                    </form>
-
-                </div>
-
-                {/* Service Forms Below */}
-
-                <div id='live_update_service_form'>
-                    {provider.services && provider.services.map(service => {
-                        return (
-                            <div>
-
-                                <div id='service_name'>
-
-                                    <h3>Service Name: {service.name} {service.id} </h3>
-
-                                </div>
-
-                                <div id="service_qty">
-
-                                    <p> Default Quantity: {service.qty_default}, {service.qty_remaining}</p>
-
-                                    {/* <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
-                                        <input type='number' name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} />
-                                        <button>Set New Quantity</button>
-                                    </form> */}
-
-                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
-
-                                        <span name={`P${provider.id}-S${service.id}-quantity`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-quantity`]} > {this.state[`P${provider.id}-S${service.id}-quantity`]} </span>
-                                        <button id="add" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${provider.id}-S${service.id}-quantity`}> + </button>
-                                        <button id="subtract" onClick={(e) => { this.handleOnChange(e, service.id) }} name={`P${provider.id}-S${service.id}-quantity`}> - </button>
-
-                                    </form>
-
-                                </div>
-
-                                <div id='service_status'>
-
-                                    <h3>Current Service Status: {service.status}</h3>
-
-                                    <form onSubmit={(e) => { this.handleSubmit(e, service.id) }}>
-                                        <p>Set New Service Status:</p>
-                                        <input type='text' name={`P${provider.id}-S${service.id}-status`} onChange={this.handleOnChange} value={this.state[`P${provider.id}-S${service.id}-status`]} />
-                                        <button>Set New Status</button>
-                                    </form>
-
-                                </div>
-
-                            </div>
-                        )
-                    }
-                    )}
-                </div>
-
-                {/* OUTSIDE DIVS */}
-
-            </div >
-
-        )
     }
 }
 
@@ -220,4 +295,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LiveUpdate)
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(LiveUpdate));

@@ -6,11 +6,11 @@ import Map from "./Map";
 import Admin from "./Admin";
 import Sidebar from "./TDC/Sidebar";
 import ManageProvider from "./AdminComponents/ManageProvider";
-import LiveUpdate from "./AdminComponents/LiveUpdate";
+// import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
 import ProfileStyle from "./TDC/Bob-ProfileStyle"
-import FormStyle from './TDC/Bob-liveupdates-form'
+import LiveUpdate from './AdminComponents/LiveUpdate'
 
 
 import {
