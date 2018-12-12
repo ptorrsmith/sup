@@ -52,6 +52,38 @@ const styles = theme => ({
     },
 });
 
+function exampleLogin(e, props) {
+
+    e.preventDefault();
+
+    let username = e.target.username.value
+
+    let profiles = {
+        ["MensShelter"]: 1,
+        ["Compassion"]: 2,
+        ["WellingtonCityMission"]: 3,
+        ["STVincentDePaul"]: 4,
+        ["SalvationArmy"]: 5,
+        ["DCM"]: 6,
+        ["WesleyMethodistChurch"]: 7,
+        ["Catacombs"]: 8,
+        ["Evolve"]: 9,
+    }
+
+    let id = -1;
+
+    if (profiles[username]) {
+        id = profiles[username]
+    }
+    props.dispatch(setLogin(id));
+    if (id < 1) {
+        location = "#/admin";
+    }
+    else {
+        location = "#/liveupdate/" + id;
+    }
+}
+
 function Login(props) {
     const { classes } = props;
 
@@ -66,7 +98,7 @@ function Login(props) {
                 <Typography component="h1" variant="h5">
                     Log in
             </Typography>
-                <form onSubmit={(e) => { e.preventDefault(); props.dispatch(setLogin(e.target.password.value)); location = "#/liveupdate/" + e.target.password.value }} className={classes.form}>
+                <form onSubmit={(e) => { exampleLogin(e, props) }} className={classes.form}>
 
 
                     <FormControl margin="normal" required fullWidth>
