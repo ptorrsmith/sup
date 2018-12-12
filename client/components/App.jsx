@@ -6,10 +6,11 @@ import Map from "./Map";
 import Admin from "./Admin";
 import Sidebar from "./TDC/Sidebar";
 import ManageProvider from "./AdminComponents/ManageProvider";
-import LiveUpdate from "./AdminComponents/LiveUpdate";
+// import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
 import ProfileStyle from "./TDC/Bob-ProfileStyle"
+import LiveUpdate from './AdminComponents/LiveUpdate'
 
 
 import {
@@ -64,6 +65,7 @@ class App extends React.Component {
           {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
           {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
+          {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/login" component={LogIn} />
         </div>
