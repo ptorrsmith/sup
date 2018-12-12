@@ -17,6 +17,7 @@ exports.seed = function (knex, Promise) {
           email: "menshelter@hotmail.com",
           website_url: "http://wellingtonnightshelter.org.nz/",
           hours: "Open: 7 days a week, all year round<br>Checkin: 5:30pm – 9:00pm<br>Checkout: 6:00am – 7:30am",
+          image_url: "/images/providersimages/Mens-Night-Shelter.jpeg",
         },
         {
           id: 2,
@@ -30,6 +31,7 @@ exports.seed = function (knex, Promise) {
           email: "compassionsoupkitchen@hotmail.com",
           website_url: "https://soupkitchen.org.nz/about-us/",
           hours: "Open: Monday-Friday 9am-4pm",
+          image_url: "/images/providersimages/Compassion-Soup-Kitchen.jpeg"
         },
         {
           id: 3,
@@ -43,6 +45,7 @@ exports.seed = function (knex, Promise) {
           email: "wellingtoncitymission@hotmail.com",
           website_url: "https://www.wellingtoncitymission.org.nz/struggling-to-put-food-on-the-table/",
           hours: "Open: Monday to Thursday 10.00am to 3.00pm and Fridays 10.30am to 3.00pm",
+          image_url: "/images/providersimages/City-Mission-Store.jpg"
         },
         {
           id: 4,
@@ -56,6 +59,7 @@ exports.seed = function (knex, Promise) {
           email: "vinniesWellington@hotmail.com",
           website_url: "https://www.vinnies-wellington.org.nz/food-bank/",
           hours: "Open: Monday-Friday 9am-4pm",
+          image_url: "/images/providersimages/StVincientDePaulWellington.jpg"
         },
         {
           id: 5,
@@ -69,6 +73,7 @@ exports.seed = function (knex, Promise) {
           email: "salvationArmy@hotmail.com",
           website_url: "https://www.salvationarmy.org.nz/help-us/food-banks",
           hours: "Open: Monday-Friday 9am-5pm",
+          image_url: "/images/providersimages/TheSalvationArmy.jpg"
         },
         {
           id: 6,
@@ -82,6 +87,7 @@ exports.seed = function (knex, Promise) {
           email: "DCM@hotmail.com",
           website_url: "https://www.dcm.org.nz/contact/",
           hours: "9am-4pm",
+          image_url: "/images/providersimages/DCM.jpg"
         },
         {
           id: 7,
@@ -95,6 +101,7 @@ exports.seed = function (knex, Promise) {
           email: "wesleymethodistchurch@hotmail.com",
           website_url: "http://www.wesleychurch.org.nz/index.php/about-us",
           hours: "Monday-Friday, 9am-5pm",
+          image_url: "/images/providersimages/Wesley-Methodist-Church.jpeg"
         },
         {
           id: 8,
@@ -108,6 +115,7 @@ exports.seed = function (knex, Promise) {
           email: "Catacombs@hotmail.com",
           website_url: "https://www.facebook.com/pg/Catacombs-Incorporated-226736744022280/about/",
           hours: "Open: 7–10pm, Monday–Friday, 2.30–10pm, Saturday, 11am–10pm, Sunday",
+          image_url: "/images/providersimages/Catacombs.jpeg"
         },
         {
           id: 9,
@@ -121,6 +129,7 @@ exports.seed = function (knex, Promise) {
           email: "Evolve@hotmail.com",
           website_url: "https://evolveyouth.org.nz/contact-us/",
           hours: "Open: Monday–Friday 10am -6pm",
+          image_url: "/images/providersimages/Evolve.jpeg"
         },
 
 

@@ -139,21 +139,26 @@ class ManageProvider extends React.Component {
                         <p>
                             <label htmlFor="address">Address:</label>
                             <input type="text" name="address" id="text" onChange={this.onChange} value={this.state.provider.address || ""} /> </p>
+
+                        <p><label htmlFor="image_url">Image URL:</label>
+                            <input type="text" name="image_url" id="text" onChange={this.onChange} value={this.state.provider.image_url || ""} /></p>
                         <p>
                             <label htmlFor="phone">Phone:</label>
                             <input type="tel" name="phone" id="text" onChange={this.onChange} value={this.state.provider.phone || ""} /></p>
                         <p>
                             <label htmlFor="email">Email:</label>
                             <input type="email" name="email" id="text" onChange={this.onChange} value={this.state.provider.email || ""} /></p>
+
+                        <p>
+                            <label htmlFor="website_url">Website URL:</label>
+                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
                         <p>
                             <label htmlFor="hours">Hours:</label>
                             <input type="text" name="hours" id="text" onChange={this.onChange} value={this.state.provider.hours || ""} /></p>
                         <p>
                             <label htmlFor="update_message">Update Message:</label>
                             <input type="text" name="update_message" id="text" onChange={this.onChange} value={this.state.provider.update_message || ""} /></p>
-                        <p>
-                            <label htmlFor="website_url">Website URL:</label>
-                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
+
                         <p>
                             <label htmlFor="lat">Latitude:</label>
                             <input type="text" name="lat" id="text" onChange={this.onChange} value={this.state.provider.lat || ""} /></p>
