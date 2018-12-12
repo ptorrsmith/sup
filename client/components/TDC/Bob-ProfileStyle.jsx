@@ -7,7 +7,6 @@ import { setCurrentProvider, fetchProvider } from "../../actions";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -25,80 +24,14 @@ const styles = theme => ({
         display: 'flex',
     },
 
-
-    // appBar: {
-    //     // zIndex: theme.zIndex.drawer + 1,
-    //     transition: theme.transitions.create(['width', 'margin'], {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.leavingScreen,
-    //     }),
-    // },
-    // appBarShift: {
-    //     marginLeft: drawerWidth,
-    //     width: `calc(100% - ${drawerWidth}px)`,
-    //     transition: theme.transitions.create(['width', 'margin'], {
-    //         easing: theme.transitions.easing.sharp,
-    //         duration: theme.transitions.duration.enteringScreen,
-    //     }),
-    // },
     mainGrid: {
         marginTop: theme.spacing.unit * 3,
     },
 
     outerGrid: {
-        marginTop: '60px',
+        marginTop: '80px',
     }
 });
-
-// class Profile extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     componentDidMount() {
-//         const id = this.props.match.params.id;
-//     }
-
-//     componentDidUpdate() {
-//         const id = this.props.match.params.id;
-//         // get the provider from global redux state'
-//         const currentProvider =
-//             this.props.providers.length > 0 &&
-//             this.props.providers.find(provider => provider.id == id);
-//         currentProvider && this.props.setCurrentProvider(currentProvider);
-//     }
-
-//     render() {
-//         let aProvider = this.props.provider;
-
-//         let liveProvider = this.props.providers.find(
-//             item => item.id == aProvider.id
-//         );
-//         if (liveProvider) {
-//             aProvider = liveProvider;
-//         }
-
-//         if (!aProvider) {
-//             aProvider = {
-//                 id: 1,
-//                 name: "Temp default provider",
-//                 description: "Somthing isnt quite lining up",
-//                 address: "??????",
-//                 phone: "(04) ...---...",
-//                 update_message: "not really functional",
-//                 lat: -41.300598,
-//                 long: 174.774082,
-//                 email: "BlameBarry@Garry.com",
-//                 website_url: "http://ComputerSaysNo.org.nz/",
-//                 hours: "Open: untill something changes",
-//                 services: []
-//             };
-//         }
-
-//         let services = [];
-//         if (aProvider.services) {
-//             services = aProvider.services.map(() => { });
-//         }
 
 class Profile extends React.Component {
     state = {
@@ -152,27 +85,13 @@ class Profile extends React.Component {
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar />
-                {/* <Typography
-                        component="h1"
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                    >
-                        Meet the Provider
-            </Typography> */}
 
-                {/* <Grid item md={6}>
-                    <img src="/images/img-1.jpeg" />
-                </Grid>
-
-                <Divider /> */}
-
-
-
-
-                <Grid container spacing={10} className={classes.outerGrid}>
-                    <Grid item md={10}>
+                <Grid container spacing={8} className={classes.outerGrid}>
+                    <Grid item md={6}>
                         <Paper>
+                            <div style={{ height: "500px" }}>
+                                <img style={{ height: "100%" }} src={aProvider.image_url} />
+                            </div>
                             <Typography variant="h4" gutterBottom component="h2">
                                 {aProvider.name ? aProvider.name : ""} <br></br>
                                 <body1>{aProvider.address ? aProvider.address : ""}</body1><br />
@@ -194,6 +113,7 @@ class Profile extends React.Component {
                             </Typography>
                         </Paper>
                     </Grid>
+                    <Divider />
                     <Grid item md={6}>
 
                         <Typography variant="h4" gutterBottom component="h2">
@@ -207,16 +127,24 @@ class Profile extends React.Component {
                                             .split("<br>")
                                             .map((item, i) => <p key={"desc" + i}>{item}</p>)
                                         : ""}
-                                </div>
-                                Services Offered
-                            {aProvider.services && aProvider.services.map(service => {
-                                    return (<div className="profile-service">
 
-                                        <h6 key={service.id}><span>Service Name: </span>{service.name}</h6>
-                                        <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
-                                        <h6 key={service.id}><span>Service Status: </span>{service.status}</h6>
-                                    </div>)
-                                })}
+                                </div>
+                                <strong>Services Offered:</strong>
+                                <Grid container>
+                                    {aProvider.services && aProvider.services.map(service => {
+
+                                        return (<Grid item={6}><div className="profile-service">
+
+                                            <h6 key={service.id}><span>Service Name: </span>{service.name}</h6>
+                                            <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
+                                            <h6 key={service.id}><span>Service Status: </span>{service.status}</h6>
+
+                                        </div></Grid>)
+
+                                        // </div>
+
+                                    })}
+                                </Grid>
                             </div>
                         </Typography>
                     </Grid>
