@@ -222,12 +222,17 @@ class LiveUpdate extends React.Component {
                     </Typography>
                             <Grid container spacing={24}>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        type='text' id='set_provider_message'
-                                        name='message'
-                                        onChange={this.handleOnChange}
-                                        value={this.state.message} />
-                                    <Button>Submit Message</Button>
+
+
+                                    <form onSubmit={(e) => { this.handleSubmit(e) }}>
+                                        <TextField
+                                            type='text' id='set_provider_message'
+                                            name='message'
+                                            onChange={this.handleOnChange}
+                                            value={this.state.message} />
+                                        <Button type="submit">Submit Message</Button>
+                                    </form>
+
 
                                 </Grid>
 
