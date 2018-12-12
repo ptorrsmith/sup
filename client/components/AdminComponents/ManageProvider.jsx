@@ -3,7 +3,7 @@
 import React from 'react'
 import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { saveProvider } from '../../actions'
+import { saveProvider, fetchProvider } from '../../actions'
 
 import ManageService from './ManageService'
 
@@ -12,6 +12,7 @@ class ManageProvider extends React.Component {
         super(props);
         this.state = {
             provider: {
+                id: '',
                 name: "",
                 description: "",
                 lat: "",
@@ -20,7 +21,8 @@ class ManageProvider extends React.Component {
                 address: "",
                 email: "",
                 website_url: "",
-                update_message: ""
+                update_message: "",
+                image_url: "",
 
             },
             showNewServiceForm: false,
@@ -54,12 +56,12 @@ class ManageProvider extends React.Component {
     }
 
     componentDidMount() {
-        // const id = this.props.match.params.id
+        const id = this.props.match.params.id
         // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
-        // if (id != "new") {
-        //   this.setState({ providerId: id })
-        // this.props.fetchProvider(id)
-        // }
+        if (id != "new") {
+            // this.setState({ providerId: id })
+            this.props.fetchProvider(id)
+        }
         // if (this.props.currentProvider) {
         //     console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
         //     this.setState({ ...this.props.currentProvider })
@@ -76,6 +78,13 @@ class ManageProvider extends React.Component {
             // console.log('tracking history')
             this.props.history.listen(this.routeChanged)
         }
+
+        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
+            this.setState({
+                showNewServiceForm: true
+            })
+        }
+
     }
 
     routeChanged(params) {
@@ -86,15 +95,6 @@ class ManageProvider extends React.Component {
         this.setState({
             showNewServiceForm: true
         })
-    }
-
-    componentDidMount() {
-        if (this.props.currentProvider.services && this.props.currentProvider.services.length == 0) {
-            this.setState({
-                showNewServiceForm: true
-            })
-        }
-
     }
 
     // if (this.props.currentProvider.id) {
@@ -124,9 +124,12 @@ class ManageProvider extends React.Component {
         } // else
         return (
             <div>
+                {this.props.currentProvider && this.props.currentProvider.id && <Link to={`/profile/${this.props.currentProvider.id}`}>View Profile</Link>
+
+                }
                 <form onSubmit={this.onSubmit}>
                     <fieldset>
-                        <legend>New/update Provider Details</legend>
+                        <legend>Provider Details</legend>
                         <p>
                             <label htmlFor="name">Name:</label>
                             <input type="name" name="name" id="text" onChange={this.onChange} value={this.state.provider.name || ""} /></p>
@@ -138,21 +141,26 @@ class ManageProvider extends React.Component {
                         <p>
                             <label htmlFor="address">Address:</label>
                             <input type="text" name="address" id="text" onChange={this.onChange} value={this.state.provider.address || ""} /> </p>
+
+                        <p><label htmlFor="image_url">Image URL:</label>
+                            <input type="text" name="image_url" id="text" onChange={this.onChange} value={this.state.provider.image_url || ""} /></p>
                         <p>
                             <label htmlFor="phone">Phone:</label>
                             <input type="tel" name="phone" id="text" onChange={this.onChange} value={this.state.provider.phone || ""} /></p>
                         <p>
                             <label htmlFor="email">Email:</label>
                             <input type="email" name="email" id="text" onChange={this.onChange} value={this.state.provider.email || ""} /></p>
+
+                        <p>
+                            <label htmlFor="website_url">Website URL:</label>
+                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
                         <p>
                             <label htmlFor="hours">Hours:</label>
                             <input type="text" name="hours" id="text" onChange={this.onChange} value={this.state.provider.hours || ""} /></p>
                         <p>
                             <label htmlFor="update_message">Update Message:</label>
                             <input type="text" name="update_message" id="text" onChange={this.onChange} value={this.state.provider.update_message || ""} /></p>
-                        <p>
-                            <label htmlFor="website_url">Website URL:</label>
-                            <input type="text" name="website_url" id="text" onChange={this.onChange} value={this.state.provider.website_url || ""} /></p>
+
                         <p>
                             <label htmlFor="lat">Latitude:</label>
                             <input type="text" name="lat" id="text" onChange={this.onChange} value={this.state.provider.lat || ""} /></p>
@@ -162,6 +170,7 @@ class ManageProvider extends React.Component {
 
 
                         <button type="submit">Submit</button>
+
                     </fieldset>
 
 
@@ -197,6 +206,9 @@ const mapDispatchToProps = dispatch => {
     return {
         saveProvider: providerInfo => {
             return dispatch(saveProvider(providerInfo));
+        },
+        fetchProvider: (params) => {
+            return dispatch(fetchProvider(params))
         }
     }
 }

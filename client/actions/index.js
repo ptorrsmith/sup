@@ -79,11 +79,11 @@ export const saveProvider = (providerInfo) => {
     })
     saveProviderApi(providerInfo)
       .then(result => {
-        console.log("actions, index saveProvider result = ", result)
+        // console.log("actions, index saveProvider result = ", result)
         // if result.updateRespons then we stay on the same page
         // if result.newProvider then we need to redirect to /admin/providers/{result.newProvider.id}
         if (result.newProvider) {
-          console.log("action index saveProvider newProvider ", result.newProvider)
+          // console.log("action index saveProvider newProvider ", result.newProvider)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -121,9 +121,9 @@ export const saveService = (serviceInfo) => {
     })
     saveServiceApi(serviceInfo)
       .then(result => {
-        console.log("actions, index saveService result = ", result)
+        // console.log("actions, index saveService result = ", result)
         if (result.newService) {
-          console.log("action index saveProvider newProvider ", result.newProvider)
+          // console.log("action index saveProvider newProvider ", result.newProvider)
           // new provider, so get new provider and put into state
           // getProvider(result.newProvider)
           //   .then (providerAndServices => {
@@ -133,7 +133,7 @@ export const saveService = (serviceInfo) => {
           dispatch({
             type: "GETTING_PROVIDER"
           });
-          getProvider(result.newProvider)
+          getProvider(serviceInfo.provider_id)
             .then(provider => {
               // console.log("Actions indexedDB, fetchProvider, data", data);
               dispatch({
@@ -190,7 +190,7 @@ export function timerCountUpdate(count) {
 
 export const timerStart = tickTimerFunction => {
   return (dispatch, getState) => {
-    if (getState().timer.isRunning) {} else {
+    if (getState().timer.isRunning) { } else {
       // console.log("starting timer");
 
       if (!tickTimerFunction) {
@@ -219,7 +219,7 @@ export const timerStop = () => {
       dispatch({
         type: "STOP_TIMER"
       });
-    } else {}
+    } else { }
   };
 };
 
@@ -293,7 +293,7 @@ export const getLocation = () => {
 // DOES NOT WORK. NEEDS HELP >:( 
 
 export const setServiceStatus = (providerId, serviceId, status) => {
-  console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
+  // console.log(`setServiceStatus args: serviceId: ${serviceId}, status: ${status}`)
   return dispatch => {
     setServiceStatusAPI(serviceId, status).then(result => {
       //console.log('what is result', result)
@@ -318,10 +318,10 @@ export const setServiceStatus = (providerId, serviceId, status) => {
 };
 
 export const setServiceQtyRemaining = (providerId, serviceId, quantity) => {
-  console.log(`setServiceQty args: serviceId: ${serviceId}, quantity: ${quantity}`)
+  // console.log(`setServiceQty args: serviceId: ${serviceId}, quantity: ${quantity}`)
   return dispatch => {
     setServiceQtyRemainingAPI(serviceId, quantity).then(result => {
-      console.log('what is result', result)
+      // console.log('what is result', result)
       // console.log('confirming action 1', result)
       dispatch({
         type: "GETTING_PROVIDER"

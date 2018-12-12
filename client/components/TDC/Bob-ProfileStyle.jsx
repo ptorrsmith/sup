@@ -171,7 +171,7 @@ class Profile extends React.Component {
 
 
                 <Grid container spacing={10} className={classes.outerGrid}>
-                    <Grid item md={6}>
+                    <Grid item md={10}>
                         <Paper>
                             <Typography variant="h4" gutterBottom component="h2">
                                 {aProvider.name ? aProvider.name : ""} <br></br>
