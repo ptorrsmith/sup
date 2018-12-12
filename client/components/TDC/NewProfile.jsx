@@ -77,7 +77,8 @@ const styles = theme => ({
   },
   media: {
     // height: 140,
-    height: 480
+    height: theme.spacing.unit * 60,
+    backgroundSize: 'contain'
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,
