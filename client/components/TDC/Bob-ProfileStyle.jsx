@@ -46,7 +46,7 @@ const styles = theme => ({
     },
 
     outerGrid: {
-        marginTop: '60px',
+        marginTop: '80px',
     }
 });
 
@@ -161,18 +161,18 @@ class Profile extends React.Component {
                         Meet the Provider
             </Typography> */}
 
-                {/* <Grid item md={6}>
-                    <img src="/images/img-1.jpeg" />
-                </Grid>
 
-                <Divider /> */}
+                {/* <Divider />  */}
 
 
 
 
-                <Grid container spacing={10} className={classes.outerGrid}>
-                    <Grid item md={10}>
+                <Grid container spacing={8} className={classes.outerGrid}>
+                    <Grid item md={6}>
                         <Paper>
+                            <div style={{ height: "500px" }}>
+                                <img style={{ height: "100%" }} src={aProvider.image_url} />
+                            </div>
                             <Typography variant="h4" gutterBottom component="h2">
                                 {aProvider.name ? aProvider.name : ""} <br></br>
                                 <body1>{aProvider.address ? aProvider.address : ""}</body1><br />
@@ -194,6 +194,7 @@ class Profile extends React.Component {
                             </Typography>
                         </Paper>
                     </Grid>
+                    <Divider />
                     <Grid item md={6}>
 
                         <Typography variant="h4" gutterBottom component="h2">
@@ -207,16 +208,24 @@ class Profile extends React.Component {
                                             .split("<br>")
                                             .map((item, i) => <p key={"desc" + i}>{item}</p>)
                                         : ""}
-                                </div>
-                                Services Offered
-                            {aProvider.services && aProvider.services.map(service => {
-                                    return (<div className="profile-service">
 
-                                        <h6 key={service.id}><span>Service Name: </span>{service.name}</h6>
-                                        <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
-                                        <h6 key={service.id}><span>Service Status: </span>{service.status}</h6>
-                                    </div>)
+                                </div>
+                                <strong>Services Offered:</strong>
+                                <Grid container>
+                                    {aProvider.services && aProvider.services.map(service => {
+
+                                        return (<Grid item={6}><div className="profile-service">
+
+                                            <h6 key={service.id}><span>Service Name: </span>{service.name}</h6>
+                                            <body1 key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</body1>
+                                            <h6 key={service.id}><span>Service Status: </span>{service.status}</h6>
+
+                                        </div></Grid>)
+
+                                    // </div>
+
                                 })}
+                                </Grid>
                             </div>
                         </Typography>
                     </Grid>
