@@ -177,7 +177,7 @@ class Profile extends React.Component {
         <div>
           <img src={aProvider.image_url} />
         </div>
-        <Grid container spacing={8} className={classes.outerGrid}>
+        <Grid container spacing={2} className={classes.outerGrid}>
           <Grid container alignItems="center" justify="center">
             <Paper >
               <Typography variant="h4" gutterBottom>

@@ -8,6 +8,7 @@ import Sidebar from "./TDC/Sidebar";
 import ManageProvider from "./AdminComponents/ManageProvider";
 // import LiveUpdate from "./AdminComponents/LiveUpdate";
 import OldProfile from "./TDC/OldProfile";
+import NewProfile from "./TDC/NewProfile"
 import Profile from "./TDC/Profile"
 // import ManageService from "./AdminComponents/ManageService";
 import ProfileStyle from "./TDC/Bob-ProfileStyle"
@@ -67,8 +68,9 @@ class App extends React.Component {
           {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
-          <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/newprofile/:id" component={NewProfile} />
           <Route exact path="/oldprofile/:id" component={OldProfile} />
+          <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/login" component={LogIn} />
         </div>
       </Router>
