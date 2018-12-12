@@ -14,7 +14,7 @@ const MoreInfo = () => (
 <Typography variant="body1" gutterBottom>
       <p>If you're in immediate danger, please call 111.</p>
       <p>If you're needing help from the Refuge, please call them on 0800 REFUGE or 0800 733 843.</p>
-      <p>If you'd like to get ahold of us or you ahve questiosn for the team, then pop us a message via whats-sup@gmail.com</p>
+      <p>If you'd like to get ahold of us or you have a question for the team, then pop us a message via whats-sup@gmail.com</p>
       </Typography>
   </span>
   

@@ -37,7 +37,7 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Getting Started
+          Menu
           </Typography>
           <IconButton onClick={() => { console.log("hello"); props.getLocation() }}>
             <Typography variant="h6" color="white" className={classes.grow}>
