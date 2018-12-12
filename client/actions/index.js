@@ -177,6 +177,19 @@ export function setCurrentProvider(provider) {
   };
 }
 
+
+export function setLogin(providerId) {
+  return {
+    type: "AUTH_LOGIN",
+    providerId: providerId
+  };
+}
+export function setLogout() {
+  return {
+    type: "AUTH_LOGOUT"
+  };
+}
+
 // function tickTimer(dispatch) {
 //   console.log("timer ticked over");
 // }
@@ -341,3 +354,5 @@ export const setServiceQtyRemaining = (providerId, serviceId, quantity) => {
     });
   };
 };
+
+
