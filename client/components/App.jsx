@@ -10,6 +10,7 @@ import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
 import ManageService from "./AdminComponents/ManageService";
 import ProfileStyle from "./TDC/Bob-ProfileStyle"
+import FormStyle from './TDC/Bob-liveupdates-form'
 
 import {
   fetchProvidersAndServices,
@@ -63,6 +64,7 @@ class App extends React.Component {
           {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
           {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
+          {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
           <Route exact path="/profile/:id" component={Profile} />
 
         </div>
