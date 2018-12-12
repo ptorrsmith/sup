@@ -193,9 +193,11 @@ class LiveUpdate extends React.Component {
                     </div>
                 )
             });
+            console.log("services>>>>>>>>>> ", services)
         }
 
         const { classes } = this.props;
+        console.log("Classes:::::::", classes)
         return (
 
             <React.Fragment>
@@ -219,7 +221,7 @@ class LiveUpdate extends React.Component {
                             </Typography>
                             <Typography variant="h6" gutterBottom>
                                 Change the Provider Message here:
-                    </Typography>
+                            </Typography>
                             <Grid container spacing={24}>
                                 <Grid item xs={12} sm={6}>
 
@@ -238,47 +240,10 @@ class LiveUpdate extends React.Component {
 
                                 <Grid item xs={12}>
                                     {services}
-                                    {/* <Typography variant="h6" gutterBottom>
-                                Service Name: {service.name} {service.id}
-                            </Typography>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button> */}
+
                                 </Grid>
-                                {/* <Grid item xs={12}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid> */}
+
                                 <Grid item xs={12}>
-                                    {/* <Button
-                                variant="contained"
-                                color="primary"
-                            >
-                                Submit
-                    </Button> */}
                                 </Grid>
                             </Grid>
                         </Paper>
