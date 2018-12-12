@@ -193,24 +193,26 @@ class NewProfile extends React.Component {
                     ""
                   )}
               </Typography>
-              <div>
-                Hours:{" "}
-                {aProvider.hours
-                  ? aProvider.hours
-                    .split("<br>")
-                    .map((item, i) => <p key={"time" + i}>{item}</p>)
-                  : ""}
-              </div>
-              <div>
-                {aProvider.update_message ? aProvider.update_message : ""}
-              </div>
-              <div>
-                {aProvider.description
-                  ? aProvider.description
-                    .split("<br>")
-                    .map((item, i) => <p key={"desc" + i}>{item}</p>)
-                  : ""}
-              </div>
+              <Grid container spacing={24}>
+                <Grid item xs={12} sm={6}>
+                  Hours:{" "}
+                  {aProvider.hours
+                    ? aProvider.hours
+                      .split("<br>")
+                      .map((item, i) => <p key={"time" + i}>{item}</p>)
+                    : ""}
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  {aProvider.update_message ? aProvider.update_message : ""}
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  {aProvider.description
+                    ? aProvider.description
+                      .split("<br>")
+                      .map((item, i) => <p key={"desc" + i}>{item}</p>)
+                    : ""}
+                </Grid>
+              </Grid>
 
               <h4>Services Offered</h4>
               {
