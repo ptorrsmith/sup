@@ -8,6 +8,8 @@ import Sidebar from "./TDC/Sidebar";
 import ManageProvider from "./AdminComponents/ManageProvider";
 import LiveUpdate from "./AdminComponents/LiveUpdate";
 import Profile from "./TDC/Profile";
+import ManageService from "./AdminComponents/ManageService";
+import ProfileStyle from "./TDC/Bob-ProfileStyle"
 
 import {
   fetchProvidersAndServices,
@@ -51,6 +53,7 @@ class App extends React.Component {
           <Route exact path="/" component={Sidebar} />
           <Route exact path="/" component={Map} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/test" component={ProfileStyle} />
           {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
           {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} /> */}
@@ -61,6 +64,7 @@ class App extends React.Component {
           {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
+
         </div>
       </Router>
     );
