@@ -55,12 +55,12 @@ class Sidebar extends React.Component {
         <SimpleExpansionPanel />
         <Divider />
         <List>
-          {[{ name: "Log in", link: "/login" }, { name: "Register", link: "/register" }].map((item, index) => (
+          {[{ name: "Log in", link: "#/login" }, { name: "Register", link: "#/admin/providers/new" }].map((item, index) => (
             <ListItem button key={item.name}>
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
 
               {/* <Button onClick={() => { location = "#/login" }}> */}
-              <ListItemText onClick={() => { location = "#/login" }} primary={item.name} />
+              <ListItemText onClick={() => { location = item.link }} primary={item.name} />
               {/* </Button> */}
             </ListItem>
           ))}
