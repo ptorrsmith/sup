@@ -124,6 +124,9 @@ class ManageProvider extends React.Component {
         } // else
         return (
             <div>
+                {this.props.currentProvider && this.props.currentProvider.id && <Link to={`/profile/${this.props.currentProvider.id}`}>View Profile</Link>
+
+                }
                 <form onSubmit={this.onSubmit}>
                     <fieldset>
                         <legend>Provider Details</legend>
@@ -167,6 +170,7 @@ class ManageProvider extends React.Component {
 
 
                         <button type="submit">Submit</button>
+
                     </fieldset>
 
 

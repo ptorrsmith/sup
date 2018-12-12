@@ -121,7 +121,9 @@ class Profile extends React.Component {
 
                   </div>)
                 })}
-
+                <Link to={`/admin/providers/${aProvider.id}`}>Edit</Link>
+                <br />
+                <Link to={`/liveupdate/${aProvider.id}`}>LiveUpdate</Link>
               </div>
             </fieldset>
           </div>
