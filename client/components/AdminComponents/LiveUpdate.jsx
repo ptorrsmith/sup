@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
+// import AppBarOther from '@material-ui/core/AppBar';
+import AppBar from '../AppBar'
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import { connect } from 'react-redux'
@@ -15,8 +16,11 @@ import { fetchProvider, setServiceQtyRemaining, setServiceStatus, setProviderMes
 
 
 const styles = theme => ({
-    appBar: {
-        position: 'relative',
+    // appBar: {
+    //     position: 'relative',
+    // },
+    outerGrid: {
+        marginTop: '80px',
     },
     layout: {
         width: 'auto',
@@ -71,6 +75,7 @@ class LiveUpdate extends React.Component {
         // console.log("Will mount")
         const id = this.props.match.params.id
         this.props.fetchProvider(id)
+        console.log("id is setting to", id)
     }
 
     componentDidMount() {
@@ -144,8 +149,7 @@ class LiveUpdate extends React.Component {
         let services = []
         console.log("showing provider of", this.props.currentProvider)
 
-        //a temporary measure
-        let currentProvider = this.props.providers[0]
+        let currentProvider = this.props.currentProvider
 
         if (currentProvider && currentProvider.services) {
             console.log("showing services of", currentProvider.services)
@@ -181,7 +185,7 @@ class LiveUpdate extends React.Component {
                                     Set New Service Status:
                             </Typography>
                                 <input type='text' name={`P${currentProvider.id}-S${service.id}-status`} onChange={this.handleOnChange} value={this.state[`P${currentProvider.id}-S${service.id}-status`]} />
-                                <Button>Set New Status</Button>
+                                <Button type="submit">Set New Status</Button>
                             </form>
 
                         </div>
@@ -196,31 +200,40 @@ class LiveUpdate extends React.Component {
 
             <React.Fragment>
                 <CssBaseline />
-                <AppBar position="static" className={classes.appBar}>
+                {/* <AppBarOther position="static" className={classes.appBar}>
                     <Toolbar>
                         <Typography variant="h6" color="inherit" noWrap>
                             SUP: Update Me!
           </Typography>
                     </Toolbar>
-                </AppBar>
-                <Paper>
-                    <Typography variant="h6" gutterBottom>
-                        Change the Provider Message here:
-      </Typography>
-                    <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
+                </AppBarOther> */}
 
-                        </Grid>
 
-                        <Grid item xs={12}>
-                            {services}
-                            {/* <Typography variant="h6" gutterBottom>
+                <AppBar />
+
+                <Grid container spacing={8} className={classes.outerGrid}>
+                    <Grid container alignItems="center" justify="center">
+                        <Paper >
+                            <Typography variant="h4" gutterBottom>
+                                {currentProvider.name}
+                            </Typography>
+                            <Typography variant="h6" gutterBottom>
+                                Change the Provider Message here:
+                    </Typography>
+                            <Grid container spacing={24}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        type='text' id='set_provider_message'
+                                        name='message'
+                                        onChange={this.handleOnChange}
+                                        value={this.state.message} />
+                                    <Button>Submit Message</Button>
+
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    {services}
+                                    {/* <Typography variant="h6" gutterBottom>
                                 Service Name: {service.name} {service.id}
                             </Typography>
                             <TextField
@@ -229,8 +242,8 @@ class LiveUpdate extends React.Component {
                                 onChange={this.handleOnChange}
                                 value={this.state.message} />
                             <Button>Submit Message</Button> */}
-                        </Grid>
-                        {/* <Grid item xs={12}>
+                                </Grid>
+                                {/* <Grid item xs={12}>
                             <TextField
                                 type='text' id='set_provider_message'
                                 name='message'
@@ -254,16 +267,18 @@ class LiveUpdate extends React.Component {
                                 value={this.state.message} />
                             <Button>Submit Message</Button>
                         </Grid> */}
-                        <Grid item xs={12}>
-                            {/* <Button
+                                <Grid item xs={12}>
+                                    {/* <Button
                                 variant="contained"
                                 color="primary"
                             >
                                 Submit
                     </Button> */}
-                        </Grid>
+                                </Grid>
+                            </Grid>
+                        </Paper>
                     </Grid>
-                </Paper>
+                </Grid >
             </React.Fragment>
         );
 
