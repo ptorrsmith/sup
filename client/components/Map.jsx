@@ -115,11 +115,12 @@ class AMap extends React.Component {
         }
 
         let serviceStates = thePlace.services.map(s => {
-          let hasQty = [1, 2, 3];
+          let hasQty = [1, 2];
           if (hasQty.find(typeId => typeId == s.service_type_id)) {
             return (
               <span>
-                {s.service_type_name} : {s.status} - Remaining :{" "}
+                {/* {s.service_type_name} : {s.status} - Remaining :{" "} */}
+                <b>{s.name}</b>: {s.status} - Remaining :{" "}
                 {s.qty_remaining}/{s.qty_default}
                 <br />
               </span>
@@ -127,7 +128,8 @@ class AMap extends React.Component {
           } else {
             return (
               <span>
-                {s.service_type_name} : {s.status}
+                {/* {s.service_type_name} : {s.status} */}
+                <b>{s.name}</b> : {s.status}
                 <br />
               </span>
             );

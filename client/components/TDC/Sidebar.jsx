@@ -42,7 +42,7 @@ class Sidebar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-      {/* <Logo /> */}
+        {/* <Logo /> */}
         <SimpleExpansionPanel />
         <Divider />
         <List>
