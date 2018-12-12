@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import {getLocation} from '../actions'
+import { getLocation } from '../actions'
 
 const styles = {
   root: {
@@ -29,7 +29,7 @@ function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={props.toggleDrawer}>
             <MenuIcon />
@@ -39,7 +39,7 @@ function ButtonAppBar(props) {
           </Typography>
           <IconButton onClick={() => { console.log("hello"); props.getLocation() }}>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-                Get Location
+              Get Location
             </Typography>
           </IconButton>
         </Toolbar>
@@ -53,12 +53,12 @@ ButtonAppBar.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-      getLocation: () => {
-        return dispatch(getLocation());
-      }
-    };
+  return {
+    getLocation: () => {
+      return dispatch(getLocation());
+    }
   };
+};
 
 //   connect(null,mapDispatchToProps)
-export default withStyles(styles)( connect(null,mapDispatchToProps)(ButtonAppBar) );
+export default withStyles(styles)(connect(null, mapDispatchToProps)(ButtonAppBar));

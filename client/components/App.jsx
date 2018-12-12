@@ -57,17 +57,17 @@ class App extends React.Component {
           <Route exact path="/admin/providers/new" component={ManageProvider} />
           <Route exact path="/admin/providers/new" component={ManageService} />
           <Route exact path="/admin/providers/new" component={ManageProviderServices} />
-          {/* <Route
+          <Route
             exact
             path="/admin/providers/:id"
             component={ManageProviderServices}
           />
           <Route exact path="/test" component={ProfileStyle} />
-          <Route exact path="/admin/:id" component={AdminProfile} />
-          <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
-          <Route exact path="/login" component={LogIn} />
+          {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
+          {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
           <Route exact path="/profile/:id" component={Profile} />
+
         </div>
       </Router>
     );
