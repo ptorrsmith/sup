@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 
+import { setLogin } from '../../actions'
+
 
 const styles = theme => ({
     main: {
@@ -57,13 +59,16 @@ function Login(props) {
         <main className={classes.main}>
             <CssBaseline />
             <Paper className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockIcon />
-                </Avatar>
+                {/* <Avatar className={classes.avatar}> */}
+                {/* <LockIcon /> */}
+                <img src="/images/Logo.png" />
+                {/* </Avatar> */}
                 <Typography component="h1" variant="h5">
                     Log in
             </Typography>
-                <form className={classes.form}>
+                <form onSubmit={(e) => { e.preventDefault(); props.dispatch(setLogin(e.target.password.value)); location = "#/liveupdate/" + e.target.password.value }} className={classes.form}>
+
+
                     <FormControl margin="normal" required fullWidth>
                         <InputLabel htmlFor="Username">Username</InputLabel>
                         <Input id="username" name="username" autoComplete="Username" autoFocus />
@@ -72,10 +77,10 @@ function Login(props) {
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <Input name="password" type="password" id="password" autoComplete="current-password" />
                     </FormControl>
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
-                    />
+                    /> */}
                     <Button
                         type="submit"
                         fullWidth
@@ -95,4 +100,4 @@ Login.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(connect()(Login));
