@@ -16,11 +16,11 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("didMount")
+    // console.log("didMount")
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    console.log("Profile cDU id ", id)
+    // console.log("Profile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
@@ -46,7 +46,7 @@ class Profile extends React.Component {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    console.log("Profile cDU id ", id)
+    // console.log("Profile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
