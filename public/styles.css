@@ -15,9 +15,13 @@
   padding-left: 10px;
   padding-right: 10px;
   
+  
+  
+}
 
-
-  }
+/* .Connect-Profile--outerGrid-1 {
+  margin-top: 25px;
+} */
 
 .theBackground {
   background : linear-gradient(45deg, yellow,white,yellow,white,yellow,white);

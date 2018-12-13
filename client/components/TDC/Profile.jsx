@@ -1,10 +1,63 @@
 import React from "react";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
+
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { withStyles } from '@material-ui/core/styles';
+
+import Toolbar from '@material-ui/core/Toolbar';
 import Divider from "@material-ui/core/Divider";
+
+import AppBar from '../AppBar'
+
 // import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
 import { setCurrentProvider, fetchProvider } from "../../actions";
+
+const styles = theme => ({
+  // appBar: {
+  //     position: 'relative',
+  // },
+  outerGrid: {
+    marginTop: '80px',
+  },
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 20,
+    marginBottom: theme.spacing.unit * 20,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 20,
+    },
+  },
+  stepper: {
+    padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit,
+  },
+});
 
 class Profile extends React.Component {
   constructor(props) {
@@ -25,7 +78,6 @@ class Profile extends React.Component {
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
-
 
     // const id = this.props.match.params.id;
     // // get the provider from global redux state'
@@ -85,7 +137,7 @@ class Profile extends React.Component {
         long: 174.774082,
         email: "BlameBarry@Garry.com",
         website_url: "http://ComputerSaysNo.org.nz/",
-        hours: "Open: untill something changes",
+        hours: "Open: until something changes",
         services: []
       };
     }
@@ -95,74 +147,101 @@ class Profile extends React.Component {
       services = aProvider.services.map(() => { });
     }
 
+    // let providerServices = [1, 2, 99] // for render
+
+    // console.log("b4 Making services aprovider ", aProvider)
+
+    // if (aProvider.services) {
+    //   console.log("Making services")
+    //   providerServices = aProvider.services.map((service, i) => {
+    //     return (<div className="profile-service" key="service-${i}">
+
+    //       <p key={service.id}><span>Service Name: </span>{service.name}</p>
+    //       {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
+    //       {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
+    //       <p key={service.id}><span>Service Status: </span>{service.status}</p>
+
+    //     </div>)
+    //   })
+    //   console.log("providerServices ::::: ", providerServices)
+    // }
+
+    const { classes } = this.props;
+    // console.log("Classes:::::::", classes)
+
     return (
-      <div>
-        <div className="theBackground">
-          {/* <div classname="grid_container profileContainer"> */}
-          <div className="profileContainer">
-            {/* <div classname="profile_header profileImage"> */}
-            <div className="profileHeader">
-              <img src={aProvider.image_url} className="profileImage" />
-            </div>
-            <fieldset className="profileInfo">
-              <h3>{aProvider.name ? aProvider.name : ""}</h3>
-              <p>{aProvider.address ? aProvider.address : ""}</p>
-              <p>{aProvider.phone ? aProvider.phone : ""}</p>
-              <p>
-                Site:{" "}
-                {aProvider.website_url ? (
+      <React.Fragment>
+        <CssBaseline />
+
+        <AppBar />
+        <div>
+          <img src={aProvider.image_url} />
+        </div>
+        <Grid container spacing={2} className={classes.outerGrid}>
+          <Grid container alignItems="center" justify="center">
+            <Paper >
+              <Typography variant="h4" gutterBottom>
+                {aProvider.name ? aProvider.name : ""}
+              </Typography>
+              <Typography variant="h5" gutterBottom>{aProvider.address ? aProvider.address : ""}</Typography>
+              <Typography variant="h5" gutterBottom>{aProvider.phone ? aProvider.phone : ""}</Typography>
+
+              <Typography variant="h6" gutterBottom>
+                Web: {aProvider.website_url ? (
                   <a href={aProvider.website_url}>{aProvider.name}</a>
                 ) : (
                     ""
                   )}
-              </p>
-              <div>
-                Hours:{" "}
-                {aProvider.hours
-                  ? aProvider.hours
-                    .split("<br>")
-                    .map((item, i) => <p key={"time" + i}>{item}</p>)
-                  : ""}
-              </div>
-            </fieldset>
-
-            <fieldset className="profileDescription">
-              {/* <div className="profile_body"> */}
-              <fieldset>
-                <span>
+              </Typography>
+              <Grid container spacing={24}>
+                <Grid item xs={12} sm={6}>
+                  Hours:{" "}
+                  {aProvider.hours
+                    ? aProvider.hours
+                      .split("<br>")
+                      .map((item, i) => <p key={"time" + i}>{item}</p>)
+                    : ""}
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   {aProvider.update_message ? aProvider.update_message : ""}
-                </span>
-              </fieldset>
-              <div>
-                <div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   {aProvider.description
                     ? aProvider.description
                       .split("<br>")
                       .map((item, i) => <p key={"desc" + i}>{item}</p>)
                     : ""}
-                </div>
+                </Grid>
+              </Grid>
 
-                <h4>Services Offered</h4>
-                {aProvider.services && aProvider.services.map(service => {
+              <h4>Services Offered</h4>
+              {
+                // console.log("ps>>>>>", providerServices)
+                // {providerServices}
+                aProvider.services && aProvider.services.map(service => {
                   return (<div className="profile-service">
 
                     <p key={service.id}><span>Service Name: </span>{service.name}</p>
                     {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
-                    {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
+                    {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining </span>{service.qty_remaining}</p> : ""}
                     <p key={service.id}><span>Service Status: </span>{service.status}</p>
 
                   </div>)
-                })}
-                <Link to={`/admin/providers/${aProvider.id}`}>Edit</Link> | <Link to={`/liveupdate/${aProvider.id}`}>LiveUpdate</Link>
+                })
+              }
+              <Link to={`/admin/providers/${aProvider.id}`}>Edit</Link>
+              <br />
+              <Link to={`/liveupdate/${aProvider.id}`}>LiveUpdate</Link>
+            </Paper>
+          </Grid>
+        </Grid >
+      </React.Fragment >
+
+    )
 
 
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-    );
   }
+
 }
 
 const mapStateToProps = state => {
@@ -183,48 +262,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Profile);
-
-// return (
-
-//     <div>
-//         <div className="theBackground">
-//             {/* <div classname="grid_container profileContainer"> */}
-//             <div className="profileContainer">
-//                 {/* <div classname="profile_header profileImage"> */}
-//                 <div className="profileHeader">
-//                     <img src="/images/img-1.jpeg" className="profileImage"></img>
-//                 </div>
-//                 <fieldset className="profileInfo">
-//                     <h3>The Mens Night Shelter</h3>
-//                     <p>Address: 304 Taranki St, Mt. Cook, Wellington 6011</p>
-//                     <p>Phone: (04) 385-9546</p>
-//                     <p>Site: http://wellingtonnightshelter.org.nz/</p>
-//                     <p>Hours: "Open: 7 days a week, all year round</p>
-//                     <p>Checkin: 5:30pm – 9:00pm</p>
-//                     <p>Checkout: 6:00am – 7:30am"</p>
-//                 </fieldset>
-
-//                 <fieldset className="profileDescription">
-//                     {/* <div className="profile_body"> */}
-//                     <fieldset>
-//                         <span>Updates Area</span>
-//                     </fieldset>
-//                     <div>
-//                         <p>We provide 3 levels of accommodation support:</p>
-//                         <p>stage 1: dormitory style accommodation which including shower and laundry facilities ($10 a night)</p>
-//                         <p>stage 2: hostel room accommodation ($80 a week)</p>
-//                         <p>stage 3: community support (tempoary emergency shelter)</p>
-//                         <p>Dormitory services include a bed for the night, shower facilities, clothes washed, cup of tea. Occasionally some light food is donated and made available.</p>
-
-//                     </div>
-//                 </fieldset>
-//             </div>
-//         </div>
-
-//     </div>
-
-// )
+)(Profile));
