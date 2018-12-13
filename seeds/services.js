@@ -146,8 +146,8 @@ exports.seed = function (knex, Promise) {
       {
         id: 9,
         name: "Advice and Support",
-        qty_default: 10000,
-        qty_remaining: "unlimited",
+        qty_default: 100,
+        qty_remaining: 100,
         unit: "Advice",
         status: "Open",
         provider_id: 6,
@@ -201,8 +201,8 @@ exports.seed = function (knex, Promise) {
       {
         id: 14,
         name: "Medical Assistance and Support",
-        qty_default: '',
-        qty_remaining: '',
+        qty_default: '100',
+        qty_remaining: '100',
         unit: "Medical services",
         status: "Open",
         provider_id: 9,
