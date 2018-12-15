@@ -10,11 +10,12 @@ function requestLogin() {
   }
 }
 
-export function receiveLogin(user) {
+export function receiveLogin(user, providerId) {
   return {
     type: 'LOGIN_SUCCESS',
     isFetching: false,
     isAuthenticated: true,
+    providerId,
     user
   }
 }
@@ -45,8 +46,20 @@ export function loginUser(creds) {
         // const userInfo = saveUserToken(response.json().token)
         const userInfo = saveUserToken(response.body.token)
 
-        dispatch(receiveLogin(userInfo))
-        document.location = "/#/"
+        let providerId = response.body.providerId
+
+        console.log("Provider id is ", providerId)
+
+        dispatch(receiveLogin(userInfo, providerId))
+        if (providerId > 0) {
+          document.location = "/#/admin/providers/" + providerId
+        }
+        else if (providerId < 0) {
+          document.location = "/#/admin"
+        }
+        else {
+          document.location = "/#/"
+        }
       })
       .catch(err => {
         console.log("err is ", err)

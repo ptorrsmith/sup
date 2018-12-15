@@ -18,6 +18,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 
 import { setLogin } from '../../actions'
+import { loginUser } from '../../actions/login'
 
 
 const styles = theme => ({
@@ -84,6 +85,15 @@ function exampleLogin(e, props) {
     }
 }
 
+function sendLoginRequest(props, userName, password) {
+    props.dispatch(loginUser(
+        {
+            user_name: userName,
+            password: password
+        }
+    ))
+}
+
 function Login(props) {
     const { classes } = props;
 
@@ -98,7 +108,7 @@ function Login(props) {
                 <Typography component="h1" variant="h5">
                     Log in
             </Typography>
-                <form onSubmit={(e) => { exampleLogin(e, props) }} className={classes.form}>
+                <form onSubmit={(e) => { e.preventDefault(); sendLoginRequest(props, e.target.username.value, e.target.password.value) }} className={classes.form}>
 
 
                     <FormControl margin="normal" required fullWidth>
@@ -127,7 +137,7 @@ function Login(props) {
         </main>
     );
 }
-}
+
 
 Login.propTypes = {
     classes: PropTypes.object.isRequired,
