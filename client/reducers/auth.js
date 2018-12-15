@@ -4,6 +4,7 @@ const initialState = {
   isFetching: false,
   isAuthenticated: isAuthenticated(),
   user: getUserTokenInfo(),
+  providerId: 0,
   errorMessage: ""
 };
 
@@ -21,6 +22,7 @@ export default function auth(state = initialState, action) {
         ...state,
         isFetching: false,
         isAuthenticated: true,
+        providerId: action.providerId,
         user: action.user
       };
     case "LOGIN_FAILURE":

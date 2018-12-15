@@ -14,7 +14,8 @@ function issue(req, res) {
         var token = createToken(user, process.env.JWT_SECRET);
         res.json({
           message: "Authentication successful",
-          token
+          token,
+          providerId: user.provider_id
         });
       }
     });
