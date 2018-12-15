@@ -1,4 +1,7 @@
 import React from "react";
+
+
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -8,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import Drawer from '@material-ui/core/Drawer';
 import AppBar from "../AppBar"
 // import Logo from "../../../public/images/Logo"
 
@@ -42,18 +46,26 @@ class Sidebar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        {/* <Logo /> */}
+        <div className={classes.drawerHeader}>
+
+          <img src="/images/Logo.png" />
+        </div>
+
+        <Divider />
         <SimpleExpansionPanel />
         <Divider />
         <List>
-          {["Log in", "Register"].map((text, index) => (
-            <ListItem button key={text}>
+          {[{ name: "Log in", link: "#/login" }, { name: "Register", link: "#/admin/providers/new" }].map((item, index) => (
+            <ListItem button key={item.name}>
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text} />
+
+              {/* <Button onClick={() => { location = "#/login" }}> */}
+              <ListItemText onClick={() => { location = item.link }} primary={item.name} />
+              {/* </Button> */}
             </ListItem>
           ))}
         </List>
-      </div>
+      </div >
     );
 
     return (

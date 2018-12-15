@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.main}>
         <CssBaseline />
         <AppBar
           position="absolute"
@@ -164,7 +164,6 @@ class Dashboard extends React.Component {
           <Divider />
           <List>{mainListItems}</List>
           <Divider />
-          <List>{secondaryListItems}</List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />

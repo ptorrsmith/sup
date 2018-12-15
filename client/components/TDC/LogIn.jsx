@@ -17,7 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 
-import { loginUser, loginError } from "../../actions/login";
+import { setLogin } from '../../actions'
+
 
 const styles = theme => ({
     main: {
@@ -51,70 +52,81 @@ const styles = theme => ({
     },
 });
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user_name: "",
-            password: ""
-        };
-        this.updateDetails = this.updateDetails.bind(this);
-        this.submit = this.submit.bind(this);
-    }
-    componentDidMount() {
-        this.props.dispatch(loginError(""));
-    }
-    updateDetails(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-    submit(e) {
-        e.preventDefault();
-        let { user_name, password } = this.state;
-        this.props.dispatch(loginUser({ user_name, password }));
-    }
-    render() {
+function exampleLogin(e, props) {
 
-        // function Login(props) {
-        const { classes } = this.props;
+    e.preventDefault();
 
-        return (
-            <main className={classes.main}>
-                <CssBaseline />
-                <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Log in
+    let username = e.target.username.value
+
+    let profiles = {
+        ["MensShelter"]: 1,
+        ["Compassion"]: 2,
+        ["WellingtonCityMission"]: 3,
+        ["STVincentDePaul"]: 4,
+        ["SalvationArmy"]: 5,
+        ["DCM"]: 6,
+        ["WesleyMethodistChurch"]: 7,
+        ["Catacombs"]: 8,
+        ["Evolve"]: 9,
+    }
+
+    let id = -1;
+
+    if (profiles[username]) {
+        id = profiles[username]
+    }
+    props.dispatch(setLogin(id));
+    if (id < 1) {
+        location = "#/admin";
+    }
+    else {
+        location = "#/liveupdate/" + id;
+    }
+}
+
+function Login(props) {
+    const { classes } = props;
+
+    return (
+        <main className={classes.main}>
+            <CssBaseline />
+            <Paper className={classes.paper}>
+                {/* <Avatar className={classes.avatar}> */}
+                {/* <LockIcon /> */}
+                <img src="/images/Logo.png" />
+                {/* </Avatar> */}
+                <Typography component="h1" variant="h5">
+                    Log in
             </Typography>
-                    <form onSubmit={this.submit} className={classes.form}>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="Username">Username</InputLabel>
-                            <Input id="username" name="user_name" onChange={this.updateDetails} autoComplete="Username" autoFocus />
-                        </FormControl>
-                        <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input name="password" onChange={this.updateDetails} type="password" id="password" autoComplete="current-password" />
-                        </FormControl>
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Log In
+                <form onSubmit={(e) => { exampleLogin(e, props) }} className={classes.form}>
 
+
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="Username">Username</InputLabel>
+                        <Input id="username" name="username" autoComplete="Username" autoFocus />
+                    </FormControl>
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <Input name="password" type="password" id="password" autoComplete="current-password" />
+                    </FormControl>
+                    {/* <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    /> */}
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Log In
               </Button>
-                    </form>
-                </Paper>
-            </main>
-        );
-    }
+                </form>
+            </Paper>
+        </main>
+    );
+}
 }
 
 Login.propTypes = {

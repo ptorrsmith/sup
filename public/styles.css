@@ -3,6 +3,26 @@
     width: 100%;
   }
 
+  .adminPage {
+  
+    
+  }
+
+  .adminForm-provider  {
+    border-radius: 5px;
+  border: 1px solid grey;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+  
+  
+}
+
+/* .Connect-Profile--outerGrid-1 {
+  margin-top: 25px;
+} */
+
 .theBackground {
   background : linear-gradient(45deg, yellow,white,yellow,white,yellow,white);
 }

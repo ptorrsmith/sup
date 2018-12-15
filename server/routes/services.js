@@ -19,12 +19,15 @@ router.get('/', (req, res) => {
     })
 })
 
-router.put('/:id/updateavailability', token.decode, (req, res) => {
-  console.log('req', req.body)
+
+
+// router.put('/:id/updateavailability', token.decode, (req, res) => {  
+router.put('/:id/updateavailability', (req, res) => {
+  // console.log('req', req.body)
 
   const id = req.params.id
   const qtyRemaining = req.body.qty_remaining
-  console.log('qtyRemaining', qtyRemaining)
+  // console.log('qtyRemaining', qtyRemaining)
 
   servicesDB.updateQtyRemaining(id, qtyRemaining)
     // 
