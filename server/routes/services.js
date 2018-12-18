@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
 router.put('/:id/updateavailability', token.decodeAndFindServices, (req, res) => {
   // console.log('req', req.body)
 
-  const serviceIds = req.user.serviceIds
 
 
   const id = req.params.id
@@ -34,6 +33,7 @@ router.put('/:id/updateavailability', token.decodeAndFindServices, (req, res) =>
 
 
   //this should be in the decode
+  const serviceIds = req.user.serviceIds
   if (!serviceIds.includes(id)) {
     res.status(401).json({ message: "Unauthorized Attempt" })
     return
@@ -59,6 +59,17 @@ router.put('/:id/updatestatus', token.decodeAndFindServices, token.decode, (req,
 
   const id = req.params.id
   const currentStatus = req.body.status
+
+
+
+  //this should be in the decode
+  const serviceIds = req.user.serviceIds
+  if (!serviceIds.includes(id)) {
+    res.status(401).json({ message: "Unauthorized Attempt" })
+    return
+  }
+  console.log("service id " + id + " is in ", serviceIds)
+
   // console.log("services, updateStatus route  ", req.body)
   servicesDB.updateStatus(id, currentStatus)
     .then(result => {
@@ -74,6 +85,7 @@ router.put('/:id/updatestatus', token.decodeAndFindServices, token.decode, (req,
 })
 
 
+//This should really get further thought
 router.post('/', token.decodeIfAdmin, (req, res) => {
 
   const serviceInfo = req.body
@@ -91,6 +103,15 @@ router.put('/:id/', token.decodeAndFindServices, (req, res) => {
 
   const id = req.params.id
   const updatedService = req.body
+
+
+  //this should be in the decode
+  const serviceIds = req.user.serviceIds
+  if (!serviceIds.includes(id)) {
+    res.status(401).json({ message: "Unauthorized Attempt" })
+    return
+  }
+  console.log("service id " + id + " is in ", serviceIds)
 
   servicesDB.updateService(id, updatedService)
     .then(response => {
