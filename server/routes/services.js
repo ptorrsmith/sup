@@ -22,12 +22,23 @@ router.get('/', (req, res) => {
 
 
 // router.put('/:id/updateavailability', token.decode, (req, res) => {  
-router.put('/:id/updateavailability', (req, res) => {
+router.put('/:id/updateavailability', token.decodeAndFindServices, (req, res) => {
   // console.log('req', req.body)
+
+  const serviceIds = req.user.serviceIds
+
 
   const id = req.params.id
   const qtyRemaining = req.body.qty_remaining
   // console.log('qtyRemaining', qtyRemaining)
+
+
+  //this should be in the decode
+  if (!serviceIds.includes(id)) {
+    res.status(401).json({ message: "Unauthorized Attempt" })
+    return
+  }
+  console.log("service id " + id + " is in ", serviceIds)
 
   servicesDB.updateQtyRemaining(id, qtyRemaining)
     // 
@@ -44,7 +55,7 @@ router.put('/:id/updateavailability', (req, res) => {
 })
 
 
-router.put('/:id/updatestatus', token.decode, (req, res) => {
+router.put('/:id/updatestatus', token.decodeAndFindServices, token.decode, (req, res) => {
 
   const id = req.params.id
   const currentStatus = req.body.status
@@ -63,7 +74,7 @@ router.put('/:id/updatestatus', token.decode, (req, res) => {
 })
 
 
-router.post('/', token.decode, (req, res) => {
+router.post('/', token.decodeIfAdmin, (req, res) => {
 
   const serviceInfo = req.body
 
@@ -76,7 +87,7 @@ router.post('/', token.decode, (req, res) => {
     })
 })
 
-router.put('/:id/', token.decode, (req, res) => {
+router.put('/:id/', token.decodeAndFindServices, (req, res) => {
 
   const id = req.params.id
   const updatedService = req.body

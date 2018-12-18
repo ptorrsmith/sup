@@ -20,9 +20,11 @@ router.get('/', (req, res) => {
 
 
 
-router.put('/:id/updatemessage', token.decode, (req, res) => {
+router.put('/:id/updatemessage', token.decodeAndFindId, (req, res) => {
+
 
   const id = req.params.id
+
   const updateMessage = req.body.updateMessage
 
   providersDB.updateMessage(id, updateMessage)
@@ -36,7 +38,7 @@ router.put('/:id/updatemessage', token.decode, (req, res) => {
   // console.log(id, updateMessage)
 })
 
-router.post('/', token.decode, (req, res) => {
+router.post('/', token.decodeIfAdmin, (req, res) => {
   //recieve new provider info, 
   //get provider info into a local variable
   const providerInfo = req.body
@@ -51,7 +53,7 @@ router.post('/', token.decode, (req, res) => {
 
 })
 
-router.put('/:id/', token.decode, (req, res) => {
+router.put('/:id/', token.decodeAndFindId, (req, res) => {
 
   const id = req.params.id
   const updatedProvider = req.body
