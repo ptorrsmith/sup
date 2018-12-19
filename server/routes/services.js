@@ -34,7 +34,10 @@ router.put('/:id/updateavailability', token.decodeAndFindServices, (req, res) =>
 
   //this should be in the decode
   const serviceIds = req.user.serviceIds
-  if (!serviceIds.includes(id)) {
+  // if (!serviceIds.includes(id)) { //I think this is using a ===
+  if (serviceIds.filter((serviceId) => serviceId == id) < 1) {
+
+    console.log("service id " + id + " is not in ", serviceIds)
     res.status(401).json({ message: "Unauthorized Attempt" })
     return
   }
@@ -64,7 +67,8 @@ router.put('/:id/updatestatus', token.decodeAndFindServices, token.decode, (req,
 
   //this should be in the decode
   const serviceIds = req.user.serviceIds
-  if (!serviceIds.includes(id)) {
+  // if (!serviceIds.includes(id)) { //I think this is using a ===
+  if (serviceIds.filter((serviceId) => serviceId == id) < 1) {
     res.status(401).json({ message: "Unauthorized Attempt" })
     return
   }
@@ -107,7 +111,8 @@ router.put('/:id/', token.decodeAndFindServices, (req, res) => {
 
   //this should be in the decode
   const serviceIds = req.user.serviceIds
-  if (!serviceIds.includes(id)) {
+  // if (!serviceIds.includes(id)) { //I think this is using a ===
+  if (serviceIds.filter((serviceId) => serviceId == id) < 1) {
     res.status(401).json({ message: "Unauthorized Attempt" })
     return
   }
