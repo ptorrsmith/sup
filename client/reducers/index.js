@@ -7,7 +7,7 @@ import currentProvider from "./currentProvider";
 import location from "./location";
 import timer from "./timer";
 // import auth from './fakeAuth'
-import auth from './Auth'
+import auth from './auth'
 
 export default combineReducers({
   providers,
