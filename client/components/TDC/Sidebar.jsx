@@ -44,6 +44,26 @@ class Sidebar extends React.Component {
   render() {
     const { classes } = this.props;
 
+
+    let legendInfo = [
+      { text: "Advice", image: "images/advice.svg" },
+      { text: "Bed", image: "images/bed.svg" },
+      { text: "Drop In", image: "images/dropin.svg" },
+      { text: "Food Bank", image: "images/foodbank.svg" },
+      { text: "Current Location", image: "images/location.svg" },
+      { text: "Medical", image: "images/medical.svg" },
+      { text: "Meals", image: "images/soup.svg" }
+    ]
+    let legendEntries = legendInfo.map((item) => {
+      return (
+        <div>
+          <object type="image/svg+xml" style={{ width: "50px", height: "50px" }} data={item.image} class="logo">
+          </object>
+          <span>{item.text}</span>
+        </div>
+      )
+    })
+
     const sideList = (
       <div className={classes.list}>
         <div className={classes.drawerHeader}>
@@ -87,6 +107,9 @@ class Sidebar extends React.Component {
           >
             {sideList}
           </div>
+
+          <Divider />
+          {legendEntries}
         </SwipeableDrawer>
       </div>
     );

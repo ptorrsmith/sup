@@ -5,22 +5,26 @@ const providersDB = require('../data/providersDB')
 
 const router = express.Router()
 
+var token = require('../auth/token')
+
+
 
 router.get('/', (req, res) => {
 
   providersDB.getProviders()
     .then(data => {
 
-
-
       res.json({ data: data })
     })
 })
 
 
-router.put('/:id/updatemessage', (req, res) => {
+
+router.put('/:id/updatemessage', token.decodeAndFindId, (req, res) => {
+
 
   const id = req.params.id
+
   const updateMessage = req.body.updateMessage
 
   providersDB.updateMessage(id, updateMessage)
@@ -34,7 +38,7 @@ router.put('/:id/updatemessage', (req, res) => {
   // console.log(id, updateMessage)
 })
 
-router.post('/', (req, res) => {
+router.post('/', token.decodeIfAdmin, (req, res) => {
   //recieve new provider info, 
   //get provider info into a local variable
   const providerInfo = req.body
@@ -49,7 +53,7 @@ router.post('/', (req, res) => {
 
 })
 
-router.put('/:id/', (req, res) => {
+router.put('/:id/', token.decodeAndFindId, (req, res) => {
 
   const id = req.params.id
   const updatedProvider = req.body
