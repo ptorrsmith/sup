@@ -28,6 +28,48 @@ exports.seed = function (knex, Promise) {
           provider_id: '2',
           hash: hashSync('2', saltRounds)
         },
+        {
+          id: 10004,
+          user_name: 'Mission',
+          provider_id: '3',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10005,
+          user_name: 'StVincent',
+          provider_id: '4',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10006,
+          user_name: 'Salvation',
+          provider_id: '5',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10007,
+          user_name: 'DCM',
+          provider_id: '6',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10008,
+          user_name: 'Wesley',
+          provider_id: '7',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10009,
+          user_name: 'Catacombs',
+          provider_id: '8',
+          hash: hashSync('2', saltRounds)
+        },
+        {
+          id: 10010,
+          user_name: 'Evolve',
+          provider_id: '9',
+          hash: hashSync('2', saltRounds)
+        },
       ]);
     });
 };
