@@ -2,6 +2,7 @@ import React from "react";
 
 
 import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -64,6 +65,41 @@ class Sidebar extends React.Component {
       )
     })
 
+
+    let links = []
+
+    const showNavLinks = true;
+    let showAdmin = false;
+    let showProfile = false;
+    const showLogin = true;
+    const showRegister = false;
+
+    const providerId = this.props.auth.providerId || 0
+    if (providerId < 0) {
+      showAdmin = true;
+    }
+    if (providerId > 0) {
+      showProfile = true;
+    }
+
+
+    if (showNavLinks) {
+      links.push({ name: "Home", link: "#" })
+    }
+    if (showAdmin) {
+      links.push({ name: "Admin", link: "#/admin" })
+    }
+    if (showProfile) {
+      links.push({ name: "Services Update", link: "#/liveupdate/" + providerId })
+      links.push({ name: "Profile Update", link: "#/admin/providers/" + providerId })
+    }
+    if (showLogin) {
+      links.push({ name: "Log in", link: "#/login" })
+    }
+    if (showRegister) {
+      links.push({ name: "Register", link: "#/admin/providers/new" })
+    }
+
     const sideList = (
       <div className={classes.list}>
         <div className={classes.drawerHeader}>
@@ -75,7 +111,7 @@ class Sidebar extends React.Component {
         <SimpleExpansionPanel />
         <Divider />
         <List>
-          {[{ name: "Log in", link: "#/login" }, { name: "Register", link: "#/admin/providers/new" }].map((item, index) => (
+          {links.map((item, index) => (
             <ListItem button key={item.name}>
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
 
@@ -116,8 +152,15 @@ class Sidebar extends React.Component {
   }
 }
 
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
 SwipeableDrawer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Sidebar);
+export default withStyles(styles)(connect(mapStateToProps)(Sidebar));
