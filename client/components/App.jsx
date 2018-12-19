@@ -56,7 +56,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Sidebar} />
+          <Route path="/" component={Sidebar} />
           <Route exact path="/" component={Map} />
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/test" component={ProfileStyle} />

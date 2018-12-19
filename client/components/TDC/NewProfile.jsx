@@ -281,7 +281,7 @@ class NewProfile extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <AppBar />
+        {/* <AppBar /> */}
         <div className={classes.layout}>
           {/* <Toolbar className={classes.toolbarMain}>
             <Button size="small">Subscribe</Button>

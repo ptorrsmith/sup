@@ -71,7 +71,7 @@ class ProfileList extends React.Component {
         return (
             <React.Fragment>
                 <CssBaseline />
-                <AppBar />
+                {/* <AppBar /> */}
                 <Grid container spacing={8} className={classes.outerGrid}>
                     <Grid container alignItems="center" justify="center">
                         <Paper >

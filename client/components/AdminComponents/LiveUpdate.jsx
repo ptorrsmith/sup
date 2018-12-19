@@ -211,7 +211,7 @@ class LiveUpdate extends React.Component {
                 </AppBarOther> */}
 
 
-                <AppBar />
+                {/* <AppBar /> */}
 
                 <Grid container spacing={8} className={classes.outerGrid}>
                     <Grid container alignItems="center" justify="center">
