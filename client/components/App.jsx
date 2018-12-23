@@ -26,15 +26,12 @@ import {
 
 import LogIn from "./TDC/LogIn";
 
-// function getProviders(dispatch) {
-//   dispatch(fetchProvidersAndServices());
-// }
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.getProviders = this.getProviders.bind(this)
   }
 
   componentDidMount() {
@@ -60,17 +57,11 @@ class App extends React.Component {
           <Route exact path="/" component={Map} />
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/test" component={ProfileStyle} />
-          {/* Admin Profile has the ability to edit the profile, depending on the auth of the admin user */}
-          {/* <Route exact path="/admin/providers/new" component={ManageProvider} />
-          <Route exact path="/admin/providers/new" component={ManageService} /> */}
-          {/* <Route exact path="/admin/providers/:id" component={ManageProviderServices} /> */}
+
           <Route exact path="/admin/providers/:id" component={ManageProvider} />
-          {/* <Route exact path="/admin/providers/:id" render={() => <ManageProvider {...this.props} />} /> */}
-          {/* <Route exact path="/admin/:id" component={AdminProfile} /> */}
-          {/* <Route exact path="/admin/:id/edit" component={EditProfile} /> */}
+
           <Route exact path="/liveupdate/:id" component={LiveUpdate} />
 
-          {/* <Route exact path="/liveupdate/:id" component={FormStyle} /> */}
           <Route exact path="/newprofile/:id" component={Profile} />
           <Route exact path="/oldprofile/:id" component={OldProfile} />
           <Route exact path="/profile/:id" component={NewProfile} />

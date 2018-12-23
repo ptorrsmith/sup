@@ -25,7 +25,6 @@ import indigo from '@material-ui/core/colors/indigo'
 
 import AppBar from '../AppBar'
 
-// import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
 import { setCurrentProvider, fetchProvider } from "../../actions";
 
@@ -79,11 +78,9 @@ const styles = theme => ({
     flex: 1,
   },
   cardMedia: {
-    // height: 160,
     width: '100%',
   },
   media: {
-    // height: 140,
     height: theme.spacing.unit * 60,
     backgroundSize: 'contain',
     marginTop: 10
@@ -121,58 +118,30 @@ class NewProfile extends React.Component {
   }
 
   componentWillMount() {
-    // console.log("willMount")
   }
 
   componentDidMount() {
-    // console.log("didMount")
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("NewProfile cDM id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // get the provider from global redux state'
-    // console.log("XXXX-id", id)
-    // console.log("DM XXXXXX-providers ", this.props.providers)
-    // console.log("XXXXXX-props ", this.props)
-    // console.log("XXXX-currentProvider", this.props.provider)
   }
 
   componentDidUpdate() {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // console.log("didUpdate")
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("NewProfile cDU id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
     let aProvider = this.props.provider;
-    // console.log("NewProfile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
@@ -198,29 +167,6 @@ class NewProfile extends React.Component {
       };
     }
 
-    // let services = [];
-    // if (aProvider.services) {
-    //   services = aProvider.services.map(() => { });
-    // }
-
-    // let providerServices = [1, 2, 99] // for render
-
-    // console.log("b4 Making services aprovider ", aProvider)
-
-    // if (aProvider.services) {
-    //   console.log("Making services")
-    //   providerServices = aProvider.services.map((service, i) => {
-    //     return (<div className="profile-service" key="service-${i}">
-
-    //       <p key={service.id}><span>Service Name: </span>{service.name}</p>
-    //       {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
-    //       {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
-    //       <p key={service.id}><span>Service Status: </span>{service.status}</p>
-
-    //     </div>)
-    //   })
-    //   console.log("providerServices ::::: ", providerServices)
-    // }
 
     const { classes } = this.props;
 
@@ -254,7 +200,6 @@ class NewProfile extends React.Component {
       },
     ];
 
-    // const posts = [post1, post2, post3];
 
     const archives = [
       'March 2020',
@@ -281,57 +226,8 @@ class NewProfile extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        {/* <AppBar /> */}
         <div className={classes.layout}>
-          {/* <Toolbar className={classes.toolbarMain}>
-            <Button size="small">Subscribe</Button>
-            <Typography
-              component="h2"
-              variant="h5"
-              color="inherit"
-              align="center"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Blog
-            </Typography>
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
-            <Button variant="outlined" size="small">
-              Sign up
-            </Button>
-          </Toolbar> */}
-          {/* <Toolbar variant="dense" className={classes.toolbarSecondary}>
-            <Typography color="inherit" noWrap>
-              Home
-              </Typography>
-            <Typography color="inherit" noWrap>
-              Admin
-              </Typography>
-            ))}
-          </Toolbar> */}
           <main>
-            {/* Main featured post */}
-            {/* <Paper className={classes.mainFeaturedPost}>
-              <Grid container>
-                <Grid item md={6}>
-                  <div className={classes.mainFeaturedPostContent}>
-                    <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                      {aProvider.name}
-                    </Typography>
-                    <Typography variant="h5" color="inherit" paragraph>
-                      {aProvider.address}
-                    </Typography>
-                    <Typography variant="h5" color="inherit" paragraph>
-                      {aProvider.phone}
-                    </Typography>
-                  </div>
-                </Grid>
-              </Grid>
-            </Paper> */}
-            {/* End main featured post */}
-
 
             <Card className={classes.headerCard}>
               <CardActionArea>
@@ -355,9 +251,6 @@ class NewProfile extends React.Component {
                       </Typography>
                     )
                   })}
-
-
-
 
                 </CardContent>
               </CardActionArea>
@@ -409,13 +302,6 @@ class NewProfile extends React.Component {
                         </Typography>
                       }
                     </CardContent>
-                    {/* <Hidden xsDown>
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164edaf95ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164edaf95ee%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.32500076293945%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" // eslint-disable-line max-len
-                        title="Image title"
-                      />
-                    </Hidden> */}
                   </Card>
                 </Grid>
               ))}

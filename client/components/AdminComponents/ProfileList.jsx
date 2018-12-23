@@ -16,12 +16,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchProvidersAndServices } from '../../actions'
 
-// IMPORT TEMPORARY DATA TO USE AS BASE FOR THIS
-// import providersAndServices from '../../utils/exampleData'
 const styles = theme => ({
-    // appBar: {
-    //     position: 'relative',
-    // },
     outerGrid: {
         marginTop: '20px',
     }
@@ -30,48 +25,29 @@ const styles = theme => ({
 class ProfileList extends React.Component {
     constructor(props) {
         super(props)
-
-        // set initial state
-        // no local state?
-
-
-        // bind functions
-
     }
 
     componentWillMount() {
-        // console.log("Will mount")
 
         this.props.fetchProvidersAndServices()
     }
 
     componentDidMount() {
-        // console.log("mounted")
-        // fetchProvidersAndServices()
 
     }
 
     componentDidUpdate() {
-        // console.log("updated")
-        // const id = this.props.match.params.id;
-        // // get the provider from global redux state'
-        // const currentProvider =
-        //     this.props.providers.length > 0 &&
-        //     this.props.providers.find(provider => provider.id == id);
-        // currentProvider && this.props.setCurrentProvider(currentProvider);
     }
 
 
 
     render() {
         const providersAndServices = this.props.providers.providers
-        // console.log("ProfileList render providersAndServices >>>> ", providersAndServices)
 
         const { classes } = this.props;
         return (
             <React.Fragment>
                 <CssBaseline />
-                {/* <AppBar /> */}
                 <Grid container spacing={8} className={classes.outerGrid}>
                     <Grid container alignItems="center" justify="center">
                         <Paper >
@@ -93,7 +69,6 @@ class ProfileList extends React.Component {
                                             <ul>
                                                 {provider.services.map((service, j) => {
                                                     return <li key={j}>
-                                                        {/* <Link to={`/admin/service/${service.id}`}>{service.name}</Link> */}
                                                         <Typography gutterBottom>{service.name}
                                                         </Typography>
                                                     </li>

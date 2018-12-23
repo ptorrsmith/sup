@@ -14,8 +14,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from "../AppBar"
-// import Logo from "../../../public/images/Logo"
-
 
 import SimpleExpansionPanel from "./SimpleExpansionPanel";
 
@@ -113,11 +111,7 @@ class Sidebar extends React.Component {
         <List>
           {links.map((item, index) => (
             <ListItem button key={item.name}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-
-              {/* <Button onClick={() => { location = "#/login" }}> */}
               <ListItemText onClick={() => { location = item.link }} primary={item.name} />
-              {/* </Button> */}
             </ListItem>
           ))}
         </List>
@@ -128,8 +122,7 @@ class Sidebar extends React.Component {
       <div>
 
         <AppBar toggleDrawer={() => { this.toggleDrawer("left", true) }} />
-        {/* Open Left</AppBar> */}
-        {/* <AppBar/> */}
+
         <SwipeableDrawer
           open={this.state.left}
           onClose={() => this.toggleDrawer("left", false)}
@@ -138,7 +131,7 @@ class Sidebar extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            // onClick={() => this.toggleDrawer('left', false)}
+
             onKeyDown={() => this.toggleDrawer("left", false)}
           >
             {sideList}

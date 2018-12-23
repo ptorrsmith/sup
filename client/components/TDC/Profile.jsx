@@ -15,14 +15,11 @@ import Divider from "@material-ui/core/Divider";
 
 import AppBar from '../AppBar'
 
-// import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
 import { setCurrentProvider, fetchProvider } from "../../actions";
 
 const styles = theme => ({
-  // appBar: {
-  //     position: 'relative',
-  // },
+
   outerGrid: {
     marginTop: '80px',
   },
@@ -65,58 +62,32 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    // console.log("willMount")
   }
 
   componentDidMount() {
-    // console.log("didMount")
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("Profile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
 
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("Profile cDM id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // get the provider from global redux state'
-    // console.log("XXXX-id", id)
-    // console.log("DM XXXXXX-providers ", this.props.providers)
-    // console.log("XXXXXX-props ", this.props)
-    // console.log("XXXX-currentProvider", this.props.provider)
   }
 
   componentDidUpdate() {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("Profile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
 
-    // console.log("didUpdate")
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("Profile cDU id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
     let aProvider = this.props.provider;
-    // console.log("Profile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
@@ -147,27 +118,7 @@ class Profile extends React.Component {
       services = aProvider.services.map(() => { });
     }
 
-    // let providerServices = [1, 2, 99] // for render
-
-    // console.log("b4 Making services aprovider ", aProvider)
-
-    // if (aProvider.services) {
-    //   console.log("Making services")
-    //   providerServices = aProvider.services.map((service, i) => {
-    //     return (<div className="profile-service" key="service-${i}">
-
-    //       <p key={service.id}><span>Service Name: </span>{service.name}</p>
-    //       {/* The service type ID span below needs work, and might need touching up when more IDs are added.. */}
-    //       {service.service_type_id < 3 ? <p key={service.id}><span>{service.unit} Remaining: </span>{service.qty_remaining}</p> : ""}
-    //       <p key={service.id}><span>Service Status: </span>{service.status}</p>
-
-    //     </div>)
-    //   })
-    //   console.log("providerServices ::::: ", providerServices)
-    // }
-
     const { classes } = this.props;
-    // console.log("Classes:::::::", classes)
 
     return (
       <React.Fragment>
@@ -216,8 +167,6 @@ class Profile extends React.Component {
 
               <h4>Services Offered</h4>
               {
-                // console.log("ps>>>>>", providerServices)
-                // {providerServices}
                 aProvider.services && aProvider.services.map(service => {
                   return (<div className="profile-service">
 

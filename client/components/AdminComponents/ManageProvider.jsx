@@ -17,9 +17,6 @@ import { saveProvider, fetchProvider, getLocation } from '../../actions'
 import ManageService from './ManageService'
 
 const styles = theme => ({
-    // appBar: {
-    //     position: 'relative',
-    // },
     outerGrid: {
         marginTop: '80px',
     }
@@ -55,7 +52,6 @@ class ManageProvider extends React.Component {
 
     }
     onChange(e) {
-        // console.log("AddProvider onchange e = ", e)
         this.setState({
             provider: {
                 ...this.state.provider,
@@ -68,7 +64,6 @@ class ManageProvider extends React.Component {
     getLatLong() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                // console.log(position)
                 this.setState({
                     provider: {
                         ...this.state.provider,
@@ -82,35 +77,16 @@ class ManageProvider extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        // console.log("save provider: ", this.state)
-        // console.log("Saving this.state -----------------> ", this.state)
         this.props.saveProvider(this.state.provider)
-        // .then(
-        // console.log("NOT THENed, no promise! Saved this.state -----------------> REDIRECT? ID = ", this.props.currentProvider.id)
-        // )
     }
 
     componentDidMount() {
         const id = this.props.match.params.id
-        // console.log("XXXXXXXX Manager provider id is ", id || "EMPTY!!", this.props)
         if (id != "new") {
-            // this.setState({ providerId: id })
             this.props.fetchProvider(id)
         }
-        // if (this.props.currentProvider) {
-        //     console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
-        //     this.setState({ ...this.props.currentProvider })
-        // }
-        // if (this.props.currentProvider) {
-        // console.log("Current Provider CDM >>>>>>>> ", this.props.currentProvider)
-        //     if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider)
-        //         this.setState({ ...this.props.currentProvider })
-        // }
-
-        // console.log(this.props)
 
         if (this.props.history) {
-            // console.log('tracking history')
             this.props.history.listen(this.routeChanged)
         }
 
@@ -123,7 +99,6 @@ class ManageProvider extends React.Component {
     }
 
     routeChanged(params) {
-        // console.log('route change', params)
     }
 
     showAddServiceForm(e) {
@@ -132,31 +107,22 @@ class ManageProvider extends React.Component {
         })
     }
 
-    // if (this.props.currentProvider.id) {
     componentDidUpdate(prevProps) {
-        // console.log("Current Provider CDU _______ ", this.props.currentProvider, this.state)
 
         if (this.props.currentProvider.id && this.props.currentProvider != prevProps.currentProvider) {
-            // console.log("Current Provider CDU XXXXXXX ", this.props.currentProvider, this.state)
-            // console.log("Have current Provider: ", this.props.currentProvider)
             this.setState({
                 provider: { ...this.props.currentProvider }
             })
             this.props.history.push(`/admin/providers/${this.props.currentProvider.id}`)
         } else {
-            // console.log("No Current Provider CDU >>>>>> ", this.props.currentProvider, this.state)
         }
 
-        // }
     }
 
 
     render() {
-        // console.log("state!!!!!!:::", this.state)
         if (this.props.currentProvider && this.props.currentProvider.id) {
-            // console.log("Current Provider ?????, should I redirect?", this.props.currentProvider)
-            // return <Redirect to={`/admin/providers/${this.props.currentProvider.id}`} />
-        } // else
+        }
 
         const { classes } = this.props;
         return (

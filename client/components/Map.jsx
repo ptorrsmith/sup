@@ -29,10 +29,6 @@ class AMap extends React.Component {
     let zoomLevel = this.props.location.zoom;
 
     const icon = L.icon({
-      // iconUrl: 'images/location.svg',
-      // iconSize:     [40, 50],
-      // iconAnchor:   [22, 94],
-      // popupAnchor:  [-3, -76],
 
       iconUrl: "images/location.svg",
       iconSize: [40, 50],
@@ -122,7 +118,6 @@ class AMap extends React.Component {
           if (hasQty.find(typeId => typeId == s.service_type_id)) {
             return (
               <span>
-                {/* {s.service_type_name} : {s.status} - Remaining :{" "} */}
                 <b>{s.name}</b>: {s.status} - Remaining :{" "}
                 {s.qty_remaining}/{s.qty_default}
                 <br />
@@ -176,31 +171,10 @@ class AMap extends React.Component {
       );
     }
 
-    // var legend = L.control({position: 'bottomleft' });
-    // legend.onAdd = function (Map) {
-
-    //   var div = L.DomUtil.create('div', 'info legend');
-    //   labels = ['<strong>Providers</strong>'],
-    //     categories = ['Shellter', 'Soup Kitchen', 'Food bank', 'Drop in Center', 'Support Services', 'Other services'];
-
-    //   for (var i = 0; i < categories.length; i++) {
-
-    //     div.innerHTML +=
-    //       labels.push(
-    //         '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-    //         (categories[i] ? categories[i] : '+'));
-
-    //   }
-    //   div.innerHTML = labels.join('<br>');
-    //   return div;
-    // };
-
-    // legend.addTo(Map);
 
     return (
       <div>
         <div style={{ height: "80px" }}></div>
-        {/* <Button color="secondary" onClick={this.getLocation}>Get location</Button> */}
         <Map
           center={position}
           onzoomend={this.handleZoomChange}
@@ -218,7 +192,6 @@ class AMap extends React.Component {
   }
 }
 
-// ReactDOM.render(<Map />, document.getElementById('container'))
 const mapStateToProps = state => {
   return {
     providers: state.providers.providers,

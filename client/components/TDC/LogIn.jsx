@@ -101,10 +101,7 @@ function Login(props) {
         <main className={classes.main}>
             <CssBaseline />
             <Paper className={classes.paper}>
-                {/* <Avatar className={classes.avatar}> */}
-                {/* <LockIcon /> */}
                 <img src="/images/Logo.png" />
-                {/* </Avatar> */}
                 <Typography component="h1" variant="h5">
                     Log in
             </Typography>
@@ -119,10 +116,6 @@ function Login(props) {
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <Input name="password" type="password" id="password" autoComplete="current-password" />
                     </FormControl>
-                    {/* <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    /> */}
                     <Button
                         type="submit"
                         fullWidth

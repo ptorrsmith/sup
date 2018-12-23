@@ -142,7 +142,6 @@ class Profile extends React.Component {
 
                                     </div></Grid>)
 
-                                    // </div>
 
                                 })}
                             </Grid>
