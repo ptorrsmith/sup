@@ -1,12 +1,10 @@
 import React from "react";
-
-
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -26,6 +24,10 @@ const styles = {
   fullList: {
     width: "auto"
   }
+  // heading: {
+  //   fontSize: theme.typography.pxToRem(15),
+  //   fontWeight: theme.typography.fontWeightRegular
+  // }
 };
 
 class Sidebar extends React.Component {
@@ -47,20 +49,24 @@ class Sidebar extends React.Component {
 
 
     let legendInfo = [
-      { text: "Advice", image: "images/advice.svg" },
-      { text: "Bed", image: "images/bed.svg" },
-      { text: "Drop In", image: "images/dropin.svg" },
-      { text: "Food Bank", image: "images/foodbank.svg" },
-      { text: "Current Location", image: "images/location.svg" },
-      { text: "Medical", image: "images/medical.svg" },
-      { text: "Meals", image: "images/soup.svg" }
+      { text: "Where you are Currently", image: "images/location.svg" },
+      { text: "Get Advice", image: "images/advice.svg" },
+      { text: "Find a Bed", image: "images/bed.svg" },
+      { text: "Find a DropIn Center", image: "images/dropin.svg" },
+      { text: "Find a Food Bank", image: "images/foodbank.svg" },
+      { text: "Get Medical Help", image: "images/medical.svg" },
+      { text: "Find a Warm Meal", image: "images/soup.svg" }
     ]
     let legendEntries = legendInfo.map((item) => {
       return (
         <div>
-          <object type="image/svg+xml" style={{ width: "50px", height: "50px" }} data={item.image} class="logo">
-          </object>
-          <span>{item.text}</span>
+          <Typography variant="subtitle2" gutterBottom>
+
+            <object type="image/svg+xml" style={{ width: "50px", height: "50px" }} data={item.image} class="logo">
+            </object>
+            <span>{item.text}</span>
+          </Typography>
+          <Divider />
         </div>
       )
     })
