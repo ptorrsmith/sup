@@ -15,11 +15,8 @@ const Admin = () => (
         </div>
 
         <div className="admin_body">
-            {/* <p></p> */}
         </div>
 
-        {/* When an item from the list is clicked, it will
-            redirect to ViewProfile */}
         <ProfileList />
 
         <div className="admin_link">

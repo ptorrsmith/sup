@@ -16,9 +16,6 @@ import { fetchProvider, setServiceQtyRemaining, setServiceStatus, setProviderMes
 
 
 const styles = theme => ({
-    // appBar: {
-    //     position: 'relative',
-    // },
     outerGrid: {
         marginTop: '80px',
     },

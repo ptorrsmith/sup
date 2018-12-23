@@ -24,15 +24,15 @@ function SimpleExpansionPanel(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      {/* Getting started */}
+
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>Getting started</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {/* <Typography> */}
+
           <HowToUse />
-          {/* </Typography> */}
+
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
@@ -42,9 +42,9 @@ function SimpleExpansionPanel(props) {
           <Typography className={classes.heading}>About</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {/* <Typography> */}
+
           <About />
-          {/* </Typography> */}
+
         </ExpansionPanelDetails>
       </ExpansionPanel>
       {/* More info panel */}
@@ -53,9 +53,9 @@ function SimpleExpansionPanel(props) {
           <Typography className={classes.heading}>More Info</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {/* <Typography> */}
+
           <MoreInfo />
-          {/* </Typography> */}
+
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

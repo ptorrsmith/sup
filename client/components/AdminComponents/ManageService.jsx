@@ -28,7 +28,7 @@ class ManageService extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.provider_id && !this.props.service) { // is an empty service form, with only provider_id known 
+    if (this.props.provider_id && !this.props.service) {
       this.setState({
         service: {
           provider_id: this.props.provider_id,
@@ -48,7 +48,6 @@ class ManageService extends React.Component {
   }
 
   onChange(e) {
-    // console.log("AddProvider onchange e = ", e)
     const value = (e.target.type == "radio") ? e.target.id : e.target.value
     this.setState({
       service: {
@@ -59,7 +58,6 @@ class ManageService extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    // console.log("ManageService onsubmit state.service ", this.state.service)
     if (this.state.service.service_type_id > 0) {
       this.props.saveService(this.state.service);
     } else {

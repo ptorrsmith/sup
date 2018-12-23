@@ -12,14 +12,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Divider from "@material-ui/core/Divider";
 
 
-// import { theBackground, grid_container, profile_header, profole_body } from '../../../public/style'
 
 import { setCurrentProvider, fetchProvider } from "../../actions";
 
 const styles = theme => ({
-  // appBar: {
-  //     position: 'relative',
-  // },
   outerGrid: {
     marginTop: '80px',
   },
@@ -62,58 +58,30 @@ class OldProfile extends React.Component {
   }
 
   componentWillMount() {
-    // console.log("willMount")
   }
 
   componentDidMount() {
-    // console.log("didMount")
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("OldProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("OldProfile cDM id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // get the provider from global redux state'
-    // console.log("XXXX-id", id)
-    // console.log("DM XXXXXX-providers ", this.props.providers)
-    // console.log("XXXXXX-props ", this.props)
-    // console.log("XXXX-currentProvider", this.props.provider)
   }
 
   componentDidUpdate() {
 
     const id = this.props.match.params.id;
     // get the provider from global redux state'
-    // console.log("OldProfile cDU id ", id)
     const currentProvider =
       this.props.providers.length > 0 &&
       this.props.providers.find(provider => provider.id == id);
     currentProvider && this.props.setCurrentProvider(currentProvider);
-
-    // console.log("didUpdate")
-    // const id = this.props.match.params.id;
-    // // get the provider from global redux state'
-    // console.log("OldProfile cDU id ", id)
-    // const currentProvider =
-    //   this.props.providers.length > 0 &&
-    //   this.props.providers.find(provider => provider.id == id);
-    // currentProvider && this.props.setCurrentProvider(currentProvider);
   }
 
   render() {
     let aProvider = this.props.provider;
-    // console.log("OldProfile aProvider = ", aProvider)
 
     let liveProvider = this.props.providers.find(
       item => item.id == aProvider.id
@@ -147,9 +115,7 @@ class OldProfile extends React.Component {
     return (
       <div>
         <div className="theBackground">
-          {/* <div classname="grid_container profileContainer"> */}
           <div className="profileContainer">
-            {/* <div classname="profile_header profileImage"> */}
             <div className="profileHeader">
               <img src={aProvider.image_url} className="profileImage" />
             </div>
@@ -215,98 +181,6 @@ class OldProfile extends React.Component {
       </div>
 
 
-    )
-
-    const { classes } = this.props;
-    return (
-
-      <React.Fragment>
-        <CssBaseline />
-        {/* <AppBarOther position="static" className={classes.appBar}>
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            SUP: Update Me!
-          </Typography>
-                    </Toolbar>
-                </AppBarOther> */}
-
-
-        <AppBar />
-
-        <Grid container spacing={8} className={classes.outerGrid}>
-          <Grid container alignItems="center" justify="center">
-            <Paper >
-              <Typography variant="h4" gutterBottom>
-                {currentProvider.name}
-              </Typography>
-              <Typography variant="h6" gutterBottom>
-                Change the Provider Message here:
-                    </Typography>
-              <Grid container spacing={24}>
-                <Grid item xs={12} sm={6}>
-
-
-                  <form onSubmit={(e) => { this.handleSubmit(e) }}>
-                    <TextField
-                      type='text' id='set_provider_message'
-                      name='message'
-                      onChange={this.handleOnChange}
-                      value={this.state.message} />
-                    <Button type="submit">Submit Message</Button>
-                  </form>
-
-
-                </Grid>
-
-                <Grid item xs={12}>
-                  {services}
-                  {/* <Typography variant="h6" gutterBottom>
-                                Service Name: {service.name} {service.id}
-                            </Typography>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button> */}
-                </Grid>
-                {/* <Grid item xs={12}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                type='text' id='set_provider_message'
-                                name='message'
-                                onChange={this.handleOnChange}
-                                value={this.state.message} />
-                            <Button>Submit Message</Button>
-                        </Grid> */}
-                <Grid item xs={12}>
-                  {/* <Button
-                                variant="contained"
-                                color="primary"
-                            >
-                                Submit
-                    </Button> */}
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-        </Grid >
-      </React.Fragment>
     )
   }
 

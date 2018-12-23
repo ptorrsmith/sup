@@ -62,5 +62,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-//   connect(null,mapDispatchToProps)
 export default withStyles(styles)(connect(null, mapDispatchToProps)(ButtonAppBar));
