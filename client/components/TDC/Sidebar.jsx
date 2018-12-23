@@ -25,6 +25,10 @@ const styles = {
   },
   fullList: {
     width: "auto"
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular
   }
 };
 
@@ -58,6 +62,7 @@ class Sidebar extends React.Component {
     let legendEntries = legendInfo.map((item) => {
       return (
         <div>
+          <Typography className={classes.heading}>Legend</Typography>
           <object type="image/svg+xml" style={{ width: "50px", height: "50px" }} data={item.image} class="logo">
           </object>
           <span>{item.text}</span>
